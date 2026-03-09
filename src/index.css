@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-hintergrund text-text-haupt font-sans antialiased;
+    scroll-behavior: smooth;
+  }
+
+  /* Premium Textur (Grain) */
+  .grain::after {
+    content: "";
+    position: fixed;
+    top: -150%;
+    left: -150%;
+    width: 300%;
+    height: 300%;
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 9999;
+    animation: noise 8s steps(10) infinite;
+  }
+
+  @keyframes noise {
+
+    0%,
+    100% {
+      transform: translate(0, 0)
+    }
+
+    10% {
+      transform: translate(-5%, -10%)
+    }
+
+    20% {
+      transform: translate(-15%, 5%)
+    }
+
+    30% {
+      transform: translate(7%, -25%)
+    }
+
+    40% {
+      transform: translate(-5%, 25%)
+    }
+
+    50% {
+      transform: translate(-15%, 10%)
+    }
+
+    60% {
+      transform: translate(15%, 0%)
+    }
+
+    70% {
+      transform: translate(0, 15%)
+    }
+
+    80% {
+      transform: translate(3%, 35%)
+    }
+
+    90% {
+      transform: translate(-10%, 10%)
+    }
+  }
+
+  .perspective-2000 {
+    perspective: 2000px;
+  }
+
+  /* Feine blaue Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-hintergrund-alt;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-marke-primaer/30 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-marke-primaer/60;
+  }
+}
+
+@layer utilities {
+  .glassmorphism {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-xl;
+  }
+
+  .glassmorphism-dark {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-marke-sekundaer to-marke-primaer;
+  }
+
+  /* Micro-Animation: Sanftes Einblenden von unten */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Dynamischer Mesh Animation */
+  .mesh-gradient {
+    background: radial-gradient(at 0% 0%, rgba(2, 83, 238, 0.05) 0, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(2, 10, 57, 0.05) 0, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(4, 118, 216, 0.05) 0, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(255, 190, 54, 0.05) 0, transparent 50%);
+    background-size: 200% 200%;
+    animation: mesh 15s ease infinite;
+  }
+
+  @keyframes mesh {
+    0% {
+      background-position: 0% 50%
+    }
+
+    50% {
+      background-position: 100% 50%
+    }
+
+    100% {
+      background-position: 0% 50%
+    }
+  }
+}
