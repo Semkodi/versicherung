@@ -25,18 +25,10 @@ const UeberMich = () => {
                             />
                         </div>
 
-                        {/* Hintergrund-Text EXPERTE */}
-                        <div className="absolute -bottom-10 -left-10 text-[150px] font-extrabold text-marke-primaer/5 select-none pointer-events-none leading-none">
-                            EXPERTE
-                        </div>
                     </div>
 
                     {/* Textinhalt */}
                     <div className="order-1 lg:order-2">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-marke-primaer/20 bg-marke-primaer/5 mb-8">
-                            <span className="text-sm font-bold text-marke-primaer uppercase tracking-wider">Dein Experte</span>
-                        </div>
-
                         <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-text-haupt leading-tight">
                             Über mich – Dein Partner für den Start ins{' '}
                             <span className="text-marke-primaer">Beamtentum</span>

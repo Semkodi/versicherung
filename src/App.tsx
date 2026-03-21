@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import Navigationsleiste from './komponenten/Navigationsleiste.tsx';
 import Heldenbereich from './komponenten/Heldenbereich.tsx';
@@ -19,16 +19,8 @@ import { ScrollReveal } from './komponenten/ScrollReveal.tsx';
 import Chatbot from './komponenten/Chatbot.tsx';
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [loading] = useState(false);
   const path = window.location.pathname;
-
-  useEffect(() => {
-    // Simuliere Ladezeit für den Wow-Effekt
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
 
   if (path === '/impressum') {
     return (

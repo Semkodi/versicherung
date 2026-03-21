@@ -22,13 +22,17 @@ export const ScrollReveal = ({ children, width = "100%", delay = 0.2, direction 
     const variants = {
         hidden: {
             opacity: 0,
-            y: direction === "up" ? 75 : direction === "down" ? -75 : 0,
-            x: direction === "left" ? 75 : direction === "right" ? -75 : 0,
+            y: direction === "up" ? 40 : direction === "down" ? -40 : 0,
+            x: direction === "left" ? 40 : direction === "right" ? -40 : 0,
+            scale: 0.95,
+            filter: "blur(10px)"
         },
         visible: {
             opacity: 1,
             y: 0,
             x: 0,
+            scale: 1,
+            filter: "blur(0px)",
         },
     };
 
@@ -38,7 +42,7 @@ export const ScrollReveal = ({ children, width = "100%", delay = 0.2, direction 
                 variants={variants}
                 initial="hidden"
                 animate={mainControls}
-                transition={{ duration: 0.8, delay: delay, ease: [0.22, 1, 0.36, 1] as any }}
+                transition={{ duration: 1, delay: delay, ease: [0.16, 1, 0.3, 1] as any }}
             >
                 {children}
             </motion.div>

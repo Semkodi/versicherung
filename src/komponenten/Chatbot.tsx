@@ -4,12 +4,20 @@ import { MessageSquare, X, Send, Bot } from 'lucide-react';
 
 const Chatbot = () => {
     const [istOffen, setIstOffen] = useState(false);
+    const [zeigeTooltip, setZeigeTooltip] = useState(true);
     const [nachrichten, setNachrichten] = useState([
-        { role: 'assistant', content: "Hallo! Ich bin dein intelligenter Simply Switch Assistent. Wie kann ich dir heute helfen?" }
+        { role: 'assistant', content: "Hi! Ich bin Sven AI, dein digitaler Versicherungsmakler. Wie kann ich dir heute weiterhelfen?" }
     ]);
     const [eingabe, setEingabe] = useState("");
     const [tippt, setTippt] = useState(false);
     const scrollRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setZeigeTooltip(false);
+        }, 6000);
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -74,7 +82,7 @@ const Chatbot = () => {
                                 <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-md">
                                     <Bot className="w-6 h-6 text-white" />
                                 </div>
-                                <h3 className="text-white font-bold text-sm">Simply AI (Live)</h3>
+                                <h3 className="text-white font-bold text-sm">Sven AI (Live)</h3>
                             </div>
                             <button onClick={() => setIstOffen(false)} className="text-white/60 hover:text-white">
                                 <X className="w-6 h-6" />
@@ -121,11 +129,28 @@ const Chatbot = () => {
                 )}
             </AnimatePresence>
 
+            {/* CTA Tooltip */}
+            <AnimatePresence>
+                {!istOffen && zeigeTooltip && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                        animate={{ opacity: 1, y: [0, -5, 0], scale: 1 }}
+                        transition={{ y: { repeat: Infinity, duration: 2.5, ease: "easeInOut" } }}
+                        exit={{ opacity: 0, scale: 0.8, y: 10 }}
+                        className="absolute bottom-[80px] right-2 w-[220px] bg-white text-marke-sekundaer border-2 border-marke-highlight px-4 py-3 rounded-2xl rounded-br-none shadow-[0_10px_30px_rgba(0,0,0,0.15)] font-bold text-sm cursor-pointer"
+                        onClick={() => setIstOffen(true)}
+                    >
+                        Hi! 👋 Ich bin Sven AI.<br/>
+                        <span className="font-normal text-xs text-marke-sekundaer/80">Hast du Fragen?</span>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
             <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIstOffen(!istOffen)}
-                className="w-16 h-16 bg-marke-primaer rounded-full shadow-[0_10px_30px_rgba(2,83,238,0.5)] flex items-center justify-center"
+                className="w-16 h-16 bg-marke-primaer rounded-full shadow-[0_10px_30px_rgba(2,83,238,0.5)] flex items-center justify-center relative z-10"
             >
                 {istOffen ? <X className="w-8 h-8 text-white" /> : <MessageSquare className="w-8 h-8 text-white" />}
             </motion.button>

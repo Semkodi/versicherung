@@ -44,13 +44,7 @@ const Heldenbereich = () => {
                         initial="hidden"
                         animate="visible"
                     >
-                        {/* Subtiles Badge */}
-                        <motion.div variants={itemVariants} className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-marke-primaer/20 bg-marke-primaer/5 mb-8">
-                            <span className="flex h-2 w-2 rounded-full bg-marke-primaer animate-pulse" />
-                            <span className="text-sm font-bold tracking-widest text-marke-primaer uppercase">Kostenlose 1:1 Beratung</span>
-                        </motion.div>
-
-                        <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.15] mb-6 text-text-haupt">
+                        <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.15] mb-6 text-text-haupt pt-4">
                             Vermeide die 5 häufigsten Fehler beim{' '}
                             <span className="relative">
                                 <span className="text-marke-primaer">
