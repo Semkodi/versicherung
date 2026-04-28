@@ -27,4 +27,7 @@ dist-ssr
 
 .vercel
 .agents/
-README.md
+.agent/
+HOSTING.md
+public.md
+*.pdf

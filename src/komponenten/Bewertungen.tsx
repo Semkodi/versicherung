@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import video1 from '../assets/VIDEO-2025-04-06-14-21-54-Kopie.mp4';
 import video2 from '../assets/WhatsApp-Video-2025-04-04-at-14.48.08-Kopie.mp4';
@@ -50,7 +50,7 @@ const Bewertungen = () => {
 
     const videos = [video1, video2];
 
-    const containerVariants = {
+    const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
@@ -58,7 +58,7 @@ const Bewertungen = () => {
         }
     };
 
-    const cardVariants = {
+    const cardVariants: Variants = {
         hidden: { opacity: 0, scale: 0.9, y: 20 },
         visible: {
             opacity: 1,
