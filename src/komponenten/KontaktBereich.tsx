@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Mail } from 'lucide-react';
 
 const KontaktBereich = () => {
     return (

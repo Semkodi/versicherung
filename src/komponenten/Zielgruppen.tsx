@@ -2,8 +2,6 @@ import { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from 'framer-motion';
 import { CheckCircle2, User, Briefcase } from 'lucide-react';
 import lehramtImg from '../assets/lehramt_3d.png';
-import polizeiImg from '../assets/polizei_3d.png';
-import verwaltungImg from '../assets/verwaltung_3d.png';
 
 const TiltCard = ({ children, gradient, idx }: { children: React.ReactNode, gradient: string, idx: number }) => {
     const cardRef = useRef<HTMLDivElement>(null);
