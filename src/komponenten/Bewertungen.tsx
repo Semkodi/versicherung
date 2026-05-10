@@ -10,28 +10,28 @@ const Bewertungen = () => {
             name: "Herczeg Róbert",
             initial: "H",
             avatar: "bg-marke-primaer/10 text-marke-primaer",
-            text: "Ich kann Sven und seine Arbeit wirklich nur empfehlen und jedem ans Herz legen! Frisch aus der Universität und kurz vor dem Referendariat, musste ich mich langsam aber sicher mit der Thematik von Versicherungen etc. auseinandersetzen.",
+            text: "Ich kann Sven wirklich nur empfehlen! Er hat mir alles verständlich erklärt und mir nie das Gefühl gegeben, etwas abschließen zu müssen. Sehr ehrliche Beratung!",
             sterne: 5,
         },
         {
             name: "Lisa Herbst",
             initial: "L",
             avatar: "bg-marke-sekundaer text-white",
-            text: "Ich bin rundum zufrieden mit der Beratung durch Sven. Er hat mich kompetent und verständlich zu wichtigen Versicherungen beraten, insbesondere zur privaten Krankenversicherung für Beamtenanwärter und zum Thema Dienstunfähigkeit.",
+            text: "Super kompetent! Sven hat mir geholfen, den Dschungel aus PKV und Beihilfe zu verstehen. Keine unnötigen Produkte, nur das, was ich wirklich brauche.",
             sterne: 5,
         },
         {
             name: "Emma Süper",
             initial: "E",
             avatar: "bg-marke-primaer/20 text-marke-sekundaer",
-            text: "Ich fühle mich bei Sven, auf dem Weg eine private Krankenversicherung zu finden, sehr kompetent und freundlich beraten. Er ist für Nachfragen immer sehr schnell erreichbar und kümmert sich zügig um die Erstellung der Anträge.",
+            text: "Sven ist super erreichbar und nimmt sich Zeit. Man merkt, dass er über 15 Jahre Erfahrung hat. Absolut vertrauenswürdig!",
             sterne: 5,
         },
         {
             name: "Ste Grue",
             initial: "S",
             avatar: "bg-marke-primaer text-white",
-            text: "Top Beratung! Kann ich nur weiterempfehlen.",
+            text: "Top Beratung ohne Verkaufsdruck. Genau das, was man als Referendar sucht. Danke Sven!",
             sterne: 5,
         }
     ];

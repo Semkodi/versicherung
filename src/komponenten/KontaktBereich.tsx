@@ -34,47 +34,41 @@ const KontaktBereich = () => {
                         <div className="absolute -right-20 -top-20 w-80 h-80 bg-marke-primaer rounded-full blur-[120px] opacity-20 pointer-events-none" />
                         <div className="absolute -left-10 -bottom-10 w-48 h-48 bg-marke-primaer rounded-full blur-[80px] opacity-10 pointer-events-none" />
 
-                        <div className="relative z-10 text-center">
-                            {/* Icon */}
-                            <motion.div
-                                animate={{ y: [0, -10, 0] }}
-                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                                className="w-16 h-16 mx-auto bg-white/10 border border-white/20 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-sm"
-                            >
-                                <Mail className="w-8 h-8 text-white" />
-                            </motion.div>
-
-                            <h3 className="text-2xl font-extrabold mb-3">Kostenfreies Infogespräch</h3>
-                            <p className="text-gray-300 font-light text-sm mb-8 max-w-sm mx-auto">
-                                Wähle einfach deinen Wunschtermin in meinem Kalender aus – ich bin auch am Abend verfügbar.
-                            </p>
-
-                            {/* Vertrauens-Badges */}
-                            <div className="flex flex-wrap justify-center gap-4 mb-8">
-                                {['Kostenlos', '100% Unverbindlich', 'Online per Video'].map((badge, i) => (
-                                    <motion.div
-                                        key={i}
-                                        initial={{ opacity: 0, scale: 0.8 }}
-                                        whileInView={{ opacity: 1, scale: 1 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.2 + (i * 0.1) }}
-                                        className="flex items-center gap-2 bg-white/10 border border-white/15 px-4 py-2 rounded-full text-sm text-gray-200"
-                                    >
-                                        <span className="w-1.5 h-1.5 rounded-full bg-marke-highlight" />
-                                        {badge}
-                                    </motion.div>
-                                ))}
-                            </div>
-
-                            <a
-                                href="https://calendly.com/kegler/kostenloses-infogesprach"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex justify-center items-center gap-3 px-10 py-4 bg-white text-marke-sekundaer rounded-xl font-black text-lg hover:bg-marke-highlight transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
-                            >
-                                Termin online buchen
-                                <ArrowRight className="w-5 h-5" />
-                            </a>
+                        <div className="relative z-10">
+                            <h3 className="text-2xl font-extrabold mb-6 text-center">Dein Weg zum Infogespräch</h3>
+                            <form className="space-y-4">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <input 
+                                        type="text" 
+                                        placeholder="Dein Name" 
+                                        className="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-2xl text-white placeholder:text-gray-400 focus:outline-none focus:border-marke-highlight transition-all"
+                                    />
+                                    <input 
+                                        type="email" 
+                                        placeholder="Deine E-Mail" 
+                                        className="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-2xl text-white placeholder:text-gray-400 focus:outline-none focus:border-marke-highlight transition-all"
+                                    />
+                                </div>
+                                <div className="grid grid-cols-3 gap-3">
+                                    {['WhatsApp', 'Telefon', 'E-Mail'].map((kanal) => (
+                                        <label key={kanal} className="cursor-pointer group">
+                                            <input type="radio" name="kanal" value={kanal} className="hidden peer" />
+                                            <div className="px-3 py-3 text-center rounded-xl bg-white/5 border border-white/10 text-xs font-bold peer-checked:bg-marke-highlight peer-checked:text-marke-sekundaer peer-checked:border-marke-highlight transition-all">
+                                                {kanal}
+                                            </div>
+                                        </label>
+                                    ))}
+                                </div>
+                                <button
+                                    type="button"
+                                    className="w-full py-4 bg-white text-marke-sekundaer rounded-2xl font-black text-lg hover:bg-marke-highlight transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
+                                >
+                                    Infogespräch + Checkliste anfordern
+                                </button>
+                                <p className="text-[10px] text-gray-400 text-center mt-4">
+                                    Durch das Absenden erklärst du dich mit unserer Datenschutzerklärung einverstanden.
+                                </p>
+                            </form>
                         </div>
                     </motion.div>
                 </div>

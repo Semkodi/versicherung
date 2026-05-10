@@ -1,44 +1,32 @@
 import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Navigationsleiste from './komponenten/Navigationsleiste.tsx';
-import Heldenbereich from './komponenten/Heldenbereich.tsx';
-import Zielgruppen from './komponenten/Zielgruppen.tsx';
-import FehlerBereich from './komponenten/FehlerBereich.tsx';
-import SoArbeiteIch from './komponenten/SoArbeiteIch.tsx';
-import AppVorteile from './komponenten/AppVorteile.tsx';
-import Bewertungen from './komponenten/Bewertungen.tsx';
-import KontaktBereich from './komponenten/KontaktBereich.tsx';
-import UeberMich from './komponenten/UeberMich.tsx';
-import PhysikSektion from './komponenten/PhysikSektion.tsx';
 import Fusszeile from './komponenten/Fusszeile.tsx';
 import Impressum from './komponenten/Impressum.tsx';
 import Datenschutz from './komponenten/Datenschutz.tsx';
+import Cookies from './komponenten/Cookies.tsx';
 import Preloader from './komponenten/Preloader.tsx';
 import FloatingShapes from './komponenten/FloatingShapes.tsx';
-import { ScrollReveal } from './komponenten/ScrollReveal.tsx';
 import Chatbot from './komponenten/Chatbot.tsx';
+import ConsentBanner from './komponenten/ConsentBanner.tsx';
+import Barrierefreiheit from './komponenten/Barrierefreiheit.tsx';
+import ScrollToTop from './komponenten/ScrollToTop.tsx';
 
-function App() {
+// Seiten
+import Startseite from './seiten/Startseite.tsx';
+import Privatkunden from './seiten/Privatkunden.tsx';
+import Gewerbekunden from './seiten/Gewerbekunden.tsx';
+import Beamte from './seiten/Beamte.tsx';
+import Dashboard from './seiten/Dashboard.tsx';
+import Login from './seiten/Login.tsx';
+
+function AppContent() {
   const [loading] = useState(false);
-  const path = window.location.pathname;
-
-  if (path === '/impressum') {
-    return (
-      <div className="min-h-screen bg-hintergrund font-sans selection:bg-marke-primaer selection:text-white">
-        <Impressum />
-        <Fusszeile />
-      </div>
-    );
-  }
-
-  if (path === '/datenschutz') {
-    return (
-      <div className="min-h-screen bg-hintergrund font-sans selection:bg-marke-primaer selection:text-white">
-        <Datenschutz />
-        <Fusszeile />
-      </div>
-    );
-  }
+  const location = useLocation();
+  const isDashboard = location.pathname === '/dashboard';
+  const isLogin = location.pathname === '/login';
+  const isSimpleLayout = isDashboard || isLogin;
 
   return (
     <>
@@ -48,48 +36,35 @@ function App() {
 
       <div className="min-h-screen bg-hintergrund text-text-haupt font-sans selection:bg-marke-primaer selection:text-white relative grain overflow-x-hidden">
         <FloatingShapes />
-        <Navigationsleiste />
+        {!isSimpleLayout && <Navigationsleiste />}
 
-        <main className="relative z-10">
-          <Heldenbereich />
+        <Routes>
+          <Route path="/" element={<Startseite />} />
+          <Route path="/privatkunden" element={<Privatkunden />} />
+          <Route path="/gewerbekunden" element={<Gewerbekunden />} />
+          <Route path="/beamte" element={<Beamte />} />
+          <Route path="/impressum" element={<Impressum />} />
+          <Route path="/datenschutz" element={<Datenschutz />} />
+          <Route path="/cookies" element={<Cookies />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
 
-          <ScrollReveal direction="up" delay={0.2}>
-            <Zielgruppen />
-          </ScrollReveal>
-
-          <ScrollReveal direction="up" delay={0.2}>
-            <FehlerBereich />
-          </ScrollReveal>
-
-          <ScrollReveal direction="left" delay={0.2}>
-            <SoArbeiteIch />
-          </ScrollReveal>
-
-          <ScrollReveal direction="right" delay={0.2}>
-            <AppVorteile />
-          </ScrollReveal>
-
-          <ScrollReveal direction="up" delay={0.2}>
-            <PhysikSektion />
-          </ScrollReveal>
-
-          <ScrollReveal direction="up" delay={0.2}>
-            <Bewertungen />
-          </ScrollReveal>
-
-          <ScrollReveal direction="up" delay={0.2}>
-            <KontaktBereich />
-          </ScrollReveal>
-
-          <ScrollReveal direction="up" delay={0.2}>
-            <UeberMich />
-          </ScrollReveal>
-        </main>
-
-        <Fusszeile />
+        {!isSimpleLayout && <Fusszeile />}
       </div>
-      <Chatbot />
+      {!isSimpleLayout && <Chatbot />}
+      <ConsentBanner />
+      <Barrierefreiheit />
     </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <ScrollToTop />
+      <AppContent />
+    </Router>
   );
 }
 

@@ -12,7 +12,7 @@ const Impressum = () => {
                 <h1 className="text-4xl md:text-5xl font-extrabold mb-12 text-text-haupt">Impressum</h1>
 
                 <div className="bg-white rounded-3xl p-8 md:p-12 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-gray-100 prose prose-lg max-w-none text-text-neben">
-                    <h2 className="text-2xl font-bold text-text-haupt mb-4">Angaben gemäß § 5 TMG sowie Informationspflichten gemäß § 15 VersVermV und § 18 Abs. 2 MStV</h2>
+                    <h2 className="text-2xl font-bold text-text-haupt mb-4">Angaben gemäß § 5 DDG sowie Informationspflichten gemäß § 15 VersVermV und § 18 Abs. 2 MStV</h2>
                     <p className="mb-6 leading-relaxed">
                         simply switch Sven Kegler Versicherungsmakler<br />
                         Kirchstraße 10<br />

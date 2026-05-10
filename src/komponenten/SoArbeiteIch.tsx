@@ -5,20 +5,20 @@ const SoArbeiteIch = () => {
     const schritte = [
         {
             zahl: "1",
-            titel: "Strategiegespräch",
-            text: "Hier erhältst du alle wichtigen Infos rundum die bevorstehende Verbeamtung und worauf du achten solltest. Im Strategiegespräch zeige ich dir deine Versorgungslücken auf und wir besprechen deine Wünsche. Das Gespräch findet locker online per Videocall statt.",
+            titel: "Strategie",
+            text: "Wir analysieren deine aktuelle Situation und zeigen dir glasklar deine Versorgungslücken auf. Das Gespräch findet locker online per Videocall statt.",
             icon: <Calendar className="w-5 h-5 text-white" />
         },
         {
             zahl: "2",
-            titel: "Konzeptvorstellung",
-            text: "Angepasst an deine Wünsche, suche ich nach der besten Absicherung und Vorsorge für dich. Ich erstelle dir ein individuelles Konzept, welches nur auf dich abgestimmt ist. Das Komplettpaket stelle ich dir vor und beantworte alle deine Fragen.",
+            titel: "Konzept",
+            text: "Ich erstelle dir ein maßgeschneidertes Konzept, das exakt auf deine Bedürfnisse abgestimmt ist. Völlig unabhängig und transparent.",
             icon: <FileText className="w-5 h-5 text-white" />
         },
         {
             zahl: "3",
             titel: "Beantragung",
-            text: "Lass dir Zeit! Bist du mit dem Konzept zufrieden, kümmere ich mich darum, alles für dich zu beantragen. Ich brauche dafür nur deine schriftliche Zustimmung, sonst musst du dich um nichts kümmern. Die komplette Übersicht hast du dann bequem per App im Blick.",
+            text: "Wenn du zufrieden bist, kümmere ich mich um den kompletten Papierkram. Du musst dich um nichts kümmern und startest stressfrei.",
             icon: <Send className="w-5 h-5 text-white" />
         }
     ];

@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from 'framer-motion';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, User, Briefcase } from 'lucide-react';
 import lehramtImg from '../assets/lehramt_3d.png';
 import polizeiImg from '../assets/polizei_3d.png';
 import verwaltungImg from '../assets/verwaltung_3d.png';
@@ -68,7 +68,7 @@ const TiltCard = ({ children, gradient, idx }: { children: React.ReactNode, grad
                     {children}
                 </div>
             </div>
-            
+
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] bg-[size:16px_16px] mix-blend-screen rounded-[2.5rem] z-10" />
         </motion.div>
     );
@@ -77,34 +77,39 @@ const TiltCard = ({ children, gradient, idx }: { children: React.ReactNode, grad
 const Zielgruppen = () => {
     const gruppen = [
         {
-            titel: "Lehramt & Referendariat",
+            titel: "Beamte & Referendare",
             icon: (
                 <div className="relative w-full aspect-square rounded-[2rem] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)] group-hover:scale-105 group-hover:-translate-y-2 transition-all duration-500 border border-white/10 group-hover:border-white/20">
                     <img src={lehramtImg} alt="Lehramt 3D Icon" className="w-full h-full object-cover" />
                 </div>
             ),
             farbe: "from-marke-primaer to-marke-akzent",
-            text: "Du stehst vor dem Ref. oder im Studium? Die erste Beihilfe, die richtige PKV und die Absicherung der Dienstunfähigkeit als Lehrer sind essenziell."
+            text: "Spezialisierte Beratung für deinen Status. Wir klären Beihilfe, PKV und die essenzielle Dienstunfähigkeitsklausel.",
+            extern: false
         },
         {
-            titel: "Polizei & Justiz",
+            titel: "Privatpersonen",
             icon: (
-                <div className="relative w-full aspect-square rounded-[2rem] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)] group-hover:scale-105 group-hover:-translate-y-2 transition-all duration-500 border border-white/10 group-hover:border-white/20">
-                    <img src={polizeiImg} alt="Polizei 3D Icon" className="w-full h-full object-cover" />
+                <div className="relative w-full aspect-square rounded-[2rem] flex items-center justify-center bg-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] group-hover:scale-105 group-hover:-translate-y-2 transition-all duration-500 border border-white/10 group-hover:border-white/20">
+                    <User className="w-20 h-20 text-marke-sekundaer" />
                 </div>
             ),
             farbe: "from-marke-sekundaer to-[#0B154D]",
-            text: "Hohes Risiko im Dienst. Als Polizeianwärter brauchst du eine spezielle Vollzugsdienstunfähigkeitsklausel und die Freie Heilfürsorge."
+            text: "Bedarfsgerechte Absicherung für Angestellte und Familien. Von Haftpflicht bis zur Altersvorsorge.",
+            extern: true,
+            link: "https://svenkegler.de/privatkunden"
         },
         {
-            titel: "Verwaltung & Finanzen",
+            titel: "Selbstständige",
             icon: (
-                <div className="relative w-full aspect-square rounded-[2rem] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)] group-hover:scale-105 group-hover:-translate-y-2 transition-all duration-500 border border-white/10 group-hover:border-white/20">
-                    <img src={verwaltungImg} alt="Verwaltung 3D Icon" className="w-full h-full object-cover" />
+                <div className="relative w-full aspect-square rounded-[2rem] flex items-center justify-center bg-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] group-hover:scale-105 group-hover:-translate-y-2 transition-all duration-500 border border-white/10 group-hover:border-white/20">
+                    <Briefcase className="w-20 h-20 text-marke-highlight" />
                 </div>
             ),
             farbe: "from-marke-highlight to-[#CCA000]",
-            text: "Ob Verwaltungswirt oder Finanzamt. Auch hier ist die Auswahl der passenden Beihilfe-Ergänzungstarife und die frühzeitige Schließung von Pensionslücken wichtig."
+            text: "Exzellente Konzepte für Unternehmer. Betriebshaftpflicht, Inhaltsversicherung und smarte Vorsorge-Lösungen.",
+            extern: true,
+            link: "https://svenkegler.de/selbststaendige"
         }
     ];
 
@@ -152,14 +157,26 @@ const Zielgruppen = () => {
                                 className="space-y-3 pt-6 mt-auto relative"
                             >
                                 <div className="absolute top-0 left-0 w-12 h-px bg-white/20" />
-                                {['Abgestimmte DU-Klausel', 'Beihilfe-Konforme PKV'].map((item, i) => (
-                                    <div key={i} className="flex items-center gap-3">
-                                        <div className="w-6 h-6 rounded-full bg-marke-highlight/20 flex items-center justify-center flex-shrink-0">
-                                            <CheckCircle2 className="w-3.5 h-3.5 text-marke-highlight" />
+                                {gruppe.extern ? (
+                                    <a
+                                        href={gruppe.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 text-white font-bold hover:text-marke-highlight transition-colors mt-4"
+                                    >
+                                        Zu Sven Kegler
+                                        <CheckCircle2 className="w-4 h-4" />
+                                    </a>
+                                ) : (
+                                    ['Abgestimmte DU-Klausel', 'Beihilfe-Konforme PKV'].map((item, i) => (
+                                        <div key={i} className="flex items-center gap-3">
+                                            <div className="w-6 h-6 rounded-full bg-marke-highlight/20 flex items-center justify-center flex-shrink-0">
+                                                <CheckCircle2 className="w-3.5 h-3.5 text-marke-highlight" />
+                                            </div>
+                                            <span className="text-sm text-white font-medium">{item}</span>
                                         </div>
-                                        <span className="text-sm text-white font-medium">{item}</span>
-                                    </div>
-                                ))}
+                                    ))
+                                )}
                             </motion.div>
                         </TiltCard>
                     ))}

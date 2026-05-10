@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    font-size: 85%;
+  }
   body {
     @apply bg-hintergrund text-text-haupt font-sans antialiased;
     scroll-behavior: smooth;
@@ -16,7 +19,7 @@
     left: -150%;
     width: 300%;
     height: 300%;
-    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    background-image: url("./assets/noise.svg");
     opacity: 0.04;
     pointer-events: none;
     z-index: 9999;
@@ -87,6 +90,34 @@
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-marke-primaer/60;
   }
+}
+
+/* Barrierefreiheit Profile */
+.basis-epi * {
+  animation: none !important;
+  transition: none !important;
+}
+
+.basis-seh {
+  filter: contrast(1.25);
+}
+
+.basis-seh body {
+  font-size: 110%;
+}
+
+.basis-adhs img {
+  filter: grayscale(0.5);
+}
+
+.basis-kognitiv a {
+  outline: 3px solid #ffbe36 !important;
+}
+
+.basis-dys body {
+  letter-spacing: 0.05em;
+  word-spacing: 0.15em;
+  line-height: 1.8;
 }
 
 @layer utilities {

@@ -45,10 +45,10 @@ const Heldenbereich = () => {
                         animate="visible"
                     >
                         <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.15] mb-6 text-text-haupt pt-4">
-                            Vermeide die 5 häufigsten Fehler beim{' '}
+                            Stressfrei ins{' '}
                             <span className="relative">
                                 <span className="text-marke-primaer">
-                                    Start in die Beamtenkarriere!
+                                    Beamtenverhältnis!
                                 </span>
                                 <motion.svg
                                     initial={{ pathLength: 0, opacity: 0 }}
@@ -89,7 +89,7 @@ const Heldenbereich = () => {
                                 href="#kontakt"
                                 className="inline-flex items-center gap-3 px-8 py-4 bg-marke-sekundaer text-white rounded-xl font-bold text-base hover:bg-marke-akzent transition-all duration-300 shadow-[0_8px_30px_rgba(2,10,57,0.25)] hover:shadow-[0_12px_40px_rgba(2,10,57,0.35)] hover:-translate-y-1"
                             >
-                                Unverbindliches Infogespräch
+                                Infogespräch
                                 <ArrowRight className="w-5 h-5" />
                             </a>
                         </motion.div>
