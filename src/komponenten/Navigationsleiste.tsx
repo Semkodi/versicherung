@@ -49,19 +49,10 @@ const Navigationsleiste = () => {
                 <div className="flex justify-between items-center h-16 sm:h-20">
 
                     <Link to="/" className="flex items-center group shrink-0 relative z-10">
-                        <motion.img
+                        <img
                             src={logo}
                             alt="simply switch logo"
-                            initial={false}
-                            animate={{
-                                height: istGescrollt ? 52 : 85,
-                                rotate: istGescrollt ? 360 : 0,
-                            }}
-                            transition={{
-                                height: { duration: 0.8, ease: "easeOut" },
-                                rotate: { duration: 2, ease: [0.22, 1, 0.36, 1] }
-                            }}
-                            className="w-auto object-contain drop-shadow-[0_10px_25px_rgba(255,255,255,0.1)] group-hover:scale-110 transition-transform"
+                            className={`${istGescrollt ? 'h-12 sm:h-14' : 'h-16 sm:h-24'} w-auto object-contain transition-all duration-700 ease-out transform group-hover:scale-105 drop-shadow-[0_10px_25px_rgba(255,255,255,0.1)]`}
                         />
                     </Link>
 
