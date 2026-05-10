@@ -61,7 +61,7 @@ function AppContent() {
 
 function App() {
   return (
-    <Router>
+    <Router basename="/versicherung">
       <ScrollToTop />
       <AppContent />
     </Router>
