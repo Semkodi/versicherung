@@ -1,50 +1,8 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ChevronDown, ChevronUp, Calendar, ArrowRight } from 'lucide-react';
+import { Calendar, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/bilder/logo_simply.png';
 
-const FaqElement = ({ frage, antwort }: { frage: string, antwort: string }) => {
-    const [offen, setOffen] = useState(false);
-
-    return (
-        <div className={`border-b border-gray-100 transition-colors ${offen ? 'border-[#1e5adb]/20' : ''}`}>
-            <button
-                className="w-full text-left flex justify-between items-start py-5 gap-4 focus:outline-none group"
-                onClick={() => setOffen(!offen)}
-            >
-                <span className={`font-semibold text-base pr-4 leading-snug transition-colors ${offen ? 'text-[#0a1930]' : 'text-[#2d3748] group-hover:text-[#0a1930]'}`}>
-                    {frage}
-                </span>
-                <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all ${offen ? 'bg-[#0a1930] text-white' : 'bg-[#f8f9fc] text-[#718096] group-hover:bg-[#0a1930]/10'}`}>
-                    {offen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                </div>
-            </button>
-            <div className={`overflow-hidden transition-all duration-300 ease-in-out ${offen ? 'max-h-64 opacity-100 pb-5' : 'max-h-0 opacity-0'}`}>
-                <p className="text-[#4a5568] font-light text-sm leading-relaxed pl-4 border-l-2 border-[#1e5adb]">
-                    {antwort}
-                </p>
-            </div>
-        </div>
-    );
-};
-
 const Fusszeile = () => {
-    const faqDaten = [
-        {
-            frage: "Wie viel kostet die Beratung?",
-            antwort: "Als unabhängiger Berater werde ich von den Versicherungsgesellschaften bezahlt. Für dich ist mein Service vollkommen kostenlos. Ich berate dich umfassend dazu, was für dich sinnvoll ist und dir wirklich etwas bringt."
-        },
-        {
-            frage: "Was passiert mit meiner Dienstunfähigkeitsversicherung, wenn ich nicht weiter verbeamtet werde?",
-            antwort: "Solltest du wieder zurück in ein Angestelltenverhältnis gehen, wandle ich die Dienstunfähigkeitsversicherung für dich einfach in eine Berufsunfähigkeitsversicherung um. So bist du immer optimal abgesichert."
-        },
-        {
-            frage: "Kann ich mich auch später noch gegen Dienstunfähigkeit versichern?",
-            antwort: "Grundsätzlich ja, sofern es dein Gesundheitszustand zulässt. Solltest du aber während deiner Anwärterzeit oder der Verbeamtung auf Probe dienstunfähig werden, bekommst du ohne Versicherung keine Leistungen vom Dienstherren oder vom Staat."
-        }
-    ];
-
     return (
         <footer className="bg-white border-t border-gray-100 relative overflow-hidden">
             {/* CTA Banner Area */}
