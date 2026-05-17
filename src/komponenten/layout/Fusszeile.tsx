@@ -1,4 +1,4 @@
-import { Calendar, ArrowRight } from 'lucide-react';
+import { Calendar, ArrowRight, Instagram, Facebook, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/bilder/logo_simply.png';
 
@@ -48,9 +48,33 @@ const Fusszeile = () => {
                                 Dein unabhängiger Versicherungsmakler für Beamte, Privatkunden und Selbstständige. Persönlich. Digital. Einfach.
                             </p>
                             <div className="flex gap-4 mt-6">
-                                <a href="#" className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#1e5adb] transition-colors"><span className="text-xs">IG</span></a>
-                                <a href="#" className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#1e5adb] transition-colors"><span className="text-xs">FB</span></a>
-                                <a href="#" className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#1e5adb] transition-colors"><span className="text-xs">LI</span></a>
+                                <a 
+                                    href="https://www.instagram.com/simply_switch_sven_kegler/" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#1e5adb] hover:scale-110 transition-all duration-300"
+                                    aria-label="Instagram von Simply Switch"
+                                >
+                                    <Instagram className="w-5 h-5 text-white" />
+                                </a>
+                                <a 
+                                    href="https://www.facebook.com/SvenKegler86/" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#1e5adb] hover:scale-110 transition-all duration-300"
+                                    aria-label="Facebook von Sven Kegler"
+                                >
+                                    <Facebook className="w-5 h-5 text-white" />
+                                </a>
+                                <a 
+                                    href="https://www.linkedin.com/in/sven-kegler-5b3883272/" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#1e5adb] hover:scale-110 transition-all duration-300"
+                                    aria-label="LinkedIn von Sven Kegler"
+                                >
+                                    <Linkedin className="w-5 h-5 text-white" />
+                                </a>
                             </div>
                         </div>
 
