@@ -108,11 +108,7 @@ const Fusszeile = () => {
                             <Link to="/cookies" className="hover:text-white transition-colors">Cookies</Link>
                         </div>
                         
-                        <div className="flex gap-4 items-center">
-                            {/* Dummy Trust Badges for visual */}
-                            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-bold text-[8px] text-white">TÜV</div>
-                            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-bold text-[8px] text-white">SSL</div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
