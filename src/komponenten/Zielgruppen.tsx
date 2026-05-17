@@ -1,183 +1,141 @@
-import { useRef, useState } from 'react';
-import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from 'framer-motion';
-import { CheckCircle2, User, Briefcase } from 'lucide-react';
-import lehramtImg from '../assets/lehramt_3d.png';
-
-const TiltCard = ({ children, gradient, idx }: { children: React.ReactNode, gradient: string, idx: number }) => {
-    const cardRef = useRef<HTMLDivElement>(null);
-    const [hovering, setHovering] = useState(false);
-
-    // Maus-Tracking
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
-    const springX = useSpring(mouseX, { stiffness: 150, damping: 20 });
-    const springY = useSpring(mouseY, { stiffness: 150, damping: 20 });
-
-    const rotateX = useTransform(springY, [-0.5, 0.5], ["8deg", "-8deg"]);
-    const rotateY = useTransform(springX, [-0.5, 0.5], ["-8deg", "8deg"]);
-
-    const glowX = useTransform(springX, [-0.5, 0.5], ["0%", "100%"]);
-    const glowY = useTransform(springY, [-0.5, 0.5], ["0%", "100%"]);
-    const glowBackground = useMotionTemplate`radial-gradient(circle at ${glowX} ${glowY}, rgba(255,255,255,0.06), transparent 70%)`;
-
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!cardRef.current) return;
-        const rect = cardRef.current.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        mouseX.set(x);
-        mouseY.set(y);
-    };
-
-    const handleMouseLeave = () => {
-        setHovering(false);
-        mouseX.set(0);
-        mouseY.set(0);
-    };
-
-    return (
-        <motion.div
-            ref={cardRef}
-            onMouseMove={handleMouseMove}
-            onMouseEnter={() => setHovering(true)}
-            onMouseLeave={handleMouseLeave}
-            style={{
-                rotateX,
-                rotateY,
-                transformStyle: "preserve-3d",
-            }}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: idx * 0.15, duration: 0.8 }}
-            className="group relative bg-[#020A39] rounded-[2.5rem] shadow-[0_15px_40px_rgba(2,10,57,0.2)] hover:shadow-[0_30px_80px_rgba(2,83,238,0.3)] transition-shadow duration-500 h-full border border-white/5 overflow-hidden"
-        >
-            <div className={`absolute -top-10 -right-10 w-48 h-48 bg-gradient-to-br ${gradient} rounded-full blur-[50px] opacity-10 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none`} />
-            <div className={`h-1.5 w-full bg-gradient-to-r ${gradient} relative rounded-t-[2.5rem] z-20`} />
-
-            <div className="p-8 md:p-10 relative z-20 h-full flex flex-col pt-10">
-                <motion.div
-                    style={{ background: glowBackground, opacity: hovering ? 1 : 0 }}
-                    className="absolute inset-0 pointer-events-none transition-opacity duration-300 rounded-[2.5rem]"
-                />
-
-                <div className="relative z-10 flex flex-col h-full transform-style-3d">
-                    {children}
-                </div>
-            </div>
-
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] bg-[size:16px_16px] mix-blend-screen rounded-[2.5rem] z-10" />
-        </motion.div>
-    );
-};
+import { motion } from 'framer-motion';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import referendarImg from '../assets/referendar_card_v2.png';
+import haushaltImg from '../assets/haushalt_card_v2.png';
+import selbststaendigeImg from '../assets/selbststaendige_card_v2.png';
 
 const Zielgruppen = () => {
     const gruppen = [
         {
-            titel: "Beamte & Referendare",
-            icon: (
-                <div className="relative w-full aspect-square rounded-[2rem] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)] group-hover:scale-105 group-hover:-translate-y-2 transition-all duration-500 border border-white/10 group-hover:border-white/20">
-                    <img src={lehramtImg} alt="Lehramt 3D Icon" className="w-full h-full object-cover" />
-                </div>
-            ),
-            farbe: "from-marke-primaer to-marke-akzent",
-            text: "Spezialisierte Beratung für deinen Status. Wir klären Beihilfe, PKV und die essenzielle Dienstunfähigkeitsklausel.",
-            extern: false
+            titel: "Ich bin Referendar oder bereits Beamter",
+            untertitel: "Alles rund um Verbeamtung, PKV, Beihilfe, Dienstunfähigkeit & Altersvorsorge – spezialisiert auf deine Situation.",
+            vorteile: [
+                "PKV & Beihilfe optimal absichern",
+                "Dienstunfähigkeit & Vorsorge",
+                "Finanzielle Entscheidungen mit Weitblick"
+            ],
+            buttonText: "Zur Beamtenberatung",
+            image: referendarImg,
+            link: "/beamte",
+            accentColor: "border-marke-primaer/20",
+            buttonBg: "bg-marke-primaer hover:bg-marke-primaer/90"
         },
         {
-            titel: "Privatpersonen",
-            icon: (
-                <div className="relative w-full aspect-square rounded-[2rem] flex items-center justify-center bg-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] group-hover:scale-105 group-hover:-translate-y-2 transition-all duration-500 border border-white/10 group-hover:border-white/20">
-                    <User className="w-20 h-20 text-marke-sekundaer" />
-                </div>
-            ),
-            farbe: "from-marke-sekundaer to-[#0B154D]",
-            text: "Bedarfsgerechte Absicherung für Angestellte und Familien. Von Haftpflicht bis zur Altersvorsorge.",
-            extern: true,
-            link: "https://svenkegler.de/privatkunden"
+            titel: "Ich möchte meine Haushaltskosten optimieren",
+            untertitel: "Wir analysieren deine Verträge und finden Sparpotenziale – oft mehrere hundert Euro pro Jahr.",
+            vorteile: [
+                "Kostenlose Analyse deiner Verträge",
+                "Ersparnisse von bis zu 1.200 € p.a.",
+                "Mehr Geld für das, was wirklich zählt"
+            ],
+            buttonText: "Jetzt Einsparpotenzial prüfen",
+            image: haushaltImg,
+            link: "/privatkunden",
+            accentColor: "border-marke-sekundaer/20",
+            buttonBg: "bg-marke-sekundaer hover:bg-marke-akzent"
         },
         {
-            titel: "Selbstständige",
-            icon: (
-                <div className="relative w-full aspect-square rounded-[2rem] flex items-center justify-center bg-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] group-hover:scale-105 group-hover:-translate-y-2 transition-all duration-500 border border-white/10 group-hover:border-white/20">
-                    <Briefcase className="w-20 h-20 text-marke-highlight" />
-                </div>
-            ),
-            farbe: "from-marke-highlight to-[#CCA000]",
-            text: "Exzellente Konzepte für Unternehmer. Betriebshaftpflicht, Inhaltsversicherung und smarte Vorsorge-Lösungen.",
-            extern: true,
-            link: "https://svenkegler.de/selbststaendige"
+            titel: "Ich bin selbstständig oder Unternehmer",
+            untertitel: "Exzellente Konzepte für Gründer und Unternehmer. Betriebshaftpflicht, Absicherung und Vorsorge.",
+            vorteile: [
+                "Gewerbliche Haftpflicht & Sachschutz",
+                "Smarte private & betriebliche Vorsorge",
+                "Individuelle Risiko- und Bedarfsanalyse"
+            ],
+            buttonText: "Zur Selbstständigenberatung",
+            image: selbststaendigeImg,
+            link: "/gewerbekunden",
+            accentColor: "border-marke-highlight/20",
+            buttonBg: "bg-[#D49E24] hover:bg-[#B7871C]"
         }
     ];
 
     return (
-        <section id="zielgruppen" className="py-24 bg-hintergrund relative overflow-hidden perspective-2000">
+        <section id="zielgruppen" className="py-24 bg-hintergrund relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="text-center max-w-3xl mx-auto mb-20">
-                    <span className="text-marke-primaer text-sm font-bold tracking-[0.3em] uppercase mb-4 block">Maßgeschneiderte Beratung</span>
-                    <h2 className="text-3xl md:text-5xl font-black mb-6 text-text-haupt leading-tight">
-                        Absicherungen, die<br />
-                        <span className="text-marke-primaer">genau zu dir passen</span>
+                {/* Header */}
+                <div className="text-center max-w-2xl mx-auto mb-16">
+                    <span className="text-marke-primaer text-xs font-bold tracking-[0.3em] uppercase mb-4 block">Was passt zu dir?</span>
+                    <h2 className="text-3xl md:text-5xl font-black mb-6 text-text-haupt">
+                        Wähle deinen Bereich
                     </h2>
-                    <p className="text-text-neben text-lg font-light leading-relaxed">
-                        Nicht jeder Beamte hat denselben Bedarf. Jede Laufbahn benötigt vollkommen unterschiedliche Klauseln in den Verträgen.
+                    <p className="text-text-neben text-lg">
+                        Damit wir dir die passenden Informationen und Lösungen zeigen können, wähle bitte, was aktuell auf dich zutrifft.
                     </p>
+                    <div className="w-16 h-1 bg-marke-primaer mx-auto mt-6 rounded-full" />
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-8 items-stretch">
                     {gruppen.map((gruppe, idx) => (
-                        <TiltCard key={idx} gradient={gruppe.farbe} idx={idx}>
-                            <motion.div
-                                style={{ transform: "translateZ(80px)" }}
-                                className="relative mb-10 w-32 h-32 md:w-40 md:h-40 mx-auto"
-                            >
-                                <div className={`absolute inset-0 bg-gradient-to-br ${gruppe.farbe} rounded-[2rem] blur-[30px] opacity-30 group-hover:opacity-60 transition-all duration-700`} />
-                                {gruppe.icon}
-                            </motion.div>
+                        <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: idx * 0.2, duration: 0.8 }}
+                            className={`group relative bg-white rounded-[2.5rem] shadow-xl border-2 ${gruppe.accentColor} overflow-hidden flex flex-col h-full`}
+                        >
+                            {/* Card Image Wrapper */}
+                            <div className="relative h-64 overflow-hidden">
+                                <img
+                                    src={gruppe.image}
+                                    alt={gruppe.titel}
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                />
+                            </div>
 
-                            <motion.h3
-                                style={{ transform: "translateZ(50px)" }}
-                                className="text-2xl font-black mb-4 text-white tracking-tight"
-                            >
-                                {gruppe.titel}
-                            </motion.h3>
+                            {/* Card Content */}
+                            <div className="p-6 md:p-8 flex-grow flex flex-col">
+                                <h3 className="text-xl md:text-2xl font-black mb-4 text-text-haupt text-center min-h-[64px] flex items-center justify-center">
+                                    {gruppe.titel}
+                                </h3>
+                                <p className="text-text-neben text-center mb-6 text-sm flex-grow">
+                                    {gruppe.untertitel}
+                                </p>
 
-                            <motion.p
-                                style={{ transform: "translateZ(30px)" }}
-                                className="text-gray-300 leading-relaxed font-light text-sm mb-12"
-                            >
-                                {gruppe.text}
-                            </motion.p>
+                                {/* Vorteile */}
+                                <div className="space-y-3 mb-10">
+                                    {gruppe.vorteile.map((vorteil, vIdx) => (
+                                        <div key={vIdx} className="flex items-center gap-3">
+                                            <CheckCircle2 className={`w-4 h-4 flex-shrink-0 ${idx === 0 ? 'text-marke-primaer' : idx === 1 ? 'text-marke-sekundaer' : 'text-marke-highlight'}`} />
+                                            <span className="text-text-haupt font-medium text-xs">{vorteil}</span>
+                                        </div>
+                                    ))}
+                                </div>
 
-                            <motion.div
-                                style={{ transform: "translateZ(40px)" }}
-                                className="space-y-3 pt-6 mt-auto relative"
-                            >
-                                <div className="absolute top-0 left-0 w-12 h-px bg-white/20" />
-                                {gruppe.extern ? (
+                                {/* Action Button */}
+                                <div className="mt-auto">
                                     <a
                                         href={gruppe.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 text-white font-bold hover:text-marke-highlight transition-colors mt-4"
+                                        className={`flex items-center justify-between w-full h-14 px-6 ${gruppe.buttonBg} text-white rounded-2xl font-bold transition-all duration-300 group/btn text-sm`}
                                     >
-                                        Zu Sven Kegler
-                                        <CheckCircle2 className="w-4 h-4" />
+                                        <span>{gruppe.buttonText}</span>
+                                        <ArrowRight className="w-5 h-5 transform group-hover/btn:translate-x-1 transition-transform" />
                                     </a>
-                                ) : (
-                                    ['Abgestimmte DU-Klausel', 'Beihilfe-Konforme PKV'].map((item, i) => (
-                                        <div key={i} className="flex items-center gap-3">
-                                            <div className="w-6 h-6 rounded-full bg-marke-highlight/20 flex items-center justify-center flex-shrink-0">
-                                                <CheckCircle2 className="w-3.5 h-3.5 text-marke-highlight" />
-                                            </div>
-                                            <span className="text-sm text-white font-medium">{item}</span>
-                                        </div>
-                                    ))
-                                )}
-                            </motion.div>
-                        </TiltCard>
+                                </div>
+                            </div>
+                        </motion.div>
                     ))}
+                </div>
+
+                {/* Footer Badges */}
+                <div className="mt-20 flex flex-wrap justify-center gap-8 md:gap-16 text-text-neben font-medium text-sm">
+                    <div className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-marke-primaer" />
+                        Unabhängige Beratung
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-marke-primaer" />
+                        Deutschlandweit digital
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-marke-primaer" />
+                        Persönlich & auf Augenhöhe
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-marke-primaer" />
+                        Schnell, einfach & verständlich
+                    </div>
                 </div>
             </div>
         </section>

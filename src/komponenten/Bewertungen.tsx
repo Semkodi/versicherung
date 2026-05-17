@@ -7,31 +7,38 @@ import video2 from '../assets/WhatsApp-Video-2025-04-04-at-14.48.08-Kopie.mp4';
 const Bewertungen = () => {
     const textReviews = [
         {
-            name: "Herczeg Róbert",
-            initial: "H",
-            avatar: "bg-marke-primaer/10 text-marke-primaer",
-            text: "Ich kann Sven wirklich nur empfehlen! Er hat mir alles verständlich erklärt und mir nie das Gefühl gegeben, etwas abschließen zu müssen. Sehr ehrliche Beratung!",
-            sterne: 5,
-        },
-        {
             name: "Lisa Herbst",
             initial: "L",
-            avatar: "bg-marke-sekundaer text-white",
-            text: "Super kompetent! Sven hat mir geholfen, den Dschungel aus PKV und Beihilfe zu verstehen. Keine unnötigen Produkte, nur das, was ich wirklich brauche.",
+            avatar: "bg-marke-primaer/10 text-marke-primaer",
+            text: "Ich kann Sven und seine Arbeit wirklich nur empfehlen und jedem ans Herz legen! Frisch aus der Universität und kurz vor dem Referendariat, musste ich mich langsam aber sicher mit dem Thema einer privaten Krankenversicherung befassen. Da ich davon bislang wirklich fast gar keine Ahnung hatte, war ich umso froher, als ich auf Sven aufmerksam geworden bin. Sven hat mich stets kompetent beraten, ist auf alle Fragen detailliert eingegangen und hat sich für mich um alles Weitere (z.B Kündigung der alten GKV) gekümmert.",
             sterne: 5,
         },
         {
             name: "Emma Süper",
             initial: "E",
+            avatar: "bg-marke-sekundaer text-white",
+            text: "Ich bin rundum zufrieden mit der Beratung durch Sven. Er hat mich kompetent und verständlich zu wichtigen Versicherungen beraten, insbesondere zur privaten Krankenversicherung für mein Referendariat. Sven ist sehr freundlich, immer schnell erreichbar und nimmt sich Zeit für alle Fragen. Ich habe mich jederzeit gut aufgehoben gefühlt und kann ihn uneingeschränkt weiterempfehlen!:)",
+            sterne: 5,
+        },
+        {
+            name: "Denise",
+            initial: "D",
             avatar: "bg-marke-primaer/20 text-marke-sekundaer",
-            text: "Sven ist super erreichbar und nimmt sich Zeit. Man merkt, dass er über 15 Jahre Erfahrung hat. Absolut vertrauenswürdig!",
+            text: "Ich bin sehr zufrieden mit der Beratung durch Sven. Ich war für mein Referendariat auf der Suche nach Versicherungen. Er hat sich sehr viel Zeit genommen und hatte auf alle Fragen eine Antwort. Er ist immer erreichbar und Anliegen werden schnell bearbeitet. 🙂",
             sterne: 5,
         },
         {
             name: "Ste Grue",
             initial: "S",
             avatar: "bg-marke-primaer text-white",
-            text: "Top Beratung ohne Verkaufsdruck. Genau das, was man als Referendar sucht. Danke Sven!",
+            text: "Ich fühle mich bei Sven, auf dem Weg eine private Krankenversicherung zu finden, sehr kompetent und freundlich beraten. Er ist für Nachfragen immer sehr schnell erreichbar und kümmert sich um alle Belange und Fragen die so anstehen.",
+            sterne: 5,
+        },
+        {
+            name: "Stefan Herrmann",
+            initial: "S",
+            avatar: "bg-marke-sekundaer/10 text-marke-sekundaer",
+            text: "Hier wird sich Zeit genommen für das Anliegen und es wird individuell auf jeden Kunden reagiert. Meine Fragen wurden schnell und verständlich erklärt und somit alle Probleme beseitigt.",
             sterne: 5,
         }
     ];

@@ -121,6 +121,10 @@
 }
 
 @layer utilities {
+  .bg-white {
+    background-color: #E4E7EC !important;
+  }
+
   .glassmorphism {
     @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-xl;
   }
