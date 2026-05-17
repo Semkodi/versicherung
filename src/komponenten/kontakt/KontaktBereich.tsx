@@ -27,7 +27,7 @@ const KontaktBereich = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="bg-marke-sekundaer rounded-3xl p-8 md:p-12 text-white relative overflow-hidden shadow-[0_30px_80px_rgba(2,10,57,0.3)]"
+                        className="bg-marke-sekundaer rounded-3xl p-8 md:p-12 text-white relative overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-white/10"
                     >
                         {/* Glow */}
                         <div className="absolute -right-20 -top-20 w-80 h-80 bg-marke-primaer rounded-full blur-[120px] opacity-20 pointer-events-none" />

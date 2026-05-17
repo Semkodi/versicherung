@@ -1,22 +1,26 @@
-import Heldenbereich from '../komponenten/Heldenbereich.tsx';
-import Zielgruppen from '../komponenten/Zielgruppen.tsx';
-import BedarfsRechner from '../komponenten/BedarfsRechner.tsx';
-import Bewertungen from '../komponenten/Bewertungen.tsx';
-import KontaktBereich from '../komponenten/KontaktBereich.tsx';
-import UeberMich from '../komponenten/UeberMich.tsx';
-import { ScrollReveal } from '../komponenten/ScrollReveal.tsx';
+import Heldenbereich  from '../komponenten/home/Heldenbereich.tsx';
+import VertrauensLeiste from '../komponenten/home/VertrauensLeiste.tsx';
+import Zielgruppen    from '../komponenten/home/Zielgruppen.tsx';
+import WarumSimplySwitch from '../komponenten/home/WarumSimplySwitch.tsx';
+import Bewertungen    from '../komponenten/home/Bewertungen.tsx';
+import SoArbeiteIch   from '../komponenten/home/SoArbeiteIch.tsx';
+import BedarfsRechner from '../komponenten/rechner/BedarfsRechner.tsx';
+import BlogWissen     from '../komponenten/home/BlogWissen.tsx';
+import KontaktBereich from '../komponenten/kontakt/KontaktBereich.tsx';
+import { ScrollReveal } from '../komponenten/layout/ScrollReveal.tsx';
 
 const Startseite = () => {
     return (
-        <main className="relative z-10">
+        <main className="relative z-10 bg-white">
             <Heldenbereich />
+            <VertrauensLeiste />
 
             <ScrollReveal direction="up" delay={0.2}>
                 <Zielgruppen />
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.2}>
-                <BedarfsRechner />
+                <WarumSimplySwitch />
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.2}>
@@ -24,11 +28,19 @@ const Startseite = () => {
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.2}>
-                <KontaktBereich />
+                <SoArbeiteIch />
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.2}>
-                <UeberMich />
+                <BedarfsRechner />
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={0.2}>
+                <BlogWissen />
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={0.2}>
+                <KontaktBereich />
             </ScrollReveal>
         </main>
     );

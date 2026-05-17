@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
-import FehlerBereich from '../komponenten/FehlerBereich.tsx';
-import FAQ from '../komponenten/FAQ.tsx';
-import SoArbeiteIch from '../komponenten/SoArbeiteIch.tsx';
-import AppVorteile from '../komponenten/AppVorteile.tsx';
-import KontaktBereich from '../komponenten/KontaktBereich.tsx';
-import { ScrollReveal } from '../komponenten/ScrollReveal.tsx';
+import FehlerBereich  from '../komponenten/home/FehlerBereich.tsx';
+import FAQ            from '../komponenten/home/FAQ.tsx';
+import SoArbeiteIch  from '../komponenten/home/SoArbeiteIch.tsx';
+import AppVorteile   from '../komponenten/home/AppVorteile.tsx';
+import KontaktBereich from '../komponenten/kontakt/KontaktBereich.tsx';
+import { ScrollReveal } from '../komponenten/layout/ScrollReveal.tsx';
 
 const Beamte = () => {
     return (

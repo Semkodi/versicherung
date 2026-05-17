@@ -9,7 +9,7 @@ import { clsx, type ClassValue } from 'clsx';
 // Importiere twMerge um Tailwind-Klassen sicher zusammenzuführen
 import { twMerge } from 'tailwind-merge';
 // Importiere die Supabase-Client-Instanz für die Datenbankverbindung
-import { supabase } from '../lib/supabase';
+import { supabase } from '../../lib/supabase';
 
 // Hilfsfunktion zum sicheren Zusammenführen von Tailwind-CSS-Klassen
 function cn(...eingaben: ClassValue[]) {

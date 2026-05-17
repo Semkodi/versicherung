@@ -11,20 +11,44 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Primäre Markenfarbe – für Buttons, Hover, aktive Elemente
-        'marke-primaer': '#0253ee',
-        // Tiefes Navy – für dunkle Sektionen, Footer, Premium-Hintergründe
-        'marke-sekundaer': '#020A39',
-        // Mittleres Navy – für Karten auf dunkleem Hintergrund
-        'marke-akzent': '#0B154D',
-        // Gold/Gelb – nur für einzelne Premium-Badges im dunklen Bereich
-        'marke-highlight': '#FFBE36',
-        // Hintergründe
-        'hintergrund': '#ffffff',
-        'hintergrund-alt': '#F0F4FF',  // sehr sanftes Blau-Weiß statt neutralem Grau
-        // Text
-        'text-haupt': '#020A39',        // gleich wie Navy für totale Konsistenz
-        'text-neben': '#4B5A8A',        // blaustichiges Grau statt neutralem Slate
+        // ─── Markenfarben ──────────────────────────────────────────
+        // Primäre Markenfarbe – Buttons, Hover, aktive Elemente
+        'marke-primaer':    '#0253ee',
+        // Tiefes Navy – Nav, Footer, dunkle Sektionen
+        'marke-sekundaer':  '#020A39',
+        // Mittleres Navy – Karten auf dunklem Hintergrund
+        'marke-akzent':     '#0B154D',
+        // Blaugrau – Nav-Hintergrund oben (ungescrollt)
+        'marke-nav':        '#68838B',
+        // Gold – Premium-Badges, Highlights
+        'marke-highlight':  '#FFBE36',
+
+        // ─── Hintergründe ──────────────────────────────────────────
+        // Seitenhintergrund (leichtes Grau-Weiß)
+        'hintergrund':      '#F5F6F8',
+        // Alternativer Hintergrund für Sektionswechsel
+        'hintergrund-alt':  '#F0F4FF',
+        // Dashboard & Login Hintergrund
+        'hintergrund-hell': '#F8FAFC',
+
+        // ─── Text ──────────────────────────────────────────────────
+        'text-haupt':       '#020A39',
+        'text-neben':       '#4B5A8A',
+
+        // ─── Sterne & Bewertungen ───────────────────────────────────
+        // Google-Sterne Gelb
+        'stern-gelb':       '#FABB05',
+        // Google-Bewertungs-Gelb (leicht anders als Highlight)
+        'google-gelb':      '#FBBC05',
+
+        // ─── Google-Logo Farben (SVG) ───────────────────────────────
+        'google-blau':      '#4285F4',
+        'google-gruen':     '#34A853',
+        'google-rot':       '#EA4335',
+
+        // ─── Barrierefreiheit ───────────────────────────────────────
+        // Outline-Farbe für kognitives Profil
+        'barriere-outline': '#ffbe36',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],

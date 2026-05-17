@@ -1,5 +1,5 @@
 import { Heart, ShieldCheck } from 'lucide-react';
-import profilBild from '../assets/Profil_img.png';
+import profilBild from '../../assets/bilder/Profil_img.png';
 
 const UeberMich = () => {
     return (

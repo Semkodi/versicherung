@@ -5,20 +5,20 @@ const SoArbeiteIch = () => {
     const schritte = [
         {
             zahl: "1",
-            titel: "Strategie",
-            text: "Wir analysieren deine aktuelle Situation und zeigen dir glasklar deine Versorgungslücken auf. Das Gespräch findet locker online per Videocall statt.",
+            titel: "Beratung buchen",
+            text: "Vereinbare bequem online einen Termin. In einem kurzen Kennenlernen besprechen wir deine Ziele und aktuelle Situation.",
             icon: <Calendar className="w-5 h-5 text-white" />
         },
         {
             zahl: "2",
-            titel: "Konzept",
-            text: "Ich erstelle dir ein maßgeschneidertes Konzept, das exakt auf deine Bedürfnisse abgestimmt ist. Völlig unabhängig und transparent.",
+            titel: "Versicherungen vergleichen",
+            text: "Ich durchsuche den Markt unabhängig nach den besten Tarifen für dich. Wir vergleichen die Ergebnisse transparent und verständlich.",
             icon: <FileText className="w-5 h-5 text-white" />
         },
         {
             zahl: "3",
-            titel: "Beantragung",
-            text: "Wenn du zufrieden bist, kümmere ich mich um den kompletten Papierkram. Du musst dich um nichts kümmern und startest stressfrei.",
+            titel: "Digital verwalten",
+            text: "Verträge abschließen und Dokumente verwalten – alles 100% digital und per App. Ich bin dauerhaft dein persönlicher Ansprechpartner.",
             icon: <Send className="w-5 h-5 text-white" />
         }
     ];
@@ -92,7 +92,7 @@ const SoArbeiteIch = () => {
                             whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
-                            className="bg-marke-sekundaer rounded-3xl p-8 md:p-10 text-white shadow-[0_30px_80px_rgba(2,10,57,0.3)] relative overflow-hidden"
+                            className="bg-marke-sekundaer rounded-3xl p-8 md:p-10 text-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-white/10 relative overflow-hidden"
                         >
                             {/* Glow-Effekt */}
                             <div className="absolute -right-16 -top-16 w-64 h-64 bg-marke-primaer rounded-full blur-[100px] opacity-20" />

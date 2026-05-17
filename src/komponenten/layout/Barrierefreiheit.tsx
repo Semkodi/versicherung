@@ -33,7 +33,7 @@ const Barrierefreiheit = () => {
             {/* Schwebender Button (Links platziert) */}
             <button 
                 onClick={() => setOffen(true)}
-                className="fixed bottom-6 left-6 z-[60] w-12 h-12 bg-white text-[#020A39] rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform border border-marke-primaer/20"
+                className="fixed bottom-6 left-6 z-[60] w-12 h-12 bg-white text-marke-sekundaer rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform border border-marke-primaer/20"
                 aria-label="Barrierefreiheit öffnen"
             >
                 <Accessibility className="w-6 h-6" />
@@ -45,7 +45,7 @@ const Barrierefreiheit = () => {
                         initial={{ opacity: 0, scale: 0.9, x: -20 }}
                         animate={{ opacity: 1, scale: 1, x: 0 }}
                         exit={{ opacity: 0, scale: 0.9, x: -20 }}
-                        className="fixed bottom-24 left-6 z-[60] w-80 bg-[#020A39]/95 backdrop-blur-xl border border-white/10 rounded-[2rem] shadow-2xl overflow-hidden p-6"
+                        className="fixed bottom-24 left-6 z-[60] w-80 bg-marke-sekundaer/95 backdrop-blur-xl border border-white/10 rounded-[2rem] shadow-2xl overflow-hidden p-6"
                     >
                         <div className="flex justify-between items-center mb-6">
                             <h3 className="text-white font-bold">Barrierefreiheit</h3>

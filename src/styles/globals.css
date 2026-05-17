@@ -1,0 +1,46 @@
+/* ─── Globale Basis-Stile ─────────────────────────────────────── */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 85%;
+  }
+  body {
+    @apply bg-hintergrund text-text-haupt font-sans antialiased;
+    scroll-behavior: smooth;
+  }
+
+  .perspective-2000 {
+    perspective: 2000px;
+  }
+}
+
+/* ─── Barrierefreiheit Profile ────────────────────────────────── */
+.basis-epi * {
+  animation: none !important;
+  transition: none !important;
+}
+
+.basis-seh {
+  filter: contrast(1.25);
+}
+
+.basis-seh body {
+  font-size: 110%;
+}
+
+.basis-adhs img {
+  filter: grayscale(0.5);
+}
+
+.basis-kognitiv a {
+  outline: 3px solid #FFBE36 !important; /* = marke-highlight aus tailwind.config.js */
+}
+
+.basis-dys body {
+  letter-spacing: 0.05em;
+  word-spacing: 0.15em;
+  line-height: 1.8;
+}

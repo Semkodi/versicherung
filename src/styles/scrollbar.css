@@ -1,0 +1,16 @@
+/* ─── Scrollbar-Styles ────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-hintergrund-alt;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-marke-primaer/30 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-marke-primaer/60;
+}

@@ -88,7 +88,7 @@ const Dashboard: React.FC = () => {
     const filteredLeads = leads.filter(l => activeTab === 'Alle' || l.category.includes(activeTab));
 
     return (
-        <div className="min-h-screen bg-[#F8FAFC] flex">
+        <div className="min-h-screen bg-hintergrund-hell flex">
             {/* Sidebar */}
             <div className="w-64 bg-white border-r border-slate-200 flex flex-col hidden lg:flex">
                 <div className="p-8">

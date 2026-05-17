@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import logo from '../assets/logo2-Photoroom.png';
+import logo from '../../assets/bilder/logo_simply.png';
 
 const Preloader = () => {
     const [counter, setCounter] = useState(0);
@@ -36,7 +36,7 @@ const Preloader = () => {
                         width: `${100 / bars.length}%`,
                         transformOrigin: "top"
                     }}
-                    className="absolute inset-y-0 bg-[#020A39] z-10"
+                    className="absolute inset-y-0 bg-marke-sekundaer z-10"
                 />
             ))}
 

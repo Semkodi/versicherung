@@ -1,0 +1,21 @@
+/* ─── Utility-Klassen & Wiederverwendbare Komponenten ─────────── */
+@layer utilities {
+  /* Glassmorphism-Effekte */
+  .glassmorphism {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-xl;
+  }
+
+  .glassmorphism-dark {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+
+  /* Farbverlauf-Text */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-marke-sekundaer to-marke-primaer;
+  }
+
+  /* bg-white Override (verhindert reines Weiß) */
+  .bg-white {
+    background-color: #E4E7EC !important; /* hintergrund-alt Fallback */
+  }
+}

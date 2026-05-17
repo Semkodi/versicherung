@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Briefcase, Building2, Truck, ShieldAlert, ArrowRight } from 'lucide-react';
-import { ScrollReveal } from '../komponenten/ScrollReveal.tsx';
+import { ScrollReveal } from '../komponenten/layout/ScrollReveal.tsx';
 
 const Gewerbekunden = () => {
     const leistungen = [
@@ -49,7 +49,7 @@ const Gewerbekunden = () => {
                         ))}
                     </div>
 
-                    <div className="bg-[#020A39] rounded-[3rem] p-12 text-center relative overflow-hidden border border-white/10 shadow-2xl">
+                    <div className="bg-marke-sekundaer rounded-[3rem] p-12 text-center relative overflow-hidden border border-white/10 shadow-2xl">
                         <div className="absolute inset-0 bg-marke-primaer/10 blur-[100px] pointer-events-none" />
                         <h2 className="text-3xl font-black text-white mb-6 relative z-10">Sichere dein Business ab</h2>
                         <p className="text-gray-400 mb-10 relative z-10">Wir analysieren deine betrieblichen Risiken und finden das passende Konzept.</p>

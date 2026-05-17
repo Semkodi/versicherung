@@ -46,7 +46,7 @@ const BedarfsRechner = () => {
                     {/* Rechte Seite: Der Rechner */}
                     <div className="relative">
                         <div className="absolute inset-0 bg-marke-primaer/20 blur-[100px] rounded-full pointer-events-none" />
-                        <div className="relative bg-[#020A39]/80 backdrop-blur-2xl border border-white/10 p-8 md:p-12 rounded-[3rem] shadow-2xl">
+                        <div className="relative bg-marke-sekundaer/80 backdrop-blur-2xl border border-white/10 p-8 md:p-12 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
                             
                             <div className="space-y-10">
                                 {/* Input Gehalt */}
@@ -118,7 +118,7 @@ const BedarfsRechner = () => {
                                         
                                         <a 
                                             href="#kontakt"
-                                            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#020A39] rounded-2xl font-black hover:bg-marke-highlight transition-all group"
+                                            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-marke-sekundaer rounded-2xl font-black hover:bg-marke-highlight transition-all group"
                                         >
                                             Lücke jetzt schließen
                                             <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

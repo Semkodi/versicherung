@@ -33,7 +33,7 @@ const ConsentBanner = () => {
                     exit={{ y: 100, opacity: 0 }}
                     className="fixed bottom-6 left-6 right-6 z-[100] pointer-events-none"
                 >
-                    <div className="max-w-4xl mx-auto bg-[#020A39] border border-white/10 rounded-[2.5rem] p-6 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl relative overflow-hidden pointer-events-auto">
+                    <div className="max-w-4xl mx-auto bg-marke-sekundaer border border-white/10 rounded-[2.5rem] p-6 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl relative overflow-hidden pointer-events-auto">
                         {/* Background Decoration */}
                         <div className="absolute -top-24 -right-24 w-48 h-48 bg-marke-primaer rounded-full blur-[80px] opacity-20 pointer-events-none" />
                         

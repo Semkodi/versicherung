@@ -1,5 +1,7 @@
 import { Smartphone, BellRing, FileCheck, ShieldCheck, ArrowRight } from 'lucide-react';
-import handyImg from '../assets/handy_img.png';
+import handyImg        from '../../assets/bilder/handy_img.png';
+import appStoreBadge   from '../../assets/icons/app-store-badge.svg';
+import googlePlayBadge from '../../assets/icons/google-play-badge.svg';
 
 const AppVorteile = () => {
     const vorteile = [
@@ -106,7 +108,7 @@ const AppVorteile = () => {
                                     className="hover:scale-105 transition-transform duration-300"
                                 >
                                     <img 
-                                        src="/src/assets/app-store-badge.svg" 
+                                        src={appStoreBadge} 
                                         alt="Im App Store laden" 
                                         className="h-10 w-auto"
                                     />
@@ -118,7 +120,7 @@ const AppVorteile = () => {
                                     className="hover:scale-105 transition-transform duration-300"
                                 >
                                     <img 
-                                        src="/src/assets/google-play-badge.svg" 
+                                        src={googlePlayBadge} 
                                         alt="Jetzt bei Google Play" 
                                         className="h-10 w-auto"
                                     />
