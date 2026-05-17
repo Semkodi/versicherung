@@ -52,28 +52,28 @@ const Fusszeile = () => {
                                     href="https://www.instagram.com/simply_switch_sven_kegler/" 
                                     target="_blank" 
                                     rel="noopener noreferrer" 
-                                    className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#1e5adb] hover:scale-110 transition-all duration-300"
+                                    className="w-10 h-10 rounded-full bg-marke-highlight/10 border border-marke-highlight/20 flex items-center justify-center text-marke-highlight hover:bg-marke-highlight hover:text-[#0a1930] hover:scale-110 transition-all duration-300"
                                     aria-label="Instagram von Simply Switch"
                                 >
-                                    <Instagram className="w-5 h-5 text-white" />
+                                    <Instagram className="w-5 h-5" />
                                 </a>
                                 <a 
                                     href="https://www.facebook.com/SvenKegler86/" 
                                     target="_blank" 
                                     rel="noopener noreferrer" 
-                                    className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#1e5adb] hover:scale-110 transition-all duration-300"
+                                    className="w-10 h-10 rounded-full bg-marke-highlight/10 border border-marke-highlight/20 flex items-center justify-center text-marke-highlight hover:bg-marke-highlight hover:text-[#0a1930] hover:scale-110 transition-all duration-300"
                                     aria-label="Facebook von Sven Kegler"
                                 >
-                                    <Facebook className="w-5 h-5 text-white" />
+                                    <Facebook className="w-5 h-5" />
                                 </a>
                                 <a 
                                     href="https://www.linkedin.com/in/sven-kegler-5b3883272/" 
                                     target="_blank" 
                                     rel="noopener noreferrer" 
-                                    className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#1e5adb] hover:scale-110 transition-all duration-300"
+                                    className="w-10 h-10 rounded-full bg-marke-highlight/10 border border-marke-highlight/20 flex items-center justify-center text-marke-highlight hover:bg-marke-highlight hover:text-[#0a1930] hover:scale-110 transition-all duration-300"
                                     aria-label="LinkedIn von Sven Kegler"
                                 >
-                                    <Linkedin className="w-5 h-5 text-white" />
+                                    <Linkedin className="w-5 h-5" />
                                 </a>
                             </div>
                         </div>
