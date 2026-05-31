@@ -28,5 +28,12 @@ dist-ssr
 .vercel
 .agents/
 .agent/
-*.md
 *.pdf
+
+# Temporaere HTML-Snapshots
+simply.html
+simply_desktop.html
+simply_full.html
+simply_node.html
+lint_errors.txt
+skills-lock.json
