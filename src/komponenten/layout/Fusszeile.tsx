@@ -1,40 +1,10 @@
-import { Calendar, ArrowRight, Instagram, Facebook, Linkedin } from 'lucide-react';
+import { Instagram, Facebook, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/bilder/logo_simply.png';
 
 const Fusszeile = () => {
     return (
         <footer className="bg-white border-t border-gray-100 relative overflow-hidden">
-            {/* CTA Banner Area */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
-                <div className="bg-[#0a1930] rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
-                    {/* Background decoration */}
-                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#1e5adb] rounded-full blur-[150px] opacity-20 pointer-events-none" />
-                    
-                    <div className="flex items-center gap-6 relative z-10">
-                        <div className="hidden sm:flex w-16 h-16 rounded-2xl bg-[#1e5adb]/20 border border-[#1e5adb]/30 items-center justify-center flex-shrink-0">
-                            <Calendar className="w-8 h-8 text-white" />
-                        </div>
-                        <div>
-                            <h2 className="text-2xl md:text-3xl font-extrabold mb-2 text-white">
-                                Bereit für die richtige Absicherung?
-                            </h2>
-                            <p className="text-gray-400 font-light text-sm md:text-base max-w-lg">
-                                Lass uns gemeinsam herausfinden, welche Versicherungen wirklich zu dir passen. Kostenlos & unverbindlich.
-                            </p>
-                        </div>
-                    </div>
-
-                    <a
-                        href="#kontakt"
-                        className="flex-shrink-0 w-full md:w-auto inline-flex justify-center items-center gap-3 px-8 py-4 bg-white text-[#0a1930] rounded-xl font-bold text-base hover:bg-gray-100 transition-all shadow-lg hover:-translate-y-1 relative z-10"
-                    >
-                        Jetzt Beratung anfragen
-                        <ArrowRight className="w-5 h-5" />
-                    </a>
-                </div>
-            </div>
-
             {/* Footer Navigation */}
             <div className="bg-[#0a1930] text-white pt-16 pb-8">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -117,6 +87,7 @@ const Fusszeile = () => {
                             <ul className="space-y-3 text-gray-400 text-xs">
                                 <li><a href="/#ueber-mich" className="hover:text-white transition-colors">Über uns</a></li>
                                 <li><a href="/#kontakt" className="hover:text-white transition-colors">Kontakt</a></li>
+                                <li><Link to="/schaden-melden" className="text-marke-highlight hover:text-white hover:underline transition-all duration-300 font-semibold">⚠️ Schaden melden</Link></li>
                                 <li><a href="#" className="hover:text-white transition-colors">Karriere</a></li>
                             </ul>
                         </div>

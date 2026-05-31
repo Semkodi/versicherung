@@ -3,9 +3,13 @@ import VertrauensLeiste from '../komponenten/home/VertrauensLeiste.tsx';
 import Zielgruppen    from '../komponenten/home/Zielgruppen.tsx';
 import WarumSimplySwitch from '../komponenten/home/WarumSimplySwitch.tsx';
 import Bewertungen    from '../komponenten/home/Bewertungen.tsx';
+import UeberMich     from '../komponenten/home/UeberMich.tsx';
 import SoArbeiteIch   from '../komponenten/home/SoArbeiteIch.tsx';
-import BedarfsRechner from '../komponenten/rechner/BedarfsRechner.tsx';
+import BedarfsRadar from '../komponenten/rechner/BedarfsRadar.tsx';
+import OrdnerCheck   from '../komponenten/home/OrdnerCheck.tsx';
+import ServiceVersprechen from '../komponenten/home/ServiceVersprechen.tsx';
 import BlogWissen     from '../komponenten/home/BlogWissen.tsx';
+import FAQ            from '../komponenten/home/FAQ.tsx';
 import KontaktBereich from '../komponenten/kontakt/KontaktBereich.tsx';
 import { ScrollReveal } from '../komponenten/layout/ScrollReveal.tsx';
 
@@ -28,15 +32,31 @@ const Startseite = () => {
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.2}>
+                <UeberMich />
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={0.2}>
                 <SoArbeiteIch />
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.2}>
-                <BedarfsRechner />
+                <BedarfsRadar />
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.2}>
                 <BlogWissen />
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={0.2}>
+                <OrdnerCheck />
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={0.2}>
+                <FAQ />
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={0.2}>
+                <ServiceVersprechen />
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.2}>

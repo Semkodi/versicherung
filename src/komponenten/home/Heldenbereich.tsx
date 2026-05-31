@@ -11,8 +11,8 @@ const Heldenbereich = () => {
 
     return (
         <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-to-br from-[#f8f9fc] to-[#eef2f9] overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+            <div className="max-w-[1650px] mx-auto px-6 lg:px-12 relative z-10">
+                <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                     
                     {/* Linke Seite: Text & CTA */}
                     <motion.div
@@ -30,7 +30,7 @@ const Heldenbereich = () => {
                         <h1 className="text-[2.5rem] md:text-5xl lg:text-[4rem] font-extrabold text-[#0a1930] leading-[1.1] mb-6 tracking-tight">
                             Versicherungen.<br />
                             Einfach. Persönlich.<br />
-                            <span className="text-[#1e5adb]">Für dich.</span>
+                            <span className="bg-gradient-to-r from-[#1e5adb] to-[#4f46e5] bg-clip-text text-transparent">Für dich.</span>
                         </h1>
 
                         {/* Subheadline */}
@@ -99,7 +99,7 @@ const Heldenbereich = () => {
                             <img 
                                 src={heroImg} 
                                 alt="Glückliche Familie" 
-                                className="w-full h-auto max-h-[600px] object-cover rounded-3xl [mask-image:linear-gradient(to_right,transparent_0%,black_30%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_30%)]"
+                                className="w-full h-auto max-h-[500px] object-cover rounded-[2rem] [mask-image:linear-gradient(to_right,transparent_0%,black_35%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_35%)] shadow-md"
                             />
                         </div>
 
@@ -108,7 +108,7 @@ const Heldenbereich = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.6 }}
-                            className="absolute -bottom-8 -left-12 bg-white rounded-3xl p-6 shadow-[0_20px_50px_rgba(0,0,0,0.1)] z-20 w-max border border-gray-100"
+                            className="absolute -bottom-8 -left-12 bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-[0_20px_50px_rgba(0,0,0,0.08)] z-20 w-max border border-white/40"
                         >
                             <div className="flex gap-8">
                                 <div className="flex flex-col gap-2">

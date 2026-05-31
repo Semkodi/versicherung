@@ -160,15 +160,38 @@ const Chatbot: React.FC = () => {
                 setSchritt(2);
             }
         } else if (schritt === 1) {
-            // Speichere die gewählte Unterkategorie
+            // Speichere die gewählte Unterkategorie (Status bzw. Gründungsstatus)
             setBenutzerDaten(prev => ({ ...prev, subCategory: option }));
+            if (benutzerDaten.category === 'Beamtenversicherung') {
+                sendeBotNachricht("In welchem Bereich bist du tätig?", ['Lehramt / Schule', 'Polizei / Zoll / Justiz', 'Verwaltung', 'Sonstiges']);
+                setSchritt(1.2);
+            } else if (benutzerDaten.category === 'Existenzgründer / Selbstständig') {
+                sendeBotNachricht("In welcher Branche bist du tätig bzw. gründest du?", ['IT & Beratung', 'Handwerk & Bau', 'Dienstleistung', 'Freiberufler', 'Sonstiges']);
+                setSchritt(1.3);
+            } else {
+                sendeBotNachricht("Perfekt. Um den Termin optimal vorzubereiten: Wie dürfen wir dich nennen? (Vor- und Nachname)");
+                setSchritt(2);
+            }
+        } else if (schritt === 1.2) {
+            // Speichere die Dienstlaufbahn
+            setBenutzerDaten(prev => ({ ...prev, subCategory: prev.subCategory + " (" + option + ")" }));
+            sendeBotNachricht("Welches Thema liegt dir besonders am Herzen?", ['Beihilfe & PKV', 'Dienstunfähigkeit (DU)', 'Diensthaftpflicht', 'Rundum-Beratung']);
+            setSchritt(1.4);
+        } else if (schritt === 1.3) {
+            // Speichere die Branche für Selbstständige und gehe zu Schritt 2
+            setBenutzerDaten(prev => ({ ...prev, subCategory: prev.subCategory + " (" + option + ")" }));
+            sendeBotNachricht("Perfekt. Um den Termin optimal vorzubereiten: Wie dürfen wir dich nennen? (Vor- und Nachname)");
+            setSchritt(2);
+        } else if (schritt === 1.4) {
+            // Speichere den Schwerpunkt für Beamte und gehe zu Schritt 2
+            setBenutzerDaten(prev => ({ ...prev, subCategory: prev.subCategory.replace(")", " - " + option + ")") }));
             sendeBotNachricht("Perfekt. Um den Termin optimal vorzubereiten: Wie dürfen wir dich nennen? (Vor- und Nachname)");
             setSchritt(2);
         } else if (schritt === 4) {
             // Speichere den gewünschten Kontaktkanal
             setBenutzerDaten(prev => ({ ...prev, channel: option }));
             // Erstelle einen Zusammenfassungstext
-            const zusammenfassungText = `Danke! Hier ist eine Zusammenfassung deiner Anfrage:\n\n📍 Bereich: ${benutzerDaten.category}\n👤 Name: ${benutzerDaten.name}\n📧 E-Mail: ${benutzerDaten.email}\n📱 Tel: ${benutzerDaten.phone}\n💬 Kanal: ${option}\n\nSoll ich diese Anfrage so an Sven Kegler senden?`;
+            const zusammenfassungText = `Danke! Hier ist eine Zusammenfassung deiner Anfrage:\n\n📍 Bereich: ${benutzerDaten.category}\n📎 Details: ${benutzerDaten.subCategory || 'Keine Angabe'}\n👤 Name: ${benutzerDaten.name}\n📧 E-Mail: ${benutzerDaten.email}\n📱 Tel: ${benutzerDaten.phone}\n💬 Kanal: ${option}\n\nSoll ich diese Anfrage so an Sven Kegler senden?`;
             sendeBotNachricht(zusammenfassungText, ['Ja, Anfrage senden', 'Daten korrigieren']);
             setSchritt(5);
         } else if (schritt === 5) {

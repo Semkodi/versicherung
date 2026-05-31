@@ -10,6 +10,7 @@ import FloatingShapes    from './komponenten/layout/FloatingShapes.tsx';
 import ScrollToTop       from './komponenten/layout/ScrollToTop.tsx';
 import ConsentBanner     from './komponenten/layout/ConsentBanner.tsx';
 import Barrierefreiheit  from './komponenten/layout/Barrierefreiheit.tsx';
+import SeitenUebergang   from './komponenten/layout/SeitenUebergang.tsx';
 
 // ─── UI-Komponenten ────────────────────────────────────────────
 import Chatbot from './komponenten/ui/Chatbot.tsx';
@@ -26,6 +27,7 @@ import Gewerbekunden from './seiten/Gewerbekunden.tsx';
 import Beamte        from './seiten/Beamte.tsx';
 import Dashboard     from './seiten/Dashboard.tsx';
 import Login         from './seiten/Login.tsx';
+import SchadenMelden from './seiten/SchadenMelden.tsx';
 
 // Hauptinhalts-Komponente, die Routing und Layout verwaltet
 function AppInhalt() {
@@ -45,17 +47,20 @@ function AppInhalt() {
         <FloatingShapes />
         {!istEinfachesLayout && <Navigationsleiste />}
 
-        <Routes>
-          <Route path="/"              element={<Startseite />} />
-          <Route path="/privatkunden"  element={<Privatkunden />} />
-          <Route path="/gewerbekunden" element={<Gewerbekunden />} />
-          <Route path="/beamte"        element={<Beamte />} />
-          <Route path="/impressum"     element={<Impressum />} />
-          <Route path="/datenschutz"   element={<Datenschutz />} />
-          <Route path="/cookies"       element={<Cookies />} />
-          <Route path="/dashboard"     element={<Dashboard />} />
-          <Route path="/login"         element={<Login />} />
-        </Routes>
+        <AnimatePresence mode="wait">
+          <Routes location={aktuellerOrt} key={aktuellerOrt.pathname}>
+            <Route path="/"              element={<SeitenUebergang><Startseite /></SeitenUebergang>} />
+            <Route path="/privatkunden"  element={<SeitenUebergang><Privatkunden /></SeitenUebergang>} />
+            <Route path="/gewerbekunden" element={<SeitenUebergang><Gewerbekunden /></SeitenUebergang>} />
+            <Route path="/beamte"        element={<SeitenUebergang><Beamte /></SeitenUebergang>} />
+            <Route path="/impressum"     element={<SeitenUebergang><Impressum /></SeitenUebergang>} />
+            <Route path="/datenschutz"   element={<SeitenUebergang><Datenschutz /></SeitenUebergang>} />
+            <Route path="/cookies"       element={<SeitenUebergang><Cookies /></SeitenUebergang>} />
+            <Route path="/dashboard"     element={<SeitenUebergang><Dashboard /></SeitenUebergang>} />
+            <Route path="/login"         element={<SeitenUebergang><Login /></SeitenUebergang>} />
+            <Route path="/schaden-melden" element={<SeitenUebergang><SchadenMelden /></SeitenUebergang>} />
+          </Routes>
+        </AnimatePresence>
 
         {!istEinfachesLayout && <Fusszeile />}
       </div>
