@@ -46,7 +46,7 @@ const Zielgruppen = () => {
     ];
 
     return (
-        <section id="zielgruppen" className="py-24 bg-white relative overflow-hidden">
+        <section id="zielgruppen" className="py-24 bg-white relative overflow-hidden scroll-mt-20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Header */}
                 <div className="text-center max-w-2xl mx-auto mb-16">
@@ -83,20 +83,22 @@ const Zielgruppen = () => {
                             </Link>
 
                             {/* Card Content */}
-                            <div className="p-8 flex-grow flex flex-col">
-                                <h3 className="text-2xl font-extrabold mb-3 text-[#0a1930]">
+                            <div className="p-10 flex-grow flex flex-col">
+                                <h3 className="text-3xl font-black mb-4 text-[#0a1930] tracking-tight">
                                     {gruppe.titel}
                                 </h3>
-                                <p className="text-[#4a5568] mb-8 text-sm leading-relaxed">
+                                <p className="text-[#4a5568] mb-8 text-base leading-relaxed font-medium">
                                     {gruppe.untertitel}
                                 </p>
 
                                 {/* Vorteile */}
                                 <ul className="space-y-4 mb-10 flex-grow">
                                     {gruppe.vorteile.map((vorteil, vIdx) => (
-                                        <li key={vIdx} className="flex items-start gap-3">
-                                            <Check className="w-5 h-5 text-[#1e5adb] flex-shrink-0 mt-0.5" />
-                                            <span className="text-[#2d3748] text-sm font-medium">{vorteil}</span>
+                                        <li key={vIdx} className="flex items-start gap-4">
+                                            <div className="w-6 h-6 rounded-full bg-[#e8effd] flex items-center justify-center flex-shrink-0 mt-0.5">
+                                                <Check className="w-3.5 h-3.5 text-[#1e5adb] stroke-[3]" />
+                                            </div>
+                                            <span className="text-[#1a202c] text-base font-semibold leading-snug">{vorteil}</span>
                                         </li>
                                     ))}
                                 </ul>
@@ -105,10 +107,10 @@ const Zielgruppen = () => {
                                 <div className="mt-auto">
                                     <Link
                                         to={gruppe.link}
-                                        className="inline-flex items-center gap-2 text-[#1e5adb] font-bold hover:text-[#152a4f] transition-colors group/btn"
+                                        className="w-full bg-[#1e5adb] text-white hover:bg-[#1546b3] py-4 px-6 rounded-2xl font-extrabold text-base flex items-center justify-center gap-2 shadow-[0_4px_20px_rgba(30,90,219,0.15)] hover:shadow-[0_10px_25px_rgba(30,90,219,0.3)] transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
                                     >
-                                        Mehr erfahren
-                                        <ArrowRight className="w-5 h-5 transform group-hover/btn:translate-x-1 transition-transform" />
+                                        <span>Mehr erfahren</span>
+                                        <ArrowRight className="w-5 h-5" />
                                     </Link>
                                 </div>
                             </div>

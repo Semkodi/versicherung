@@ -9,7 +9,7 @@ import { clsx, type ClassValue } from 'clsx';
 // Importiere twMerge um Tailwind-Klassen sicher zusammenzuführen
 import { twMerge } from 'tailwind-merge';
 // Importiere die Supabase-Client-Instanz für die Datenbankverbindung
-import { supabase } from '../../lib/supabase';
+import { supabase, istOffline } from '../../lib/supabase';
 
 // Hilfsfunktion zum sicheren Zusammenführen von Tailwind-CSS-Klassen
 function cn(...eingaben: ClassValue[]) {
@@ -76,6 +76,18 @@ const Chatbot: React.FC = () => {
     // Referenz für das Ende der Nachrichtenliste (zum automatischen Scrollen)
     const nachrichtenEndeRef = useRef<HTMLDivElement>(null);
 
+    // Referenz zur Speicherung der Bot-Timeout-ID für sauberen Cleanup beim Unmounten
+    const botTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    // Effekt: Bereinige ausstehende Bot-Timeouts beim Unmounten der Komponente
+    useEffect(() => {
+        return () => {
+            if (botTimeoutRef.current) {
+                clearTimeout(botTimeoutRef.current);
+            }
+        };
+    }, []);
+
     // Funktion zum automatischen Scrollen nach unten zu den neuesten Nachrichten
     const scrolleNachUnten = () => {
         // Führt das weiche Scrollen zum referenzierten Element aus
@@ -116,7 +128,7 @@ const Chatbot: React.FC = () => {
         const verzoegerung = Math.min(Math.max(text.length * 15, 800), 2000);
 
         // Führe das eigentliche Senden nach der berechneten Zeit aus
-        setTimeout(() => {
+        botTimeoutRef.current = setTimeout(() => {
             // Deaktiviere die Tipp-Animation
             setTipptGerade(false);
             // Erstelle das neue Nachrichten-Objekt
@@ -130,6 +142,7 @@ const Chatbot: React.FC = () => {
             };
             // Füge die Nachricht zum Chatverlauf hinzu
             setNachrichten(prev => [...prev, neueNachricht]);
+            botTimeoutRef.current = null;
         }, verzoegerung);
     };
 
@@ -197,26 +210,38 @@ const Chatbot: React.FC = () => {
         } else if (schritt === 5) {
             if (option === 'Ja, Anfrage senden') {
                 try {
-                    // Sende die gesammelten Daten an Supabase
-                    const { error } = await supabase
-                        .from('leads')
-                        .insert([
-                            {
-                                name: benutzerDaten.name,
-                                email: benutzerDaten.email,
-                                phone: benutzerDaten.phone,
-                                category: benutzerDaten.category,
-                                sub_category: benutzerDaten.subCategory,
-                                channel: benutzerDaten.channel,
-                                status: 'Neu',
-                                // Setze hohe Priorität für Beamtenversicherungen
-                                priority: benutzerDaten.category === 'Beamtenversicherung' ? 'Hoch' : 'Normal'
-                            }
-                        ]);
+                    if (istOffline) {
+                        // Im Offline-Modus loggen wir den Lead nur in der Konsole
+                        console.log('Lead empfangen (Offline-Modus):', {
+                            name: benutzerDaten.name,
+                            email: benutzerDaten.email,
+                            phone: benutzerDaten.phone,
+                            category: benutzerDaten.category,
+                            sub_category: benutzerDaten.subCategory,
+                            channel: benutzerDaten.channel
+                        });
+                    } else {
+                        // Sende die gesammelten Daten an Supabase
+                        const { error } = await supabase
+                            .from('leads')
+                            .insert([
+                                {
+                                    name: benutzerDaten.name,
+                                    email: benutzerDaten.email,
+                                    phone: benutzerDaten.phone,
+                                    category: benutzerDaten.category,
+                                    sub_category: benutzerDaten.subCategory,
+                                    channel: benutzerDaten.channel,
+                                    status: 'Neu',
+                                    // Setze hohe Priorität für Beamtenversicherungen
+                                    priority: benutzerDaten.category === 'Beamtenversicherung' ? 'Hoch' : 'Normal'
+                                }
+                            ]);
 
-                    // Wirf einen Fehler, falls der Insert fehlschlägt
-                    if (error) throw error;
-                    sendeBotNachricht("✅ Deine Anfrage wurde erfolgreich gesendet! Sven Kegler wird sich zeitnah bei dir melden. Vielen Dank für dein Vertrauen!");
+                        // Wirf einen Fehler, falls der Insert fehlschlägt
+                        if (error) throw error;
+                    }
+                    sendeBotNachricht("✅ Deine Anfrage wurde erfolgreich empfangen! Sven Kegler wird sich zeitnah persönlich bei dir melden. Vielen Dank für dein Vertrauen!");
                     // Gehe zum Endschritt
                     setSchritt(6);
                 } catch (fehler: any) {

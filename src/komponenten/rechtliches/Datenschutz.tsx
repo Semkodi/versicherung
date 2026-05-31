@@ -1,13 +1,14 @@
 import { ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Datenschutz = () => {
     return (
         <div className="min-h-screen bg-hintergrund text-text-haupt font-sans pt-32 pb-20">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <a href="/" className="inline-flex items-center gap-2 text-marke-primaer hover:text-marke-sekundaer font-medium mb-8 transition-colors">
+                <Link to="/" className="inline-flex items-center gap-2 text-marke-primaer hover:text-marke-sekundaer font-medium mb-8 transition-colors">
                     <ArrowLeft className="w-5 h-5" />
                     Zurück zur Startseite
-                </a>
+                </Link>
 
                 <h1 className="text-4xl md:text-5xl font-extrabold mb-12 text-text-haupt">Datenschutzerklärung</h1>
 

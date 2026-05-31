@@ -85,8 +85,8 @@ const Fusszeile = () => {
                         <div>
                             <h4 className="text-sm font-bold mb-5 text-white">Unternehmen</h4>
                             <ul className="space-y-3 text-gray-400 text-xs">
-                                <li><a href="/#ueber-mich" className="hover:text-white transition-colors">Über uns</a></li>
-                                <li><a href="/#kontakt" className="hover:text-white transition-colors">Kontakt</a></li>
+                                <li><Link to="/#ueber-mich" className="hover:text-white transition-colors">Über uns</Link></li>
+                                <li><Link to="/#kontakt" className="hover:text-white transition-colors">Kontakt</Link></li>
                                 <li><Link to="/schaden-melden" className="text-marke-highlight hover:text-white hover:underline transition-all duration-300 font-semibold">⚠️ Schaden melden</Link></li>
                                 <li><a href="#" className="hover:text-white transition-colors">Karriere</a></li>
                             </ul>

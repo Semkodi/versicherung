@@ -1,13 +1,14 @@
 import { ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Impressum = () => {
     return (
         <div className="min-h-screen bg-hintergrund text-text-haupt font-sans pt-32 pb-20">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <a href="/" className="inline-flex items-center gap-2 text-marke-primaer hover:text-marke-sekundaer font-medium mb-8 transition-colors">
+                <Link to="/" className="inline-flex items-center gap-2 text-marke-primaer hover:text-marke-sekundaer font-medium mb-8 transition-colors">
                     <ArrowLeft className="w-5 h-5" />
                     Zurück zur Startseite
-                </a>
+                </Link>
 
                 <h1 className="text-4xl md:text-5xl font-extrabold mb-12 text-text-haupt">Impressum</h1>
 
@@ -21,7 +22,7 @@ const Impressum = () => {
 
                     <p className="mb-8">
                         <strong>Telefon:</strong> 064362869917<br />
-                        <strong>E-Mail:</strong> <a href="mailto:info@simply-switch.de" className="text-marke-primaer hover:underline">info@simply-switch.de</a>
+                        <strong>E-Mail:</strong> <a href="mailto:kegler@simply-switch.de" className="text-marke-primaer hover:underline">kegler@simply-switch.de</a>
                     </p>
 
                     <h3 className="text-xl font-bold text-text-haupt mt-8 mb-4">Registereintrag</h3>
@@ -98,7 +99,7 @@ const Impressum = () => {
                         Kirchstraße 10<br />
                         65627 Elbtal<br />
                         Telefon: 064362869917<br />
-                        E-Mail: <a href="mailto:info@simply-switch.de" className="text-marke-primaer hover:underline">info@simply-switch.de</a>
+                        E-Mail: <a href="mailto:kegler@simply-switch.de" className="text-marke-primaer hover:underline">kegler@simply-switch.de</a>
                     </p>
                     <p className="mb-6">
                         Wir sind gemäß § 17 Abs. 4 der Versicherungsvermittlungsverordnung verpflichtet am Streitbeilegungsverfahren vor folgenden Verbraucherschlichtungsstellen teilzunehmen:<br /><br />

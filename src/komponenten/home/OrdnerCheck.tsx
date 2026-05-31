@@ -102,7 +102,7 @@ const OrdnerCheck = () => {
     };
 
     return (
-        <section className="py-24 bg-white relative overflow-hidden border-b border-[#e2e8f0]">
+        <section id="ordner-check" className="py-24 bg-white relative overflow-hidden border-b border-[#e2e8f0] scroll-mt-20">
             {/* Sanfter Deko-Hintergrund */}
             <div className="absolute bottom-0 right-0 w-[450px] h-[450px] bg-[#1e5adb]/3 blur-[110px] rounded-full pointer-events-none" />
             

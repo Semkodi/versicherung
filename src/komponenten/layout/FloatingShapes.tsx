@@ -1,6 +1,20 @@
+import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 
 const FloatingShapes = () => {
+    // Generiere Partikel-Eigenschaften einmalig beim Mounten für deterministische Animationen (verhindert Flackern bei Re-renders)
+    const partikelEigenschaften = useMemo(() => {
+        return [...Array(6)].map((_, i) => ({
+            id: i,
+            duration: 15 + Math.random() * 10,
+            delay: Math.random() * 20,
+            width: Math.random() * 40 + 20,
+            height: Math.random() * 40 + 20,
+            left: `${Math.random() * 100}%`,
+            borderRadius: Math.random() > 0.5 ? '50%' : '4px'
+        }));
+    }, []);
+
     return (
         <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
             {/* Große, extrem subtile wabernde Formen */}
@@ -24,9 +38,9 @@ const FloatingShapes = () => {
             />
 
             {/* Kleine "Partikel" oder Quadrate die langsam steigen */}
-            {[...Array(6)].map((_, i) => (
+            {partikelEigenschaften.map((p) => (
                 <motion.div
-                    key={i}
+                    key={p.id}
                     initial={{ y: "110vh", opacity: 0 }}
                     animate={{
                         y: "-10vh",
@@ -34,17 +48,17 @@ const FloatingShapes = () => {
                         rotate: 360
                     }}
                     transition={{
-                        duration: 15 + Math.random() * 10,
+                        duration: p.duration,
                         repeat: Infinity,
-                        delay: Math.random() * 20,
+                        delay: p.delay,
                         ease: "linear"
                     }}
                     className="absolute bg-marke-primaer/10 border border-marke-primaer/20"
                     style={{
-                        width: Math.random() * 40 + 20,
-                        height: Math.random() * 40 + 20,
-                        left: `${Math.random() * 100}%`,
-                        borderRadius: Math.random() > 0.5 ? '50%' : '4px'
+                        width: p.width,
+                        height: p.height,
+                        left: p.left,
+                        borderRadius: p.borderRadius
                     }}
                 />
             ))}

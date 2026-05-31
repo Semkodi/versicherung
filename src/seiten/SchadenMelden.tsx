@@ -121,6 +121,28 @@ const SchadenMelden = () => {
 
     const absenden = (e: React.FormEvent) => {
         e.preventDefault();
+        if (!name || !email || !telefon) return;
+
+        const betreff = encodeURIComponent(`⚠️ Neue Schadensmeldung - ${schadensarten.find(s => s.wert === schadensart)?.label || schadensart.toUpperCase()}`);
+        const dateiListeText = dateien.map(d => `📎 ${d.name} (${d.size} KB)`).join("\n") || 'Keine Belege vorab hochgeladen';
+        
+        const text = encodeURIComponent(
+            `Hallo Sven,\n\nich möchte einen neuen Schaden melden.\n\n` +
+            `🚨 Schadensart: ${schadensarten.find(s => s.wert === schadensart)?.label || schadensart.toUpperCase()}\n` +
+            `📅 Schadensdatum: ${schadensdatum}\n` +
+            `📝 Beschreibung:\n${beschreibung}\n\n` +
+            `👤 Kontaktdaten des Kunden:\n` +
+            `- Name: ${name}\n` +
+            `- E-Mail: ${email}\n` +
+            `- Telefon: ${telefon}\n` +
+            `- Versicherungsnummer: ${policenNummer || 'Keine Angabe'}\n\n` +
+            `📂 Ausgewählte Belege/Bilder:\n${dateiListeText}\n\n` +
+            `[Hinweis für den Mail-Versand: Bitte hänge die ausgewählten Schadensbilder/Belege einfach manuell als Anhang an diese E-Mail an, bevor du sie abschickst!]`
+        );
+        
+        // E-Mail-Client des Nutzers öffnen
+        window.location.href = `mailto:kegler@simply-switch.de?subject=${betreff}&body=${text}`;
+        
         setWurdeGesendet(true);
     };
 
@@ -492,17 +514,19 @@ const SchadenMelden = () => {
                             <div className="w-20 h-20 rounded-full bg-[#10b981]/10 flex items-center justify-center mb-8 shadow-md border border-[#10b981]/20">
                                 <Check className="w-10 h-10 text-[#10b981] stroke-[3]" />
                             </div>
-                            <h3 className="font-extrabold text-3xl text-[#0a1930] mb-4 tracking-tight">Schadensmeldung übermittelt!</h3>
+                            <h3 className="font-extrabold text-3xl text-[#0a1930] mb-4 tracking-tight">Schadensmeldung vorbereitet!</h3>
                             <p className="text-[#4a5568] text-base max-w-lg mb-8 leading-relaxed font-normal">
-                                Hallo <span className="font-bold text-[#0a1930]">{name}</span>, wir haben deine Schadensmeldung erhalten. Dein Schaden wurde erfasst und die hochgeladenen Belege wurden gesichert.
+                                Hallo <span className="font-bold text-[#0a1930]">{name}</span>, deine E-Mail-Schadensmeldung wurde erfolgreich generiert und in deinem E-Mail-Programm geöffnet.
                             </p>
 
                             <div className="bg-[#f8f9fc] border border-gray-100 rounded-3xl p-6 md:p-8 max-w-xl text-left flex gap-5 items-start mb-8 shadow-sm">
                                 <Clock className="w-6 h-6 text-red-500 flex-shrink-0 mt-0.5" />
                                 <div>
-                                    <h4 className="font-extrabold text-sm text-[#0a1930] mb-1">Unser 2-Stunden-Notfall-Versprechen:</h4>
+                                    <h4 className="font-extrabold text-sm text-[#0a1930] mb-1">Bitte beachten & unser 2h-Versprechen:</h4>
                                     <p className="text-xs text-[#718096] leading-relaxed font-normal">
-                                        Sven Kegler prüft deine Meldung sofort und kontaktiert dich innerhalb der nächsten **2 Stunden** persönlich unter deiner Nummer <span className="font-bold text-[#0a1930]">{telefon}</span>, um das weitere Vorgehen und die Auszahlung abzustimmen.
+                                        1. ⚠️ **Wichtig:** Vergiss nicht, deine ausgewählten Belege oder Bilder manuell an die geöffnete E-Mail anzuhängen, bevor du sie abschickst!<br />
+                                        2. Falls sich das Mail-Programm nicht geöffnet hat, sende die Schadensdetails einfach direkt an <span className="font-bold text-[#0a1930]">kegler@simply-switch.de</span>.<br />
+                                        3. Sven Kegler prüft deine Meldung sofort und kontaktiert dich innerhalb der nächsten **2 Stunden** persönlich unter deiner Nummer <span className="font-bold text-[#0a1930]">{telefon}</span>.
                                     </p>
                                 </div>
                             </div>

@@ -3,11 +3,10 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn('Supabase URL oder Key fehlen in der .env Datei. Der Chatbot wird im Offline-Modus laufen.');
-}
+// Wunschgemäß ist das Dashboard/Supabase vorerst stillgelegt (Offline-Modus erzwungen)
+export const istOffline = true;
 
 export const supabase = createClient(
-  supabaseUrl || 'https://placeholder.supabase.co',
-  supabaseAnonKey || 'placeholder-key'
+  supabaseUrl && !istOffline ? supabaseUrl : 'https://placeholder.supabase.co',
+  supabaseAnonKey && !istOffline ? supabaseAnonKey : 'placeholder-key'
 );

@@ -224,6 +224,22 @@ const BedarfsRadar = () => {
     const anfrageSenden = (e: React.FormEvent) => {
         e.preventDefault();
         if (!kontaktInfo) return;
+
+        const betreff = encodeURIComponent("Anfrage Bedarfs-Radar Auswertung - Sven Kegler");
+        const bedarf = berechneBedarf();
+        const essentiellListe = bedarf.essentiell.map(i => `- ${i.titel}`).join("\n");
+        const empfehlenswertListe = bedarf.empfehlenswert.map(i => `- ${i.titel}`).join("\n");
+        
+        const text = encodeURIComponent(
+            `Hallo Sven,\n\nich habe mein persönliches Bedarfs-Radar ausgefüllt und möchte gerne die kostenfreien Vergleiche anfordern.\n\n` +
+            `📊 Bedarfs-Radar Ergebnis:\n` +
+            `[Essentiell]\n${essentiellListe || 'Kein akuter Bedarf'}\n\n` +
+            `[Empfehlenswert]\n${empfehlenswertListe || 'Kein akuter Bedarf'}\n\n` +
+            `👤 Kontaktdaten:\n- Telefon/E-Mail: ${kontaktInfo}\n\n` +
+            `Bitte erstelle mir hierzu ein unverbindliches Angebot.\n\nFreundliche Grüße`
+        );
+
+        window.location.href = `mailto:kegler@simply-switch.de?subject=${betreff}&body=${text}`;
         setAngebotGesendet(true);
     };
 
@@ -231,7 +247,7 @@ const BedarfsRadar = () => {
     const progressPercentage = (schritt / fragen.length) * 100;
 
     return (
-        <section className="py-24 bg-gradient-to-b from-[#f8f9fc] to-white relative overflow-hidden border-b border-[#e2e8f0]">
+        <section id="bedarfsradar" className="py-24 bg-gradient-to-b from-[#f8f9fc] to-white relative overflow-hidden border-b border-[#e2e8f0] scroll-mt-20">
             <div className="max-w-[1650px] mx-auto px-6 lg:px-12 relative z-10">
                 
                 {/* Header */}
@@ -245,17 +261,17 @@ const BedarfsRadar = () => {
                     </p>
                 </div>
 
-                {/* Radar Container */}
-                <div className="max-w-4xl mx-auto bg-white border border-gray-100 rounded-[2.5rem] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.03)] relative min-h-[480px] flex flex-col justify-between">
+                {/* Radar Container - Borderless Editorial Style */}
+                <div className="max-w-7xl mx-auto relative min-h-[440px] flex flex-col justify-between">
                     <div className="absolute inset-0 bg-[#1e5adb]/[0.01] blur-[80px] pointer-events-none rounded-[2.5rem]" />
                     
                     <AnimatePresence mode="wait">
                         {schritt <= fragen.length && aktuellesFragenobjekt ? (
                             <motion.div
                                 key={schritt}
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -20 }}
+                                initial={{ opacity: 0, y: 15 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -15 }}
                                 transition={{ duration: 0.4 }}
                                 className="flex flex-col flex-grow justify-between relative z-10"
                             >
@@ -282,8 +298,8 @@ const BedarfsRadar = () => {
                                         {aktuellesFragenobjekt.beschreibung}
                                     </p>
 
-                                    {/* Optionen Grid */}
-                                    <div className="grid md:grid-cols-2 gap-4">
+                                    {/* Optionen Grid - Borderless Line-based Design */}
+                                    <div className="grid md:grid-cols-2 gap-x-12 gap-y-4">
                                         {aktuellesFragenobjekt.optionen.map((opt) => {
                                             const IconComponent = opt.icon;
                                             return (
@@ -291,12 +307,15 @@ const BedarfsRadar = () => {
                                                     key={opt.wert}
                                                     type="button"
                                                     onClick={() => wähleOption(opt.wert)}
-                                                    className="flex items-center gap-4 bg-[#f8f9fc] hover:bg-white border border-gray-100 hover:border-[#1e5adb] hover:shadow-[0_10px_30px_rgba(30,90,219,0.05)] p-5 rounded-2xl text-left font-extrabold text-sm md:text-base text-[#0a1930] transition-all duration-300 group hover:-translate-y-0.5"
+                                                    className="flex items-center gap-5 border-b border-gray-100 hover:border-[#1e5adb] py-5 text-left font-extrabold text-sm md:text-base text-[#0a1930] transition-all duration-300 group hover:translate-x-1 cursor-pointer"
                                                 >
-                                                    <div className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-[#718096] group-hover:text-[#1e5adb] group-hover:bg-[#e8effd]/30 transition-all duration-300">
+                                                    <div className="w-12 h-12 rounded-2xl bg-white border border-gray-100 flex items-center justify-center text-[#718096] group-hover:text-[#1e5adb] group-hover:bg-[#e8effd]/50 group-hover:border-[#e8effd]/80 transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.02)]">
                                                         <IconComponent className="w-5 h-5" />
                                                     </div>
-                                                    <span>{opt.label}</span>
+                                                    <div className="flex-grow">
+                                                        <span className="block text-[#0a1930] group-hover:text-[#1e5adb] transition-colors">{opt.label}</span>
+                                                    </div>
+                                                    <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-[#1e5adb] group-hover:translate-x-1 transition-all" />
                                                 </button>
                                             );
                                         })}
@@ -309,10 +328,10 @@ const BedarfsRadar = () => {
                                         type="button"
                                         disabled={schritt === 1}
                                         onClick={zurück}
-                                        className={`flex items-center gap-2 font-bold text-sm transition-all ${
+                                        className={`flex items-center gap-2 font-extrabold text-sm transition-all ${
                                             schritt === 1 
-                                                ? 'text-gray-300 cursor-not-allowed' 
-                                                : 'text-[#718096] hover:text-[#0a1930] cursor-pointer'
+                                                ? 'text-gray-300 cursor-not-allowed opacity-50' 
+                                                : 'text-[#1e5adb]/85 hover:text-[#1e5adb] hover:-translate-x-0.5 cursor-pointer'
                                         }`}
                                     >
                                         <ArrowLeft className="w-4 h-4" />
@@ -321,11 +340,11 @@ const BedarfsRadar = () => {
                                 </div>
                             </motion.div>
                         ) : (
-                            // Schritt 6: Das Ergebnis-Dashboard
+                            // Schritt 6: Das Ergebnis-Dashboard - Komplett rahmenlos & Akzentstreifen-basiert
                             <motion.div
                                 key="ergebnis"
-                                initial={{ opacity: 0, scale: 0.98 }}
-                                animate={{ opacity: 1, scale: 1 }}
+                                initial={{ opacity: 0, y: 15 }}
+                                animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5 }}
                                 className="flex flex-col relative z-10"
                             >
@@ -339,26 +358,27 @@ const BedarfsRadar = () => {
                                             <button 
                                                 type="button"
                                                 onClick={radarZurücksetzen}
-                                                className="px-4 py-2 border border-gray-200 text-xs font-extrabold text-[#718096] rounded-xl hover:bg-gray-50 transition-colors self-start md:self-auto cursor-pointer"
+                                                className="px-4 py-2 bg-[#e8effd]/40 border border-[#e8effd] hover:border-[#1e5adb]/20 text-xs font-extrabold text-[#1e5adb] rounded-xl hover:bg-[#e8effd]/80 transition-all self-start md:self-auto cursor-pointer"
                                             >
                                                 Radar neu starten
                                             </button>
                                         </div>
 
-                                        {/* Ergebnis-Säulen */}
-                                        <div className="space-y-6 mb-8">
+                                        {/* Ergebnis-Zeilen mit Akzentstreifen statt Boxen */}
+                                        <div className="space-y-10 mb-12">
+                                            
                                             {/* ESSENTIELL */}
                                             {berechneBedarf().essentiell.length > 0 && (
                                                 <div>
-                                                    <div className="flex items-center gap-2 mb-3">
+                                                    <div className="flex items-center gap-2 mb-6">
                                                         <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
                                                         <span className="text-xs font-extrabold text-red-500 uppercase tracking-widest">Säule 1: Absolut Unverzichtbar</span>
                                                     </div>
-                                                    <div className="grid md:grid-cols-2 gap-4">
+                                                    <div className="grid md:grid-cols-2 gap-8">
                                                         {berechneBedarf().essentiell.map((item, idx) => (
-                                                            <div key={idx} className="bg-red-50/20 border border-red-100/50 rounded-2xl p-5 relative overflow-hidden">
-                                                                <h4 className="font-extrabold text-sm text-[#0a1930] mb-2">{item.titel}</h4>
-                                                                <p className="text-xs text-[#718096] leading-relaxed font-normal">{item.beschreibung}</p>
+                                                            <div key={idx} className="border-l-[6px] border-red-500 bg-gradient-to-r from-red-50/50 via-red-50/10 to-transparent rounded-r-2xl pl-6 py-4 shadow-[0_4px_15px_rgba(239,68,68,0.01)] border border-red-100/30">
+                                                                <h4 className="font-black text-lg md:text-xl text-[#0a1930] mb-2 leading-snug">{item.titel}</h4>
+                                                                <p className="text-base text-[#1a202c] leading-relaxed font-semibold">{item.beschreibung}</p>
                                                             </div>
                                                         ))}
                                                     </div>
@@ -367,16 +387,16 @@ const BedarfsRadar = () => {
 
                                             {/* EMPFEHLENSWERT */}
                                             {berechneBedarf().empfehlenswert.length > 0 && (
-                                                <div className="pt-4 border-t border-gray-100">
-                                                    <div className="flex items-center gap-2 mb-3">
-                                                        <span className="w-2.5 h-2.5 rounded-full bg-[#1e5adb]" />
+                                                <div className="pt-8 border-t border-gray-100">
+                                                    <div className="flex items-center gap-2 mb-6">
+                                                        <span className="w-3 h-3 rounded-full bg-[#1e5adb] animate-pulse" />
                                                         <span className="text-xs font-extrabold text-[#1e5adb] uppercase tracking-widest">Säule 2: Sehr Empfehlenswert</span>
                                                     </div>
-                                                    <div className="grid md:grid-cols-2 gap-4">
+                                                    <div className="grid md:grid-cols-2 gap-8">
                                                         {berechneBedarf().empfehlenswert.map((item, idx) => (
-                                                            <div key={idx} className="bg-[#e8effd]/10 border border-[#e8effd]/30 rounded-2xl p-5 relative overflow-hidden">
-                                                                <h4 className="font-extrabold text-sm text-[#0a1930] mb-2">{item.titel}</h4>
-                                                                <p className="text-xs text-[#718096] leading-relaxed font-normal">{item.beschreibung}</p>
+                                                            <div key={idx} className="border-l-[6px] border-[#1e5adb] bg-gradient-to-r from-[#e8effd]/40 via-[#e8effd]/10 to-transparent rounded-r-2xl pl-6 py-4 shadow-[0_4px_15px_rgba(30,90,219,0.01)] border border-[#e8effd]/30">
+                                                                <h4 className="font-black text-lg md:text-xl text-[#0a1930] mb-2 leading-snug">{item.titel}</h4>
+                                                                <p className="text-base text-[#1a202c] leading-relaxed font-semibold">{item.beschreibung}</p>
                                                             </div>
                                                         ))}
                                                     </div>
@@ -385,16 +405,16 @@ const BedarfsRadar = () => {
 
                                             {/* OPTIONAL */}
                                             {berechneBedarf().optional.length > 0 && (
-                                                <div className="pt-4 border-t border-gray-100">
-                                                    <div className="flex items-center gap-2 mb-3">
-                                                        <span className="w-2.5 h-2.5 rounded-full bg-gray-400" />
+                                                <div className="pt-8 border-t border-gray-100">
+                                                    <div className="flex items-center gap-2 mb-6">
+                                                        <span className="w-3 h-3 rounded-full bg-gray-400" />
                                                         <span className="text-xs font-extrabold text-[#718096] uppercase tracking-widest">Säule 3: Sinnvolle Ergänzung</span>
                                                     </div>
-                                                    <div className="grid md:grid-cols-2 gap-4">
+                                                    <div className="grid md:grid-cols-2 gap-8">
                                                         {berechneBedarf().optional.map((item, idx) => (
-                                                            <div key={idx} className="bg-gray-50 border border-gray-100/50 rounded-2xl p-5 relative overflow-hidden">
-                                                                <h4 className="font-extrabold text-sm text-[#0a1930] mb-2">{item.titel}</h4>
-                                                                <p className="text-xs text-[#718096] leading-relaxed font-normal">{item.beschreibung}</p>
+                                                            <div key={idx} className="border-l-[6px] border-gray-300 bg-gradient-to-r from-gray-50/70 via-gray-50/20 to-transparent rounded-r-2xl pl-6 py-4 shadow-[0_4px_15px_rgba(0,0,0,0.01)] border border-gray-100/30">
+                                                                <h4 className="font-black text-lg md:text-xl text-[#0a1930] mb-2 leading-snug">{item.titel}</h4>
+                                                                <p className="text-base text-[#1a202c] leading-relaxed font-semibold">{item.beschreibung}</p>
                                                             </div>
                                                         ))}
                                                     </div>
@@ -402,56 +422,63 @@ const BedarfsRadar = () => {
                                             )}
                                         </div>
 
-                                        {/* Kontakt-Abschnitt */}
+                                        {/* Kontakt-Abschnitt - Clean Glassmorphism-Bordered Banner */}
                                         <form 
                                             onSubmit={anfrageSenden}
-                                            className="bg-[#f8f9fc] border border-gray-100 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6"
+                                            className="bg-[#0a1930] border border-blue-950 rounded-[2.5rem] p-10 flex flex-col lg:flex-row items-center justify-between gap-8 mt-16 shadow-[0_20px_50px_rgba(10,25,48,0.15)] relative overflow-hidden"
                                         >
-                                            <div className="max-w-md">
-                                                <h4 className="font-extrabold text-base text-[#0a1930] mb-2 flex items-center gap-2">
-                                                    <Sparkles className="w-4 h-4 text-[#1e5adb]" />
+                                            <div className="absolute top-0 right-0 w-64 h-64 bg-[#1e5adb]/10 rounded-full blur-[80px] pointer-events-none" />
+                                            <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-500/5 rounded-full blur-[60px] pointer-events-none" />
+                                            
+                                            <div className="max-w-md text-left relative z-10">
+                                                <h4 className="font-extrabold text-xl text-white mb-3 flex items-center gap-3">
+                                                    <Sparkles className="w-5 h-5 text-yellow-400 animate-pulse" />
                                                     <span>Kostenfreien Vergleich & Angebot sichern</span>
                                                 </h4>
-                                                <p className="text-xs text-[#718096] leading-relaxed font-normal">
-                                                    Wir filtern unabhängig die stärksten Tarife am Markt für deinen Bedarf heraus. Hinterlasse einfach deine E-Mail oder Telefonnummer.
+                                                <p className="text-sm text-blue-200 leading-relaxed font-medium">
+                                                    Wir filtern unabhängig die stärksten Tarife am Markt für deinen Bedarf heraus. Durch das Absenden öffnet sich dein E-Mail-Programm mit allen Details.
                                                 </p>
                                             </div>
-                                            <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-grow max-w-md justify-end">
-                                                <input 
-                                                    type="text" 
-                                                    required
-                                                    value={kontaktInfo}
-                                                    onChange={(e) => setKontaktInfo(e.target.value)}
-                                                    placeholder="Telefonnummer oder E-Mail"
-                                                    className="bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:border-[#1e5adb] focus:outline-none transition-all placeholder:text-gray-300 font-medium w-full sm:w-auto flex-grow"
-                                                />
+                                            <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto flex-grow max-w-lg justify-end relative z-10">
+                                                <div className="relative flex-grow">
+                                                    <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                                                        <span className="text-gray-400 font-bold text-base">@</span>
+                                                    </div>
+                                                    <input 
+                                                        type="text" 
+                                                        required
+                                                        value={kontaktInfo}
+                                                        onChange={(e) => setKontaktInfo(e.target.value)}
+                                                        placeholder="Telefonnummer oder E-Mail"
+                                                        className="bg-white border-2 border-transparent focus:border-[#1e5adb] rounded-2xl pl-10 pr-5 py-4 text-base text-[#0a1930] focus:outline-none transition-all placeholder:text-gray-400 font-bold w-full shadow-lg"
+                                                    />
+                                                </div>
                                                 <button
                                                     type="submit"
-                                                    disabled={!kontaktInfo}
-                                                    className={`py-3.5 px-6 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-md transition-all ${
+                                                    className={`py-4 px-8 rounded-2xl font-extrabold text-base flex items-center justify-center gap-2 transition-all duration-300 ${
                                                         kontaktInfo 
-                                                            ? 'bg-[#0a1930] hover:bg-[#152a4f] text-white hover:-translate-y-0.5 cursor-pointer'
-                                                            : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                                            ? 'bg-[#1e5adb] hover:bg-[#2b6eff] text-white shadow-[0_4px_20px_rgba(30,90,219,0.3)] hover:-translate-y-0.5 active:scale-95 cursor-pointer'
+                                                            : 'bg-[#1e5adb] text-white/80 opacity-60 hover:opacity-75 cursor-pointer'
                                                     }`}
                                                 >
                                                     <span>Angebot anfordern</span>
-                                                    <ArrowRight className="w-4 h-4" />
+                                                    <ArrowRight className="w-5 h-5" />
                                                 </button>
                                             </div>
                                         </form>
                                     </>
                                 ) : (
-                                    // Erfolgs-Bildschirm
+                                    // Erfolgs-Bildschirm - E-Mail mailto formatierte Bestätigung
                                     <div className="flex flex-col items-center justify-center py-16 text-center">
                                         <div className="w-16 h-16 rounded-full bg-[#10b981]/10 flex items-center justify-center mb-6 shadow-md border border-[#10b981]/20">
                                             <Check className="w-8 h-8 text-[#10b981] stroke-[3]" />
                                         </div>
-                                        <h3 className="font-extrabold text-2xl text-[#0a1930] mb-3 tracking-tight">Anfrage erfolgreich!</h3>
+                                        <h3 className="font-extrabold text-2xl text-[#0a1930] mb-3 tracking-tight">Anfrage per E-Mail vorbereitet!</h3>
                                         <p className="text-[#4a5568] text-sm max-w-sm mb-6 leading-relaxed font-normal">
-                                            Wir haben deine Bedarfs-Radar-Auswertung erhalten und vergleichen jetzt unabhängig die passenden Angebote für dich.
+                                            Vielen Dank! Deine E-Mail-Anfrage wurde erfolgreich generiert und in deinem E-Mail-Programm an <span className="font-bold text-[#0a1930]">kegler@simply-switch.de</span> geöffnet.
                                         </p>
                                         <div className="bg-[#f8f9fc] border border-gray-100 rounded-2xl p-5 max-w-md text-xs text-[#718096] leading-relaxed shadow-sm font-normal">
-                                            Wir melden uns unter <span className="font-bold text-[#0a1930]">{kontaktInfo}</span> innerhalb der nächsten 24 Stunden mit deinen individuellen Angeboten. Du musst nichts weiter tun!
+                                            Sollte sich dein Mail-Programm nicht automatisch geöffnet haben, sende uns deine Anfrage einfach direkt mit deinen Bedarfsdaten per Mail. Sven Kegler meldet sich innerhalb der nächsten 24 Stunden persönlich bei dir!
                                         </div>
                                         <button 
                                             type="button"
