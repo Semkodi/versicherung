@@ -13,16 +13,18 @@ Moderne Versicherungsplattform für Privatkunden, Gewerbekunden und Beamte.
 
 Entwickelt von **Semir Borogovac** als praxisnahes Webprojekt für den Versicherungsmakler **Sven Kegler**.
 
-## ✅ Projektstatus
+## 🖼️ Projektvorschau
 
+![](screenshots/startseite.png)
+
+## 📊 Projektumfang
+
+- 5 Hauptseiten
+- Interaktive Bedarfsanalyse
+- Kontakt- und Schadensformulare
 - Responsive Design
 - Moderne React-Architektur
-- TypeScript
 - GitHub Pages Deployment
-- Interaktive Bedarfsanalyse
-- Praxisprojekt
-
----
 
 ## 📖 Projektübersicht
 
@@ -30,15 +32,27 @@ Simply Switch unterstützt Interessenten dabei, ihren Versicherungsbedarf digita
 
 ## 📸 Screenshots
 
-| Startseite | BedarfsRadar |
-|------------|--------------|
-| ![](screenshots/startseite.png) | ![](screenshots/bedarfsradar.png) |
+### BedarfsRadar
 
-| Selbstständige | Schadensmeldung |
-|------------|--------------|
-| ![](screenshots/selbststaendige.png) | ![](screenshots/schadenmeldung.png) |
+Interaktive Analyse des individuellen Versicherungsbedarfs.
+
+![](screenshots/bedarfsradar.png)
+
+### Selbstständige
+
+Informationsbereich für Selbstständige und Unternehmer.
+
+![](screenshots/selbststaendige.png)
+
+### Schadensmeldung
+
+Digitale Meldung und Weiterleitung von Schadensfällen.
+
+![](screenshots/schadenmeldung.png)
 
 ### Kontaktformular
+
+Direkte Kontaktaufnahme mit dem Versicherungsmakler.
 
 ![](screenshots/kontaktformular.png)
 
@@ -72,7 +86,7 @@ Dieses Projekt wurde nicht als Tutorial oder Lernprojekt erstellt, sondern zur U
 | Styling | Tailwind CSS |
 | Routing | React Router |
 | Animationen | Framer Motion |
-| Backend Services | Supabase |
+| Backend Services | Supabase (geplant) |
 | Build Tool | Vite |
 | Deployment | GitHub Pages |
 
@@ -84,7 +98,7 @@ Dieses Projekt wurde nicht als Tutorial oder Lernprojekt erstellt, sondern zur U
 Benutzer
     │
     ▼
-React + TypeScript
+React Frontend
     │
     ▼
 React Router
@@ -93,23 +107,28 @@ React Router
     ├── Privatkunden
     ├── Gewerbekunden
     ├── Beamte
-    └── Schaden melden
+    ├── BedarfsRadar
+    ├── Kontakt
+    └── Schadensmeldung
 ```
 
 ---
 
 ## ⚡ Herausforderungen
 
-- Aufbau einer skalierbaren Komponentenarchitektur
-- Optimierung der Ladezeiten durch Lazy Loading
-- Umsetzung moderner Animationen mit Framer Motion
-- Responsive Umsetzung für Desktop, Tablet und Smartphone
-- Deployment über GitHub Pages
+Die größte Herausforderung war die Entwicklung einer skalierbaren Struktur für mehrere Zielgruppen (Privatkunden, Beamte und Selbstständige), ohne dabei die Benutzerfreundlichkeit zu verlieren.
+
+Zusätzlich mussten Routing, Deployment und Formularlogik sauber miteinander integriert werden.
 
 ---
 
 ## 📚 Lessons Learned
 
+Während der Entwicklung habe ich meine Kenntnisse in React, TypeScript, Responsive Design und modernen Frontend-Architekturen deutlich erweitert.
+
+Besonders wertvoll waren:
+
+- Strukturierung größerer React-Projekte
 - React-Komponentenarchitektur
 - TypeScript
 - React Router
@@ -145,6 +164,17 @@ src/
 ├── seiten/
 └── lib/
 ```
+
+---
+
+## 🔮 Weiterentwicklung
+
+Geplante Erweiterungen:
+
+- Terminbuchung
+- Erweiterte Bedarfsanalyse
+- Kundenportal
+- Dokumentenverwaltung
 
 ---
 
