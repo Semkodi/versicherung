@@ -28,6 +28,20 @@ Entwickelt von **Semir Borogovac** als praxisnahes Webprojekt für den Versicher
 
 Simply Switch unterstützt Interessenten dabei, ihren Versicherungsbedarf digital zu analysieren, Schäden zu melden und unkompliziert Kontakt zu einem Versicherungsexperten aufzunehmen.
 
+## 📸 Screenshots
+
+| Startseite | BedarfsRadar |
+|------------|--------------|
+| ![](screenshots/startseite.png) | ![](screenshots/bedarfsradar.png) |
+
+| Selbstständige | Schadensmeldung |
+|------------|--------------|
+| ![](screenshots/selbststaendige.png) | ![](screenshots/schadenmeldung.png) |
+
+### Kontaktformular
+
+![](screenshots/kontaktformular.png)
+
 ## 🤝 Praxisbezug
 
 Dieses Projekt wurde nicht als Tutorial oder Lernprojekt erstellt, sondern zur Umsetzung realer Anforderungen eines Versicherungsmaklers entwickelt.
