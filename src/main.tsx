@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom/client'
 // Importiere die Hauptkomponente der Anwendung
 import App from './App.tsx'
 // Importiere die globalen CSS-Stile
-import './index.css'
+import '@/styles/index.css'
 // Importiere die Inter-Schriftart
 import '@fontsource/inter/index.css';
 

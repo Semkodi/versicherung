@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HelpCircle, ChevronDown } from 'lucide-react';
-import { ScrollReveal } from '../layout/ScrollReveal.tsx';
+import { ScrollReveal } from '@/komponenten/layout';
 
 type FAQItem = {
     frage: string;

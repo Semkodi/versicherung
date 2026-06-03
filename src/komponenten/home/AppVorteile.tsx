@@ -1,7 +1,7 @@
 import { Smartphone, BellRing, FileCheck, ShieldCheck, ArrowRight } from 'lucide-react';
-import handyImg        from '../../assets/bilder/handy_img.png';
-import appStoreBadge   from '../../assets/icons/app-store-badge.svg';
-import googlePlayBadge from '../../assets/icons/google-play-badge.svg';
+import handyImg        from '@/assets/bilder/handy_img.png';
+import appStoreBadge   from '@/assets/icons/app-store-badge.svg';
+import googlePlayBadge from '@/assets/icons/google-play-badge.svg';
 
 const AppVorteile = () => {
     const vorteile = [

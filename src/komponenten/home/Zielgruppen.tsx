@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check } from 'lucide-react';
-import referendarImg       from '../../assets/bilder/referendar_card_v2.png';
-import haushaltImg         from '../../assets/bilder/haushalt_card_v2.png';
-import selbststaendigeImg  from '../../assets/bilder/selbststaendige_card_v2.png';
+import referendarImg       from '@/assets/bilder/referendar_card_v2.png';
+import haushaltImg         from '@/assets/bilder/haushalt_card_v2.png';
+import selbststaendigeImg  from '@/assets/bilder/selbststaendige_card_v2.png';
 
 const Zielgruppen = () => {
     const gruppen = [

@@ -1,31 +1,27 @@
-import { useState, lazy, Suspense } from 'react';
+import { useState, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
 // ─── Layout-Komponenten ────────────────────────────────────────
-import Navigationsleiste from './komponenten/layout/Navigationsleiste.tsx';
-import Fusszeile         from './komponenten/layout/Fusszeile.tsx';
-import Preloader         from './komponenten/layout/Preloader.tsx';
-import FloatingShapes    from './komponenten/layout/FloatingShapes.tsx';
-import ScrollToTop       from './komponenten/layout/ScrollToTop.tsx';
-import ConsentBanner     from './komponenten/layout/ConsentBanner.tsx';
-import Barrierefreiheit  from './komponenten/layout/Barrierefreiheit.tsx';
-import SeitenUebergang   from './komponenten/layout/SeitenUebergang.tsx';
+import {
+  Navigationsleiste,
+  Fusszeile,
+  Preloader,
+  FloatingShapes,
+  ScrollToTop,
+  ConsentBanner,
+  Barrierefreiheit,
+  SeitenUebergang
+} from '@/komponenten/layout';
 
 // ─── UI-Komponenten ────────────────────────────────────────────
-import Chatbot from './komponenten/ui/Chatbot.tsx';
+import Chatbot from '@/komponenten/ui/Chatbot';
 
 // ─── Rechtliches (als eigene Seiten-Routen - Lazy loaded) ──────
-const Impressum   = lazy(() => import('./komponenten/rechtliches/Impressum.tsx'));
-const Datenschutz = lazy(() => import('./komponenten/rechtliches/Datenschutz.tsx'));
-const Cookies     = lazy(() => import('./komponenten/rechtliches/Cookies.tsx'));
+import { Impressum, Datenschutz, Cookies } from '@/komponenten/rechtliches';
 
 // ─── Seiten (Lazy loaded für optimales Performance-Splitting) ─
-const Startseite    = lazy(() => import('./seiten/Startseite.tsx'));
-const Privatkunden  = lazy(() => import('./seiten/Privatkunden.tsx'));
-const Gewerbekunden = lazy(() => import('./seiten/Gewerbekunden.tsx'));
-const Beamte        = lazy(() => import('./seiten/Beamte.tsx'));
-const SchadenMelden = lazy(() => import('./seiten/SchadenMelden.tsx'));
+import { Startseite, Privatkunden, Gewerbekunden, Beamte, SchadenMelden } from '@/seiten';
 
 // Hauptinhalts-Komponente, die Routing und Layout verwaltet
 function AppInhalt() {

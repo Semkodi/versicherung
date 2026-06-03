@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Check, Star, Shield, Zap } from 'lucide-react';
-import heroImg from '../../assets/bilder/hero_couple.png';
+import heroImg from '@/assets/bilder/hero_couple.png';
 
 const Heldenbereich = () => {
     const checkmarks = [

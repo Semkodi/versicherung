@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Users, Search, Smartphone, Shield } from 'lucide-react';
-import warumImg from '../../assets/bilder/Profil_img.png'; // Fallback Bild, bis ein Meeting-Bild da ist
+import warumImg from '@/assets/bilder/Profil_img.png'; // Fallback Bild, bis ein Meeting-Bild da ist
 
 const WarumSimplySwitch = () => {
     const features = [

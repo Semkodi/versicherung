@@ -1,0 +1,5 @@
+/* ─── Einstiegspunkt: Importiert alle Style-Module ────────────── */
+@import "./globals.css";
+@import "./scrollbar.css";
+@import "./animations.css";
+@import "./theme.css";

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, User, ChevronDown } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '../../assets/bilder/logo_simply.png';
+import logo from '@/assets/bilder/logo_simply.png';
 
 const Navigationsleiste = () => {
     const [istGescrollt, setIstGescrollt] = useState(false);

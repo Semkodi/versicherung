@@ -1,10 +1,10 @@
 import { Heart, ShieldCheck, Smartphone, LogIn } from 'lucide-react';
-import profilBild from '../../assets/bilder/Profil_img.png';
-import { ScrollReveal } from '../layout/ScrollReveal.tsx';
+import profilBild from '@/assets/bilder/Profil_img.png';
+import { ScrollReveal } from '@/komponenten/layout';
 
 // Badges fuer Google und Apple
-import appStoreBadge   from '../../assets/icons/app-store-badge.svg';
-import googlePlayBadge from '../../assets/icons/google-play-badge.svg';
+import appStoreBadge   from '@/assets/icons/app-store-badge.svg';
+import googlePlayBadge from '@/assets/icons/google-play-badge.svg';
 
 const UeberMich = () => {
     return (

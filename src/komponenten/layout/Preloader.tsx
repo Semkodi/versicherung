@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import logo from '../../assets/bilder/logo_simply.png';
+import logo from '@/assets/bilder/logo_simply.png';
 
 const Preloader = () => {
     const [counter, setCounter] = useState(0);

@@ -9,18 +9,20 @@ import {
     Star,
     ShieldCheck
 } from 'lucide-react';
-import FehlerBereich  from '../komponenten/home/FehlerBereich.tsx';
-import FAQ            from '../komponenten/home/FAQ.tsx';
-import SoArbeiteIch  from '../komponenten/home/SoArbeiteIch.tsx';
-import AppVorteile   from '../komponenten/home/AppVorteile.tsx';
-import KontaktBereich from '../komponenten/kontakt/KontaktBereich.tsx';
-import { ScrollReveal } from '../komponenten/layout/ScrollReveal.tsx';
+import {
+  FehlerBereich,
+  FAQ,
+  SoArbeiteIch,
+  AppVorteile
+} from '@/komponenten/home';
+import { KontaktBereich } from '@/komponenten/kontakt';
+import { ScrollReveal } from '@/komponenten/layout';
 
 // Importiere die neu generierten Bilder fuer die Beamtenkarten
-import duImg       from '../assets/bilder/beamte_du.png';
-import pkvImg      from '../assets/bilder/beamte_pkv.png';
-import beihilfeImg from '../assets/bilder/beamte_beihilfe.png';
-import refImg      from '../assets/bilder/beamte_ref.png';
+import duImg       from '@/assets/bilder/beamte_du.png';
+import pkvImg      from '@/assets/bilder/beamte_pkv.png';
+import beihilfeImg from '@/assets/bilder/beamte_beihilfe.png';
+import refImg      from '@/assets/bilder/beamte_ref.png';
 
 // Typdefinition fuer ein detailliertes Beamten-Produkt
 type DetailliertesBeamtenProdukt = {

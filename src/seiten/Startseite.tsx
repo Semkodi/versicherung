@@ -1,17 +1,19 @@
-import Heldenbereich  from '../komponenten/home/Heldenbereich.tsx';
-import VertrauensLeiste from '../komponenten/home/VertrauensLeiste.tsx';
-import Zielgruppen    from '../komponenten/home/Zielgruppen.tsx';
-import WarumSimplySwitch from '../komponenten/home/WarumSimplySwitch.tsx';
-import Bewertungen    from '../komponenten/home/Bewertungen.tsx';
-import UeberMich     from '../komponenten/home/UeberMich.tsx';
-import SoArbeiteIch   from '../komponenten/home/SoArbeiteIch.tsx';
-import BedarfsRadar from '../komponenten/rechner/BedarfsRadar.tsx';
-import OrdnerCheck   from '../komponenten/home/OrdnerCheck.tsx';
-import ServiceVersprechen from '../komponenten/home/ServiceVersprechen.tsx';
-import BlogWissen     from '../komponenten/home/BlogWissen.tsx';
-import FAQ            from '../komponenten/home/FAQ.tsx';
-import KontaktBereich from '../komponenten/kontakt/KontaktBereich.tsx';
-import { ScrollReveal } from '../komponenten/layout/ScrollReveal.tsx';
+import {
+  Heldenbereich,
+  VertrauensLeiste,
+  Zielgruppen,
+  WarumSimplySwitch,
+  Bewertungen,
+  UeberMich,
+  SoArbeiteIch,
+  OrdnerCheck,
+  ServiceVersprechen,
+  BlogWissen,
+  FAQ
+} from '@/komponenten/home';
+import { BedarfsRadar } from '@/komponenten/rechner';
+import { KontaktBereich } from '@/komponenten/kontakt';
+import { ScrollReveal } from '@/komponenten/layout';
 
 const Startseite = () => {
     return (

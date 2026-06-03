@@ -14,14 +14,14 @@ import {
     CheckCircle2,
     Star
 } from 'lucide-react';
-import { ScrollReveal } from '../komponenten/layout/ScrollReveal.tsx';
+import { ScrollReveal } from '@/komponenten/layout';
 
 // Importiere die neu generierten Bilder fuer die Karten
-import haftpflichtImg from '../assets/bilder/haftpflicht_card.png';
-import einkommenImg    from '../assets/bilder/einkommen_card.png';
-import hausratImg      from '../assets/bilder/hausrat_card.png';
-import kfzImg          from '../assets/bilder/kfz_card.png';
-import heroCoupleImg   from '../assets/bilder/hero_couple.png';
+import haftpflichtImg from '@/assets/bilder/haftpflicht_card.png';
+import einkommenImg    from '@/assets/bilder/einkommen_card.png';
+import hausratImg      from '@/assets/bilder/hausrat_card.png';
+import kfzImg          from '@/assets/bilder/kfz_card.png';
+import heroCoupleImg   from '@/assets/bilder/hero_couple.png';
 
 // Typdefinitionen
 type FAQItem = {

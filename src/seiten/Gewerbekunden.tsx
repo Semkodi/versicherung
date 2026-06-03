@@ -16,14 +16,14 @@ import {
     Star,
     ShieldCheck
 } from 'lucide-react';
-import { ScrollReveal } from '../komponenten/layout/ScrollReveal.tsx';
+import { ScrollReveal } from '@/komponenten/layout';
 
 // Importiere die neu generierten Bilder fuer die Karten
-import betriebImg from '../assets/bilder/betrieb_card.png';
-import inhaltImg    from '../assets/bilder/inhalt_card.png';
-import flottenImg   from '../assets/bilder/flotten_card.png';
-import rechtImg     from '../assets/bilder/recht_card.png';
-import selbststaendigeCardImg from '../assets/bilder/selbststaendige_card_v2.png';
+import betriebImg from '@/assets/bilder/betrieb_card.png';
+import inhaltImg    from '@/assets/bilder/inhalt_card.png';
+import flottenImg   from '@/assets/bilder/flotten_card.png';
+import rechtImg     from '@/assets/bilder/recht_card.png';
+import selbststaendigeCardImg from '@/assets/bilder/selbststaendige_card_v2.png';
 
 // Typdefinitionen fuer FAQs, Branchen und Leistungen
 type FAQItem = {
