@@ -150,19 +150,26 @@ npm run dev
 
 ---
 
-## 📁 Projektstruktur
+## 📁 Projektstruktur & Architektur-Features
+
+Dieses Projekt folgt einer modularisierten **React Enterprise-Architektur**:
+- **Pfad-Aliase (`@/*`)**: Absolute Imports zeigen direkt auf das `src/`-Verzeichnis (konfiguriert in `tsconfig` & `vite.config`).
+- **Barrel Exports (`index.ts`)**: Bündelung und Re-Export von Komponenten zur Vermeidung von Import-Wüsten.
+- **Zentralisiertes CSS**: Alle Styles liegen sauber gekapselt in `src/styles/`.
 
 ```text
 src/
-├── assets/
-├── komponenten/
-│   ├── home/
-│   ├── kontakt/
-│   ├── layout/
-│   ├── rechner/
-│   └── ui/
-├── seiten/
-└── lib/
+├── assets/                  # Lokale Medien (Bilder & Icons)
+├── komponenten/             # Modulare UI-Komponenten
+│   ├── home/                # Startseiten-Sektionen (mit index.ts)
+│   ├── kontakt/             # Kontakt-Formular (mit index.ts)
+│   ├── layout/              # Navigationsleiste, Fusszeile, Preloader etc. (mit index.ts)
+│   ├── rechner/             # Rechner & BedarfsRadar (mit index.ts)
+│   ├── rechtliches/         # Impressum, Datenschutz, Cookies (mit index.ts)
+│   └── ui/                  # Chatbot-Komponente
+├── seiten/                  # Hauptseiten (Startseite, Beamte etc. mit index.ts)
+├── lib/                     # Supabase & Konfigurationen
+└── styles/                  # Konsolidierte CSS-Dateien (index.css etc.)
 ```
 
 ---
