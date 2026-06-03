@@ -29,6 +29,7 @@ dist-ssr
 .agents/
 .agent/
 *.pdf
+HOSTING.md
 
 # Temporaere HTML-Snapshots
 simply.html
