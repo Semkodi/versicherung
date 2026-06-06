@@ -26,7 +26,7 @@ import heroCoupleImg   from '@/assets/bilder/hero_couple.png';
 
 const METADATA = {
     title: "Private Versicherungen online vergleichen | Simply Switch",
-    description: "Haftpflicht, Einkommensschutz & Hausrat bedarfsgerecht absichern. Unabhängiger Marktvergleich & digitale Betreuung in ganz Deutschland.",
+    description: "Haftpflicht, Einkommensschutz & Hausrat bedarfsgerecht absichern. Transparenter Marktvergleich & digitale Betreuung in ganz Deutschland.",
 };
 
 // Typdefinitionen
@@ -102,7 +102,7 @@ const Privatkunden = () => {
                 },
                 {
                     titel: "Sicherheitsnetz bei schweren Krankheiten",
-                    text: "Finanzielle Unabhängigkeit sichert dir die beste medizinische Behandlung und sorgt dafür, dass laufende Kosten wie Miete oder Kredite gedeckt bleiben."
+                    text: "Finanzielle Absicherung sichert dir die beste medizinische Behandlung und sorgt dafür, dass laufende Kosten wie Miete oder Kredite gedeckt bleiben."
                 }
             ]
         },
@@ -138,7 +138,7 @@ const Privatkunden = () => {
             icon: Car,
             titel: "Kfz-Versicherung",
             untertitel: "Deine smarte Absicherung auf der Straße",
-            einleitung: "Eine Kfz-Haftpflicht ist gesetzliche Pflicht – doch auf die Kaskodetails kommt es an. Wir vergleichen unabhängig Tarife, die dich bei Diebstahl, Unfällen und Pannen optimal begleiten.",
+            einleitung: "Eine Kfz-Haftpflicht ist gesetzliche Pflicht – doch auf die Kaskodetails kommt es an. Wir vergleichen transparent Tarife, die dich bei Diebstahl, Unfällen und Pannen optimal begleiten.",
             prioritaet: 'Sehr wichtig',
             image: kfzImg,
             punkte: [
@@ -169,7 +169,7 @@ const Privatkunden = () => {
         },
         {
             frage: "Warum sollte ich meine Versicherungen über einen Makler abschließen?",
-            antwort: "Als unabhängiger Versicherungsmakler bin ich nicht an eine bestimmte Gesellschaft gebunden, sondern vertrete ausschließlich deine Interessen. Ich habe Zugriff auf fast den gesamten deutschen Versicherungsmarkt und filtere die besten Tarife für dich heraus."
+            antwort: "Als transparenter Versicherungsmakler bin ich nicht an eine bestimmte Gesellschaft gebunden, sondern vertrete ausschließlich deine Interessen. Ich habe Zugriff auf fast den gesamten deutschen Versicherungsmarkt und filtere die besten Tarife für dich heraus."
         },
         {
             frage: "Wie läuft eine Bedarfsanalyse bei Sven Kegler ab?",
@@ -223,7 +223,7 @@ const Privatkunden = () => {
                             className="max-w-2xl"
                         >
                             <span className="inline-flex items-center gap-2 bg-[#e8effd] text-[#1e5adb] px-4 py-2 rounded-full mb-6 font-semibold text-xs shadow-sm border border-[#d1e0f9] uppercase tracking-wider">
-                                Unabhängige Beratung für dein Leben
+                                Transparente Beratung für dein Leben
                             </span>
                             
                             <h1 className="text-[2.5rem] md:text-5xl lg:text-[4rem] font-extrabold text-[#0a1930] leading-[1.1] mb-6 tracking-tight">
@@ -232,14 +232,14 @@ const Privatkunden = () => {
                             </h1>
                             
                             <p className="text-base md:text-lg text-[#4a5568] mb-10 max-w-xl font-normal leading-relaxed">
-                                Kein Kauderwelsch, kein Verkaufsdruck. Wir filtern unabhängig die stärksten Tarife am Markt heraus und bauen dir ein Schutzschild auf, das perfekt auf deine Lebensphase abgestimmt ist.
+                                Kein Kauderwelsch, kein Verkaufsdruck. Wir filtern transparent die stärksten Tarife am Markt heraus und bauen dir ein Schutzschild auf, das perfekt auf deine Lebensphase abgestimmt ist.
                             </p>
 
                             {/* Checkmarks */}
                             <ul className="space-y-4 mb-10">
                                 {[
                                     "Existenzielle Risiken zuerst sichern",
-                                    "100% unabhängiger Marktvergleich",
+                                    "100% transparenter Marktvergleich",
                                     "Schnelle & digitale Hilfe im Schadensfall"
                                 ].map((item, idx) => (
                                     <li key={idx} className="flex items-center gap-4 text-[#2d3748] font-medium">
@@ -297,7 +297,7 @@ const Privatkunden = () => {
                             <div className="relative z-10 w-full flex justify-end">
                                 <img 
                                     src={heroCoupleImg} 
-                                    alt="Sven Kegler - Unabhängige Beratung und private Absicherung für Familien" 
+                                    alt="Sven Kegler - Transparente Beratung und private Absicherung für Familien" 
                                     className="w-full h-auto max-h-[500px] object-cover rounded-[2rem] [mask-image:linear-gradient(to_right,transparent_0%,black_35%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_35%)] shadow-md"
                                 />
                             </div>
@@ -665,7 +665,7 @@ const Privatkunden = () => {
                         
                         <h2 className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">Bereit für den optimalen Schutz?</h2>
                         <p className="text-slate-300 font-normal mb-10 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
-                            Keine Lust mehr auf unklare Verträge und teure Zusatzpakete? Lass uns gemeinsam aufräumen. Transparent, digital und vollkommen unabhängig.
+                            Keine Lust mehr auf unklare Verträge und teure Zusatzpakete? Lass uns gemeinsam aufräumen. Transparent, digital und ehrlich.
                         </p>
                         
                         <motion.a 

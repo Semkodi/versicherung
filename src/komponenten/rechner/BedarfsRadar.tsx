@@ -434,7 +434,7 @@ const BedarfsRadar = () => {
                                                     <span>Kostenfreien Vergleich & Angebot sichern</span>
                                                 </h4>
                                                 <p className="text-sm text-blue-200 leading-relaxed font-medium">
-                                                    Wir filtern unabhängig die stärksten Tarife am Markt für deinen Bedarf heraus. Durch das Absenden öffnet sich dein E-Mail-Programm mit allen Details.
+                                                    Wir filtern transparent die stärksten Tarife am Markt für deinen Bedarf heraus. Durch das Absenden öffnet sich dein E-Mail-Programm mit allen Details.
                                                 </p>
                                             </div>
                                             <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto flex-grow max-w-lg justify-end relative z-10">

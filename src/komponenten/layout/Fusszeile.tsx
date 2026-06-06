@@ -15,7 +15,7 @@ const Fusszeile = () => {
                                 <img src={logo} alt="simply switch Logo" className="h-12 w-auto object-contain brightness-0 invert" />
                             </a>
                             <p className="text-gray-400 text-xs leading-relaxed max-w-xs">
-                                Dein unabhängiger Versicherungsmakler für Beamte und Privatkunden. Persönlich. Digital. Einfach.
+                                Dein transparenter Versicherungsmakler für Beamte und Privatkunden. Persönlich. Digital. Einfach.
                             </p>
                             <div className="flex gap-4 mt-6">
                                 <a 

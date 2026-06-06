@@ -28,7 +28,7 @@ import selbststaendigeCardImg from '@/assets/bilder/selbststaendige_card_v2.png'
 
 const METADATA = {
     title: "Betriebshaftpflicht & Cyber-Schutz für Selbstständige | Online",
-    description: "Die Risiko-Matrix für Unternehmer, Freiberufler & IT. Gewerbeversicherungen unabhängig vergleichen und digital verwalten.",
+    description: "Die Risiko-Matrix für Unternehmer, Freiberufler & IT. Gewerbeversicherungen transparent vergleichen und digital verwalten.",
 };
 
 // Typdefinitionen fuer FAQs, Branchen und Leistungen
@@ -257,7 +257,7 @@ const Gewerbekunden = () => {
                             className="max-w-2xl"
                         >
                             <span className="inline-flex items-center gap-2 bg-[#e8effd] text-[#1e5adb] px-4 py-2 rounded-full mb-6 font-semibold text-xs shadow-sm border border-[#d1e0f9] uppercase tracking-wider">
-                                Unabhängige Risikoanalyse für dein Business
+                                Transparente Risikoanalyse für dein Business
                             </span>
                             
                             <h1 className="text-[2.5rem] md:text-5xl lg:text-[4rem] font-extrabold text-[#0a1930] leading-[1.1] mb-6 tracking-tight">
@@ -266,7 +266,7 @@ const Gewerbekunden = () => {
                             </h1>
                             
                             <p className="text-base md:text-lg text-[#4a5568] mb-10 max-w-xl font-normal leading-relaxed">
-                                Als unabhängiger Makler kenne ich die Haftungsrisiken des deutschen Mittelstands. Wir analysieren deine Risikofaktoren präzise und schnüren ein Schutzpaket, das dein Business wirksam schützt.
+                                Als transparenter Makler kenne ich die Haftungsrisiken des deutschen Mittelstands. Wir analysieren deine Risikofaktoren präzise und schnüren ein Schutzpaket, das dein Business wirksam schützt.
                             </p>
 
                             {/* Checkmarks */}
@@ -628,7 +628,7 @@ const Gewerbekunden = () => {
                         
                         <h2 className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">Gewerbliche Risiken minimieren</h2>
                         <p className="text-slate-300 font-normal mb-10 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
-                            Lass uns deine Verträge analysieren und sie an dein aktuelles Geschäftsmodell anpassen. Unabhängig, unverbindlich und mit voller Steuertransparenz.
+                            Lass uns deine Verträge analysieren und sie an dein aktuelles Geschäftsmodell anpassen. Ehrlich, unverbindlich und mit voller Steuertransparenz.
                         </p>
                         
                         <motion.a 

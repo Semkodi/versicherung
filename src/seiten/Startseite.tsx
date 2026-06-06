@@ -13,12 +13,12 @@ import {
   FAQ,
   PartnerLeiste
 } from '@/komponenten/home';
-import { BedarfsRadar } from '@/komponenten/rechner';
+import { BedarfsRadar, BedarfsRechner } from '@/komponenten/rechner';
 import { KontaktBereich } from '@/komponenten/kontakt';
 import { ScrollReveal, StructuredData } from '@/komponenten/layout';
 
 const METADATA = {
-    title: "Sven Kegler | Unabhängiger Versicherungsmakler & Online-Beratung",
+    title: "Sven Kegler | Transparenter Versicherungsmakler & Online-Beratung",
     description: "Dein freier Versicherungsmakler. 100% digitale & persönliche Online-Beratung deutschlandweit sowie vor Ort in Elbtal. Jetzt Bedarfs-Radar testen!",
 };
 
@@ -78,6 +78,10 @@ const Startseite = () => {
 
             <ScrollReveal direction="up" delay={0.2}>
                 <BedarfsRadar />
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={0.2}>
+                <BedarfsRechner />
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.2}>

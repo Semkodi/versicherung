@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import FormularNav from '@/komponenten/kontakt/FormularNav';
 import { 
     Check, 
     ArrowRight, 
@@ -271,7 +272,7 @@ const SchadenMelden = () => {
                                                     required
                                                     value={schadensdatum}
                                                     onChange={(e) => setSchadensdatum(e.target.value)}
-                                                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:border-red-500 focus:outline-none transition-all font-medium"
+                                                    className="w-full bg-white border border-gray-400 rounded-xl px-4 py-3 text-sm focus:border-red-500 focus:outline-none transition-all font-medium"
                                                 />
                                             </div>
                                             <div>
@@ -282,7 +283,7 @@ const SchadenMelden = () => {
                                                     value={beschreibung}
                                                     onChange={(e) => setBeschreibung(e.target.value)}
                                                     placeholder="Beschreibe z. B. wo es passiert ist, was beschädigt wurde und wie hoch du den Schaden schätzt..."
-                                                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:border-red-500 focus:outline-none transition-all placeholder:text-gray-300 font-medium resize-none leading-relaxed"
+                                                    className="w-full bg-white border border-gray-400 rounded-xl px-4 py-3 text-sm focus:border-red-500 focus:outline-none transition-all placeholder:text-gray-300 font-medium resize-none leading-relaxed"
                                                 />
                                             </div>
                                         </div>
@@ -310,7 +311,7 @@ const SchadenMelden = () => {
                                             className={`border-2 border-dashed rounded-3xl p-8 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 ${
                                                 isDragging 
                                                     ? 'border-red-500 bg-red-50/5 scale-[0.98]' 
-                                                    : 'border-gray-200 bg-white hover:border-red-500 hover:bg-red-50/[0.01]'
+                                                    : 'border-gray-400 bg-white hover:border-red-500 hover:bg-red-50/[0.01]'
                                             }`}
                                         >
                                             <input 
@@ -404,7 +405,7 @@ const SchadenMelden = () => {
                                                             value={name}
                                                             onChange={(e) => setName(e.target.value)}
                                                             placeholder="z. B. Max Mustermann"
-                                                            className="w-full bg-white border border-gray-200 rounded-xl pl-11 pr-4 py-3 text-sm focus:border-red-500 focus:outline-none transition-all placeholder:text-gray-300 font-medium"
+                                                            className="w-full bg-white border border-gray-400 rounded-xl pl-11 pr-4 py-3 text-sm focus:border-red-500 focus:outline-none transition-all placeholder:text-gray-300 font-medium"
                                                         />
                                                     </div>
                                                 </div>
@@ -418,7 +419,7 @@ const SchadenMelden = () => {
                                                             value={telefon}
                                                             onChange={(e) => setTelefon(e.target.value)}
                                                             placeholder="z. B. 0176 1234567"
-                                                            className="w-full bg-white border border-gray-200 rounded-xl pl-11 pr-4 py-3 text-sm focus:border-red-500 focus:outline-none transition-all placeholder:text-gray-300 font-medium"
+                                                            className="w-full bg-white border border-gray-400 rounded-xl pl-11 pr-4 py-3 text-sm focus:border-red-500 focus:outline-none transition-all placeholder:text-gray-300 font-medium"
                                                         />
                                                     </div>
                                                 </div>
@@ -433,7 +434,7 @@ const SchadenMelden = () => {
                                                         value={email}
                                                         onChange={(e) => setEmail(e.target.value)}
                                                         placeholder="z. B. name@mail.de"
-                                                        className="w-full bg-white border border-gray-200 rounded-xl pl-11 pr-4 py-3 text-sm focus:border-red-500 focus:outline-none transition-all placeholder:text-gray-300 font-medium"
+                                                        className="w-full bg-white border border-gray-400 rounded-xl pl-11 pr-4 py-3 text-sm focus:border-red-500 focus:outline-none transition-all placeholder:text-gray-300 font-medium"
                                                     />
                                                 </div>
                                             </div>
@@ -446,7 +447,7 @@ const SchadenMelden = () => {
                                                         value={policenNummer}
                                                         onChange={(e) => setPolicenNummer(e.target.value)}
                                                         placeholder="z. B. SV-123-456-789 (falls zur Hand)"
-                                                        className="w-full bg-white border border-gray-200 rounded-xl pl-11 pr-4 py-3 text-sm focus:border-red-500 focus:outline-none transition-all placeholder:text-gray-300 font-medium"
+                                                        className="w-full bg-white border border-gray-400 rounded-xl pl-11 pr-4 py-3 text-sm focus:border-red-500 focus:outline-none transition-all placeholder:text-gray-300 font-medium"
                                                     />
                                                 </div>
                                             </div>
@@ -543,6 +544,9 @@ const SchadenMelden = () => {
 
                 </div>
             </section>
+            
+            {/* Raster zur Alternativ-Navigation */}
+            <FormularNav />
         </main>
     );
 };

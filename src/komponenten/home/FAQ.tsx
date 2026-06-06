@@ -14,7 +14,7 @@ const FAQ = () => {
     const fragen: FAQItem[] = [
         {
             frage: "Was zeichnet Sven Kegler als Versicherungsmakler aus?",
-            antwort: "Als freier und unabhängiger Versicherungsmakler bin ich an keinerlei bestimmte Versicherungsgesellschaft gebunden. Ich vertrete ausschließlich deine Interessen und filtere aus dem gesamten deutschen Markt die objektiv besten Tarife heraus. Mein Fokus liegt auf Transparenz, ehrlicher Beratung und dauerhafter Betreuung."
+            antwort: "Als freier und transparenter Versicherungsmakler bin ich an keinerlei bestimmte Versicherungsgesellschaft gebunden. Ich vertrete ausschließlich deine Interessen und filtere aus dem gesamten deutschen Markt die objektiv besten Tarife heraus. Mein Fokus liegt auf Transparenz, ehrlicher Beratung und dauerhafter Betreuung."
         },
         {
             frage: "Entstehen für mich Kosten durch die Beratung?",
@@ -49,7 +49,7 @@ const FAQ = () => {
                         Häufige Fragen (FAQs)
                     </h2>
                     <p className="text-[#4a5568] font-normal max-w-lg mx-auto">
-                        Alles, was du zur unabhängigen Beratung und Absicherung wissen musst – einfach erklärt.
+                        Alles, was du zur transparenten Beratung und Absicherung wissen musst – einfach erklärt.
                     </p>
                 </div>
 

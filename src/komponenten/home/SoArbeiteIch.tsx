@@ -12,7 +12,7 @@ const SoArbeiteIch = () => {
         {
             zahl: "2",
             titel: "Vorstellung des Konzepts",
-            text: "Ich präsentiere dir ein maßgeschneidertes, unabhängiges Konzept. Transparent vergleichen wir Tarife, um die besten Konditionen für dich zu sichern.",
+            text: "Ich präsentiere dir ein maßgeschneidertes, transparentes Konzept. Gemeinsam vergleichen wir Tarife, um die besten Konditionen für dich zu sichern.",
             icon: <FileText className="w-5 h-5 text-white" />
         },
         {

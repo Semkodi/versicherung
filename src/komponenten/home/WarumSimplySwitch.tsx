@@ -5,7 +5,7 @@ import warumImg from '@/assets/bilder/Profil_img.png';
 const WarumSimplySwitch = () => {
     const vorteile = [
         {
-            titel: "Unabhängiger Versicherungsmakler",
+            titel: "Transparenter Versicherungsmakler",
             text: "Ich bin an keine einzelne Versicherungsgesellschaft gebunden. Meine Beratung ist neutral, objektiv und orientiert sich zu 100% an deinen Interessen."
         },
         {
@@ -51,7 +51,7 @@ const WarumSimplySwitch = () => {
                                 Seit mehr als <strong className="text-[#0a1930] font-bold">17 Jahren</strong> berate ich Beamte, Anwärter und Privatkunden kompetent und transparent in allen Versicherungs- und Vorsorgefragen.
                             </p>
                             <p>
-                                Mein Leitbild <strong className="text-[#1e5adb] font-bold">„Ehrlich, unabhängig und digital“</strong> drückt mein Verständnis einer partnerschaftlichen Zusammenarbeit aus. Ich möchte dich als freier Versicherungsmakler in allen Lebensphasen begleiten und dir jederzeit die passende Versicherungslösung anbieten.
+                                Mein Leitbild <strong className="text-[#1e5adb] font-bold">„Ehrlich, transparent und digital“</strong> drückt mein Verständnis einer partnerschaftlichen Zusammenarbeit aus. Ich möchte dich als freier Versicherungsmakler in allen Lebensphasen begleiten und dir jederzeit die passende Versicherungslösung anbieten.
                             </p>
                         </div>
 

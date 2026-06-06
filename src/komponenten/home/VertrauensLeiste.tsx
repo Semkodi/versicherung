@@ -69,7 +69,7 @@ const VertrauensLeiste = () => {
             icon: <ShieldCheck className="w-6 h-6 text-[#10b981]" />,
             prefix: "immer",
             wert: <Zaehler ziel={100} suffix="%" />,
-            text: "unabhängig"
+            text: "transparent"
         }
     ];
 

@@ -45,7 +45,7 @@ const UeberMich = () => {
 
                             <div className="space-y-6 text-[#4a5568] text-base leading-relaxed mb-8 font-normal">
                                 <p>
-                                    <strong className="text-[#0a1930] font-bold">Hi! Ich bin Sven Kegler</strong> – freier Versicherungsmakler, Inhaber von simply switch und leidenschaftlicher Berater. Seit über 17 Jahren kläre ich Menschen unabhängig und transparent zu ihren Absicherungen, Finanzen und Vorsorgewegen auf.
+                                    <strong className="text-[#0a1930] font-bold">Hi! Ich bin Sven Kegler</strong> – freier Versicherungsmakler, Inhaber von simply switch und leidenschaftlicher Berater. Seit über 17 Jahren kläre ich Menschen ehrlich und transparent zu ihren Absicherungen, Finanzen und Vorsorgewegen auf.
                                 </p>
                                 <p>
                                     Mein Spezialgebiet ist die ganzheitliche und verständliche Aufklärung – ganz besonders auch für Beamtenanwärter und Referendare. Ich habe einfach zu oft erlebt, dass unverständlicher Versicherungs-Kauderwelsch genutzt wird, um unpassende Produkte zu verkaufen. Das machen wir anders.
@@ -75,7 +75,7 @@ const UeberMich = () => {
                                         <ShieldCheck className="w-5 h-5 text-[#1e5adb]" />
                                     </div>
                                     <div>
-                                        <h4 className="font-extrabold text-[#0a1930] text-sm mb-1">100% Unabhängig</h4>
+                                        <h4 className="font-extrabold text-[#0a1930] text-sm mb-1">100% Transparent</h4>
                                         <p className="text-[#718096] text-xs font-normal">Als freier Makler vertrete ich exklusiv deine Interessen.</p>
                                     </div>
                                 </div>

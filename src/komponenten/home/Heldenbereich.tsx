@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Check, Star } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import heroImg from '@/assets/bilder/hero_couple.png';
 import privatImg from '@/assets/bilder/haftpflicht_card.png';
@@ -9,10 +9,10 @@ import beamteImg from '@/assets/bilder/beamte_du.png';
 const slides = [
     {
         title: "Sven Kegler Versicherungsmakler",
-        subtitle: "Nah und unabhängig für deine Sicherheit",
-        description: "Seit Jahren betreue ich Privatkunden und Beamte in partnerschaftlicher Zusammenarbeit. Als unabhängiger Versicherungsmakler bin ich an keine Versicherungsgesellschaft gebunden und vertrete ausschließlich deine Interessen.",
+        subtitle: "Nah und transparent für deine Sicherheit",
+        description: "Seit Jahren betreue ich Privatkunden und Beamte in partnerschaftlicher Zusammenarbeit. Als transparenter Versicherungsmakler bin ich an keine Versicherungsgesellschaft gebunden und vertrete ausschließlich deine Interessen.",
         checkmarks: [
-            "Unabhängig & objektiv beraten",
+            "Transparent & objektiv beraten",
             "Persönlicher Ansprechpartner",
             "Digital & unkompliziert"
         ],
@@ -74,112 +74,150 @@ const Heldenbereich = () => {
         return () => clearInterval(timer);
     }, [aktiverSlide]);
 
-    const slideVarianten = {
+    const uebergangSanft = { duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] };
+
+    const textVarianten = {
         initial: (richtung: number) => ({
-            x: richtung > 0 ? 150 : -150,
-            opacity: 0
+            x: richtung > 0 ? -40 : 40,
+            opacity: 0,
         }),
         active: {
             x: 0,
             opacity: 1,
-            transition: {
-                x: { type: "spring" as const, stiffness: 300, damping: 30 },
-                opacity: { duration: 0.4 }
-            }
+            transition: { ...uebergangSanft, staggerChildren: 0.08 },
         },
         exit: (richtung: number) => ({
-            x: richtung < 0 ? 150 : -150,
+            x: richtung > 0 ? 40 : -40,
             opacity: 0,
-            transition: {
-                x: { type: "spring" as const, stiffness: 300, damping: 30 },
-                opacity: { duration: 0.4 }
-            }
-        })
+            transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
+        }),
     };
+
+    const bildVarianten = {
+        initial: (richtung: number) => ({
+            x: richtung > 0 ? 60 : -60,
+            opacity: 0,
+            scale: 0.98,
+        }),
+        active: {
+            x: 0,
+            opacity: 1,
+            scale: 1,
+            transition: { ...uebergangSanft, delay: 0.05 },
+        },
+        exit: (richtung: number) => ({
+            x: richtung > 0 ? -60 : 60,
+            opacity: 0,
+            scale: 0.98,
+            transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
+        }),
+    };
+
+    const kindVariante = {
+        initial: { y: 12, opacity: 0 },
+        active: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] } },
+        exit: { y: -8, opacity: 0, transition: { duration: 0.3 } },
+    };
+
 
     const aktuellerSlideInhalt = slides[aktiverSlide];
 
     return (
         <section className="relative pt-40 pb-24 md:pt-52 md:pb-36 bg-gradient-to-br from-[#f8f9fc] to-[#eef2f9] overflow-hidden min-h-[900px] lg:min-h-[850px] flex items-center">
             <div className="max-w-[1650px] mx-auto px-6 lg:px-12 relative z-10 w-full">
-                
-                {/* Animations-Bereich */}
-                <div className="relative overflow-hidden min-h-[630px] lg:min-h-[530px]">
+
+                {/* Split-Slide-Layout */}
+                <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[530px]">
+
+                    {/* LINKE SEITE: Text schiebt von links herein */}
                     <AnimatePresence mode="wait" custom={richtung}>
                         <motion.div
-                            key={aktiverSlide}
+                            key={`text-${aktiverSlide}`}
                             custom={richtung}
-                            variants={slideVarianten}
+                            variants={textVarianten}
                             initial="initial"
                             animate="active"
                             exit="exit"
-                            className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full"
+                            className="max-w-2xl"
                         >
-                            {/* Linke Seite: Text & CTA */}
-                            <div className="max-w-2xl">
-                                {/* Headline (ca. 5% größer) */}
-                                <h1 className="text-[2.4rem] md:text-[3.5rem] lg:text-[4.2rem] font-extrabold text-[#020A39] leading-[1.15] mb-6 tracking-tight">
-                                    {aktuellerSlideInhalt.title}<br />
-                                    <span className="bg-gradient-to-r from-[#0253ee] to-[#4f46e5] bg-clip-text text-transparent">
-                                        {aktuellerSlideInhalt.subtitle}
-                                    </span>
-                                </h1>
+                            {/* Headline */}
+                            <motion.h1
+                                variants={kindVariante}
+                                className="text-[2.4rem] md:text-[3.5rem] lg:text-[4.2rem] font-extrabold text-[#020A39] leading-[1.15] mb-6 tracking-tight"
+                            >
+                                {aktuellerSlideInhalt.title}<br />
+                                <span className="bg-gradient-to-r from-[#0253ee] to-[#4f46e5] bg-clip-text text-transparent">
+                                    {aktuellerSlideInhalt.subtitle}
+                                </span>
+                            </motion.h1>
 
-                                {/* Subheadline (ca. 5% größer) */}
-                                <p className="text-base md:text-xl text-[#4b5a8a] mb-8 max-w-xl font-normal leading-relaxed">
-                                    {aktuellerSlideInhalt.description}
-                                </p>
+                            {/* Beschreibung */}
+                            <motion.p
+                                variants={kindVariante}
+                                className="text-base md:text-xl text-[#4b5a8a] mb-8 max-w-xl font-normal leading-relaxed"
+                            >
+                                {aktuellerSlideInhalt.description}
+                            </motion.p>
 
-                                {/* Checkmarks (ca. 5% größer) */}
-                                <ul className="space-y-3.5 mb-10">
-                                    {aktuellerSlideInhalt.checkmarks.map((item, idx) => (
-                                        <li key={idx} className="flex items-center gap-3.5 text-[#020A39] font-semibold">
-                                            <div className="w-6 h-6 rounded-full bg-[#0253ee] flex items-center justify-center flex-shrink-0 shadow-md">
-                                                <Check className="w-4 h-4 text-white stroke-[3]" />
-                                            </div>
-                                            <span className="text-base md:text-lg">{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
+                            {/* Checkmarks */}
+                            <motion.ul variants={kindVariante} className="space-y-3.5 mb-10">
+                                {aktuellerSlideInhalt.checkmarks.map((item, idx) => (
+                                    <li key={idx} className="flex items-center gap-3.5 text-[#020A39] font-semibold">
+                                        <div className="w-6 h-6 rounded-full bg-[#0253ee] flex items-center justify-center flex-shrink-0 shadow-md">
+                                            <Check className="w-4 h-4 text-white stroke-[3]" />
+                                        </div>
+                                        <span className="text-base md:text-lg">{item}</span>
+                                    </li>
+                                ))}
+                            </motion.ul>
 
-                                {/* Buttons */}
-                                <div className="flex flex-col sm:flex-row gap-4 mb-6">
-                                    {aktuellerSlideInhalt.btnLink.startsWith('/#') ? (
-                                        <a
-                                            href={aktuellerSlideInhalt.btnLink.substring(1)}
-                                            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#020A39] text-white font-semibold rounded-xl hover:bg-[#0c1c4f] transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5"
-                                        >
-                                            {aktuellerSlideInhalt.btnText}
-                                            <ArrowRight className="w-5 h-5" />
-                                        </a>
-                                    ) : (
-                                        <Link
-                                            to={aktuellerSlideInhalt.btnLink}
-                                            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#0253ee] text-white font-semibold rounded-xl hover:bg-[#0042c7] transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5"
-                                        >
-                                            {aktuellerSlideInhalt.btnText}
-                                            <ArrowRight className="w-5 h-5" />
-                                        </Link>
-                                    )}
-                                </div>
-                            </div>
+                            {/* Button */}
+                            <motion.div variants={kindVariante} className="flex flex-col sm:flex-row gap-4 mb-6">
+                                {aktuellerSlideInhalt.btnLink.startsWith('/#') ? (
+                                    <a
+                                        href={aktuellerSlideInhalt.btnLink.substring(1)}
+                                        className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#020A39] text-white font-semibold rounded-xl hover:bg-[#0c1c4f] transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5"
+                                    >
+                                        {aktuellerSlideInhalt.btnText}
+                                        <ArrowRight className="w-5 h-5" />
+                                    </a>
+                                ) : (
+                                    <Link
+                                        to={aktuellerSlideInhalt.btnLink}
+                                        className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#0253ee] text-white font-semibold rounded-xl hover:bg-[#0042c7] transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5"
+                                    >
+                                        {aktuellerSlideInhalt.btnText}
+                                        <ArrowRight className="w-5 h-5" />
+                                    </Link>
+                                )}
+                            </motion.div>
+                        </motion.div>
+                    </AnimatePresence>
 
-                            {/* Rechte Seite: Bild (ca. 5% größer) */}
-                            <div className="relative hidden lg:flex items-center justify-end h-full min-h-[420px]">
-                                <div className="relative z-10 w-full flex justify-end">
-                                    <img
-                                        src={aktuellerSlideInhalt.img}
-                                        alt={aktuellerSlideInhalt.title}
-                                        className="w-full h-[500px] object-cover rounded-[2rem] [mask-image:linear-gradient(to_right,transparent_0%,black_25%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_25%)] shadow-md"
-                                        loading="eager"
-                                    />
-                                </div>
+                    {/* RECHTE SEITE: Bild schiebt von rechts herein */}
+                    <AnimatePresence mode="wait" custom={richtung}>
+                        <motion.div
+                            key={`bild-${aktiverSlide}`}
+                            custom={richtung}
+                            variants={bildVarianten}
+                            initial="initial"
+                            animate="active"
+                            exit="exit"
+                            className="relative hidden lg:flex items-center justify-end h-full min-h-[420px]"
+                        >
+                            <div className="relative z-10 w-full flex justify-end">
+                                <img
+                                    src={aktuellerSlideInhalt.img}
+                                    alt={aktuellerSlideInhalt.title}
+                                    className="w-full h-[400px] object-cover rounded-[2rem] [mask-image:linear-gradient(to_right,transparent_0%,black_25%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_25%)] shadow-md"
+                                    loading="eager"
+                                />
                             </div>
                         </motion.div>
                     </AnimatePresence>
                 </div>
 
-                {/* Slider-Navigationspunkte (Dots) */}
+                {/* Slider-Dots */}
                 <div className="flex justify-center items-center gap-3.5 mt-8 relative z-20">
                     {slides.map((_, idx) => (
                         <button
@@ -193,40 +231,6 @@ const Heldenbereich = () => {
                             aria-label={`Gehe zu Slide ${idx + 1}`}
                         />
                     ))}
-                </div>
-
-                {/* ProvenExpert Siegel (Rechts Unten) */}
-                <div className="absolute -bottom-8 right-6 lg:right-12 z-30 bg-white border border-gray-100 rounded-2xl p-4 shadow-[0_15px_40px_rgba(0,0,0,0.08)] w-[240px] flex flex-col items-center select-none text-center">
-                    <div className="flex items-center gap-1.5 mb-1">
-                        <div className="w-5.5 h-5.5 rounded-full bg-[#3d3d3d] flex items-center justify-center text-white text-[9px] font-extrabold">
-                            PE
-                        </div>
-                        <span className="text-[11px] font-extrabold text-[#3d3d3d] tracking-tight">ProvenExpert</span>
-                    </div>
-
-                    <div className="text-base font-extrabold text-[#020A39] leading-tight mt-1">SEHR GUT</div>
-
-                    <div className="flex gap-0.5 my-1.5">
-                        {[...Array(5)].map((_, i) => (
-                            <Star key={i} className="w-4 h-4 text-[#fbbf24] fill-[#fbbf24] stroke-none" />
-                        ))}
-                    </div>
-
-                    <div className="text-[10px] text-[#4b5a8a] leading-tight font-semibold">
-                        Sven Kegler &bull; Simply Switch
-                    </div>
-
-                    <a
-                        href="#bewertungen"
-                        className="w-full bg-[#e8effd] text-[#0253ee] text-[11px] font-bold py-2 px-3 rounded-lg mt-3.5 border border-[#d1e0f9] hover:bg-[#d5e3fc] transition-colors"
-                    >
-                        873 Kundenbewertungen
-                    </a>
-
-                    <div className="flex justify-between w-full text-[8.5px] text-gray-400 mt-3 border-t border-gray-100 pt-2 font-medium">
-                        <span>100% verifiziert</span>
-                        <span>Stand: Juni 2026</span>
-                    </div>
                 </div>
 
             </div>

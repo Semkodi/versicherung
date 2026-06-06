@@ -15,7 +15,7 @@ const ServiceVersprechen = () => {
         },
         {
             icon: ShieldCheck,
-            titel: "Unabhängigkeits-Garantie",
+            titel: "Transparenz-Garantie",
             beschreibung: "Als freie Makler sind wir an keine Versicherungsgesellschaft gebunden. Wir vergleichen neutral über 160 Anbieter und vertreten ausschließlich deine Interessen."
         },
         {

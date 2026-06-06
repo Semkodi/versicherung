@@ -42,7 +42,7 @@ const BlogWissen = () => {
                     text: "Während deines Vorbereitungsdienstes profitierst du von extrem günstigen Anwärtertarifen, bei denen du nur den reinen Risikoanteil ohne Alterungsrückstellungen zahlst. Wichtig ist jedoch, jetzt schon einen Versicherer zu wählen, der langfristig beitragsstabil ist und hervorragende Volltarife für die spätere Verbeamtung auf Lebenszeit anbietet."
                 }
             ],
-            fazit: "Die Wahl der richtigen PKV ist eine Entscheidung fürs Leben. Ein voreiliger Abschluss kann später teuer werden. Lass dich unabhängig und neutral beraten, um den Tarif zu finden, der perfekt zu deiner Beamtenlaufbahn passt."
+            fazit: "Die Wahl der richtigen PKV ist eine Entscheidung fürs Leben. Ein voreiliger Abschluss kann später teuer werden. Lass dich transparent und neutral beraten, um den Tarif zu finden, der perfekt zu deiner Beamtenlaufbahn passt."
         },
         {
             kategorie: "Selbstständige",
@@ -86,7 +86,7 @@ const BlogWissen = () => {
                     text: "Das größte Risiko im Laufe eines Arbeitslebens ist der Verlust der eigenen Arbeitskraft. Wenn das Einkommen eines Elternteils wegen einer langwierigen Krankheit oder eines Unfalls wegbricht, kann das Ersparte schnell aufgebraucht sein. Die Absicherung der Arbeitskraft sichert den Lebensstandard deiner Familie nachhaltig."
                 }
             ],
-            fazit: "Ein solides Sicherheitsnetz für die Familie muss nicht teuer sein. Durch einen unabhängigen Vergleich lassen sich hervorragende Tarife finden, die maximale Leistung bei bezahlbaren Beiträgen garantieren."
+            fazit: "Ein solides Sicherheitsnetz für die Familie muss nicht teuer sein. Durch einen transparenten Vergleich lassen sich hervorragende Tarife finden, die maximale Leistung bei bezahlbaren Beiträgen garantieren."
         }
     ];
 

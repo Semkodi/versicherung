@@ -308,8 +308,8 @@ const Chatbot: React.FC = () => {
 
     // JSX der Komponente zurückgeben
     return (
-        // Wrapper-Container, fixiert in der unteren rechten Ecke
-        <div className="fixed bottom-6 right-6 z-[100] font-sans pointer-events-none">
+        // Wrapper-Container, fixiert in der unteren rechten Ecke (höher positioniert wegen StickyBottomBanner)
+        <div className="fixed bottom-[12.5rem] right-6 z-[100] font-sans pointer-events-none">
             {/* Tooltip für den geschlossenen Zustand */}
             <AnimatePresence>
                 {/* Zeige Tooltip nur, wenn der Chat zu ist und zeigeTooltip true ist */}

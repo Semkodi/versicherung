@@ -129,7 +129,7 @@ const Beamte = () => {
             icon: GraduationCap,
             titel: "Schutz im Referendariat & Vorbereitungsdienst",
             untertitel: "Sorgloser und bezahlbarer Karrierestart",
-            einleitung: "Im Referendariat profitierst du von extrem günstigen Anwärtertarifen der privaten Krankenversicherung. Wir vergleichen unabhängig alle Anbieter, um den besten Start zu sichern.",
+            einleitung: "Im Referendariat profitierst du von extrem günstigen Anwärtertarifen der privaten Krankenversicherung. Wir vergleichen transparent alle Anbieter, um den besten Start zu sichern.",
             image: refImg,
             punkte: [
                 {
@@ -145,7 +145,7 @@ const Beamte = () => {
                     text: "Egal ob Lehramt, Verwaltung, Justiz oder Polizei – wir stimmen dein Vorsorgekonzept exakt auf die spezifischen Risiken deines Dienstzweigs ab."
                 },
                 {
-                    titel: "Unabhängiger Tarifvergleich",
+                    titel: "Transparenter Tarifvergleich",
                     text: "Wir analysieren alle beihilfefähigen Tarife am Markt neutral und transparent, um das stärkste Preis-Leistungs-Verhältnis für deinen Einstieg zu finden."
                 }
             ]
@@ -199,7 +199,7 @@ const Beamte = () => {
                             </h1>
                             
                             <p className="text-base md:text-lg text-[#4a5568] mb-10 max-w-xl font-normal leading-relaxed">
-                                Beihilfe, Dienstunfähigkeit und Pension – wir kennen die Besonderheiten deiner Laufbahn und begleiten dich stressfrei, transparent und vollkommen unabhängig in deine sichere Zukunft.
+                                Beihilfe, Dienstunfähigkeit und Pension – wir kennen die Besonderheiten deiner Laufbahn und begleiten dich stressfrei, transparent und vollkommen ehrlich in deine sichere Zukunft.
                             </p>
 
                             {/* Checkmarks */}
