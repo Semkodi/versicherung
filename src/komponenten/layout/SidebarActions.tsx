@@ -1,4 +1,4 @@
-import { PhoneCall, Calendar } from 'lucide-react';
+import { Phone, Calendar } from 'lucide-react';
 
 const WhatsAppIcon = () => (
     <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current">
@@ -26,31 +26,31 @@ const SidebarActions = () => {
             
             {/* WhatsApp */}
             <a
-                href="https://wa.me/496436921334"
+                href="https://wa.me/4915127042547"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 bg-[#0253ee] text-white p-3.5 rounded-l-xl shadow-[0_4px_15px_rgba(2,83,238,0.25)] transition-all duration-300 ease-in-out translate-x-[calc(100%-3.1rem)] hover:translate-x-0 group border border-r-0 border-white/20"
             >
                 <span className="text-[13px] font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-                    Fragen? Schreib mir per WhatsApp! +49 6436 921334
+                    Fragen? Schreib mir per WhatsApp! +49 151 27042547
                 </span>
                 <div className="w-5.5 h-5.5 flex items-center justify-center flex-shrink-0">
                     <WhatsAppIcon />
                 </div>
             </a>
 
-            {/* Rückruf */}
-            <button
-                onClick={() => handleScrollTo('kontakt')}
+            {/* Telefon */}
+            <a
+                href="tel:+4915127042547"
                 className="flex items-center gap-3 bg-[#0253ee] text-white p-3.5 rounded-l-xl shadow-[0_4px_15px_rgba(2,83,238,0.25)] transition-all duration-300 ease-in-out translate-x-[calc(100%-3.1rem)] hover:translate-x-0 group border border-r-0 border-white/20"
             >
                 <span className="text-[13px] font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-                    Rückruf-Wunsch? Trage dich in mein Rückrufformular ein
+                    Direkt anrufen? Melde dich telefonisch: 0151 27042547
                 </span>
                 <div className="w-5.5 h-5.5 flex items-center justify-center flex-shrink-0">
-                    <PhoneCall className="w-5 h-5" />
+                    <Phone className="w-5 h-5" />
                 </div>
-            </button>
+            </a>
 
             {/* Termin */}
             <button

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Check, Star, Shield, Zap } from 'lucide-react';
+import { ArrowRight, Check, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import heroImg from '@/assets/bilder/hero_couple.png';
 import privatImg from '@/assets/bilder/haftpflicht_card.png';
@@ -8,7 +8,6 @@ import beamteImg from '@/assets/bilder/beamte_du.png';
 
 const slides = [
     {
-        badge: "Dein Partner für Sicherheit & Vorsorge",
         title: "Sven Kegler Versicherungsmakler",
         subtitle: "Nah und unabhängig für deine Sicherheit",
         description: "Seit Jahren betreue ich Privatkunden und Beamte in partnerschaftlicher Zusammenarbeit. Als unabhängiger Versicherungsmakler bin ich an keine Versicherungsgesellschaft gebunden und vertrete ausschließlich deine Interessen.",
@@ -19,11 +18,9 @@ const slides = [
         ],
         btnText: "Jetzt beraten lassen",
         btnLink: "/#kontakt",
-        isExternal: false,
         img: heroImg
     },
     {
-        badge: "Optimaler Schutz im Alltag",
         title: "Privater Versicherungsschutz",
         subtitle: "Sven Kegler – Dein Experte für optimale Vorsorge",
         description: "Wir helfen dir, die richtigen Versicherungen zu finden – verständlich, transparent und vollkommen digital. Finde heraus, wie einfach moderne Absicherung für dich und deine Familie sein kann.",
@@ -34,11 +31,9 @@ const slides = [
         ],
         btnText: "Schutz prüfen",
         btnLink: "/privatkunden",
-        isExternal: false,
         img: privatImg
     },
     {
-        badge: "Sicherheit im öffentlichen Dienst",
         title: "Beihilfe & Beamtenversorgung",
         subtitle: "Sven Kegler – Spezialist für Beamte & Anwärter",
         description: "Für Beamte und Anwärter gelten besondere Absicherungsregeln. Ich navigiere dich sicher durch Beihilfe, Dienstunfähigkeit, Heilfürsorge und begleite dich kompetent ab dem Referendariat.",
@@ -49,7 +44,6 @@ const slides = [
         ],
         btnText: "Beamten-Kompass ansehen",
         btnLink: "/beamte",
-        isExternal: false,
         img: beamteImg
     }
 ];
@@ -70,6 +64,15 @@ const Heldenbereich = () => {
             img.src = slide.img;
         });
     }, []);
+
+    // Autoplay-Interval: Wechselt alle 6 Sekunden zum nächsten Slide
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setRichtung(1);
+            setAktiverSlide((prev) => (prev + 1) % slides.length);
+        }, 6000);
+        return () => clearInterval(timer);
+    }, [aktiverSlide]);
 
     const slideVarianten = {
         initial: (richtung: number) => ({
@@ -97,11 +100,11 @@ const Heldenbereich = () => {
     const aktuellerSlideInhalt = slides[aktiverSlide];
 
     return (
-        <section className="relative pt-36 pb-20 md:pt-48 md:pb-32 bg-gradient-to-br from-[#f8f9fc] to-[#eef2f9] overflow-hidden min-h-[850px] lg:min-h-[800px] flex items-center">
+        <section className="relative pt-40 pb-24 md:pt-52 md:pb-36 bg-gradient-to-br from-[#f8f9fc] to-[#eef2f9] overflow-hidden min-h-[900px] lg:min-h-[850px] flex items-center">
             <div className="max-w-[1650px] mx-auto px-6 lg:px-12 relative z-10 w-full">
                 
                 {/* Animations-Bereich */}
-                <div className="relative overflow-hidden min-h-[600px] lg:min-h-[500px]">
+                <div className="relative overflow-hidden min-h-[630px] lg:min-h-[530px]">
                     <AnimatePresence mode="wait" custom={richtung}>
                         <motion.div
                             key={aktiverSlide}
@@ -114,32 +117,27 @@ const Heldenbereich = () => {
                         >
                             {/* Linke Seite: Text & CTA */}
                             <div className="max-w-2xl">
-                                {/* Badge */}
-                                <div className="inline-flex items-center gap-2 bg-[#e8effd] text-[#0253ee] px-4 py-2 rounded-full mb-6 font-semibold text-sm shadow-sm border border-[#d1e0f9]">
-                                    {aktuellerSlideInhalt.badge}
-                                </div>
-
-                                {/* Headline */}
-                                <h1 className="text-[2.2rem] md:text-5xl lg:text-[3.8rem] font-extrabold text-[#020A39] leading-[1.15] mb-6 tracking-tight">
+                                {/* Headline (ca. 5% größer) */}
+                                <h1 className="text-[2.4rem] md:text-[3.5rem] lg:text-[4.2rem] font-extrabold text-[#020A39] leading-[1.15] mb-6 tracking-tight">
                                     {aktuellerSlideInhalt.title}<br />
                                     <span className="bg-gradient-to-r from-[#0253ee] to-[#4f46e5] bg-clip-text text-transparent">
                                         {aktuellerSlideInhalt.subtitle}
                                     </span>
                                 </h1>
 
-                                {/* Subheadline */}
-                                <p className="text-base md:text-lg text-[#4b5a8a] mb-8 max-w-xl font-normal leading-relaxed">
+                                {/* Subheadline (ca. 5% größer) */}
+                                <p className="text-base md:text-xl text-[#4b5a8a] mb-8 max-w-xl font-normal leading-relaxed">
                                     {aktuellerSlideInhalt.description}
                                 </p>
 
-                                {/* Checkmarks */}
-                                <ul className="space-y-3 mb-10">
+                                {/* Checkmarks (ca. 5% größer) */}
+                                <ul className="space-y-3.5 mb-10">
                                     {aktuellerSlideInhalt.checkmarks.map((item, idx) => (
-                                        <li key={idx} className="flex items-center gap-3.5 text-[#020A39] font-medium">
-                                            <div className="w-5.5 h-5.5 rounded-full bg-[#0253ee] flex items-center justify-center flex-shrink-0 shadow-md">
-                                                <Check className="w-3.5 h-3.5 text-white stroke-[3]" />
+                                        <li key={idx} className="flex items-center gap-3.5 text-[#020A39] font-semibold">
+                                            <div className="w-6 h-6 rounded-full bg-[#0253ee] flex items-center justify-center flex-shrink-0 shadow-md">
+                                                <Check className="w-4 h-4 text-white stroke-[3]" />
                                             </div>
-                                            <span className="text-base">{item}</span>
+                                            <span className="text-base md:text-lg">{item}</span>
                                         </li>
                                     ))}
                                 </ul>
@@ -166,46 +164,16 @@ const Heldenbereich = () => {
                                 </div>
                             </div>
 
-                            {/* Rechte Seite: Bild & Trust Cards */}
-                            <div className="relative hidden lg:flex items-center justify-center h-full min-h-[400px]">
+                            {/* Rechte Seite: Bild (ca. 5% größer) */}
+                            <div className="relative hidden lg:flex items-center justify-end h-full min-h-[420px]">
                                 <div className="relative z-10 w-full flex justify-end">
                                     <img
                                         src={aktuellerSlideInhalt.img}
                                         alt={aktuellerSlideInhalt.title}
-                                        className="w-full h-[450px] object-cover rounded-[2rem] [mask-image:linear-gradient(to_right,transparent_0%,black_25%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_25%)] shadow-md"
+                                        className="w-full h-[500px] object-cover rounded-[2rem] [mask-image:linear-gradient(to_right,transparent_0%,black_25%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_25%)] shadow-md"
                                         loading="eager"
                                     />
                                 </div>
-
-                                {/* Floating Trust Cards für Slide 1 */}
-                                {aktiverSlide === 0 && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.8, delay: 0.4 }}
-                                        className="absolute -bottom-6 -left-12 bg-white/80 backdrop-blur-md rounded-3xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.08)] z-20 w-max border border-white/40 flex gap-6"
-                                    >
-                                        <div className="flex flex-col gap-2">
-                                            <div className="w-10 h-10 rounded-full bg-[#e8effd] flex items-center justify-center">
-                                                <Shield className="w-5 h-5 text-[#0253ee]" />
-                                            </div>
-                                            <div>
-                                                <div className="font-extrabold text-sm text-[#020A39] mb-0.5">100% unabhängig</div>
-                                                <div className="text-[11px] text-[#4b5a8a] leading-snug">Für dich im Einsatz,<br />nicht für Konzerne.</div>
-                                            </div>
-                                        </div>
-                                        <div className="w-px bg-gray-150" />
-                                        <div className="flex flex-col gap-2">
-                                            <div className="w-10 h-10 rounded-full bg-[#e8effd] flex items-center justify-center">
-                                                <Zap className="w-5 h-5 text-[#0253ee]" />
-                                            </div>
-                                            <div>
-                                                <div className="font-extrabold text-sm text-[#020A39] mb-0.5">Schnell & digital</div>
-                                                <div className="text-[11px] text-[#4b5a8a] leading-snug">Vollständig papierlos &<br />ortsunabhängig.</div>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                )}
                             </div>
                         </motion.div>
                     </AnimatePresence>

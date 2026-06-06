@@ -60,28 +60,25 @@ const Navigationsleiste = () => {
             {/* Blaue Top-Bar */}
             <div
                 className={`bg-marke-primaer text-white transition-all duration-300 ease-in-out ${
-                    istGescrollt ? 'h-0 py-0 opacity-0 overflow-hidden' : 'h-10 py-2.5 opacity-100'
+                    istGescrollt ? 'h-0 py-0 opacity-0 overflow-hidden' : 'h-12 py-3.5 opacity-100'
                 }`}
             >
-                <div className="max-w-[1650px] mx-auto px-6 lg:px-12 flex justify-between items-center text-xs font-semibold">
-                    <div className="flex items-center gap-6">
+                <div className="max-w-[1650px] mx-auto px-6 lg:px-12 flex justify-end items-center text-xs md:text-sm font-semibold">
+                    <div className="flex items-center gap-6 md:gap-8">
                         <a
-                            href="tel:+496436921334"
+                            href="tel:+4915127042547"
                             className="hover:text-marke-highlight flex items-center gap-1.5 transition-colors"
                         >
-                            <Phone className="w-3.5 h-3.5" />
-                            <span>Tel: +49 6436 921334</span>
+                            <Phone className="w-4 h-4" />
+                            <span>Tel: 0151 27042547</span>
                         </a>
                         <a
                             href="mailto:kegler@simply-switch.de"
                             className="hover:text-marke-highlight flex items-center gap-1.5 transition-colors"
                         >
-                            <Mail className="w-3.5 h-3.5" />
+                            <Mail className="w-4 h-4" />
                             <span>E-Mail: kegler@simply-switch.de</span>
                         </a>
-                    </div>
-                    <div className="hidden sm:block">
-                        <span>✨ Unabhängiger Versicherungsmakler Sven Kegler</span>
                     </div>
                 </div>
             </div>
