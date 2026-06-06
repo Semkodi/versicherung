@@ -48,24 +48,28 @@ const Zaehler = ({ ziel, suffix = "", isDecimal = false }: ZaehlerProps) => {
 const VertrauensLeiste = () => {
     const trustItems = [
         {
-            icon: <Star className="w-6 h-6 text-[#fbbf24]" />,
-            wert: <Zaehler ziel={4.9} isDecimal={true} />,
-            text: "Kundenbewertung"
-        },
-        {
-            icon: <ShieldCheck className="w-6 h-6 text-[#10b981]" />,
-            wert: <Zaehler ziel={100} suffix="%" />,
-            text: "unabhängig"
+            icon: <Users className="w-6 h-6 text-[#94a3b8]" />,
+            prefix: "mehr als",
+            wert: <Zaehler ziel={873} />,
+            text: "Kunden"
         },
         {
             icon: <Zap className="w-6 h-6 text-[#3b82f6]" />,
-            wert: "Schnell",
-            text: "& digital"
+            prefix: "über",
+            wert: <Zaehler ziel={17} suffix=" Jahre" />,
+            text: "Erfahrung"
         },
         {
-            icon: <Users className="w-6 h-6 text-[#94a3b8]" />,
-            wert: <Zaehler ziel={873} suffix="+" />,
-            text: "Kunden vertrauen uns"
+            icon: <Star className="w-6 h-6 text-[#fbbf24]" />,
+            prefix: "mehr als",
+            wert: <Zaehler ziel={80} />,
+            text: "Versicherungspartner"
+        },
+        {
+            icon: <ShieldCheck className="w-6 h-6 text-[#10b981]" />,
+            prefix: "immer",
+            wert: <Zaehler ziel={100} suffix="%" />,
+            text: "unabhängig"
         }
     ];
 
@@ -82,15 +86,19 @@ const VertrauensLeiste = () => {
                             transition={{ delay: index * 0.1, duration: 0.6 }}
                             className={`flex items-center justify-center gap-4 ${index > 1 ? 'pt-8 md:pt-0' : ''}`}
                         >
-                            {/* Statisches Icon-Design */}
+                            {/* Icon */}
                             <div className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center flex-shrink-0">
                                 {item.icon}
                             </div>
+                            {/* Text-Container im Scholz & Meis Stil */}
                             <div className="flex flex-col">
-                                <span className="text-2xl font-extrabold text-white leading-tight">
+                                <span className="text-[10px] uppercase tracking-wider text-gray-400 font-bold leading-none mb-1">
+                                    {item.prefix}
+                                </span>
+                                <span className="text-2xl md:text-3xl font-black text-white leading-tight">
                                     {item.wert}
                                 </span>
-                                <span className="text-sm font-medium text-white/80">
+                                <span className="text-sm font-medium text-white/80 leading-none mt-1">
                                     {item.text}
                                 </span>
                             </div>
