@@ -7,3 +7,4 @@ export { default as Preloader } from './Preloader';
 export { ScrollReveal } from './ScrollReveal';
 export { default as ScrollToTop } from './ScrollToTop';
 export { default as SeitenUebergang } from './SeitenUebergang';
+export { StructuredData } from './StructuredData';

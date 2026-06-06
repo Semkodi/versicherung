@@ -1,19 +1,16 @@
-import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 
+// Vordefinierte, harmonisch abgestimmte Partikel-Eigenschaften (behebt Math.random Purity-Fehler im Render)
+const PARTIKEL_EIGENSCHAFTEN = [
+    { id: 0, duration: 25, delay: 2, width: 45, height: 45, left: '12%', borderRadius: '50%' },
+    { id: 1, duration: 18, delay: 5, width: 30, height: 30, left: '28%', borderRadius: '4px' },
+    { id: 2, duration: 22, delay: 0, width: 55, height: 55, left: '45%', borderRadius: '50%' },
+    { id: 3, duration: 27, delay: 8, width: 20, height: 20, left: '62%', borderRadius: '4px' },
+    { id: 4, duration: 15, delay: 3, width: 40, height: 40, left: '78%', borderRadius: '50%' },
+    { id: 5, duration: 20, delay: 1, width: 35, height: 35, left: '90%', borderRadius: '4px' }
+];
+
 const FloatingShapes = () => {
-    // Generiere Partikel-Eigenschaften einmalig beim Mounten für deterministische Animationen (verhindert Flackern bei Re-renders)
-    const partikelEigenschaften = useMemo(() => {
-        return [...Array(6)].map((_, i) => ({
-            id: i,
-            duration: 15 + Math.random() * 10,
-            delay: Math.random() * 20,
-            width: Math.random() * 40 + 20,
-            height: Math.random() * 40 + 20,
-            left: `${Math.random() * 100}%`,
-            borderRadius: Math.random() > 0.5 ? '50%' : '4px'
-        }));
-    }, []);
 
     return (
         <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
@@ -38,7 +35,7 @@ const FloatingShapes = () => {
             />
 
             {/* Kleine "Partikel" oder Quadrate die langsam steigen */}
-            {partikelEigenschaften.map((p) => (
+            {PARTIKEL_EIGENSCHAFTEN.map((p) => (
                 <motion.div
                     key={p.id}
                     initial={{ y: "110vh", opacity: 0 }}

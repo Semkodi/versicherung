@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, type ComponentType } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from 'framer-motion';
 import { AlertTriangle, TrendingDown, Clock, ShieldAlert, Sparkles } from 'lucide-react';
 
-const FehlerCard = ({ icon: Icon, titel, text, idx }: { icon: any, titel: string, text: string, idx: number }) => {
+const FehlerCard = ({ icon: Icon, titel, text, idx }: { icon: ComponentType<{ className?: string }>, titel: string, text: string, idx: number }) => {
     const cardRef = useRef<HTMLDivElement>(null);
     const [hovering, setHovering] = useState(false);
 

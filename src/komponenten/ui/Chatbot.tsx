@@ -1,5 +1,5 @@
 // Importiere React und Hooks für Zustand, Effekte und Referenzen
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 // Importiere motion und AnimatePresence von framer-motion für flüssige Animationen
 import { motion, AnimatePresence } from 'framer-motion';
 // Importiere benötigte Icons von lucide-react
@@ -99,14 +99,6 @@ const Chatbot: React.FC = () => {
         scrolleNachUnten();
     }, [nachrichten, tipptGerade]);
 
-    // Effekt: Starte den Chat, wenn er zum ersten Mal geöffnet wird und noch leer ist
-    useEffect(() => {
-        if (istOffen && nachrichten.length === 0) {
-            // Sende die initiale Begrüßungsnachricht mit Optionen
-            sendeBotNachricht("Hallo! Ich bin dein Simply Switch Assistent. 👋 Wie kann ich dir heute helfen?", ['Beamtenversicherung', 'Existenzgründer / Selbstständig', 'Private Versicherung', 'Allgemeine Frage']);
-        }
-    }, [istOffen]);
-
     // Effekt: Verstecke den Tooltip automatisch nach 10 Sekunden, wenn der Chat zu ist
     useEffect(() => {
         let timer: ReturnType<typeof setTimeout>;
@@ -121,7 +113,7 @@ const Chatbot: React.FC = () => {
     }, [zeigeTooltip, istOffen]);
 
     // Funktion zum Senden einer Nachricht vom Bot (mit künstlicher Verzögerung)
-    const sendeBotNachricht = (text: string, options?: string[]) => {
+    const sendeBotNachricht = useCallback((text: string, options?: string[]) => {
         // Aktiviere die Tipp-Animation
         setTipptGerade(true);
         // Berechne eine dynamische Verzögerung basierend auf der Textlänge (zwischen 0.8s und 2s)
@@ -144,7 +136,15 @@ const Chatbot: React.FC = () => {
             setNachrichten(prev => [...prev, neueNachricht]);
             botTimeoutRef.current = null;
         }, verzoegerung);
-    };
+    }, []);
+
+    // Effekt: Starte den Chat, wenn er zum ersten Mal geöffnet wird und noch leer ist
+    useEffect(() => {
+        if (istOffen && nachrichten.length === 0) {
+            // Sende die initiale Begrüßungsnachricht mit Optionen
+            sendeBotNachricht("Hallo! Ich bin dein Simply Switch Assistent. 👋 Wie kann ich dir heute helfen?", ['Beamtenversicherung', 'Private Versicherung', 'Allgemeine Frage']);
+        }
+    }, [istOffen, nachrichten.length, sendeBotNachricht]);
 
     // Funktion zur Verarbeitung von Klicks auf Antwort-Optionen (Buttons)
     const handleOptionKlick = async (option: string) => {
@@ -244,13 +244,13 @@ const Chatbot: React.FC = () => {
                     sendeBotNachricht("✅ Deine Anfrage wurde erfolgreich empfangen! Sven Kegler wird sich zeitnah persönlich bei dir melden. Vielen Dank für dein Vertrauen!");
                     // Gehe zum Endschritt
                     setSchritt(6);
-                } catch (fehler: any) {
+                } catch (fehler) {
                     console.error('Fehler beim Speichern:', fehler);
                     sendeBotNachricht("Leider gab es ein technisches Problem beim Senden deiner Anfrage. Bitte versuche es später noch einmal oder rufe uns direkt an!");
                 }
             } else {
                 // Bei "Daten korrigieren" starten wir den Flow neu
-                sendeBotNachricht("Kein Problem. Starten wir noch einmal kurz von vorn. Was ist dein Anliegen?", ['Beamtenversicherung', 'Existenzgründer / Selbstständig', 'Private Versicherung', 'Allgemeine Frage']);
+                sendeBotNachricht("Kein Problem. Starten wir noch einmal kurz von vorn. Was ist dein Anliegen?", ['Beamtenversicherung', 'Private Versicherung', 'Allgemeine Frage']);
                 setSchritt(0);
             }
         }

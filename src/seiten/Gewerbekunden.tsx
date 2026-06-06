@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { usePageMetadata } from '@/hooks/usePageMetadata';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
     Briefcase, 
@@ -25,6 +26,11 @@ import flottenImg   from '@/assets/bilder/flotten_card.png';
 import rechtImg     from '@/assets/bilder/recht_card.png';
 import selbststaendigeCardImg from '@/assets/bilder/selbststaendige_card_v2.png';
 
+const METADATA = {
+    title: "Betriebshaftpflicht & Cyber-Schutz für Selbstständige | Online",
+    description: "Die Risiko-Matrix für Unternehmer, Freiberufler & IT. Gewerbeversicherungen unabhängig vergleichen und digital verwalten.",
+};
+
 // Typdefinitionen fuer FAQs, Branchen und Leistungen
 type FAQItem = {
     frage: string;
@@ -49,6 +55,7 @@ type DetailliertesProdukt = {
 };
 
 const Gewerbekunden = () => {
+    usePageMetadata(METADATA);
     // Zustand fuer das geoeffnete FAQ-Element
     const [offenesFAQ, setOffenesFAQ] = useState<number | null>(null);
 
@@ -304,16 +311,15 @@ const Gewerbekunden = () => {
                                     ))}
                                 </div>
                                 <div className="flex items-center gap-3">
-                                    <span className="font-bold text-xs md:text-sm text-[#0a1930]">4,9/5 aus 230+ Bewertungen</span>
-                                    <div className="flex -space-x-3">
-                                        <img src="https://i.pravatar.cc/100?img=1" alt="avatar" className="w-8 h-8 rounded-full border-2 border-[#f8f9fc]" />
-                                        <img src="https://i.pravatar.cc/100?img=2" alt="avatar" className="w-8 h-8 rounded-full border-2 border-[#f8f9fc]" />
-                                        <img src="https://i.pravatar.cc/100?img=3" alt="avatar" className="w-8 h-8 rounded-full border-2 border-[#f8f9fc]" />
+                                             <div className="flex -space-x-3">
+                                        <img src="https://i.pravatar.cc/100?img=1" alt="simply switch Kundenbewertung IT Freelancer" className="w-8 h-8 rounded-full border-2 border-[#f8f9fc]" />
+                                        <img src="https://i.pravatar.cc/100?img=2" alt="simply switch Kundenbewertung Handwerker" className="w-8 h-8 rounded-full border-2 border-[#f8f9fc]" />
+                                        <img src="https://i.pravatar.cc/100?img=3" alt="simply switch Kundenbewertung Händler" className="w-8 h-8 rounded-full border-2 border-[#f8f9fc]" />
                                     </div>
                                 </div>
                             </div>
                         </motion.div>
-
+ 
                         {/* Rechte Spalte: Bild & schwebende Trust-Card */}
                         <motion.div
                             initial={{ opacity: 0, x: 30 }}
@@ -325,7 +331,7 @@ const Gewerbekunden = () => {
                             <div className="relative z-10 w-full flex justify-end">
                                 <img 
                                     src={selbststaendigeCardImg} 
-                                    alt="Unternehmer und Absicherung" 
+                                    alt="Sven Kegler - Gewerbeversicherungen & Risikoanalyse für Selbstständige und Firmen" 
                                     className="w-full h-auto max-h-[500px] object-cover rounded-[2rem] [mask-image:linear-gradient(to_right,transparent_0%,black_35%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_35%)] shadow-md"
                                 />
                             </div>
@@ -491,7 +497,8 @@ const Gewerbekunden = () => {
                                             <div className="relative rounded-[2rem] overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.06)] border border-gray-100 aspect-[4/3] lg:aspect-square">
                                                 <img 
                                                     src={p.image} 
-                                                    alt={p.titel} 
+                                                    alt={`${p.titel} für Gewerbe & Selbstständige - Sven Kegler Online-Makler`}
+                                                    loading="lazy"
                                                     className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                                                 />
                                             </div>

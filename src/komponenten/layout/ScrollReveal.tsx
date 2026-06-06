@@ -42,7 +42,7 @@ export const ScrollReveal = ({ children, width = "100%", delay = 0.2, direction 
                 variants={variants}
                 initial="hidden"
                 animate={mainControls}
-                transition={{ duration: 1, delay: delay, ease: [0.16, 1, 0.3, 1] as any }}
+                transition={{ duration: 1, delay: delay, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
             >
                 {children}
             </motion.div>

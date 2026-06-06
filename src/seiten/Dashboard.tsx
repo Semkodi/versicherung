@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { 
@@ -25,20 +25,33 @@ function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
 
+interface Lead {
+    id: string | number;
+    name: string;
+    email: string;
+    phone?: string;
+    category: string;
+    sub_category?: string;
+    channel?: string;
+    status: string;
+    priority?: string;
+    created_at: string;
+}
+
 const Dashboard: React.FC = () => {
     const [activeTab, setActiveTab] = useState('Alle');
-    const [leads, setLeads] = useState<any[]>([]);
+    const [leads, setLeads] = useState<Lead[]>([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
-    const checkUser = async () => {
+    const checkUser = useCallback(async () => {
         const { data: { session } } = await supabase.auth.getSession();
         if (!session) {
             navigate('/login');
         }
-    };
+    }, [navigate]);
 
-    const fetchLeads = async () => {
+    const fetchLeads = useCallback(async () => {
         try {
             setLoading(true);
             const { data, error } = await supabase
@@ -53,12 +66,12 @@ const Dashboard: React.FC = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, []);
 
     useEffect(() => {
         checkUser();
         fetchLeads();
-    }, []);
+    }, [checkUser, fetchLeads]);
 
     const handleLogout = async () => {
         await supabase.auth.signOut();

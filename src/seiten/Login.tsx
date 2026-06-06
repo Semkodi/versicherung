@@ -24,10 +24,11 @@ const Login: React.FC = () => {
 
             if (error) throw error;
             navigate('/dashboard');
-        } catch (err: any) {
-            setError(err.message === 'Invalid login credentials' 
+        } catch (err) {
+            const nachricht = err instanceof Error ? err.message : String(err);
+            setError(nachricht === 'Invalid login credentials' 
                 ? 'Ungültige E-Mail oder Passwort. Bitte prüfe deine Eingaben.' 
-                : err.message);
+                : nachricht);
         } finally {
             setLoading(false);
         }

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Check } from 'lucide-react';
 import referendarImg       from '@/assets/bilder/referendar_card_v2.png';
 import haushaltImg         from '@/assets/bilder/haushalt_card_v2.png';
-import selbststaendigeImg  from '@/assets/bilder/selbststaendige_card_v2.png';
 
 const Zielgruppen = () => {
     const gruppen = [
@@ -30,18 +29,6 @@ const Zielgruppen = () => {
             ],
             image: haushaltImg,
             link: "/privatkunden",
-        },
-        {
-            titel: "Selbstständige & Freiberufler",
-            untertitel: "Deine Absicherung für ein sorgenfreies unternehmerisches Handeln.",
-            vorteile: [
-                "Berufsunfähigkeitsversicherung",
-                "Betriebliche Altersvorsorge",
-                "Haftpflichtversicherung",
-                "Rechtsschutzversicherung"
-            ],
-            image: selbststaendigeImg,
-            link: "/gewerbekunden",
         }
     ];
 
@@ -58,7 +45,7 @@ const Zielgruppen = () => {
                     </p>
                 </div>
 
-                <div className="grid lg:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                     {gruppen.map((gruppe, idx) => (
                         <motion.div
                             key={idx}

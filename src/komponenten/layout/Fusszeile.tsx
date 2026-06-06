@@ -8,14 +8,14 @@ const Fusszeile = () => {
             {/* Footer Navigation */}
             <div className="bg-[#0a1930] text-white pt-16 pb-8">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 mb-16">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-16">
                         {/* Logo Column */}
                         <div className="lg:col-span-2">
                             <a href="#" className="block mb-6 w-fit">
                                 <img src={logo} alt="simply switch Logo" className="h-12 w-auto object-contain brightness-0 invert" />
                             </a>
                             <p className="text-gray-400 text-xs leading-relaxed max-w-xs">
-                                Dein unabhängiger Versicherungsmakler für Beamte, Privatkunden und Selbstständige. Persönlich. Digital. Einfach.
+                                Dein unabhängiger Versicherungsmakler für Beamte und Privatkunden. Persönlich. Digital. Einfach.
                             </p>
                             <div className="flex gap-4 mt-6">
                                 <a 
@@ -67,17 +67,6 @@ const Fusszeile = () => {
                                 <li><a href="#" className="hover:text-white transition-colors">Beihilfe & Heilfürsorge</a></li>
                                 <li><a href="#" className="hover:text-white transition-colors">Dienstunfähigkeit</a></li>
                                 <li><a href="#" className="hover:text-white transition-colors">Referendariat</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Alle Versicherungen</a></li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h4 className="text-sm font-bold mb-5 text-white">Für Selbstständige</h4>
-                            <ul className="space-y-3 text-gray-400 text-xs">
-                                <li><a href="#" className="hover:text-white transition-colors">Berufsunfähigkeit</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Betriebliche Altersvorsorge</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Haftpflichtversicherung</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Rechtsschutzversicherung</a></li>
                                 <li><a href="#" className="hover:text-white transition-colors">Alle Versicherungen</a></li>
                             </ul>
                         </div>

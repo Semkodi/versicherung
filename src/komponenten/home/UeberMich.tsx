@@ -48,7 +48,7 @@ const UeberMich = () => {
                                     <strong className="text-[#0a1930] font-bold">Hi! Ich bin Sven Kegler</strong> – freier Versicherungsmakler, Inhaber von simply switch und leidenschaftlicher Berater. Seit über 17 Jahren kläre ich Menschen unabhängig und transparent zu ihren Absicherungen, Finanzen und Vorsorgewegen auf.
                                 </p>
                                 <p>
-                                    Mein Spezialgebiet ist die ganzheitliche und verständliche Aufklärung – ganz besonders auch für Beamtenanwärter, Referendare und Selbstständige. Ich habe einfach zu oft erlebt, dass unverständlicher Versicherungs-Kauderwelsch genutzt wird, um unpassende Produkte zu verkaufen. Das machen wir anders.
+                                    Mein Spezialgebiet ist die ganzheitliche und verständliche Aufklärung – ganz besonders auch für Beamtenanwärter und Referendare. Ich habe einfach zu oft erlebt, dass unverständlicher Versicherungs-Kauderwelsch genutzt wird, um unpassende Produkte zu verkaufen. Das machen wir anders.
                                 </p>
                             </div>
 

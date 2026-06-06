@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /versicherung
+Allow: /versicherung/
+Disallow: /versicherung/dashboard
+Disallow: /versicherung/login
+
+Sitemap: https://simply-switch.de/versicherung/sitemap.xml

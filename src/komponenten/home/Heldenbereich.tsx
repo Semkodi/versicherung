@@ -35,7 +35,7 @@ const Heldenbereich = () => {
 
                         {/* Subheadline */}
                         <p className="text-lg md:text-xl text-[#4a5568] mb-10 max-w-xl font-normal leading-relaxed">
-                            Wir helfen Beamten, Privatkunden und Selbstständigen die richtigen Versicherungen zu finden – verständlich, transparent und digital.
+                            Wir helfen Beamten und Privatkunden die richtigen Versicherungen zu finden – verständlich, transparent und digital.
                         </p>
 
                         {/* Checkmarks */}
@@ -78,15 +78,15 @@ const Heldenbereich = () => {
                             <div className="flex items-center gap-3">
                                 <span className="font-bold text-base text-[#0a1930]">4,9/5 aus 230+ Bewertungen</span>
                                 <div className="flex -space-x-3">
-                                    <img src="https://i.pravatar.cc/100?img=1" alt="avatar" className="w-10 h-10 rounded-full border-2 border-[#f8f9fc]" />
-                                    <img src="https://i.pravatar.cc/100?img=2" alt="avatar" className="w-10 h-10 rounded-full border-2 border-[#f8f9fc]" />
-                                    <img src="https://i.pravatar.cc/100?img=3" alt="avatar" className="w-10 h-10 rounded-full border-2 border-[#f8f9fc]" />
-                                    <img src="https://i.pravatar.cc/100?img=4" alt="avatar" className="w-10 h-10 rounded-full border-2 border-[#f8f9fc]" />
+                                    <img src="https://i.pravatar.cc/100?img=1" alt="simply switch Kundenbewertung Profilbild Frau" className="w-10 h-10 rounded-full border-2 border-[#f8f9fc]" />
+                                    <img src="https://i.pravatar.cc/100?img=2" alt="simply switch Kundenbewertung Profilbild Mann" className="w-10 h-10 rounded-full border-2 border-[#f8f9fc]" />
+                                    <img src="https://i.pravatar.cc/100?img=3" alt="simply switch Kundenbewertung Profilbild Lehrerin" className="w-10 h-10 rounded-full border-2 border-[#f8f9fc]" />
+                                    <img src="https://i.pravatar.cc/100?img=4" alt="simply switch Kundenbewertung Profilbild Selbstständiger" className="w-10 h-10 rounded-full border-2 border-[#f8f9fc]" />
                                 </div>
                             </div>
                         </div>
                     </motion.div>
-
+ 
                     {/* Rechte Seite: Bild & Floating Card */}
                     <motion.div
                         initial={{ opacity: 0, x: 30 }}
@@ -98,7 +98,7 @@ const Heldenbereich = () => {
                         <div className="relative z-10 w-full flex justify-center lg:justify-end">
                             <img 
                                 src={heroImg} 
-                                alt="Glückliche Familie" 
+                                alt="Sven Kegler - Unabhängiger Versicherungsmakler für deutschlandweite Online-Beratung" 
                                 className="w-full h-auto max-h-[500px] object-cover rounded-[2rem] [mask-image:linear-gradient(to_right,transparent_0%,black_35%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_35%)] shadow-md"
                             />
                         </div>

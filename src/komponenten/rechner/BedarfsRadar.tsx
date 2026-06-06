@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, type ComponentType } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
     Check, 
@@ -6,7 +6,6 @@ import {
     ArrowLeft, 
     Sparkles, 
     GraduationCap, 
-    Briefcase, 
     Users, 
     User, 
     Home, 
@@ -27,7 +26,7 @@ interface FrageSchritt {
     optionen: {
         wert: string;
         label: string;
-        icon: any;
+        icon: ComponentType<{ className?: string }>;
     }[];
 }
 
@@ -45,7 +44,6 @@ const BedarfsRadar = () => {
             optionen: [
                 { wert: "single", label: "Single & Berufseinstieg", icon: User },
                 { wert: "familie", label: "Partnerschaft & Familie", icon: Users },
-                { wert: "gewerbe", label: "Selbstständig / Unternehmer", icon: Briefcase },
                 { wert: "beamte", label: "Beamter / Anwärter", icon: GraduationCap }
             ]
         },

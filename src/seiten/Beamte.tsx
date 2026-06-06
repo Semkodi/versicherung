@@ -1,3 +1,5 @@
+import { type ComponentType } from 'react';
+import { usePageMetadata } from '@/hooks/usePageMetadata';
 import { motion } from 'framer-motion';
 import { 
     Shield, 
@@ -24,10 +26,15 @@ import pkvImg      from '@/assets/bilder/beamte_pkv.png';
 import beihilfeImg from '@/assets/bilder/beamte_beihilfe.png';
 import refImg      from '@/assets/bilder/beamte_ref.png';
 
+const METADATA = {
+    title: "Dienstunfähigkeitsversicherung & PKV für Beamte | Online-Beratung",
+    description: "Exklusive Tarife für Beamte & Anwärter. Echte DU-Klausel, Beihilfe-Kompensation & Anwärtertarife deutschlandweit online vergleichen.",
+};
+
 // Typdefinition fuer ein detailliertes Beamten-Produkt
 type DetailliertesBeamtenProdukt = {
     id: string;
-    icon: any;
+    icon: ComponentType<{ className?: string }>;
     titel: string;
     untertitel: string;
     einleitung: string;
@@ -36,6 +43,7 @@ type DetailliertesBeamtenProdukt = {
 };
 
 const Beamte = () => {
+    usePageMetadata(METADATA);
     // Die vier Hauptthemen fuer Beamte, passend zum Untermenue in der Navigationsleiste
     const produkte: DetailliertesBeamtenProdukt[] = [
         {
@@ -236,16 +244,15 @@ const Beamte = () => {
                                     ))}
                                 </div>
                                 <div className="flex items-center gap-3">
-                                    <span className="font-bold text-xs md:text-sm text-[#0a1930]">4,9/5 aus 230+ Bewertungen</span>
-                                    <div className="flex -space-x-3">
-                                        <img src="https://i.pravatar.cc/100?img=1" alt="avatar" className="w-8 h-8 rounded-full border-2 border-[#f8f9fc]" />
-                                        <img src="https://i.pravatar.cc/100?img=2" alt="avatar" className="w-8 h-8 rounded-full border-2 border-[#f8f9fc]" />
-                                        <img src="https://i.pravatar.cc/100?img=3" alt="avatar" className="w-8 h-8 rounded-full border-2 border-[#f8f9fc]" />
+                                                                   <div className="flex -space-x-3">
+                                        <img src="https://i.pravatar.cc/100?img=1" alt="simply switch Kundenbewertung Beamter" className="w-8 h-8 rounded-full border-2 border-[#f8f9fc]" />
+                                        <img src="https://i.pravatar.cc/100?img=2" alt="simply switch Kundenbewertung Lehrerin" className="w-8 h-8 rounded-full border-2 border-[#f8f9fc]" />
+                                        <img src="https://i.pravatar.cc/100?img=3" alt="simply switch Kundenbewertung Polizeianwärter" className="w-8 h-8 rounded-full border-2 border-[#f8f9fc]" />
                                     </div>
                                 </div>
                             </div>
                         </motion.div>
-
+ 
                         {/* Rechte Spalte: Bild & schwebende Trust-Card */}
                         <motion.div
                             initial={{ opacity: 0, x: 30 }}
@@ -257,7 +264,7 @@ const Beamte = () => {
                             <div className="relative z-10 w-full flex justify-end">
                                 <img 
                                     src={refImg} 
-                                    alt="Beamte und Referendare" 
+                                    alt="Sven Kegler - Beihilfe & Dienstunfähigkeitsversicherung für Beamte und Anwärter" 
                                     className="w-full h-auto max-h-[500px] object-cover rounded-[2rem] [mask-image:linear-gradient(to_right,transparent_0%,black_35%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_35%)] shadow-md"
                                 />
                             </div>
@@ -394,7 +401,8 @@ const Beamte = () => {
                                             <div className="relative rounded-[2rem] overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.06)] border border-gray-100 aspect-[4/3] lg:aspect-square">
                                                 <img 
                                                     src={p.image} 
-                                                    alt={p.titel} 
+                                                    alt={`${p.titel} für Beamte - Sven Kegler Online-Makler`}
+                                                    loading="lazy"
                                                     className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                                                 />
                                             </div>

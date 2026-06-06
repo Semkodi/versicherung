@@ -61,17 +61,6 @@ const Navigationsleiste = () => {
                 { name: 'Kontakt aufnehmen', pfad: '/beamte#kontakt' }
             ]
         },
-        { 
-            name: 'Selbstständige', 
-            pfad: '/gewerbekunden',
-            sub: [
-                { name: 'Betriebshaftpflicht', pfad: '/gewerbekunden#betriebshaftpflicht' },
-                { name: 'Inhaltsversicherung', pfad: '/gewerbekunden#inhaltsversicherung' },
-                { name: 'Flottenversicherung', pfad: '/gewerbekunden#flottenversicherung' },
-                { name: 'Rechtsschutz', pfad: '/gewerbekunden#rechtsschutz' },
-                { name: 'Kontakt aufnehmen', pfad: '/gewerbekunden#kontakt' }
-            ]
-        },
         { name: 'Kontakt', pfad: '/#kontakt' }
     ];
 
