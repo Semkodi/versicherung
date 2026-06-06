@@ -70,7 +70,7 @@ const VertrauensLeiste = () => {
     ];
 
     return (
-        <section className="bg-[#0a1930] py-12 relative z-20 overflow-hidden transform-gpu">
+        <section className="bg-[#0a1930] py-12 relative z-20 overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-white/10">
                     {trustItems.map((item, index) => (
@@ -80,46 +80,20 @@ const VertrauensLeiste = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1, duration: 0.6 }}
-                            className={`flex items-center justify-center ${index > 1 ? 'pt-8 md:pt-0' : ''}`}
+                            className={`flex items-center justify-center gap-4 ${index > 1 ? 'pt-8 md:pt-0' : ''}`}
                         >
-                            {/* GPU-beschleunigter Schwebeladungseffekt (optimiert für ruckelfreies Rendering) */}
-                            <motion.div
-                                className="flex items-center gap-4 transform-gpu"
-                                style={{ transform: 'translateZ(0)' }}
-                                animate={{ y: [-3, 3] }}
-                                transition={{
-                                    duration: 3 + index * 0.4,
-                                    repeat: Infinity,
-                                    repeatType: "reverse",
-                                    ease: "easeInOut",
-                                    delay: index * 0.15
-                                }}
-                            >
-                                {/* Pulsierendes Icon mit GPU-Hardware-Beschleunigung */}
-                                <motion.div 
-                                    className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center flex-shrink-0 transform-gpu"
-                                    style={{ transform: 'translateZ(0)' }}
-                                    animate={{ 
-                                        scale: [1, 1.04, 1],
-                                        borderColor: ["rgba(255,255,255,0.1)", "rgba(255,255,255,0.22)", "rgba(255,255,255,0.1)"]
-                                    }}
-                                    transition={{
-                                        duration: 3.2 + index * 0.5,
-                                        repeat: Infinity,
-                                        ease: "easeInOut"
-                                    }}
-                                >
-                                    {item.icon}
-                                </motion.div>
-                                <div className="flex flex-col">
-                                    <span className="text-2xl font-extrabold text-white leading-tight">
-                                        {item.wert}
-                                    </span>
-                                    <span className="text-sm font-medium text-white/80">
-                                        {item.text}
-                                    </span>
-                                </div>
-                            </motion.div>
+                            {/* Statisches Icon-Design */}
+                            <div className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center flex-shrink-0">
+                                {item.icon}
+                            </div>
+                            <div className="flex flex-col">
+                                <span className="text-2xl font-extrabold text-white leading-tight">
+                                    {item.wert}
+                                </span>
+                                <span className="text-sm font-medium text-white/80">
+                                    {item.text}
+                                </span>
+                            </div>
                         </motion.div>
                     ))}
                 </div>
