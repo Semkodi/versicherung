@@ -1,37 +1,37 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Users, Search, Smartphone, Shield } from 'lucide-react';
-import warumImg from '@/assets/bilder/Profil_img.png'; // Fallback Bild, bis ein Meeting-Bild da ist
+import { ArrowRight, Check } from 'lucide-react';
+import warumImg from '@/assets/bilder/Profil_img.png'; 
 
 const WarumSimplySwitch = () => {
-    const features = [
+    const vorteile = [
         {
-            icon: <Users className="w-5 h-5 text-[#1e5adb]" />,
-            titel: "Persönlich",
-            text: "Wir nehmen uns Zeit für dich und deine Situation."
+            titel: "Unabhängiger Versicherungsmakler",
+            text: "Ich bin an keine einzelne Versicherungsgesellschaft gebunden. Meine Beratung ist neutral, objektiv und orientiert sich zu 100% an deinen Interessen."
         },
         {
-            icon: <Search className="w-5 h-5 text-[#1e5adb]" />,
-            titel: "Transparent",
-            text: "Klare Empfehlungen ohne Fachchinesisch und versteckte Kosten."
+            titel: "Zertifizierte & ganzheitliche Beratung",
+            text: "Keine halben Sachen: Gemeinsam betrachten wir deine Lebenssituation ganzheitlich, um Lücken zu schließen und Überversicherung zu vermeiden."
         },
         {
-            icon: <Smartphone className="w-5 h-5 text-[#1e5adb]" />,
-            titel: "Digital",
-            text: "Dokumente, Verträge und Beratung – alles an einem Ort."
+            titel: "Digitaler Service & Verträge",
+            text: "Über die simplr App verwaltest du deine Verträge, Dokumente und Schäden papierlos und bequem von überall aus."
         },
         {
-            icon: <Shield className="w-5 h-5 text-[#1e5adb]" />,
-            titel: "Langfristig",
-            text: "Wir sind auch morgen noch für dich da, wenn du uns brauchst."
+            titel: "Individuell & vertrauensvoll",
+            text: "Kein Verkaufsdruck, keine Vertriebsziele. Die Beratung erfolgt ehrlich, partnerschaftlich und auf Augenhöhe."
+        },
+        {
+            titel: "Schnelle Schadensbearbeitung",
+            text: "Im Notfall stehe ich dir persönlich zur Seite und kümmere mich um eine reibungslose und schnelle Schadenregulierung."
         }
     ];
 
     return (
         <section id="warum-wir" className="py-24 bg-white relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="grid lg:grid-cols-2 gap-16 lg:gap-8 items-center">
+                <div className="grid lg:grid-cols-2 gap-16 lg:gap-12 items-start">
                     
-                    {/* Linke Seite: Text */}
+                    {/* Linke Seite: Text & Liste */}
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -39,51 +39,70 @@ const WarumSimplySwitch = () => {
                         transition={{ duration: 0.8 }}
                     >
                         <div className="inline-flex items-center gap-2 bg-[#e8effd] text-[#1e5adb] px-4 py-1.5 rounded-full mb-6 font-semibold text-xs uppercase tracking-wide">
-                            Deine Vorteile
+                            Deine Sicherheit
                         </div>
+                        
                         <h2 className="text-3xl md:text-[2.5rem] font-extrabold mb-6 text-[#0a1930] leading-tight">
-                            Warum Simply Switch?
+                            Warum Sven Kegler (simply switch)?
                         </h2>
-                        <p className="text-[#4a5568] text-lg font-normal mb-12 max-w-lg leading-relaxed">
-                            Wir machen Versicherungen einfach verständlich und behalten dabei nur ein Ziel im Blick: dich bestmöglich abzusichern.
-                        </p>
+                        
+                        <div className="space-y-6 text-[#4a5568] text-lg leading-relaxed mb-10 font-normal">
+                            <p>
+                                Seit mehr als <strong className="text-[#0a1930] font-bold">17 Jahren</strong> berate ich Beamte, Anwärter und Privatkunden kompetent und transparent in allen Versicherungs- und Vorsorgefragen.
+                            </p>
+                            <p>
+                                Mein Leitbild <strong className="text-[#1e5adb] font-bold">„Ehrlich, unabhängig und digital“</strong> drückt mein Verständnis einer partnerschaftlichen Zusammenarbeit aus. Ich möchte dich als freier Versicherungsmakler in allen Lebensphasen begleiten und dir jederzeit die passende Versicherungslösung anbieten.
+                            </p>
+                        </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-12">
-                            {features.map((feat, idx) => (
-                                <div key={idx} className="flex flex-col gap-3">
-                                    <div className="w-12 h-12 rounded-xl bg-[#e8effd] flex items-center justify-center">
-                                        {feat.icon}
+                        {/* Vorteils-Liste im Apple-Style */}
+                        <ul className="space-y-6 mb-12">
+                            {vorteile.map((item, idx) => (
+                                <motion.li
+                                    key={idx}
+                                    initial={{ opacity: 0, y: 15 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: idx * 0.1, duration: 0.5 }}
+                                    className="flex items-start gap-4 group"
+                                >
+                                    <div className="w-6 h-6 rounded-full bg-[#e8effd] flex items-center justify-center flex-shrink-0 mt-1 shadow-sm group-hover:bg-[#1e5adb] transition-colors duration-300">
+                                        <Check className="w-3.5 h-3.5 text-[#1e5adb] group-hover:text-white stroke-[3] transition-colors duration-300" />
                                     </div>
                                     <div>
-                                        <h3 className="font-extrabold text-[#0a1930] text-base mb-1">{feat.titel}</h3>
-                                        <p className="text-sm text-[#718096] leading-relaxed">{feat.text}</p>
+                                        <h3 className="font-extrabold text-[#0a1930] text-base mb-1 group-hover:text-[#1e5adb] transition-colors duration-300">
+                                            {item.titel}
+                                        </h3>
+                                        <p className="text-sm text-[#718096] leading-relaxed font-normal">
+                                            {item.text}
+                                        </p>
                                     </div>
-                                </div>
+                                </motion.li>
                             ))}
-                        </div>
+                        </ul>
 
                         <a
-                            href="/#ueber-mich"
-                            className="inline-flex items-center gap-2 px-8 py-4 bg-[#0a1930] text-white font-semibold rounded-xl hover:bg-[#152a4f] transition-all shadow-xl hover:-translate-y-1"
+                            href="/#kontakt"
+                            className="inline-flex items-center gap-2 px-8 py-4 bg-[#0a1930] text-white font-semibold rounded-xl hover:bg-[#152a4f] transition-all shadow-xl hover:-translate-y-1 cursor-pointer"
                         >
-                            Über uns kennenlernen
+                            Erstgespräch vereinbaren
                             <ArrowRight className="w-5 h-5" />
                         </a>
                     </motion.div>
-
-                    {/* Rechte Seite: Bild */}
+                    
+                    {/* Rechte Seite: Bild & Trust Badge */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="relative lg:ml-10"
+                        className="relative lg:ml-10 lg:sticky lg:top-28"
                     >
-                        <div className="relative rounded-3xl overflow-hidden shadow-2xl z-10 border-[6px] border-white/50 aspect-[4/3] sm:aspect-auto sm:h-[600px] w-full">
+                        <div className="relative rounded-3xl overflow-hidden shadow-2xl z-10 border-[6px] border-white/50 aspect-[4/3] sm:aspect-[3/4] sm:max-h-[650px] w-full">
                             <img 
                                 src={warumImg} 
-                                alt="Kundengespräch" 
-                                className="w-full h-full object-cover"
+                                alt="Sven Kegler - Beratung auf Augenhöhe" 
+                                className="w-full h-full object-cover object-top"
                             />
                         </div>
 
@@ -93,19 +112,19 @@ const WarumSimplySwitch = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, delay: 0.4 }}
-                            className="absolute -bottom-8 -left-8 md:-bottom-12 md:-left-12 bg-white rounded-2xl p-6 shadow-xl z-20 w-[90%] md:w-auto border border-gray-100"
+                            className="absolute -bottom-8 -left-6 md:-bottom-10 md:-left-10 bg-white rounded-2xl p-6 shadow-xl z-20 w-[95%] md:w-auto border border-gray-100"
                         >
                             <div className="flex flex-col gap-3">
-                                <div className="font-extrabold text-[#1e5adb]">Kundenservice, der begeistert</div>
-                                <div className="text-sm text-[#718096]">Wir sind erst zufrieden, wenn du es bist.</div>
-                                <div className="flex items-center gap-2 mt-2">
+                                <div className="font-extrabold text-[#1e5adb]">Erstklassige Beratung</div>
+                                <div className="text-sm text-[#718096]">Empfohlen von Kunden aus ganz Deutschland.</div>
+                                <div className="flex items-center gap-2 mt-1">
                                     <div className="flex -space-x-2">
-                                        <img src="https://i.pravatar.cc/100?img=1" alt="avatar" className="w-8 h-8 rounded-full border-2 border-white" />
-                                        <img src="https://i.pravatar.cc/100?img=2" alt="avatar" className="w-8 h-8 rounded-full border-2 border-white" />
-                                        <img src="https://i.pravatar.cc/100?img=3" alt="avatar" className="w-8 h-8 rounded-full border-2 border-white" />
+                                        <img src="https://i.pravatar.cc/100?img=11" alt="kunden avatar" className="w-8 h-8 rounded-full border-2 border-white" />
+                                        <img src="https://i.pravatar.cc/100?img=12" alt="kunden avatar" className="w-8 h-8 rounded-full border-2 border-white" />
+                                        <img src="https://i.pravatar.cc/100?img=13" alt="kunden avatar" className="w-8 h-8 rounded-full border-2 border-white" />
                                     </div>
                                     <div className="w-8 h-8 bg-[#1e5adb] rounded-full flex items-center justify-center text-white text-xs font-bold shadow-md">
-                                        5.0
+                                        4.9
                                     </div>
                                 </div>
                             </div>

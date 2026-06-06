@@ -10,7 +10,8 @@ import {
   OrdnerCheck,
   ServiceVersprechen,
   BlogWissen,
-  FAQ
+  FAQ,
+  PartnerLeiste
 } from '@/komponenten/home';
 import { BedarfsRadar } from '@/komponenten/rechner';
 import { KontaktBereich } from '@/komponenten/kontakt';
@@ -57,6 +58,10 @@ const Startseite = () => {
 
             <ScrollReveal direction="up" delay={0.2}>
                 <WarumSimplySwitch />
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={0.2}>
+                <PartnerLeiste />
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.2}>
