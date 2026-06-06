@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, User, ChevronDown } from 'lucide-react';
+import { Menu, X, User, ChevronDown, Phone, Mail } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '@/assets/bilder/logo_simply.png';
 
@@ -25,22 +25,11 @@ const Navigationsleiste = () => {
 
     const navigationsLinks = [
         { 
-            name: 'Startseite', 
-            pfad: '/',
-            sub: [
-                { name: 'Für wen wir da sind', pfad: '/#zielgruppen' },
-                { name: 'Warum Simply Switch', pfad: '/#warum-wir' },
-                { name: 'Kundenbewertungen', pfad: '/#bewertungen' },
-                { name: 'Über mich', pfad: '/#ueber-mich' },
-                { name: 'So arbeite ich', pfad: '/#so-arbeite-ich' },
-                { name: 'Bedarfs-Radar', pfad: '/#bedarfsradar' },
-                { name: 'Wissen & Blog', pfad: '/#wissen' },
-                { name: 'Versicherungsordner-Check', pfad: '/#ordner-check' },
-                { name: 'Häufige Fragen (FAQ)', pfad: '/#faq' }
-            ]
+            name: 'Über uns', 
+            pfad: '/#ueber-mich'
         },
         { 
-            name: 'Privatkunden', 
+            name: 'Privat', 
             pfad: '/privatkunden',
             sub: [
                 { name: 'Haftpflicht', pfad: '/privatkunden#haftpflicht' },
@@ -66,18 +55,54 @@ const Navigationsleiste = () => {
 
     return (
         <header
-            className={`fixed w-full z-50 transition-all duration-300 ease-out top-0 left-0 right-0 bg-white border-b ${istGescrollt ? 'border-gray-100 shadow-sm py-2' : 'border-transparent py-4'}`}
+            className="fixed w-full z-50 top-0 left-0 right-0 bg-white border-b border-transparent transition-all duration-300 ease-out"
         >
-            <div className="max-w-[1650px] mx-auto px-6 lg:px-12 flex items-center justify-between">
+            {/* Blaue Top-Bar */}
+            <div
+                className={`bg-marke-primaer text-white transition-all duration-300 ease-in-out ${
+                    istGescrollt ? 'h-0 py-0 opacity-0 overflow-hidden' : 'h-10 py-2.5 opacity-100'
+                }`}
+            >
+                <div className="max-w-[1650px] mx-auto px-6 lg:px-12 flex justify-between items-center text-xs font-semibold">
+                    <div className="flex items-center gap-6">
+                        <a
+                            href="tel:+496436921334"
+                            className="hover:text-marke-highlight flex items-center gap-1.5 transition-colors"
+                        >
+                            <Phone className="w-3.5 h-3.5" />
+                            <span>Tel: +49 6436 921334</span>
+                        </a>
+                        <a
+                            href="mailto:kegler@simply-switch.de"
+                            className="hover:text-marke-highlight flex items-center gap-1.5 transition-colors"
+                        >
+                            <Mail className="w-3.5 h-3.5" />
+                            <span>E-Mail: kegler@simply-switch.de</span>
+                        </a>
+                    </div>
+                    <div className="hidden sm:block">
+                        <span>✨ Unabhängiger Versicherungsmakler Sven Kegler</span>
+                    </div>
+                </div>
+            </div>
 
-                {/* Logo ganz links */}
-                <Link to="/" className="flex items-center shrink-0 relative z-10">
-                    <img
-                        src={logo}
-                        alt="simply switch logo"
-                        className={`${istGescrollt ? 'h-14 md:h-16' : 'h-20 md:h-24'} w-auto object-contain transition-all duration-300`}
-                    />
-                </Link>
+            {/* Hauptnavigation */}
+            <div
+                className={`transition-all duration-300 ${
+                    istGescrollt ? 'border-gray-100 shadow-sm py-2' : 'py-4 md:py-6'
+                }`}
+            >
+                <div className="max-w-[1650px] mx-auto px-6 lg:px-12 flex items-center justify-between">
+                    {/* Logo ganz links */}
+                    <Link to="/" className="flex items-center shrink-0 relative z-10">
+                        <img
+                            src={logo}
+                            alt="simply switch logo"
+                            className={`${
+                                istGescrollt ? 'h-14 md:h-16' : 'h-20 md:h-24'
+                            } w-auto object-contain transition-all duration-300`}
+                        />
+                    </Link>
 
                 {/* Desktop-Navigation in der Mitte */}
                 <nav className="hidden lg:flex items-center gap-8">
@@ -184,6 +209,7 @@ const Navigationsleiste = () => {
                     {menueOffen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                 </button>
             </div>
+        </div>
 
             {/* Mobiles Menü */}
             <AnimatePresence>

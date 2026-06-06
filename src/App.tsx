@@ -11,7 +11,9 @@ import {
   ScrollToTop,
   ConsentBanner,
   Barrierefreiheit,
-  SeitenUebergang
+  SeitenUebergang,
+  SidebarActions,
+  StickyBottomBanner
 } from '@/komponenten/layout';
 
 // ─── UI-Komponenten ────────────────────────────────────────────
@@ -70,6 +72,8 @@ function AppInhalt() {
       <Chatbot />
       <ConsentBanner />
       <Barrierefreiheit />
+      <SidebarActions />
+      <StickyBottomBanner />
     </>
   );
 }
