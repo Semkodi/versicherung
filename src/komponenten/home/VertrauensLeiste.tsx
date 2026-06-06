@@ -70,7 +70,7 @@ const VertrauensLeiste = () => {
     ];
 
     return (
-        <section className="bg-[#0a1930] py-12 relative z-20">
+        <section className="bg-[#0a1930] py-12 relative z-20 overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-white/10">
                     {trustItems.map((item, index) => (
@@ -80,19 +80,43 @@ const VertrauensLeiste = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1, duration: 0.6 }}
-                            className={`flex items-center justify-center gap-4 ${index > 1 ? 'pt-8 md:pt-0' : ''}`}
+                            className={`flex items-center justify-center ${index > 1 ? 'pt-8 md:pt-0' : ''}`}
                         >
-                            <div className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center flex-shrink-0">
-                                {item.icon}
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-2xl font-extrabold text-white leading-tight">
-                                    {item.wert}
-                                </span>
-                                <span className="text-sm font-medium text-white/80">
-                                    {item.text}
-                                </span>
-                            </div>
+                            {/* Kontinuierliche Schwebeladung (Anti-Gravity Effekt) */}
+                            <motion.div
+                                className="flex items-center gap-4"
+                                animate={{ y: [0, -5, 0] }}
+                                transition={{
+                                    duration: 4 + index * 0.5,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                    delay: index * 0.2
+                                }}
+                            >
+                                {/* Pulsierendes Icon-Design */}
+                                <motion.div 
+                                    className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center flex-shrink-0"
+                                    animate={{ 
+                                        scale: [1, 1.05, 1],
+                                        borderColor: ["rgba(255,255,255,0.1)", "rgba(255,255,255,0.25)", "rgba(255,255,255,0.1)"]
+                                    }}
+                                    transition={{
+                                        duration: 3 + index * 0.6,
+                                        repeat: Infinity,
+                                        ease: "easeInOut"
+                                    }}
+                                >
+                                    {item.icon}
+                                </motion.div>
+                                <div className="flex flex-col">
+                                    <span className="text-2xl font-extrabold text-white leading-tight">
+                                        {item.wert}
+                                    </span>
+                                    <span className="text-sm font-medium text-white/80">
+                                        {item.text}
+                                    </span>
+                                </div>
+                            </motion.div>
                         </motion.div>
                     ))}
                 </div>
