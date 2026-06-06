@@ -70,7 +70,7 @@ const VertrauensLeiste = () => {
     ];
 
     return (
-        <section className="bg-[#0a1930] py-12 relative z-20 overflow-hidden">
+        <section className="bg-[#0a1930] py-12 relative z-20 overflow-hidden transform-gpu">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-white/10">
                     {trustItems.map((item, index) => (
@@ -82,26 +82,29 @@ const VertrauensLeiste = () => {
                             transition={{ delay: index * 0.1, duration: 0.6 }}
                             className={`flex items-center justify-center ${index > 1 ? 'pt-8 md:pt-0' : ''}`}
                         >
-                            {/* Kontinuierliche Schwebeladung (Anti-Gravity Effekt) */}
+                            {/* GPU-beschleunigter Schwebeladungseffekt (optimiert für ruckelfreies Rendering) */}
                             <motion.div
-                                className="flex items-center gap-4"
-                                animate={{ y: [0, -5, 0] }}
+                                className="flex items-center gap-4 transform-gpu"
+                                style={{ transform: 'translateZ(0)' }}
+                                animate={{ y: [-3, 3] }}
                                 transition={{
-                                    duration: 4 + index * 0.5,
+                                    duration: 3 + index * 0.4,
                                     repeat: Infinity,
+                                    repeatType: "reverse",
                                     ease: "easeInOut",
-                                    delay: index * 0.2
+                                    delay: index * 0.15
                                 }}
                             >
-                                {/* Pulsierendes Icon-Design */}
+                                {/* Pulsierendes Icon mit GPU-Hardware-Beschleunigung */}
                                 <motion.div 
-                                    className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center flex-shrink-0"
+                                    className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center flex-shrink-0 transform-gpu"
+                                    style={{ transform: 'translateZ(0)' }}
                                     animate={{ 
-                                        scale: [1, 1.05, 1],
-                                        borderColor: ["rgba(255,255,255,0.1)", "rgba(255,255,255,0.25)", "rgba(255,255,255,0.1)"]
+                                        scale: [1, 1.04, 1],
+                                        borderColor: ["rgba(255,255,255,0.1)", "rgba(255,255,255,0.22)", "rgba(255,255,255,0.1)"]
                                     }}
                                     transition={{
-                                        duration: 3 + index * 0.6,
+                                        duration: 3.2 + index * 0.5,
                                         repeat: Infinity,
                                         ease: "easeInOut"
                                     }}
