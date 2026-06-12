@@ -30,6 +30,7 @@ dist-ssr
 .agent/
 .codex/
 .cursor/
+.cursorrules
 *.pdf
 HOSTING.md
 
