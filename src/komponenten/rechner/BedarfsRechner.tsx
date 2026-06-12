@@ -2,17 +2,28 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Info, TrendingUp, AlertCircle, ChevronRight } from 'lucide-react';
 
-const BedarfsRechner = () => {
+interface BedarfsRechnerProps {
+    modus?: 'beamte' | 'privatkunden';
+}
+
+const BedarfsRechner = ({ modus = 'beamte' }: BedarfsRechnerProps) => {
     const [gehalt, setGehalt] = useState(3000);
     const [dienstjahre, setDienstjahre] = useState(5);
 
-    // Grobe Schätzung der Pensionslücke (fiktive Logik für Demo)
-    const pensionsAnspruch = Math.min(gehalt * 0.7175 * (dienstjahre / 40), gehalt * 0.7175);
-    const luecke = gehalt - pensionsAnspruch;
+    // Berechnungslogik je nach Modus
+    const istBeamte = modus === 'beamte';
+    
+    // Beamte: Pensionsanspruch (max 71.75% nach 40 Dienstjahren)
+    // Privatkunden: Rentenanspruch (max 48% nach 45 Beitragsjahren)
+    const anspruchProzentMax = istBeamte ? 0.7175 : 0.48;
+    const maxJahre = istBeamte ? 40 : 45;
+    
+    const anspruch = Math.min(gehalt * anspruchProzentMax * (dienstjahre / maxJahre), gehalt * anspruchProzentMax);
+    const luecke = gehalt - anspruch;
     const lueckeProzent = (luecke / gehalt) * 100;
 
     return (
-        <section id="rechner" className="py-24 bg-hintergrund relative overflow-hidden">
+        <section id="rechner" className="py-24 bg-[#FAF9F6] relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
                     
@@ -24,17 +35,29 @@ const BedarfsRechner = () => {
                             <span className="text-marke-primaer">Lücken-Check</span>
                         </h2>
                         <p className="text-text-neben text-lg font-light mb-10 leading-relaxed">
-                            Viele Beamte wiegen sich in falscher Sicherheit. Doch im Falle einer Dienstunfähigkeit oder im Alter drohen massive Einbußen. Rechne hier aus, wie groß deine Lücke wirklich ist.
+                            {istBeamte 
+                                ? "Viele Beamte wiegen sich in falscher Sicherheit. Doch im Falle einer Dienstunfähigkeit oder im Alter drohen massive Einbußen. Rechne hier aus, wie groß deine Lücke wirklich ist."
+                                : "Viele Angestellte wiegen sich in falscher Sicherheit. Doch im Alter droht eine erhebliche Rentenlücke. Berechne hier, wie groß deine Lücke wirklich ist."
+                            }
                         </p>
                         
                         <div className="space-y-6">
                             {[
-                                { icon: AlertCircle, text: 'Pensionslücke oft unterschätzt' },
-                                { icon: TrendingUp, text: 'Inflation reduziert Kaufkraft' },
-                                { icon: Info, text: 'Dienstunfähigkeit ist das größte Risiko' }
+                                { 
+                                    icon: AlertCircle, 
+                                    text: istBeamte ? 'Pensionslücke oft unterschätzt' : 'Rentenlücke oft unterschätzt' 
+                                },
+                                { 
+                                    icon: TrendingUp, 
+                                    text: 'Inflation reduziert Kaufkraft' 
+                                },
+                                { 
+                                    icon: Info, 
+                                    text: istBeamte ? 'Dienstunfähigkeit ist das größte Risiko' : 'Altersvorsorge rechtzeitig sichern' 
+                                }
                             ].map((item, i) => (
                                 <div key={i} className="flex items-center gap-4 text-text-haupt font-medium">
-                                    <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10">
+                                    <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center border border-gray-200 shadow-sm">
                                         <item.icon className="w-5 h-5 text-marke-highlight" />
                                     </div>
                                     {item.text}
@@ -45,8 +68,8 @@ const BedarfsRechner = () => {
 
                     {/* Rechte Seite: Der Rechner */}
                     <div className="relative">
-                        <div className="absolute inset-0 bg-marke-primaer/20 blur-[100px] rounded-full pointer-events-none" />
-                        <div className="relative bg-marke-sekundaer/80 backdrop-blur-2xl border border-white/10 p-8 md:p-12 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
+                        <div className="absolute inset-0 bg-marke-primaer/10 blur-[100px] rounded-full pointer-events-none" />
+                        <div className="relative bg-marke-sekundaer border border-white/10 p-8 md:p-12 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
                             
                             <div className="space-y-10">
                                 {/* Input Gehalt */}
@@ -66,16 +89,18 @@ const BedarfsRechner = () => {
                                     />
                                 </div>
 
-                                {/* Input Dienstjahre */}
+                                {/* Input Dienstjahre / Beitragsjahre */}
                                 <div>
                                     <div className="flex justify-between mb-4">
-                                        <label className="text-white font-bold uppercase tracking-widest text-xs">Geplante Dienstjahre</label>
+                                        <label className="text-white font-bold uppercase tracking-widest text-xs">
+                                            {istBeamte ? "Geplante Dienstjahre" : "Geplante Beitragsjahre"}
+                                        </label>
                                         <span className="text-marke-highlight font-black">{dienstjahre} Jahre</span>
                                     </div>
                                     <input 
                                         type="range" 
                                         min="1" 
-                                        max="45" 
+                                        max={maxJahre} 
                                         step="1" 
                                         value={dienstjahre}
                                         onChange={(e) => setDienstjahre(parseInt(e.target.value))}
@@ -86,6 +111,7 @@ const BedarfsRechner = () => {
                                 {/* Ergebnis Visualisierung */}
                                 <div className="pt-10 border-t border-white/10">
                                     <div className="flex items-end gap-1 h-32 mb-6">
+                                        {/* Gehalt Säule */}
                                         <div className="flex-1 bg-white/5 rounded-t-xl h-full relative group">
                                             <div className="absolute bottom-4 left-0 w-full text-center text-[10px] text-white/40 uppercase font-bold">Gehalt</div>
                                             <motion.div 
@@ -94,14 +120,20 @@ const BedarfsRechner = () => {
                                                 className="absolute bottom-0 left-0 w-full bg-white/10 rounded-t-xl"
                                             />
                                         </div>
+                                        
+                                        {/* Pension / Rente Säule */}
                                         <div className="flex-1 bg-white/5 rounded-t-xl h-full relative">
-                                            <div className="absolute bottom-4 left-0 w-full text-center text-[10px] text-white/40 uppercase font-bold">Pension</div>
+                                            <div className="absolute bottom-4 left-0 w-full text-center text-[10px] text-white/40 uppercase font-bold">
+                                                {istBeamte ? "Pension" : "Rente"}
+                                            </div>
                                             <motion.div 
                                                 initial={{ height: 0 }}
                                                 animate={{ height: `${100 - lueckeProzent}%` }}
                                                 className="absolute bottom-0 left-0 w-full bg-marke-primaer rounded-t-xl"
                                             />
                                         </div>
+                                        
+                                        {/* Lücke Säule */}
                                         <div className="flex-1 bg-white/5 rounded-t-xl h-full relative">
                                             <div className="absolute bottom-4 left-0 w-full text-center text-[10px] text-marke-highlight uppercase font-bold">Lücke</div>
                                             <motion.div 

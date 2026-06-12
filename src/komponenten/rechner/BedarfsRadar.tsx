@@ -455,8 +455,8 @@ const BedarfsRadar = () => {
                                                     type="submit"
                                                     className={`py-4 px-8 rounded-2xl font-extrabold text-base flex items-center justify-center gap-2 transition-all duration-300 ${
                                                         kontaktInfo 
-                                                            ? 'bg-[#1e5adb] hover:bg-[#2b6eff] text-white shadow-[0_4px_20px_rgba(30,90,219,0.3)] hover:-translate-y-0.5 active:scale-95 cursor-pointer'
-                                                            : 'bg-[#1e5adb] text-white/80 opacity-60 hover:opacity-75 cursor-pointer'
+                                                            ? 'bg-marke-primaer hover:bg-marke-primaer-hover text-white shadow-[0_4px_20px_rgba(10,25,48,0.3)] hover:-translate-y-0.5 active:scale-95 cursor-pointer'
+                                                            : 'bg-marke-primaer text-white/80 opacity-60 hover:opacity-75 cursor-pointer'
                                                     }`}
                                                 >
                                                     <span>Angebot anfordern</span>

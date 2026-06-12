@@ -110,7 +110,7 @@ const Bewertungen = () => {
                         href={GOOGLE_BEWERTEN_URL}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-[#0a1930] hover:bg-marke-primaer text-white font-bold px-8 py-3.5 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.03] text-sm relative z-10 text-center w-full md:w-auto"
+                        className="bg-marke-primaer hover:bg-marke-primaer-hover text-white font-bold px-8 py-3.5 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.03] text-sm relative z-10 text-center w-full md:w-auto cursor-pointer"
                     >
                         Zufrieden? Lass eine Bewertung da
                     </a>

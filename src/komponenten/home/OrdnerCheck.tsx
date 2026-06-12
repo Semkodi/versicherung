@@ -271,7 +271,7 @@ const OrdnerCheck = () => {
                                             disabled={!kontaktInfo || !dateien || dateien.length === 0}
                                             className={`w-full py-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg transition-all ${
                                                 kontaktInfo && dateien && dateien.length > 0
-                                                    ? 'bg-[#1e5adb] hover:bg-[#1546b3] text-white hover:-translate-y-0.5 cursor-pointer'
+                                                    ? 'bg-marke-primaer hover:bg-marke-primaer-hover text-white hover:-translate-y-0.5 cursor-pointer'
                                                     : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                                             }`}
                                         >

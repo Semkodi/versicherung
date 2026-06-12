@@ -94,7 +94,7 @@ const Zielgruppen = () => {
                                 <div className="mt-auto">
                                     <Link
                                         to={gruppe.link}
-                                        className="w-full bg-[#1e5adb] text-white hover:bg-[#1546b3] py-4 px-6 rounded-2xl font-extrabold text-base flex items-center justify-center gap-2 shadow-[0_4px_20px_rgba(30,90,219,0.15)] hover:shadow-[0_10px_25px_rgba(30,90,219,0.3)] transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                                        className="w-full bg-marke-primaer text-white hover:bg-marke-primaer-hover py-4 px-6 rounded-2xl font-extrabold text-base flex items-center justify-center gap-2 shadow-[0_4px_20px_rgba(10,25,48,0.15)] hover:shadow-[0_10px_25px_rgba(10,25,48,0.3)] transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
                                     >
                                         <span>Mehr erfahren</span>
                                         <ArrowRight className="w-5 h-5" />

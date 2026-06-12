@@ -95,7 +95,7 @@ const UeberMich = () => {
                                         href="https://login.simplr.de/"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-[#0a1930] text-white text-xs font-bold rounded-xl hover:bg-[#152a4f] transition-all shadow-md cursor-pointer"
+                                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-marke-primaer text-white text-xs font-bold rounded-xl hover:bg-marke-primaer-hover transition-all shadow-md cursor-pointer"
                                     >
                                         <LogIn className="w-4 h-4" />
                                         <span>simplr Web-Login</span>

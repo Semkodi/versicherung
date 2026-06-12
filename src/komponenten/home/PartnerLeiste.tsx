@@ -54,7 +54,7 @@ const PartnerLeiste = () => {
                     {scrollingPartner.map((partner, idx) => (
                         <div
                             key={idx}
-                            className="inline-flex items-center gap-3 px-5 py-3 rounded-2xl border transition-all cursor-default flex-shrink-0 hover:scale-105"
+                            className="inline-flex items-center gap-3 px-5 py-3 rounded-2xl border transition-all cursor-default flex-shrink-0 opacity-80 hover:opacity-100 hover:scale-105 hover:shadow-lg"
                             style={{
                                 backgroundColor: `${partner.hintergrund}`,
                                 borderColor: `${partner.farbe}30`,

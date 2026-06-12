@@ -3,9 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --marke-primaer: 17 63 156;         /* Sattes Dunkelblau (#113f9c) - etwas dunkler als das helle Blau */
+  --marke-primaer-hover: 11 51 131;   /* Hover-Farbe (#0b3383) */
+}
+
 @layer base {
   html {
-    font-size: 85%;
+    font-size: 80%;
   }
   body {
     @apply bg-hintergrund text-text-haupt font-sans antialiased;

@@ -83,7 +83,7 @@ const WarumSimplySwitch = () => {
 
                         <a
                             href="/#kontakt"
-                            className="inline-flex items-center gap-2 px-8 py-4 bg-[#0a1930] text-white font-semibold rounded-xl hover:bg-[#152a4f] transition-all shadow-xl hover:-translate-y-1 cursor-pointer"
+                            className="inline-flex items-center gap-2 px-8 py-4 bg-marke-primaer text-white font-semibold rounded-xl hover:bg-marke-primaer-hover transition-all shadow-xl hover:-translate-y-1 cursor-pointer"
                         >
                             Erstgespräch vereinbaren
                             <ArrowRight className="w-5 h-5" />

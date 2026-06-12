@@ -23,7 +23,7 @@ import Chatbot from '@/komponenten/ui/Chatbot';
 import { Impressum, Datenschutz, Cookies } from '@/komponenten/rechtliches';
 
 // ─── Seiten (Lazy loaded für optimales Performance-Splitting) ─
-import { Startseite, Privatkunden, Gewerbekunden, Beamte, SchadenMelden, TerminVereinbaren, RueckrufAnfordern, AenderungenMitteilen } from '@/seiten';
+import { Startseite, Privatkunden, Gewerbekunden, Beamte, SchadenMelden, TerminVereinbaren, RueckrufAnfordern, AenderungenMitteilen, DemoOne, UeberUns } from '@/seiten';
 
 // Hauptinhalts-Komponente, die Routing und Layout verwaltet
 function AppInhalt() {
@@ -58,6 +58,8 @@ function AppInhalt() {
               <Route path="/termin-vereinbaren" element={<SeitenUebergang><TerminVereinbaren /></SeitenUebergang>} />
               <Route path="/rueckruf-anfordern" element={<SeitenUebergang><RueckrufAnfordern /></SeitenUebergang>} />
               <Route path="/aenderungen-mitteilen" element={<SeitenUebergang><AenderungenMitteilen /></SeitenUebergang>} />
+              <Route path="/demo-one" element={<SeitenUebergang><DemoOne /></SeitenUebergang>} />
+              <Route path="/ueber-uns" element={<SeitenUebergang><UeberUns /></SeitenUebergang>} />
               
               {/* Wunschgemäß stillgelegte Admin-Routen auf die Startseite umleiten */}
               <Route path="/dashboard"     element={<Navigate to="/" replace />} />

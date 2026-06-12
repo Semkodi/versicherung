@@ -10,4 +10,7 @@ export const Login = lazy(() => import('./Login'));
 export const TerminVereinbaren = lazy(() => import('./TerminVereinbaren'));
 export const RueckrufAnfordern = lazy(() => import('./RueckrufAnfordern'));
 export const AenderungenMitteilen = lazy(() => import('./AenderungenMitteilen'));
+export const DemoOne = lazy(() => import('./DemoOne'));
+export const UeberUns = lazy(() => import('./UeberUns'));
+
 

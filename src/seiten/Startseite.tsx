@@ -5,15 +5,14 @@ import {
   Zielgruppen,
   WarumSimplySwitch,
   Bewertungen,
-  UeberMich,
   SoArbeiteIch,
   OrdnerCheck,
+  AppVorteile,
   ServiceVersprechen,
   BlogWissen,
-  FAQ,
-  PartnerLeiste
+  FAQ
 } from '@/komponenten/home';
-import { BedarfsRadar, BedarfsRechner } from '@/komponenten/rechner';
+import { BedarfsRadar } from '@/komponenten/rechner';
 import { KontaktBereich } from '@/komponenten/kontakt';
 import { ScrollReveal, StructuredData } from '@/komponenten/layout';
 
@@ -60,16 +59,10 @@ const Startseite = () => {
                 <WarumSimplySwitch />
             </ScrollReveal>
 
-            <ScrollReveal direction="up" delay={0.2}>
-                <PartnerLeiste />
-            </ScrollReveal>
+
 
             <ScrollReveal direction="up" delay={0.2}>
                 <Bewertungen />
-            </ScrollReveal>
-
-            <ScrollReveal direction="up" delay={0.2}>
-                <UeberMich />
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.2}>
@@ -80,9 +73,7 @@ const Startseite = () => {
                 <BedarfsRadar />
             </ScrollReveal>
 
-            <ScrollReveal direction="up" delay={0.2}>
-                <BedarfsRechner />
-            </ScrollReveal>
+
 
             <ScrollReveal direction="up" delay={0.2}>
                 <BlogWissen />
@@ -90,6 +81,10 @@ const Startseite = () => {
 
             <ScrollReveal direction="up" delay={0.2}>
                 <OrdnerCheck />
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={0.2}>
+                <AppVorteile />
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.2}>

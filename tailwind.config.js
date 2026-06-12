@@ -11,9 +11,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        // ─── Markenfarben ──────────────────────────────────────────
         // Primäre Markenfarbe – Buttons, Hover, aktive Elemente
-        'marke-primaer':    '#0253ee',
+        'marke-primaer':    'rgb(var(--marke-primaer) / <alpha-value>)',
+        'marke-primaer-hover': 'rgb(var(--marke-primaer-hover) / <alpha-value>)',
         // Tiefes Navy – Nav, Footer, dunkle Sektionen
         'marke-sekundaer':  '#020A39',
         // Mittleres Navy – Karten auf dunklem Hintergrund

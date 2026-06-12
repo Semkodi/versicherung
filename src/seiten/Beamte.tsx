@@ -19,6 +19,7 @@ import {
 } from '@/komponenten/home';
 import { KontaktBereich } from '@/komponenten/kontakt';
 import { ScrollReveal } from '@/komponenten/layout';
+import { BedarfsRechner } from '@/komponenten/rechner';
 
 // Importiere die neu generierten Bilder fuer die Beamtenkarten
 import duImg       from '@/assets/bilder/beamte_du.png';
@@ -222,7 +223,7 @@ const Beamte = () => {
                             <div className="flex flex-col sm:flex-row gap-4 mb-10">
                                 <a
                                     href="#kontakt"
-                                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#0a1930] text-white font-semibold rounded-xl hover:bg-[#152a4f] transition-all shadow-xl hover:-translate-y-1"
+                                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-marke-primaer text-white font-semibold rounded-xl hover:bg-marke-primaer-hover transition-all shadow-xl hover:-translate-y-1"
                                 >
                                     <span>Erstgespräch vereinbaren</span>
                                     <ArrowRight className="w-4 h-4" />
@@ -380,6 +381,11 @@ const Beamte = () => {
                 </div>
             </section>
 
+            {/* ─── INTERAKTIVER LÜCKEN-CHECK ─── */}
+            <ScrollReveal direction="up">
+                <BedarfsRechner modus="beamte" />
+            </ScrollReveal>
+
             {/* ─── DETALLIERTE PRODUKT-SEKTIONEN (Abwechselndes Apple-Style Layout) ─── */}
             <section className="bg-white">
                 {produkte.map((p, idx) => {
@@ -456,7 +462,7 @@ const Beamte = () => {
                                             {/* CTA Button */}
                                             <a 
                                                 href="#kontakt"
-                                                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#0a1930] text-white text-sm font-semibold rounded-xl hover:bg-[#152a4f] transition-all shadow-md hover:shadow-lg"
+                                                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-marke-primaer text-white text-sm font-semibold rounded-xl hover:bg-marke-primaer-hover transition-all shadow-md hover:shadow-lg"
                                             >
                                                 <span>Erstgespräch vereinbaren</span>
                                                 <ArrowRight className="w-4 h-4" />

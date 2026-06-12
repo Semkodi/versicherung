@@ -637,7 +637,7 @@ const Gewerbekunden = () => {
                             href="https://svenkegler.de/gewerbe"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-3 px-10 py-5 bg-[#1e5adb] text-white font-bold rounded-2xl hover:bg-[#1546b3] transition-all shadow-xl relative z-10 border border-[#1e5adb]/20"
+                            className="inline-flex items-center gap-3 px-10 py-5 bg-marke-primaer text-white font-bold rounded-2xl hover:bg-marke-primaer-hover transition-all shadow-xl relative z-10 border border-marke-primaer/20"
                         >
                             Jetzt Gewerbe-Risikoanalyse anfordern
                             <ArrowRight className="w-5 h-5" />

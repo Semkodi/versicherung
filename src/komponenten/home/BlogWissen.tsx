@@ -278,7 +278,7 @@ const BlogWissen = () => {
                                             </p>
                                             <button
                                                 onClick={handleCTAClick}
-                                                className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-[#1e5adb] text-white text-xs font-bold rounded-lg hover:bg-[#1546b5] transition-all shadow-md hover:shadow-lg cursor-pointer relative z-10"
+                                                className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-marke-primaer text-white text-xs font-bold rounded-lg hover:bg-marke-primaer-hover transition-all shadow-md hover:shadow-lg cursor-pointer relative z-10"
                                             >
                                                 <span>Kostenfreies Erstgespräch vereinbaren</span>
                                                 <ArrowRight className="w-3.5 h-3.5" />

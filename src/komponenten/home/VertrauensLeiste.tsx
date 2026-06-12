@@ -74,7 +74,7 @@ const VertrauensLeiste = () => {
     ];
 
     return (
-        <section className="bg-[#0a1930] py-12 relative z-20 overflow-hidden">
+        <section className="bg-hintergrund py-12 relative z-20 overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-white/10">
                     {trustItems.map((item, index) => (
@@ -87,18 +87,18 @@ const VertrauensLeiste = () => {
                             className={`flex items-center justify-center gap-4 ${index > 1 ? 'pt-8 md:pt-0' : ''}`}
                         >
                             {/* Icon */}
-                            <div className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center flex-shrink-0">
+                            <div className="w-12 h-12 rounded-full border border-gray-100 bg-gray-50 group-hover:bg-marke-primaer/5 transition-colors flex items-center justify-center flex-shrink-0">
                                 {item.icon}
                             </div>
                             {/* Text-Container im Scholz & Meis Stil */}
                             <div className="flex flex-col">
-                                <span className="text-[10px] uppercase tracking-wider text-gray-400 font-bold leading-none mb-1">
+                                <span className="text-[10px] uppercase tracking-wider text-text-neben font-bold leading-none mb-1">
                                     {item.prefix}
                                 </span>
-                                <span className="text-2xl md:text-3xl font-black text-white leading-tight">
+                                <span className="text-2xl md:text-3xl font-black text-marke-primaer leading-tight">
                                     {item.wert}
                                 </span>
-                                <span className="text-sm font-medium text-white/80 leading-none mt-1">
+                                <span className="text-sm font-medium text-text-haupt font-bold leading-none mt-1">
                                     {item.text}
                                 </span>
                             </div>

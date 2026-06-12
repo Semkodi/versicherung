@@ -28,6 +28,8 @@ dist-ssr
 .vercel
 .agents/
 .agent/
+.codex/
+.cursor/
 *.pdf
 HOSTING.md
 

@@ -16,6 +16,7 @@ import {
     Star
 } from 'lucide-react';
 import { ScrollReveal } from '@/komponenten/layout';
+import { BedarfsRechner } from '@/komponenten/rechner';
 
 // Importiere die neu generierten Bilder fuer die Karten
 import haftpflichtImg from '@/assets/bilder/haftpflicht_card.png';
@@ -604,6 +605,11 @@ const Privatkunden = () => {
                 </div>
             </section>
 
+            {/* ─── INTERAKTIVER LÜCKEN-CHECK ─── */}
+            <ScrollReveal direction="up">
+                <BedarfsRechner modus="privatkunden" />
+            </ScrollReveal>
+
             {/* ─── FAQ AKKORDEON SEKTION ─── */}
             <section className="py-28 bg-white relative border-b border-[#e2e8f0]">
                 <div className="max-w-4xl mx-auto px-4">
@@ -674,7 +680,7 @@ const Privatkunden = () => {
                             href="https://svenkegler.de/privatkunden"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-3 px-10 py-5 bg-[#1e5adb] text-white font-bold rounded-2xl hover:bg-[#1546b3] transition-all shadow-xl relative z-10 border border-[#1e5adb]/20"
+                            className="inline-flex items-center gap-3 px-10 py-5 bg-marke-primaer text-white font-bold rounded-2xl hover:bg-marke-primaer-hover transition-all shadow-xl relative z-10 border border-marke-primaer/20"
                         >
                             Jetzt kostenfreie Erstberatung sichern
                             <ArrowRight className="w-5 h-5" />
