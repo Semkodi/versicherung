@@ -7,25 +7,23 @@ import {
     FileText, 
     GraduationCap, 
     Check, 
-    ArrowRight,
-    Star,
-    ShieldCheck
+    ArrowRight
 } from 'lucide-react';
 import {
   FehlerBereich,
   FAQ,
   SoArbeiteIch,
-  AppVorteile
 } from '@/komponenten/home';
 import { KontaktBereich } from '@/komponenten/kontakt';
-import { ScrollReveal } from '@/komponenten/layout';
+import { ScrollReveal, UnterseitenHero } from '@/komponenten/layout';
 import { BedarfsRechner } from '@/komponenten/rechner';
 
 // Importiere die neu generierten Bilder fuer die Beamtenkarten
-import duImg       from '@/assets/bilder/beamte_du.png';
-import pkvImg      from '@/assets/bilder/beamte_pkv.png';
-import beihilfeImg from '@/assets/bilder/beamte_beihilfe.png';
-import refImg      from '@/assets/bilder/beamte_ref.png';
+import duImg       from '@/assets/bilder/beamte_du.webp';
+import pkvImg      from '@/assets/bilder/beamte_pkv.webp';
+import beihilfeImg from '@/assets/bilder/beamte_beihilfe.webp';
+import refImg      from '@/assets/bilder/beamte_ref.webp';
+import beamteHeroImg from '@/assets/bilder/hero_beamte_anwaerter.webp';
 
 const METADATA = {
     title: "Dienstunfähigkeitsversicherung & PKV für Beamte | Online-Beratung",
@@ -174,146 +172,22 @@ const Beamte = () => {
 
     return (
         <main className="relative z-10 overflow-hidden bg-white text-[#2d3748]">
-            {/* ─── PREMIUM HERO SEKTION (Zweispaltig mit Bild & schwebenden Kacheln) ─── */}
-            <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 bg-gradient-to-br from-[#f8f9fc] to-[#eef2f9] overflow-hidden border-b border-[#e2e8f0]">
-                {/* Sanfte dekorative Kreise im Hintergrund */}
-                <div className="absolute top-0 right-0 w-96 h-96 bg-[#1e5adb]/5 blur-[100px] rounded-full pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#1e5adb]/3 blur-[120px] rounded-full pointer-events-none" />
-                
-                <div className="max-w-[1650px] mx-auto px-6 lg:px-12 relative z-10">
-                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                        
-                        {/* Linke Spalte: Text & CTAs */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8 }}
-                            className="max-w-2xl"
-                        >
-                            <span className="inline-flex items-center gap-2 bg-[#e8effd] text-[#1e5adb] px-4 py-2 rounded-full mb-6 font-semibold text-xs shadow-sm border border-[#d1e0f9] uppercase tracking-wider">
-                                Exklusive Beamtenversorgung & Beihilfe
-                            </span>
-                            
-                            <h1 className="text-[2.5rem] md:text-5xl lg:text-[4rem] font-extrabold text-[#0a1930] leading-[1.1] mb-6 tracking-tight">
-                                Sichere Karriere für <br />
-                                <span className="bg-gradient-to-r from-[#1e5adb] to-[#4f46e5] bg-clip-text text-transparent">Beamte & Anwärter</span>
-                            </h1>
-                            
-                            <p className="text-base md:text-lg text-[#4a5568] mb-10 max-w-xl font-normal leading-relaxed">
-                                Beihilfe, Dienstunfähigkeit und Pension – wir kennen die Besonderheiten deiner Laufbahn und begleiten dich stressfrei, transparent und vollkommen ehrlich in deine sichere Zukunft.
-                            </p>
-
-                            {/* Checkmarks */}
-                            <ul className="space-y-4 mb-10">
-                                {[
-                                    "Echte Dienstunfähigkeitsklausel (DU)",
-                                    "Beihilfekonforme PKV-Restkosten",
-                                    "100% neutraler Tarifvergleich am Markt"
-                                ].map((item, idx) => (
-                                    <li key={idx} className="flex items-center gap-4 text-[#2d3748] font-medium">
-                                        <div className="w-6 h-6 rounded-full bg-[#1e5adb] flex items-center justify-center flex-shrink-0 shadow-md">
-                                            <Check className="w-4 h-4 text-white stroke-[3]" />
-                                        </div>
-                                        <span className="text-sm md:text-base">{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-
-                            {/* Buttons */}
-                            <div className="flex flex-col sm:flex-row gap-4 mb-10">
-                                <a
-                                    href="#kontakt"
-                                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-marke-primaer text-white font-semibold rounded-xl hover:bg-marke-primaer-hover transition-all shadow-xl hover:-translate-y-1"
-                                >
-                                    <span>Erstgespräch vereinbaren</span>
-                                    <ArrowRight className="w-4 h-4" />
-                                </a>
-                                <a
-                                    href="#dienstunfaehigkeit"
-                                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-[#0a1930] border-2 border-white shadow-md font-semibold rounded-xl hover:bg-gray-50 transition-all"
-                                >
-                                    <span>Leistungen ansehen</span>
-                                    <ArrowRight className="w-4 h-4" />
-                                </a>
-                            </div>
-
-                            {/* Social Proof / Stars */}
-                            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                                <div className="flex gap-1">
-                                    {[...Array(5)].map((_, i) => (
-                                        <Star key={i} className="w-5 h-5 text-[#fbbf24] fill-[#fbbf24]" />
-                                    ))}
-                                </div>
-                                <div className="flex items-center gap-3">
-                                                                   <div className="flex -space-x-3">
-                                        <img src="https://i.pravatar.cc/100?img=1" alt="simply switch Kundenbewertung Beamter" className="w-8 h-8 rounded-full border-2 border-[#f8f9fc]" />
-                                        <img src="https://i.pravatar.cc/100?img=2" alt="simply switch Kundenbewertung Lehrerin" className="w-8 h-8 rounded-full border-2 border-[#f8f9fc]" />
-                                        <img src="https://i.pravatar.cc/100?img=3" alt="simply switch Kundenbewertung Polizeianwärter" className="w-8 h-8 rounded-full border-2 border-[#f8f9fc]" />
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
- 
-                        {/* Rechte Spalte: Bild & schwebende Trust-Card */}
-                        <motion.div
-                            initial={{ opacity: 0, x: 30 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                            className="relative hidden lg:flex items-end justify-center"
-                        >
-                            {/* Main Image mit sanftem Verlauf nach links */}
-                            <div className="relative z-10 w-full flex justify-end">
-                                <img 
-                                    src={refImg} 
-                                    alt="Sven Kegler - Beihilfe & Dienstunfähigkeitsversicherung für Beamte und Anwärter" 
-                                    className="w-full h-auto max-h-[500px] object-cover rounded-[2rem] [mask-image:linear-gradient(to_right,transparent_0%,black_35%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_35%)] shadow-md"
-                                />
-                            </div>
-
-                            {/* Floating Trust Card */}
-                            <motion.div 
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.8, delay: 0.6 }}
-                                className="absolute -bottom-8 -left-12 bg-white/80 backdrop-blur-md rounded-3xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.08)] z-20 w-max border border-white/40"
-                            >
-                                <div className="flex gap-6">
-                                    <div className="flex flex-col gap-1.5">
-                                        <div className="w-10 h-10 rounded-full bg-[#e8effd] flex items-center justify-center">
-                                            <ShieldCheck className="w-5 h-5 text-[#1e5adb]" />
-                                        </div>
-                                        <div>
-                                            <div className="font-extrabold text-sm text-[#0a1930] mb-0.5">Beihilfe-Schutz</div>
-                                            <div className="text-[10px] text-[#718096] leading-snug">Lücken zur Beihilfe<br/>exakt schließen.</div>
-                                        </div>
-                                    </div>
-                                    <div className="w-px bg-gray-100" />
-                                    <div className="flex flex-col gap-1.5">
-                                        <div className="w-10 h-10 rounded-full bg-[#e8effd] flex items-center justify-center">
-                                            <ShieldAlert className="w-5 h-5 text-[#1e5adb]" />
-                                        </div>
-                                        <div>
-                                            <div className="font-extrabold text-sm text-[#0a1930] mb-0.5">Dienstzeit-Garantie</div>
-                                            <div className="text-[10px] text-[#718096] leading-snug">DU-Schutz für die<br/>gesamte Laufbahn.</div>
-                                        </div>
-                                    </div>
-                                    <div className="w-px bg-gray-100" />
-                                    <div className="flex flex-col gap-1.5">
-                                        <div className="w-10 h-10 rounded-full bg-[#e8effd] flex items-center justify-center">
-                                            <GraduationCap className="w-5 h-5 text-[#1e5adb]" />
-                                        </div>
-                                        <div>
-                                            <div className="font-extrabold text-sm text-[#0a1930] mb-0.5">Laufbahn-Sicherung</div>
-                                            <div className="text-[10px] text-[#718096] leading-snug">Anwärtertarife<br/>optimal nutzen.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        </motion.div>
-
-                    </div>
-                </div>
-            </section>
+            <UnterseitenHero
+                label="Beamtenversorgung & Beihilfe"
+                titel="Sichere Karriere für"
+                hervorhebung="Beamte & Anwärter"
+                beschreibung="Beihilfe, Dienstunfähigkeit und Pension: Wir kennen die Besonderheiten deiner Laufbahn und begleiten dich transparent in deine sichere Zukunft."
+                punkte={[
+                    "Echte Dienstunfähigkeitsklausel",
+                    "Beihilfekonforme PKV-Restkosten",
+                    "Neutraler Tarifvergleich am Markt",
+                ]}
+                bild={beamteHeroImg}
+                bildAlt="Beamte und Anwärter in einer modernen Verwaltung"
+                bildKlasse="unterseiten-hero__bild--beamte"
+                primaer={{ text: "Erstgespräch vereinbaren", href: "#kontakt" }}
+                sekundaer={{ text: "Leistungen ansehen", href: "#dienstunfaehigkeit" }}
+            />
 
             {/* ─── ORIENTIERUNGS- & EINSTIEGSSEKTION ─── */}
             <section className="py-24 bg-white border-b border-[#e2e8f0]">
@@ -395,7 +269,7 @@ const Beamte = () => {
                             key={p.id} 
                             id={p.id} // Anker-ID für das direkte Scrollen!
                             className={`py-28 border-b border-[#e2e8f0] scroll-mt-28 relative ${
-                                istGerade ? 'bg-white' : 'bg-[#f8f9fc]'
+                                istGerade ? 'bg-white' : 'bg-hintergrund-alt'
                             }`}
                         >
                             <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
@@ -483,19 +357,17 @@ const Beamte = () => {
             </ScrollReveal>
 
             <ScrollReveal direction="up">
-                <SoArbeiteIch />
+                <SoArbeiteIch hintergrund="weiss" />
             </ScrollReveal>
 
-            <ScrollReveal direction="up">
-                <AppVorteile />
-            </ScrollReveal>
+         
 
             <ScrollReveal direction="up">
                 <FAQ />
             </ScrollReveal>
 
             <ScrollReveal direction="up">
-                <KontaktBereich />
+                <KontaktBereich hintergrund="hellblau" />
             </ScrollReveal>
         </main>
     );

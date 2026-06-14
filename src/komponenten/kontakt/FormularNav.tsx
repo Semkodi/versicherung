@@ -49,7 +49,7 @@ const FormularNav = () => {
                             <Link
                                 key={index}
                                 to={item.link}
-                                className="bg-[#f8f9fc] hover:bg-[#f0f4fc] transition-all duration-300 rounded-lg p-10 flex flex-col items-center justify-center min-h-[200px] group cursor-pointer"
+                                className="bg-hintergrund-alt hover:bg-[#e8effd] transition-all duration-300 rounded-lg p-10 flex flex-col items-center justify-center min-h-[200px] group cursor-pointer"
                             >
                                 <div className="mb-4 text-[#0253ee] group-hover:scale-105 transition-transform duration-200">
                                     <Icon className="w-9 h-9 stroke-[1.2]" />

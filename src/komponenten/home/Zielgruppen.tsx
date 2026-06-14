@@ -1,107 +1,80 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check } from 'lucide-react';
-import referendarImg       from '@/assets/bilder/referendar_card_v2.png';
-import haushaltImg         from '@/assets/bilder/haushalt_card_v2.png';
+import { ArrowRight } from 'lucide-react';
+import beamteImg from '@/assets/bilder/zielgruppe_beamte.webp';
+import privatkundenImg from '@/assets/bilder/zielgruppe_privatkunden.webp';
+
+const gruppen = [
+    {
+        titel: "Beamte",
+        beschreibung: "Absicherung, Vorsorge und Versorgung – passgenau für deinen Status und dein Leben.",
+        image: beamteImg,
+        alt: "Beamter bei einer digitalen Versicherungsberatung",
+        link: "/beamte",
+        bildPosition: "object-center",
+    },
+    {
+        titel: "Privatkunden",
+        beschreibung: "Schutz und Vorsorge für dich und deine Familie – verständlich, fair und unabhängig.",
+        image: privatkundenImg,
+        alt: "Paar bei einer digitalen Versicherungsberatung",
+        link: "/privatkunden",
+        bildPosition: "object-center",
+    }
+];
 
 const Zielgruppen = () => {
-    const gruppen = [
-        {
-            titel: "Beamte & Referendare",
-            untertitel: "Spezielle Tarife, die perfekt zu deinem Status passen – für heute und morgen.",
-            vorteile: [
-                "Private Krankenversicherung",
-                "Beihilfe & Heilfürsorge",
-                "Dienstunfähigkeitsversicherung",
-                "Absicherung im Referendariat"
-            ],
-            image: referendarImg,
-            link: "/beamte",
-        },
-        {
-            titel: "Privatkunden & Familien",
-            untertitel: "Schutz für dich und deine Liebsten – maßgeschneidert und bezahlbar.",
-            vorteile: [
-                "Privathaftpflichtversicherung",
-                "Hausrat- & Wohngebäudeversicherung",
-                "Risikolebensversicherung",
-                "Unfallversicherung"
-            ],
-            image: haushaltImg,
-            link: "/privatkunden",
-        }
-    ];
-
     return (
-        <section id="zielgruppen" className="py-24 bg-white relative overflow-hidden scroll-mt-20">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                {/* Header */}
-                <div className="text-center max-w-2xl mx-auto mb-16">
-                    <h2 className="text-3xl md:text-[2.5rem] font-extrabold mb-4 text-[#0a1930]">
-                        Für wen wir da sind
+        <section id="zielgruppen" className="relative overflow-hidden bg-white py-20 scroll-mt-20 md:py-24">
+            <div className="relative z-10 mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
+                <div className="mx-auto mb-10 max-w-4xl text-center md:mb-12">
+                    <h2 className="text-[2rem] font-bold leading-[1.12] tracking-[-0.014em] text-marke-sekundaer md:text-[3rem]">
+                        Für Beamte. Für Privatkunden.
+                        <br />
+                        Für Menschen, die Klarheit wollen.
                     </h2>
-                    <p className="text-[#4a5568] text-lg font-medium">
-                        Individuelle Lösungen für deine Lebenssituation.
-                    </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div className="grid gap-10 md:grid-cols-2">
                     {gruppen.map((gruppe, idx) => (
-                        <motion.div
-                            key={idx}
-                            initial={{ opacity: 0, y: 30 }}
+                        <motion.article
+                            key={gruppe.titel}
+                            initial={{ opacity: 0, y: 24 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            whileHover={{ y: -8, scale: 1.03 }}
-                            viewport={{ once: true }}
-                            transition={{ 
-                                y: { type: "spring", stiffness: 300, damping: 20 },
-                                scale: { type: "spring", stiffness: 300, damping: 20 },
-                                default: { duration: 0.6, ease: "easeOut" }
-                            }}
-                            className="group relative bg-white rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-gray-100 overflow-hidden flex flex-col h-full hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)] transition-shadow duration-300"
+                            viewport={{ once: true, amount: 0.25 }}
+                            transition={{ duration: 0.55, delay: idx * 0.08, ease: "easeOut" }}
+                            className="relative min-h-[390px] overflow-hidden rounded-lg bg-marke-sekundaer shadow-[0_14px_40px_rgba(2,10,57,0.12)] md:min-h-[420px]"
                         >
-                            {/* Card Image */}
-                            <Link to={gruppe.link} className="relative h-56 overflow-hidden block">
+                            <Link
+                                to={gruppe.link}
+                                aria-label={`${gruppe.titel}: Mehr erfahren`}
+                                className="group absolute inset-0 cursor-pointer overflow-hidden rounded-lg focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-marke-primaer focus-visible:ring-offset-4"
+                            >
                                 <img
                                     src={gruppe.image}
-                                    alt={gruppe.titel}
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-112 cursor-pointer"
+                                    alt={gruppe.alt}
+                                    className={`h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035] ${gruppe.bildPosition}`}
                                 />
-                            </Link>
 
-                            {/* Card Content */}
-                            <div className="p-10 flex-grow flex flex-col">
-                                <h3 className="text-3xl font-black mb-4 text-[#0a1930] tracking-tight">
-                                    {gruppe.titel}
-                                </h3>
-                                <p className="text-[#4a5568] mb-8 text-base leading-relaxed font-medium">
-                                    {gruppe.untertitel}
-                                </p>
+                                <div
+                                    className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,10,57,0.72)_0%,rgba(2,10,57,0.38)_42%,rgba(2,10,57,0.04)_82%),linear-gradient(0deg,rgba(2,10,57,0.68)_0%,rgba(2,10,57,0)_65%)] transition-opacity duration-300 group-hover:opacity-95"
+                                    aria-hidden="true"
+                                />
 
-                                {/* Vorteile */}
-                                <ul className="space-y-4 mb-10 flex-grow">
-                                    {gruppe.vorteile.map((vorteil, vIdx) => (
-                                        <li key={vIdx} className="flex items-start gap-4">
-                                            <div className="w-6 h-6 rounded-full bg-[#e8effd] flex items-center justify-center flex-shrink-0 mt-0.5">
-                                                <Check className="w-3.5 h-3.5 text-[#1e5adb] stroke-[3]" />
-                                            </div>
-                                            <span className="text-[#1a202c] text-base font-semibold leading-snug">{vorteil}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-
-                                {/* Action Button */}
-                                <div className="mt-auto">
-                                    <Link
-                                        to={gruppe.link}
-                                        className="w-full bg-marke-primaer text-white hover:bg-marke-primaer-hover py-4 px-6 rounded-2xl font-extrabold text-base flex items-center justify-center gap-2 shadow-[0_4px_20px_rgba(10,25,48,0.15)] hover:shadow-[0_10px_25px_rgba(10,25,48,0.3)] transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
-                                    >
-                                        <span>Mehr erfahren</span>
-                                        <ArrowRight className="w-5 h-5" />
-                                    </Link>
+                                <div className="absolute inset-x-0 bottom-0 z-10 max-w-[390px] p-7 text-white sm:p-8 md:p-9">
+                                    <h3 className="text-3xl font-bold tracking-[-0.035em] md:text-[2rem]">
+                                        {gruppe.titel}
+                                    </h3>
+                                    <p className="mt-3 text-sm font-medium leading-relaxed text-white/90 sm:text-base">
+                                        {gruppe.beschreibung}
+                                    </p>
+                                    <span className="mt-6 inline-flex items-center gap-2 rounded-md border border-white/65 px-4 py-2.5 text-sm font-bold text-white transition-colors duration-200 group-hover:border-white group-hover:bg-white group-hover:text-marke-sekundaer">
+                                        Mehr erfahren
+                                        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                                    </span>
                                 </div>
-                            </div>
-                        </motion.div>
+                            </Link>
+                        </motion.article>
                     ))}
                 </div>
             </div>

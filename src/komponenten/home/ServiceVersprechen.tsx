@@ -45,7 +45,7 @@ const ServiceVersprechen = () => {
     };
 
     return (
-        <section className="py-24 bg-gradient-to-b from-white to-[#f8f9fc] relative overflow-hidden border-b border-[#e2e8f0]">
+        <section className="py-24 bg-hintergrund-alt relative overflow-hidden border-b border-[#e2e8f0]">
             {/* Soft decorative background glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#1e5adb]/3 blur-[120px] rounded-full pointer-events-none" />
             

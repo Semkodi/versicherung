@@ -49,9 +49,9 @@ const Bewertungen = () => {
     const marqueeReviews = [...textReviews, ...textReviews, ...textReviews];
 
     return (
-        <section id="bewertungen" className="relative bg-hintergrund-alt pb-24 overflow-hidden">
+        <section id="bewertungen" className="relative bg-white pb-24 overflow-hidden">
             {/* Oben: Kurven-Hintergrund für Google Reviews */}
-            <div className="absolute top-0 inset-x-0 h-[600px] bg-gradient-to-b from-hintergrund-hell to-transparent rounded-b-[100px] pointer-events-none" />
+            <div className="absolute top-0 inset-x-0 h-[600px] bg-gradient-to-b from-white to-transparent rounded-b-[100px] pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20">
 

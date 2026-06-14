@@ -1,7 +1,11 @@
 import { motion } from 'framer-motion';
 import { Search, FileText, ShieldCheck, Zap, Check } from 'lucide-react';
 
-const SoArbeiteIch = () => {
+type SoArbeiteIchProps = {
+    hintergrund?: 'weiss' | 'hellblau';
+};
+
+const SoArbeiteIch = ({ hintergrund = 'hellblau' }: SoArbeiteIchProps) => {
     const schritte = [
         {
             zahl: "1",
@@ -30,7 +34,12 @@ const SoArbeiteIch = () => {
     ];
 
     return (
-        <section id="so-arbeite-ich" className="py-24 bg-hintergrund-alt relative overflow-hidden scroll-mt-20">
+        <section
+            id="so-arbeite-ich"
+            className={`py-24 relative overflow-hidden scroll-mt-20 ${
+                hintergrund === 'weiss' ? 'bg-white' : 'bg-hintergrund-alt'
+            }`}
+        >
             {/* Subtiler Hintergrund */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(2,83,238,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(2,83,238,0.025)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_50%,transparent_100%)]" />

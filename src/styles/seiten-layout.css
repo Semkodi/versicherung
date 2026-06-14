@@ -1,0 +1,99 @@
+.unterseiten-hero {
+  position: relative;
+  display: flex;
+  min-height: 850px;
+  align-items: center;
+  overflow: hidden;
+  padding: 10rem 0 2rem;
+  border-bottom: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, #f8f9fc 0%, #eef2f9 100%);
+}
+
+.unterseiten-hero__hintergrundbild {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 110%;
+  object-fit: cover;
+  object-position: 68% center;
+  transform-origin: center top;
+}
+
+.unterseiten-hero__bild--privat {
+  object-position: 70% center;
+  transform: translateX(120px) scale(1.12);
+}
+
+.unterseiten-hero__bild--beamte {
+  object-position: 70% 15%;
+  transform: translateX(-40px);
+}
+
+.unterseiten-hero__bild--gewerbe {
+  object-position: 72% center;
+  transform: translateX(130px) scale(1.14);
+}
+
+.unterseiten-hero__bild--schaden {
+  object-position: 68% center;
+  transform: translateX(150px) scale(1.18);
+}
+
+.unterseiten-hero__bild--kontakt,
+.unterseiten-hero__bild--ueber-uns {
+  object-position: 70% 15%;
+  transform: translateX(-80px);
+}
+
+.unterseiten-hero__verlauf {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(248 249 252 / 100%) 0%, rgb(248 249 252 / 96%) 38%, rgb(248 249 252 / 68%) 54%, rgb(248 249 252 / 8%) 76%);
+  pointer-events: none;
+}
+
+.unterseiten-hero__label {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border: 1px solid #d1e0f9;
+  border-radius: 9999px;
+  background: #e8effd;
+  padding: 0.5rem 1rem;
+  color: #0253ee;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1rem;
+  text-transform: uppercase;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 8%);
+}
+
+.unterseiten-hero--rot .unterseiten-hero__label {
+  border-color: #fee2e2;
+  background: #fef2f2;
+  color: #ef4444;
+}
+
+@media (max-width: 1023px) {
+  .unterseiten-hero {
+    min-height: auto;
+    padding: 10rem 0 6rem;
+  }
+
+  .unterseiten-hero__hintergrundbild,
+  .unterseiten-hero__bild--privat,
+  .unterseiten-hero__bild--beamte,
+  .unterseiten-hero__bild--gewerbe,
+  .unterseiten-hero__bild--schaden,
+  .unterseiten-hero__bild--kontakt,
+  .unterseiten-hero__bild--ueber-uns {
+    object-position: 58% top;
+    transform: none;
+  }
+
+  .unterseiten-hero__verlauf {
+    background: linear-gradient(90deg, rgb(248 249 252 / 98%) 0%, rgb(248 249 252 / 91%) 64%, rgb(248 249 252 / 35%) 100%);
+  }
+}

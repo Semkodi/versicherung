@@ -111,7 +111,7 @@ const BlogWissen = () => {
     };
 
     return (
-        <section id="wissen" className="py-24 bg-[#f8f9fc] relative overflow-hidden">
+        <section id="wissen" className="py-24 bg-hintergrund-alt relative overflow-hidden">
             {/* Sanfte Hintergrund-Highlights */}
             <div className="absolute top-0 right-0 w-80 h-80 bg-[#1e5adb]/3 blur-[100px] rounded-full pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#1e5adb]/2 blur-[100px] rounded-full pointer-events-none" />

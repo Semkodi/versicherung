@@ -1,85 +1,74 @@
-// Importiere React und Hooks für Zustand, Effekte und Referenzen
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-// Importiere motion und AnimatePresence von framer-motion für flüssige Animationen
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-// Importiere benötigte Icons von lucide-react
 import { X, ArrowUp, Shield, MessageSquare } from 'lucide-react';
-// Importiere clsx für bedingtes Zusammenführen von Klassen
 import { clsx, type ClassValue } from 'clsx';
-// Importiere twMerge um Tailwind-Klassen sicher zusammenzuführen
 import { twMerge } from 'tailwind-merge';
-// Importiere die Supabase-Client-Instanz für die Datenbankverbindung
 import { supabase, istOffline } from '@/lib/supabase';
+import { botFlow } from './chatFlow';
 
-// Hilfsfunktion zum sicheren Zusammenführen von Tailwind-CSS-Klassen
+
 function cn(...eingaben: ClassValue[]) {
-    // Gibt die zusammengeführten Klassen zurück
     return twMerge(clsx(eingaben));
 }
 
-// Typdefinition für eine Chat-Nachricht
 type Nachricht = {
-    // Eindeutige ID der Nachricht
     id: string;
-    // Der Textinhalt der Nachricht
     text: string;
-    // Absender der Nachricht ('bot' oder 'user')
     sender: 'bot' | 'user';
-    // Zeitstempel der Nachricht
     timestamp: Date;
-    // Art der Nachricht (optional)
     type?: 'text' | 'options' | 'summary';
-    // Mögliche Auswahloptionen für den Benutzer (optional)
     options?: string[];
 };
 
-// Typdefinition für die gesammelten Benutzerdaten
 type BenutzerDaten = {
-    // Hauptkategorie des Anliegens
     category: string;
-    // Unterkategorie
     subCategory: string;
-    // Vollständiger Name
     name: string;
-    // E-Mail-Adresse
     email: string;
-    // Telefonnummer
     phone: string;
-    // Bevorzugter Kontaktkanal
     channel: string;
 };
 
-// Definiere die Chatbot-Komponente
+const ChatStep = {
+    Idle: 'idle',
+    ChooseCategory: 'chooseCategory',
+    ChooseCategoryDetail: 'chooseCategoryDetail',
+    AskName: 'askName',
+    AskEmail: 'askEmail',
+    AskPhone: 'askPhone',
+    ChooseContactMethod: 'chooseContactMethod',
+    ConfirmSend: 'confirmSend',
+    Completed: 'completed'
+} as const;
+
+type ChatStep = (typeof ChatStep)[keyof typeof ChatStep];
+
+const initialUserData: BenutzerDaten = {
+    category: '',
+    subCategory: '',
+    name: '',
+    email: '',
+    phone: '',
+    channel: ''
+};
+
+const getId = () =>
+    typeof crypto !== 'undefined' && 'randomUUID' in crypto
+        ? crypto.randomUUID()
+        : Math.random().toString(36).substring(2, 11);
+
 const Chatbot: React.FC = () => {
-    // Zustand: Ist der Chatbot geöffnet?
     const [istOffen, setIstOffen] = useState(false);
-    // Zustand: Soll der kleine Tooltip neben dem Button angezeigt werden?
     const [zeigeTooltip, setZeigeTooltip] = useState(true);
-    // Zustand: Array aller Nachrichten im Chatverlauf
     const [nachrichten, setNachrichten] = useState<Nachricht[]>([]);
-    // Zustand: Aktueller Text im Eingabefeld
     const [eingabeWert, setEingabeWert] = useState('');
-    // Zustand: Tippt der Bot gerade (zeigt die Lade-Animation)?
     const [tipptGerade, setTipptGerade] = useState(false);
-    // Zustand: Aktueller Schritt im automatisierten Chat-Flow
-    const [schritt, setSchritt] = useState(0);
-    // Zustand: Speichert die gesammelten Daten des Benutzers
-    const [benutzerDaten, setBenutzerDaten] = useState<BenutzerDaten>({
-        category: '',
-        subCategory: '',
-        name: '',
-        email: '',
-        phone: '',
-        channel: ''
-    });
+    const [schritt, setSchritt] = useState<ChatStep>(ChatStep.Idle);
+    const [benutzerDaten, setBenutzerDaten] = useState<BenutzerDaten>(initialUserData);
 
-    // Referenz für das Ende der Nachrichtenliste (zum automatischen Scrollen)
     const nachrichtenEndeRef = useRef<HTMLDivElement>(null);
-
-    // Referenz zur Speicherung der Bot-Timeout-ID für sauberen Cleanup beim Unmounten
     const botTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-    // Effekt: Bereinige ausstehende Bot-Timeouts beim Unmounten der Komponente
     useEffect(() => {
         return () => {
             if (botTimeoutRef.current) {
@@ -88,262 +77,290 @@ const Chatbot: React.FC = () => {
         };
     }, []);
 
-    // Funktion zum automatischen Scrollen nach unten zu den neuesten Nachrichten
-    const scrolleNachUnten = () => {
-        // Führt das weiche Scrollen zum referenzierten Element aus
-        nachrichtenEndeRef.current?.scrollIntoView({ behavior: "smooth" });
-    };
+    const scrollToBottom = useCallback(() => {
+        nachrichtenEndeRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, []);
 
-    // Effekt: Scrolle nach unten, sobald sich die Nachrichten ändern oder der Bot tippt
     useEffect(() => {
-        scrolleNachUnten();
-    }, [nachrichten, tipptGerade]);
+        scrollToBottom();
+    }, [nachrichten, tipptGerade, scrollToBottom]);
 
-    // Effekt: Verstecke den Tooltip automatisch nach 10 Sekunden, wenn der Chat zu ist
     useEffect(() => {
         let timer: ReturnType<typeof setTimeout>;
         if (zeigeTooltip && !istOffen) {
-            // Setze einen Timeout von 10000ms (10 Sekunden)
-            timer = setTimeout(() => {
-                setZeigeTooltip(false);
-            }, 10000);
+            timer = setTimeout(() => setZeigeTooltip(false), 10000);
         }
-        // Bereinige den Timer beim Unmounten oder wenn sich Abhängigkeiten ändern
         return () => clearTimeout(timer);
     }, [zeigeTooltip, istOffen]);
 
-    // Funktion zum Senden einer Nachricht vom Bot (mit künstlicher Verzögerung)
-    const sendeBotNachricht = useCallback((text: string, options?: string[]) => {
-        // Aktiviere die Tipp-Animation
-        setTipptGerade(true);
-        // Berechne eine dynamische Verzögerung basierend auf der Textlänge (zwischen 0.8s und 2s)
-        const verzoegerung = Math.min(Math.max(text.length * 15, 800), 2000);
-
-        // Führe das eigentliche Senden nach der berechneten Zeit aus
-        botTimeoutRef.current = setTimeout(() => {
-            // Deaktiviere die Tipp-Animation
-            setTipptGerade(false);
-            // Erstelle das neue Nachrichten-Objekt
-            const neueNachricht: Nachricht = {
-                id: Math.random().toString(36).substring(7),
-                text,
-                sender: 'bot',
-                timestamp: new Date(),
-                type: options ? 'options' : 'text',
-                options
-            };
-            // Füge die Nachricht zum Chatverlauf hinzu
-            setNachrichten(prev => [...prev, neueNachricht]);
-            botTimeoutRef.current = null;
-        }, verzoegerung);
+    const addMessage = useCallback((message: Nachricht) => {
+        setNachrichten(prev => [...prev, message]);
     }, []);
 
-    // Effekt: Starte den Chat, wenn er zum ersten Mal geöffnet wird und noch leer ist
+    const sendBotMessage = useCallback(
+        (text: string, options?: string[]) => {
+            setTipptGerade(true);
+            const delay = Math.min(Math.max(text.length * 15, 800), 2000);
+            botTimeoutRef.current = setTimeout(() => {
+                setTipptGerade(false);
+                addMessage({
+                    id: getId(),
+                    text,
+                    sender: 'bot',
+                    timestamp: new Date(),
+                    type: options ? 'options' : 'text',
+                    options
+                });
+                botTimeoutRef.current = null;
+            }, delay);
+        },
+        [addMessage]
+    );
+
     useEffect(() => {
         if (istOffen && nachrichten.length === 0) {
-            // Sende die initiale Begrüßungsnachricht mit Optionen
-            sendeBotNachricht("Hallo! Ich bin dein Simply Switch Assistent. 👋 Wie kann ich dir heute helfen?", ['Beamtenversicherung', 'Private Versicherung', 'Allgemeine Frage']);
+            sendBotMessage(botFlow.welcome.text, [...botFlow.welcome.options]);
+            setSchritt(ChatStep.ChooseCategory);
         }
-    }, [istOffen, nachrichten.length, sendeBotNachricht]);
+    }, [istOffen, nachrichten.length, sendBotMessage]);
 
-    // Funktion zur Verarbeitung von Klicks auf Antwort-Optionen (Buttons)
-    const handleOptionKlick = async (option: string) => {
-        // Erstelle eine Nachricht für die ausgewählte Option als Benutzereingabe
-        const benutzerNachricht: Nachricht = {
-            id: Math.random().toString(36).substring(7),
-            text: option,
-            sender: 'user',
-            timestamp: new Date()
-        };
-        // Zeige die Benutzerauswahl im Chat an
-        setNachrichten(prev => [...prev, benutzerNachricht]);
+    const updateUserData = useCallback((updates: Partial<BenutzerDaten>) => {
+        setBenutzerDaten(prev => ({ ...prev, ...updates }));
+    }, []);
 
-        // Verarbeite die Logik basierend auf dem aktuellen Schritt des Flows
-        if (schritt === 0) {
-            // Speichere die gewählte Hauptkategorie
-            setBenutzerDaten(prev => ({ ...prev, category: option }));
-            if (option === 'Beamtenversicherung') {
-                sendeBotNachricht("Hervorragend! In welchem Status befindest du dich aktuell?", ['Anwärter / Referendar', 'Beamter auf Probe', 'Beamter auf Lebenszeit']);
-                setSchritt(1);
-            } else if (option === 'Existenzgründer / Selbstständig') {
-                sendeBotNachricht("Klasse! Startest du gerade erst durch oder bist du bereits länger selbstständig?", ['Gerade in Gründung', 'Bereits selbstständig']);
-                setSchritt(1);
-            } else {
-                sendeBotNachricht("Verstanden. Wie dürfen wir dich nennen? (Vor- und Nachname)");
-                setSchritt(2);
+    const sendUserMessage = useCallback(
+        (text: string) => {
+            addMessage({
+                id: getId(),
+                text,
+                sender: 'user',
+                timestamp: new Date()
+            });
+        },
+        [addMessage]
+    );
+
+    const handleChooseCategorySelection = useCallback(
+        (option: string) => {
+            updateUserData({ category: option });
+
+            const response = botFlow.categoryResponses[option];
+            if (response) {
+                sendBotMessage(response.text, [...response.options]);
+                setSchritt(response.nextStep);
+                return;
             }
-        } else if (schritt === 1) {
-            // Speichere die gewählte Unterkategorie (Status bzw. Gründungsstatus)
-            setBenutzerDaten(prev => ({ ...prev, subCategory: option }));
-            if (benutzerDaten.category === 'Beamtenversicherung') {
-                sendeBotNachricht("In welchem Bereich bist du tätig?", ['Lehramt / Schule', 'Polizei / Zoll / Justiz', 'Verwaltung', 'Sonstiges']);
-                setSchritt(1.2);
-            } else if (benutzerDaten.category === 'Existenzgründer / Selbstständig') {
-                sendeBotNachricht("In welcher Branche bist du tätig bzw. gründest du?", ['IT & Beratung', 'Handwerk & Bau', 'Dienstleistung', 'Freiberufler', 'Sonstiges']);
-                setSchritt(1.3);
-            } else {
-                sendeBotNachricht("Perfekt. Um den Termin optimal vorzubereiten: Wie dürfen wir dich nennen? (Vor- und Nachname)");
-                setSchritt(2);
+
+            sendBotMessage(botFlow.askName);
+            setSchritt(ChatStep.AskName);
+        },
+        [sendBotMessage, updateUserData]
+    );
+
+    const handleChooseCategoryDetailSelection = useCallback(
+        (option: string) => {
+            const { category, subCategory } = benutzerDaten;
+
+            if (category === 'Beamtenversicherung' && !subCategory) {
+                updateUserData({ subCategory: option });
+                sendBotMessage(botFlow.categoryAreaPrompt, [...botFlow.categoryAreaOptions]);
+                return;
             }
-        } else if (schritt === 1.2) {
-            // Speichere die Dienstlaufbahn
-            setBenutzerDaten(prev => ({ ...prev, subCategory: prev.subCategory + " (" + option + ")" }));
-            sendeBotNachricht("Welches Thema liegt dir besonders am Herzen?", ['Beihilfe & PKV', 'Dienstunfähigkeit (DU)', 'Diensthaftpflicht', 'Rundum-Beratung']);
-            setSchritt(1.4);
-        } else if (schritt === 1.3) {
-            // Speichere die Branche für Selbstständige und gehe zu Schritt 2
-            setBenutzerDaten(prev => ({ ...prev, subCategory: prev.subCategory + " (" + option + ")" }));
-            sendeBotNachricht("Perfekt. Um den Termin optimal vorzubereiten: Wie dürfen wir dich nennen? (Vor- und Nachname)");
-            setSchritt(2);
-        } else if (schritt === 1.4) {
-            // Speichere den Schwerpunkt für Beamte und gehe zu Schritt 2
-            setBenutzerDaten(prev => ({ ...prev, subCategory: prev.subCategory.replace(")", " - " + option + ")") }));
-            sendeBotNachricht("Perfekt. Um den Termin optimal vorzubereiten: Wie dürfen wir dich nennen? (Vor- und Nachname)");
-            setSchritt(2);
-        } else if (schritt === 4) {
-            // Speichere den gewünschten Kontaktkanal
-            setBenutzerDaten(prev => ({ ...prev, channel: option }));
-            // Erstelle einen Zusammenfassungstext
-            const zusammenfassungText = `Danke! Hier ist eine Zusammenfassung deiner Anfrage:\n\n📍 Bereich: ${benutzerDaten.category}\n📎 Details: ${benutzerDaten.subCategory || 'Keine Angabe'}\n👤 Name: ${benutzerDaten.name}\n📧 E-Mail: ${benutzerDaten.email}\n📱 Tel: ${benutzerDaten.phone}\n💬 Kanal: ${option}\n\nSoll ich diese Anfrage so an Sven Kegler senden?`;
-            sendeBotNachricht(zusammenfassungText, ['Ja, Anfrage senden', 'Daten korrigieren']);
-            setSchritt(5);
-        } else if (schritt === 5) {
-            if (option === 'Ja, Anfrage senden') {
-                try {
-                    if (istOffline) {
-                        // Im Offline-Modus loggen wir den Lead nur in der Konsole
-                        console.log('Lead empfangen (Offline-Modus):', {
+
+            if (category === 'Beamtenversicherung' && subCategory && !subCategory.includes(' - ')) {
+                updateUserData({ subCategory: `${subCategory} - ${option}` });
+                sendBotMessage(botFlow.askNameAfterDetails);
+                setSchritt(ChatStep.AskName);
+                return;
+            }
+
+            if (['Existenzgründer / Selbstständig', 'Private Versicherung'].includes(category)) {
+                updateUserData({ subCategory: option });
+                sendBotMessage(botFlow.askNameAfterDetails);
+                setSchritt(ChatStep.AskName);
+                return;
+            }
+
+            sendBotMessage(botFlow.invalidSelection);
+        },
+        [benutzerDaten, sendBotMessage, updateUserData]
+    );
+
+    const handleChooseContactMethodSelection = useCallback(
+        (option: string) => {
+            const updatedUserData = { ...benutzerDaten, channel: option };
+            updateUserData({ channel: option });
+            sendBotMessage(botFlow.createSummary(updatedUserData, option), [...botFlow.confirmSendOptions]);
+            setSchritt(ChatStep.ConfirmSend);
+        },
+        [benutzerDaten, sendBotMessage, updateUserData]
+    );
+
+    const handleConfirmSendSelection = useCallback(
+        async (option: string) => {
+            if (option !== botFlow.confirmSendOptions[0]) {
+                sendBotMessage(botFlow.restartPrompt.text, [...botFlow.restartPrompt.options]);
+                setBenutzerDaten(initialUserData);
+                setSchritt(ChatStep.ChooseCategory);
+                return;
+            }
+
+            try {
+                if (istOffline) {
+                    console.log('Lead empfangen (Offline-Modus):', {
+                        name: benutzerDaten.name,
+                        email: benutzerDaten.email,
+                        phone: benutzerDaten.phone,
+                        category: benutzerDaten.category,
+                        sub_category: benutzerDaten.subCategory,
+                        channel: benutzerDaten.channel
+                    });
+                } else {
+                    const { error } = await supabase.from('leads').insert([
+                        {
                             name: benutzerDaten.name,
                             email: benutzerDaten.email,
                             phone: benutzerDaten.phone,
                             category: benutzerDaten.category,
                             sub_category: benutzerDaten.subCategory,
-                            channel: benutzerDaten.channel
-                        });
-                    } else {
-                        // Sende die gesammelten Daten an Supabase
-                        const { error } = await supabase
-                            .from('leads')
-                            .insert([
-                                {
-                                    name: benutzerDaten.name,
-                                    email: benutzerDaten.email,
-                                    phone: benutzerDaten.phone,
-                                    category: benutzerDaten.category,
-                                    sub_category: benutzerDaten.subCategory,
-                                    channel: benutzerDaten.channel,
-                                    status: 'Neu',
-                                    // Setze hohe Priorität für Beamtenversicherungen
-                                    priority: benutzerDaten.category === 'Beamtenversicherung' ? 'Hoch' : 'Normal'
-                                }
-                            ]);
+                            channel: benutzerDaten.channel,
+                            status: 'Neu',
+                            priority: benutzerDaten.category === 'Beamtenversicherung' ? 'Hoch' : 'Normal'
+                        }
+                    ]);
 
-                        // Wirf einen Fehler, falls der Insert fehlschlägt
-                        if (error) throw error;
-                    }
-                    sendeBotNachricht("✅ Deine Anfrage wurde erfolgreich empfangen! Sven Kegler wird sich zeitnah persönlich bei dir melden. Vielen Dank für dein Vertrauen!");
-                    // Gehe zum Endschritt
-                    setSchritt(6);
-                } catch (fehler) {
-                    console.error('Fehler beim Speichern:', fehler);
-                    sendeBotNachricht("Leider gab es ein technisches Problem beim Senden deiner Anfrage. Bitte versuche es später noch einmal oder rufe uns direkt an!");
+                    if (error) throw error;
                 }
-            } else {
-                // Bei "Daten korrigieren" starten wir den Flow neu
-                sendeBotNachricht("Kein Problem. Starten wir noch einmal kurz von vorn. Was ist dein Anliegen?", ['Beamtenversicherung', 'Private Versicherung', 'Allgemeine Frage']);
-                setSchritt(0);
+
+                sendBotMessage(botFlow.requestSent);
+                setSchritt(ChatStep.Completed);
+            } catch (error) {
+                console.error('Fehler beim Speichern:', error);
+                sendBotMessage(botFlow.sendError);
             }
-        }
-    };
+        },
+        [benutzerDaten, sendBotMessage]
+    );
 
-    // Funktion zur Verarbeitung von regulären Texteingaben
-    const handleNachrichtSenden = (ereignis?: React.FormEvent) => {
-        // Verhindere das Neuladen der Seite beim Absenden des Formulars
-        ereignis?.preventDefault();
-        // Breche ab, wenn das Eingabefeld leer ist
-        if (!eingabeWert.trim()) return;
+    const handleAskName = useCallback(
+        (text: string) => {
+            updateUserData({ name: text });
+            const firstName = text.split(' ')[0] || text;
+            sendBotMessage(botFlow.createAskEmail(firstName));
+            setSchritt(ChatStep.AskEmail);
+        },
+        [sendBotMessage, updateUserData]
+    );
 
-        // Erstelle eine Nachricht für die Eingabe
-        const benutzerNachricht: Nachricht = {
-            id: Math.random().toString(36).substring(7),
-            text: eingabeWert,
-            sender: 'user',
-            timestamp: new Date()
-        };
-        // Füge die Nachricht zum Chatverlauf hinzu
-        setNachrichten(prev => [...prev, benutzerNachricht]);
-        // Speichere den Wert zwischen und leere das Eingabefeld
-        const wert = eingabeWert;
-        setEingabeWert('');
-
-        // Verarbeite die Eingabe basierend auf dem Schritt
-        if (schritt === 2) {
-            // Speichere den Namen des Benutzers
-            setBenutzerDaten(prev => ({ ...prev, name: wert }));
-            // Extrahiere den Vornamen für eine persönliche Ansprache
-            sendeBotNachricht(`Freut mich, ${wert.split(' ')[0]}! Unter welcher E-Mail-Adresse können wir dich erreichen?`);
-            setSchritt(3);
-        } else if (schritt === 3) {
-            // Einfache Validierung für E-Mail
-            if (wert.includes('@') && wert.includes('.')) {
-                setBenutzerDaten(prev => ({ ...prev, email: wert }));
-                sendeBotNachricht("Und für Rückfragen oder WhatsApp: Wie lautet deine Telefonnummer?");
-                setSchritt(3.5);
-            } else {
-                sendeBotNachricht("Das sieht nicht wie eine gültige E-Mail aus. Magst du sie nochmal kurz prüfen?");
+    const handleAskEmail = useCallback(
+        (text: string) => {
+            if (text.includes('@') && text.includes('.')) {
+                updateUserData({ email: text });
+                sendBotMessage(botFlow.askPhone);
+                setSchritt(ChatStep.AskPhone);
+                return;
             }
-        } else if (schritt === 3.5) {
-            // Speichere die Telefonnummer
-            setBenutzerDaten(prev => ({ ...prev, phone: wert }));
-            sendeBotNachricht("Wie möchtest du das Beratungsgespräch am liebsten führen?", ['WhatsApp', 'Video-Call', 'Telefonisch', 'Persönlich']);
-            setSchritt(4);
-        } else if (schritt >= 6) {
-            // Standardantwort am Ende des Flows
-            sendeBotNachricht("Vielen Dank! Deine Nachricht wurde gespeichert. Sven meldet sich bei dir.");
-        } else {
-            // Fehlerhinweis, wenn eine Option erwartet wird, aber Text eingegeben wurde
-            sendeBotNachricht("Ich bin ein Assistent und folge einem festen Ablauf. Bitte wähle eine der Optionen oder beantworte die Fragen oben.");
-        }
-    };
 
-    // JSX der Komponente zurückgeben
+            sendBotMessage(botFlow.invalidEmail);
+        },
+        [sendBotMessage, updateUserData]
+    );
+
+    const handleAskPhone = useCallback(
+        (text: string) => {
+            updateUserData({ phone: text });
+            sendBotMessage(botFlow.contactMethod.text, [...botFlow.contactMethod.options]);
+            setSchritt(ChatStep.ChooseContactMethod);
+        },
+        [sendBotMessage, updateUserData]
+    );
+
+    const handleCompletedText = useCallback(() => {
+        sendBotMessage(botFlow.completed);
+    }, [sendBotMessage]);
+
+    const handleUnexpectedText = useCallback(() => {
+        sendBotMessage(botFlow.unexpectedText);
+    }, [sendBotMessage]);
+
+    const optionHandlerMap = useMemo(
+        () => ({
+            [ChatStep.ChooseCategory]: handleChooseCategorySelection,
+            [ChatStep.ChooseCategoryDetail]: handleChooseCategoryDetailSelection,
+            [ChatStep.ChooseContactMethod]: handleChooseContactMethodSelection,
+            [ChatStep.ConfirmSend]: handleConfirmSendSelection
+        }) as Partial<Record<ChatStep, (value: string) => void | Promise<void>>>,
+        [handleChooseCategorySelection, handleChooseCategoryDetailSelection, handleChooseContactMethodSelection, handleConfirmSendSelection]
+    );
+
+    const handleOptionClick = useCallback(
+        async (option: string) => {
+            sendUserMessage(option);
+
+            const handler = optionHandlerMap[schritt];
+            if (handler) {
+                await handler(option);
+                return;
+            }
+
+            sendBotMessage(botFlow.invalidSelection);
+        },
+        [schritt, sendBotMessage, sendUserMessage, optionHandlerMap]
+    );
+
+    const textHandlerMap = useMemo(
+        () => ({
+            [ChatStep.AskName]: handleAskName,
+            [ChatStep.AskEmail]: handleAskEmail,
+            [ChatStep.AskPhone]: handleAskPhone,
+            [ChatStep.Completed]: () => handleCompletedText()
+        }) as Partial<Record<ChatStep, (value: string) => void>>,
+        [handleAskName, handleAskEmail, handleAskPhone, handleCompletedText]
+    );
+
+    const handleTextSubmit = useCallback(
+        (event?: React.FormEvent) => {
+            event?.preventDefault();
+            const text = eingabeWert.trim();
+            if (!text) return;
+
+            sendUserMessage(text);
+            setEingabeWert('');
+
+            const handler = textHandlerMap[schritt] ?? handleUnexpectedText;
+            handler(text);
+        },
+        [eingabeWert, handleUnexpectedText, sendUserMessage, schritt, textHandlerMap]
+    );
+
     return (
-        // Wrapper-Container, fixiert in der unteren rechten Ecke (höher positioniert wegen StickyBottomBanner)
         <div className="fixed bottom-[12.5rem] right-6 z-[100] font-sans pointer-events-none">
-            {/* Tooltip für den geschlossenen Zustand */}
             <AnimatePresence>
-                {/* Zeige Tooltip nur, wenn der Chat zu ist und zeigeTooltip true ist */}
                 {!istOffen && zeigeTooltip && (
                     <motion.div
-                        // Animationseinstellungen für den Tooltip
                         initial={{ opacity: 0, y: 10, scale: 0.9 }}
                         animate={{ opacity: 1, y: [0, -5, 0], scale: 1 }}
-                        transition={{ y: { repeat: Infinity, duration: 2.5, ease: "easeInOut" } }}
+                        transition={{ y: { repeat: Infinity, duration: 2.5, ease: 'easeInOut' } }}
                         exit={{ opacity: 0, scale: 0.8, y: 10 }}
-                        // Styling des Tooltips
                         className="absolute bottom-[80px] right-2 w-[240px] bg-white text-marke-sekundaer border-2 border-marke-primaer/20 px-4 py-3 rounded-2xl rounded-br-none shadow-xl font-bold text-sm cursor-pointer pointer-events-auto"
-                        // Öffne den Chat, wenn auf den Tooltip geklickt wird
                         onClick={() => setIstOffen(true)}
                     >
-                        Fragen? Ich bin für dich da! 👋<br/>
+                        Fragen? Ich bin für dich da! 👋
+                        <br />
                         <span className="font-normal text-xs text-text-neben">Jetzt Chat starten</span>
                     </motion.div>
                 )}
             </AnimatePresence>
 
-            {/* Runder Button zum Öffnen/Schließen des Chats */}
             <motion.button
-                // Animationen für Hover und Klick
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                // Ändere den Zustand beim Klicken
-                onClick={() => setIstOffen(!istOffen)}
-                // Zeige Tooltip wieder, wenn die Maus darüber schwebt
+                onClick={() => setIstOffen(prev => !prev)}
                 onMouseEnter={() => setZeigeTooltip(true)}
-                // Styling des Buttons
                 className="w-16 h-16 bg-marke-primaer rounded-full shadow-lg flex items-center justify-center relative z-10 pointer-events-auto"
+                aria-label={istOffen ? 'Chat schließen' : 'Chat öffnen'}
+                type="button"
             >
-                {/* Animierter Wechsel zwischen Chat-Icon und Schließen-Icon */}
                 <AnimatePresence mode="wait">
                     {istOffen ? (
                         <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
@@ -357,73 +374,59 @@ const Chatbot: React.FC = () => {
                 </AnimatePresence>
             </motion.button>
 
-            {/* Das eigentliche Chat-Fenster */}
             <AnimatePresence>
                 {istOffen && (
                     <motion.div
-                        // Animation für das Ein- und Ausblenden des Chat-Fensters
-                        initial={{ opacity: 0, y: 20, scale: 0.95, transformOrigin: "right bottom" }}
+                        initial={{ opacity: 0, y: 20, scale: 0.95, transformOrigin: 'right bottom' }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                        // Styling des Fensters
                         className="absolute bottom-20 right-0 w-[380px] max-w-[calc(100vw-48px)] h-[580px] bg-white rounded-[2rem] shadow-3xl border border-slate-100 flex flex-col overflow-hidden pointer-events-auto"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Chatbot"
                     >
-                        {/* Kopfbereich (Header) des Chat-Fensters */}
                         <div className="bg-gradient-to-r from-marke-sekundaer to-marke-akzent p-6 flex items-center gap-4">
-                            {/* Avatar/Icon des Bots */}
                             <div className="w-10 h-10 rounded-xl bg-marke-primaer flex items-center justify-center shadow-lg">
                                 <Shield className="w-5 h-5 text-white" />
                             </div>
-                            {/* Text und Status im Header */}
                             <div>
                                 <h3 className="text-white font-bold">Simply Switch Bot</h3>
                                 <div className="flex items-center gap-2">
-                                    {/* Pulsierender grüner Punkt für Online-Status */}
                                     <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
                                     <span className="text-white/60 text-[10px] font-medium uppercase tracking-wider">Online</span>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Bereich für die Nachrichten (scrollbar) */}
-                        <div className="flex-1 overflow-y-auto p-5 space-y-4 bg-slate-50/50">
-                            {/* Durchlaufe und rendere alle Nachrichten */}
+                        <div className="flex-1 overflow-y-auto p-5 space-y-4 bg-slate-50/50" aria-live="polite">
                             {nachrichten.map((msg, idx) => (
                                 <motion.div
-                                    // Eindeutiger Schlüssel für die Iteration
                                     key={msg.id}
-                                    // Animation für das Erscheinen der Nachricht
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    // Ausrichtung abhängig vom Absender (Benutzer: rechts, Bot: links)
-                                    className={cn("flex flex-col", msg.sender === 'user' ? "items-end" : "items-start")}
+                                    className={cn('flex flex-col', msg.sender === 'user' ? 'items-end' : 'items-start')}
                                 >
-                                    {/* Blase für den Nachrichtentext */}
                                     <div className={cn(
-                                        "p-4 rounded-2xl text-[13px] leading-relaxed max-w-[90%] shadow-sm",
-                                        msg.sender === 'user' 
-                                            // Stil für Benutzernachrichten (blau)
-                                            ? "bg-marke-primaer text-white rounded-br-none" 
-                                            // Stil für Botnachrichten (weiß/grau)
-                                            : "bg-white border border-slate-100 text-text-haupt rounded-bl-none"
+                                        'p-4 rounded-2xl text-[13px] leading-relaxed max-w-[90%] shadow-sm',
+                                        msg.sender === 'user'
+                                            ? 'bg-marke-primaer text-white rounded-br-none'
+                                            : 'bg-white border border-slate-100 text-text-haupt rounded-bl-none'
                                     )}>
-                                        {/* Zeilenumbrüche im Text korrekt darstellen */}
-                                        {msg.text.split('\n').map((zeile, i) => (
-                                            <React.Fragment key={i}>{zeile}{i < msg.text.split('\n').length - 1 && <br />}</React.Fragment>
+                                        {msg.text.split('\n').map((zeile, index, array) => (
+                                            <React.Fragment key={index}>
+                                                {zeile}
+                                                {index < array.length - 1 && <br />}
+                                            </React.Fragment>
                                         ))}
                                     </div>
 
-                                    {/* Wenn die Nachricht vom Bot Optionen enthält und es die aktuellste Nachricht ist */}
                                     {msg.sender === 'bot' && msg.options && idx === nachrichten.length - 1 && (
-                                        // Container für die Options-Buttons
                                         <div className="mt-4 flex flex-wrap gap-2">
-                                            {/* Durchlaufe alle Optionen und erstelle Buttons */}
                                             {msg.options.map(option => (
                                                 <button
                                                     key={option}
-                                                    // Rufe die Funktion für die gewählte Option auf
-                                                    onClick={() => handleOptionKlick(option)}
-                                                    // Styling für die Buttons
+                                                    type="button"
+                                                    onClick={() => handleOptionClick(option)}
                                                     className="px-4 py-2 rounded-xl border border-marke-primaer/30 text-marke-primaer text-xs font-bold transition-all bg-white hover:bg-marke-primaer hover:text-white hover:border-marke-primaer shadow-sm"
                                                 >
                                                     {option}
@@ -433,7 +436,7 @@ const Chatbot: React.FC = () => {
                                     )}
                                 </motion.div>
                             ))}
-                            {/* Zeige Lade-Indikator (drei springende Punkte), wenn der Bot tippt */}
+
                             {tipptGerade && (
                                 <div className="flex gap-1 p-3 bg-white border border-slate-100 rounded-xl w-12 items-center justify-center">
                                     <div className="w-1 h-1 bg-slate-300 rounded-full animate-bounce" />
@@ -441,36 +444,26 @@ const Chatbot: React.FC = () => {
                                     <div className="w-1 h-1 bg-slate-300 rounded-full animate-bounce [animation-delay:0.4s]" />
                                 </div>
                             )}
-                            {/* Leeres Element, um das Scrollen ans Ende zu ermöglichen */}
                             <div ref={nachrichtenEndeRef} />
                         </div>
 
-                        {/* Bereich für das Texteingabefeld */}
-                        <form onSubmit={handleNachrichtSenden} className="p-4 bg-white border-t border-slate-100 flex gap-2">
-                            {/* Textfeld */}
+                        <form onSubmit={handleTextSubmit} className="p-4 bg-white border-t border-slate-100 flex gap-2">
                             <input
                                 type="text"
-                                // Gebunden an den Zustand
                                 value={eingabeWert}
-                                // Aktualisiere Zustand bei Eingabe
-                                onChange={(ereignis) => setEingabeWert(ereignis.target.value)}
-                                // Platzhaltertext
-                                placeholder="Nachricht schreiben..."
-                                // Styling des Eingabefeldes
+                                onChange={event => setEingabeWert(event.target.value)}
+                                placeholder={botFlow.inputPlaceholder}
+                                autoComplete="off"
                                 className="flex-1 bg-slate-50 border-none rounded-xl px-4 py-2.5 text-xs focus:ring-1 focus:ring-marke-primaer/20"
                             />
-                            {/* Absende-Button */}
                             <button
                                 type="submit"
-                                // Deaktiviere, wenn das Feld leer ist
                                 disabled={!eingabeWert.trim()}
-                                // Styling des Buttons (Farbe wechselt, wenn Text eingegeben wird)
                                 className={cn(
-                                    "w-10 h-10 rounded-xl flex items-center justify-center transition-all",
-                                    eingabeWert.trim() ? "bg-marke-primaer text-white" : "bg-slate-100 text-slate-300"
+                                    'w-10 h-10 rounded-xl flex items-center justify-center transition-all',
+                                    eingabeWert.trim() ? 'bg-marke-primaer text-white' : 'bg-slate-100 text-slate-300'
                                 )}
                             >
-                                {/* Pfeil nach oben Icon */}
                                 <ArrowUp className="w-4 h-4" />
                             </button>
                         </form>
@@ -481,5 +474,4 @@ const Chatbot: React.FC = () => {
     );
 };
 
-// Exportiere den Chatbot als Standard
 export default Chatbot;

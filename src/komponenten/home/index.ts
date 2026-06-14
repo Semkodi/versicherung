@@ -11,5 +11,3 @@ export { default as UeberMich } from './UeberMich';
 export { default as VertrauensLeiste } from './VertrauensLeiste';
 export { default as WarumSimplySwitch } from './WarumSimplySwitch';
 export { default as Zielgruppen } from './Zielgruppen';
-export { default as PartnerLeiste } from './PartnerLeiste';
-

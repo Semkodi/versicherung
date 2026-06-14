@@ -13,18 +13,16 @@ import {
     Laptop, 
     ShoppingBag, 
     Scale,
-    Check,
-    Star,
-    ShieldCheck
+    Check
 } from 'lucide-react';
-import { ScrollReveal } from '@/komponenten/layout';
+import { ScrollReveal, UnterseitenHero } from '@/komponenten/layout';
 
 // Importiere die neu generierten Bilder fuer die Karten
-import betriebImg from '@/assets/bilder/betrieb_card.png';
-import inhaltImg    from '@/assets/bilder/inhalt_card.png';
-import flottenImg   from '@/assets/bilder/flotten_card.png';
-import rechtImg     from '@/assets/bilder/recht_card.png';
-import selbststaendigeCardImg from '@/assets/bilder/selbststaendige_card_v2.png';
+import betriebImg from '@/assets/bilder/betrieb_card.webp';
+import inhaltImg    from '@/assets/bilder/inhalt_card.webp';
+import flottenImg   from '@/assets/bilder/flotten_card.webp';
+import rechtImg     from '@/assets/bilder/recht_card.webp';
+import selbststaendigeCardImg from '@/assets/bilder/selbststaendige_card_v2.webp';
 
 const METADATA = {
     title: "Betriebshaftpflicht & Cyber-Schutz für Selbstständige | Online",
@@ -240,146 +238,22 @@ const Gewerbekunden = () => {
 
     return (
         <main className="relative z-10 overflow-hidden bg-white text-[#2d3748]">
-            {/* ─── PREMIUM HERO SEKTION (Zweispaltig mit Bild & schwebenden Kacheln) ─── */}
-            <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 bg-gradient-to-br from-[#f8f9fc] to-[#eef2f9] overflow-hidden border-b border-[#e2e8f0]">
-                {/* Sanfte dekorative Kreise im Hintergrund */}
-                <div className="absolute top-0 right-0 w-96 h-96 bg-[#1e5adb]/5 blur-[100px] rounded-full pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#1e5adb]/3 blur-[120px] rounded-full pointer-events-none" />
-                
-                <div className="max-w-[1650px] mx-auto px-6 lg:px-12 relative z-10">
-                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                        
-                        {/* Linke Spalte: Text & CTAs */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8 }}
-                            className="max-w-2xl"
-                        >
-                            <span className="inline-flex items-center gap-2 bg-[#e8effd] text-[#1e5adb] px-4 py-2 rounded-full mb-6 font-semibold text-xs shadow-sm border border-[#d1e0f9] uppercase tracking-wider">
-                                Transparente Risikoanalyse für dein Business
-                            </span>
-                            
-                            <h1 className="text-[2.5rem] md:text-5xl lg:text-[4rem] font-extrabold text-[#0a1930] leading-[1.1] mb-6 tracking-tight">
-                                Sichere dein Lebenswerk <br />
-                                <span className="bg-gradient-to-r from-[#1e5adb] to-[#4f46e5] bg-clip-text text-transparent">professionell</span> ab
-                            </h1>
-                            
-                            <p className="text-base md:text-lg text-[#4a5568] mb-10 max-w-xl font-normal leading-relaxed">
-                                Als transparenter Makler kenne ich die Haftungsrisiken des deutschen Mittelstands. Wir analysieren deine Risikofaktoren präzise und schnüren ein Schutzpaket, das dein Business wirksam schützt.
-                            </p>
-
-                            {/* Checkmarks */}
-                            <ul className="space-y-4 mb-10">
-                                {[
-                                    "Maßgeschneiderte Branchenkonzepte",
-                                    "Haftungs- & Existenzschutz",
-                                    "Ertragsausfall- & Liquiditätssicherung"
-                                ].map((item, idx) => (
-                                    <li key={idx} className="flex items-center gap-4 text-[#2d3748] font-medium">
-                                        <div className="w-6 h-6 rounded-full bg-[#1e5adb] flex items-center justify-center flex-shrink-0 shadow-md">
-                                            <Check className="w-4 h-4 text-white stroke-[3]" />
-                                        </div>
-                                        <span className="text-sm md:text-base">{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-
-                            {/* Buttons */}
-                            <div className="flex flex-col sm:flex-row gap-4 mb-10">
-                                <a
-                                    href="#kontakt"
-                                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#0a1930] text-white font-semibold rounded-xl hover:bg-[#152a4f] transition-all shadow-xl hover:-translate-y-1"
-                                >
-                                    <span>Erstgespräch vereinbaren</span>
-                                    <ArrowRight className="w-4 h-4" />
-                                </a>
-                                <a
-                                    href="#betriebshaftpflicht"
-                                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-[#0a1930] border-2 border-white shadow-md font-semibold rounded-xl hover:bg-gray-50 transition-all"
-                                >
-                                    <span>Risiko-Check starten</span>
-                                    <ArrowRight className="w-4 h-4" />
-                                </a>
-                            </div>
-
-                            {/* Social Proof / Stars */}
-                            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                                <div className="flex gap-1">
-                                    {[...Array(5)].map((_, i) => (
-                                        <Star key={i} className="w-5 h-5 text-[#fbbf24] fill-[#fbbf24]" />
-                                    ))}
-                                </div>
-                                <div className="flex items-center gap-3">
-                                             <div className="flex -space-x-3">
-                                        <img src="https://i.pravatar.cc/100?img=1" alt="simply switch Kundenbewertung IT Freelancer" className="w-8 h-8 rounded-full border-2 border-[#f8f9fc]" />
-                                        <img src="https://i.pravatar.cc/100?img=2" alt="simply switch Kundenbewertung Handwerker" className="w-8 h-8 rounded-full border-2 border-[#f8f9fc]" />
-                                        <img src="https://i.pravatar.cc/100?img=3" alt="simply switch Kundenbewertung Händler" className="w-8 h-8 rounded-full border-2 border-[#f8f9fc]" />
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
- 
-                        {/* Rechte Spalte: Bild & schwebende Trust-Card */}
-                        <motion.div
-                            initial={{ opacity: 0, x: 30 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                            className="relative hidden lg:flex items-end justify-center"
-                        >
-                            {/* Main Image mit sanftem Verlauf nach links */}
-                            <div className="relative z-10 w-full flex justify-end">
-                                <img 
-                                    src={selbststaendigeCardImg} 
-                                    alt="Sven Kegler - Gewerbeversicherungen & Risikoanalyse für Selbstständige und Firmen" 
-                                    className="w-full h-auto max-h-[500px] object-cover rounded-[2rem] [mask-image:linear-gradient(to_right,transparent_0%,black_35%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_35%)] shadow-md"
-                                />
-                            </div>
-
-                            {/* Floating Trust Card */}
-                            <motion.div 
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.8, delay: 0.6 }}
-                                className="absolute -bottom-8 -left-12 bg-white/80 backdrop-blur-md rounded-3xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.08)] z-20 w-max border border-white/40"
-                            >
-                                <div className="flex gap-6">
-                                    <div className="flex flex-col gap-1.5">
-                                        <div className="w-10 h-10 rounded-full bg-[#e8effd] flex items-center justify-center">
-                                            <ShieldCheck className="w-5 h-5 text-[#1e5adb]" />
-                                        </div>
-                                        <div>
-                                            <div className="font-extrabold text-sm text-[#0a1930] mb-0.5">Haftungs-Schutz</div>
-                                            <div className="text-[10px] text-[#718096] leading-snug">Schutz vor Personen-<br/>& Sachschäden.</div>
-                                        </div>
-                                    </div>
-                                    <div className="w-px bg-gray-100" />
-                                    <div className="flex flex-col gap-1.5">
-                                        <div className="w-10 h-10 rounded-full bg-[#e8effd] flex items-center justify-center">
-                                            <Briefcase className="w-5 h-5 text-[#1e5adb]" />
-                                        </div>
-                                        <div>
-                                            <div className="font-extrabold text-sm text-[#0a1930] mb-0.5">Substanz-Schutz</div>
-                                            <div className="text-[10px] text-[#718096] leading-snug">Inventar & Elektronik<br/>optimal absichern.</div>
-                                        </div>
-                                    </div>
-                                    <div className="w-px bg-gray-100" />
-                                    <div className="flex flex-col gap-1.5">
-                                        <div className="w-10 h-10 rounded-full bg-[#e8effd] flex items-center justify-center">
-                                            <Scale className="w-5 h-5 text-[#1e5adb]" />
-                                        </div>
-                                        <div>
-                                            <div className="font-extrabold text-sm text-[#0a1930] mb-0.5">Liquiditäts-Schutz</div>
-                                            <div className="text-[10px] text-[#718096] leading-snug">Rechtsschutz & Cyber-<br/>Ausfall abfedern.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        </motion.div>
-
-                    </div>
-                </div>
-            </section>
+            <UnterseitenHero
+                label="Risikoanalyse für dein Business"
+                titel="Sichere dein Lebenswerk"
+                hervorhebung="professionell ab"
+                beschreibung="Als transparenter Makler kenne ich die Haftungsrisiken des deutschen Mittelstands. Wir analysieren deine Risiken präzise und entwickeln einen wirksamen Schutz für dein Business."
+                punkte={[
+                    "Passende Branchenkonzepte",
+                    "Haftungs- und Existenzschutz",
+                    "Ertragsausfall und Liquidität absichern",
+                ]}
+                bild={selbststaendigeCardImg}
+                bildAlt="Selbstständige bei der digitalen Arbeit im Büro"
+                bildKlasse="unterseiten-hero__bild--gewerbe"
+                primaer={{ text: "Erstgespräch vereinbaren", href: "#kontakt" }}
+                sekundaer={{ text: "Risiko-Check starten", href: "#betriebshaftpflicht" }}
+            />
 
             {/* ─── ORIENTIERUNGS- & EINSTIEGSSEKTION ─── */}
             <section className="py-24 bg-white border-b border-[#e2e8f0]">
@@ -448,7 +322,7 @@ const Gewerbekunden = () => {
             </section>
 
             {/* ─── BRANCHENSPEZIFISCHE LÖSUNGEN ─── */}
-            <section className="py-24 bg-[#f8f9fc] relative border-b border-[#e2e8f0]">
+            <section className="py-24 bg-hintergrund-alt relative border-b border-[#e2e8f0]">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <span className="text-[#1e5adb] font-semibold text-xs uppercase tracking-widest block mb-2">Exakt auf dich zugeschnitten</span>
@@ -485,7 +359,7 @@ const Gewerbekunden = () => {
                             key={p.id} 
                             id={p.id} // Anker-ID für das direkte Scrollen!
                             className={`py-28 border-b border-[#e2e8f0] scroll-mt-28 relative ${
-                                istGerade ? 'bg-white' : 'bg-[#f8f9fc]'
+                                istGerade ? 'bg-white' : 'bg-hintergrund-alt'
                             }`}
                         >
                             <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
@@ -568,7 +442,7 @@ const Gewerbekunden = () => {
             </section>
 
             {/* ─── FAQ AKKORDEON SEKTION ─── */}
-            <section className="py-28 bg-[#f8f9fc] relative border-b border-[#e2e8f0]">
+            <section className="py-28 bg-white relative border-b border-[#e2e8f0]">
                 <div className="max-w-4xl mx-auto px-4">
                     <div className="text-center mb-16">
                         <div className="w-12 h-12 bg-[#e8effd] rounded-xl flex items-center justify-center mb-4 mx-auto border border-[#d1e0f9]">
@@ -621,7 +495,7 @@ const Gewerbekunden = () => {
             </section>
 
             {/* ─── DUNKELBLAUER CTA ─── */}
-            <section className="py-24 bg-white relative">
+            <section className="py-24 bg-hintergrund-alt relative">
                 <div className="max-w-5xl mx-auto px-4 text-center">
                     <div className="bg-[#0a1930] rounded-[3rem] p-12 md:p-16 relative overflow-hidden shadow-2xl text-white">
                         <div className="absolute inset-0 bg-[#1e5adb]/10 blur-[120px] pointer-events-none" />

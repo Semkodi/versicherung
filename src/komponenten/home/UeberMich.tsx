@@ -1,5 +1,5 @@
 import { Heart, ShieldCheck, Smartphone, LogIn } from 'lucide-react';
-import profilBild from '@/assets/bilder/Profil_img.png';
+import profilBild from '@/assets/bilder/Profil_img.webp';
 import { ScrollReveal } from '@/komponenten/layout';
 
 // Badges fuer Google und Apple

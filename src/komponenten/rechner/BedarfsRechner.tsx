@@ -23,7 +23,7 @@ const BedarfsRechner = ({ modus = 'beamte' }: BedarfsRechnerProps) => {
     const lueckeProzent = (luecke / gehalt) * 100;
 
     return (
-        <section id="rechner" className="py-24 bg-[#FAF9F6] relative overflow-hidden">
+        <section id="rechner" className="py-24 bg-hintergrund-alt relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
                     

@@ -5,12 +5,9 @@ export const Privatkunden = lazy(() => import('./Privatkunden'));
 export const Gewerbekunden = lazy(() => import('./Gewerbekunden'));
 export const Beamte = lazy(() => import('./Beamte'));
 export const SchadenMelden = lazy(() => import('./SchadenMelden'));
-export const Dashboard = lazy(() => import('./Dashboard'));
-export const Login = lazy(() => import('./Login'));
 export const TerminVereinbaren = lazy(() => import('./TerminVereinbaren'));
 export const RueckrufAnfordern = lazy(() => import('./RueckrufAnfordern'));
 export const AenderungenMitteilen = lazy(() => import('./AenderungenMitteilen'));
-export const DemoOne = lazy(() => import('./DemoOne'));
 export const UeberUns = lazy(() => import('./UeberUns'));
 
 

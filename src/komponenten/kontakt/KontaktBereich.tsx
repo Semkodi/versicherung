@@ -2,14 +2,26 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, Mail, User, Send, HeartHandshake } from 'lucide-react';
 
-const KontaktBereich = () => {
+type KontaktBereichProps = {
+    hintergrund?: 'weiss' | 'hellblau';
+};
+
+const KontaktBereich = ({ hintergrund = 'weiss' }: KontaktBereichProps) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [kanal, setKanal] = useState('Telefon');
     const [gesendet, setGesendet] = useState(false);
+    const [honeypot, setHoneypot] = useState('');
 
     const behandleAbsenden = (e: React.FormEvent) => {
         e.preventDefault();
+        
+        if (honeypot) {
+            // Stillschweigend als Erfolg werten
+            setGesendet(true);
+            return;
+        }
+
         if (!name || !email) return;
 
         const betreff = encodeURIComponent("Anfrage Infogespräch & Checkliste - Simply Switch");
@@ -31,11 +43,17 @@ const KontaktBereich = () => {
         setName('');
         setEmail('');
         setKanal('Telefon');
+        setHoneypot('');
         setGesendet(false);
     };
 
     return (
-        <section id="kontakt" className="py-24 relative overflow-hidden bg-hintergrund-alt border-b border-[#e2e8f0]">
+        <section
+            id="kontakt"
+            className={`py-24 relative overflow-hidden border-b border-[#e2e8f0] ${
+                hintergrund === 'hellblau' ? 'bg-hintergrund-alt' : 'bg-white'
+            }`}
+        >
             {/* Hintergrund */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-marke-primaer/5 rounded-full blur-[100px]" />
@@ -79,6 +97,17 @@ const KontaktBereich = () => {
                                         Dein Weg zum Infogespräch
                                     </h3>
                                     <form onSubmit={behandleAbsenden} className="space-y-6">
+                                        {/* Honeypot Spam-Schutz */}
+                                        <div className="hidden" aria-hidden="true">
+                                            <input 
+                                                type="text" 
+                                                name="website_url" 
+                                                value={honeypot} 
+                                                onChange={(e) => setHoneypot(e.target.value)} 
+                                                tabIndex={-1} 
+                                                autoComplete="off" 
+                                            />
+                                        </div>
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                             <div className="relative">
                                                 <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />

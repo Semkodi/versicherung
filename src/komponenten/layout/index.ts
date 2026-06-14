@@ -10,4 +10,4 @@ export { default as SeitenUebergang } from './SeitenUebergang';
 export { StructuredData } from './StructuredData';
 export { default as SidebarActions } from './SidebarActions';
 export { default as StickyBottomBanner } from './StickyBottomBanner';
-
+export { default as UnterseitenHero } from './UnterseitenHero';

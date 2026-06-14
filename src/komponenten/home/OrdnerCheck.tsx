@@ -15,6 +15,8 @@ const OrdnerCheck = () => {
     const [isDragging, setIsDragging] = useState(false);
     const [kontaktInfo, setKontaktInfo] = useState("");
     const [wurdeGesendet, setWurdeGesendet] = useState(false);
+    const [honeypot, setHoneypot] = useState("");
+    const [uploadFehler, setUploadFehler] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleDragOver = (e: React.DragEvent) => {
@@ -49,9 +51,29 @@ const OrdnerCheck = () => {
 
     const handleDateien = (fileList: FileList) => {
         const neueDateien: HochgeladeneDatei[] = [];
+        let fehlerGefunden = false;
         
         for (let i = 0; i < fileList.length; i++) {
             const file = fileList[i];
+            
+            // Validierung: Dateigröße max. 10 MB (10 * 1024 * 1024 Bytes)
+            if (file.size > 10 * 1024 * 1024) {
+                setUploadFehler(`Die Datei "${file.name}" überschreitet die maximale Größe von 10 MB.`);
+                fehlerGefunden = true;
+                continue;
+            }
+            
+            // Validierung: Dateitypen .pdf, .png, .jpg, .jpeg
+            const ext = file.name.split('.').pop()?.toLowerCase();
+            const erlaubteEndungen = ['pdf', 'png', 'jpg', 'jpeg'];
+            const erlaubteMimes = ['application/pdf', 'image/png', 'image/jpeg', 'image/jpg'];
+            
+            if (!erlaubteEndungen.includes(ext || '') && !erlaubteMimes.includes(file.type)) {
+                setUploadFehler(`Das Dateiformat von "${file.name}" wird nicht unterstützt. Bitte lade nur PDF, PNG oder JPG/JPEG hoch.`);
+                fehlerGefunden = true;
+                continue;
+            }
+
             const dateiObjekt: HochgeladeneDatei = {
                 id: Math.random().toString(36).substring(2, 9),
                 name: file.name,
@@ -62,8 +84,14 @@ const OrdnerCheck = () => {
             neueDateien.push(dateiObjekt);
         }
 
-        setDateien((prev) => [...(prev || []), ...neueDateien]);
-        neueDateien.forEach(d => simuliereUpload(d));
+        if (fehlerGefunden) {
+            setTimeout(() => setUploadFehler(null), 5000);
+        }
+
+        if (neueDateien.length > 0) {
+            setDateien((prev) => [...(prev || []), ...neueDateien]);
+            neueDateien.forEach(d => simuliereUpload(d));
+        }
     };
 
     const handleDrop = (e: React.DragEvent) => {
@@ -90,6 +118,20 @@ const OrdnerCheck = () => {
 
     const absendenFormular = (e: React.FormEvent) => {
         e.preventDefault();
+        
+        if (honeypot) {
+            // Stillschweigend Erfolg vortäuschen
+            setWurdeGesendet(true);
+            setTimeout(() => {
+                setDateien([]);
+                setKontaktInfo("");
+                setHoneypot("");
+                setUploadFehler(null);
+                setWurdeGesendet(false);
+            }, 5000);
+            return;
+        }
+
         if (!kontaktInfo || !dateien || dateien.length === 0) return;
         
         // Simuliere Absendung
@@ -97,6 +139,8 @@ const OrdnerCheck = () => {
         setTimeout(() => {
             setDateien([]);
             setKontaktInfo("");
+            setHoneypot("");
+            setUploadFehler(null);
             setWurdeGesendet(false);
         }, 5000);
     };
@@ -163,10 +207,41 @@ const OrdnerCheck = () => {
                                     onSubmit={absendenFormular}
                                     className="relative z-10 flex flex-col h-full justify-between"
                                 >
+                                    {/* Honeypot Spam-Schutz */}
+                                    <div className="hidden" aria-hidden="true">
+                                        <input 
+                                            type="text" 
+                                            name="website_url" 
+                                            value={honeypot} 
+                                            onChange={(e) => setHoneypot(e.target.value)} 
+                                            tabIndex={-1} 
+                                            autoComplete="off" 
+                                        />
+                                    </div>
                                     <div>
                                         <h3 className="font-extrabold text-xl text-[#0a1930] mb-2 leading-snug">Policen hochladen</h3>
                                         <p className="text-xs text-[#718096] mb-6 font-normal">Lade hier Fotos (JPG/PNG) oder Dokumente (PDF) deiner Verträge hoch.</p>
                                         
+                                        {/* Fehler-Banner */}
+                                        <AnimatePresence>
+                                            {uploadFehler && (
+                                                <motion.div 
+                                                    initial={{ opacity: 0, y: -10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: -10 }}
+                                                    className="flex gap-4 p-4 bg-red-50 border border-red-200 rounded-2xl items-start mb-6"
+                                                >
+                                                    <ShieldAlert className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                                                    <div>
+                                                        <h4 className="font-extrabold text-sm text-[#0a1930] mb-0.5">Fehler beim Hochladen</h4>
+                                                        <p className="text-xs text-red-600 leading-relaxed font-semibold">
+                                                            {uploadFehler}
+                                                        </p>
+                                                    </div>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+
                                         {/* Dropzone */}
                                         <div 
                                             onDragOver={handleDragOver}

@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Mail, Check, ArrowRight, Smartphone } from 'lucide-react';
 import FormularNav from '@/komponenten/kontakt/FormularNav';
+import { UnterseitenHero } from '@/komponenten/layout';
 import { usePageMetadata } from '@/hooks/usePageMetadata';
+import kontaktHeroImg from '@/assets/bilder/premium_hero_sven.webp';
 
 const METADATA = {
     title: "Änderungen mitteilen | Sven Kegler Versicherungsmakler",
@@ -29,9 +31,17 @@ const AenderungenMitteilen = () => {
     const [datenschutzAkzeptiert, setDatenschutzAkzeptiert] = useState(false);
     const [hcaptchaChecked, setHcaptchaChecked] = useState(false);
     const [wurdeGesendet, setWurdeGesendet] = useState(false);
+    const [honeypot, setHoneypot] = useState("");
 
     const absenden = (e: React.FormEvent) => {
         e.preventDefault();
+        
+        if (honeypot) {
+            // Stillschweigend Erfolg vortäuschen
+            setWurdeGesendet(true);
+            return;
+        }
+
         if (!vorname || !nachname || !email || !telefon || !aenderungsart || !details || !datenschutzAkzeptiert || !hcaptchaChecked) return;
 
         const betreff = encodeURIComponent(`✏️ Datenänderung - ${aenderungsart}`);
@@ -52,18 +62,33 @@ const AenderungenMitteilen = () => {
     };
 
     return (
-        <main className="relative z-10 overflow-hidden bg-white text-[#020A39] pt-32">
+        <main className="relative z-10 overflow-hidden bg-hintergrund-alt text-[#020A39]">
+            <UnterseitenHero
+                label="Digitaler Kundenservice"
+                titel="Änderungen einfach"
+                hervorhebung="digital mitteilen"
+                beschreibung="Ob neue Anschrift, Bankverbindung oder Name: Teile uns deine Änderung mit und wir kümmern uns um die weitere Bearbeitung."
+                punkte={[
+                    "Änderung sicher erfassen",
+                    "Persönliche Bearbeitung",
+                    "Weiterleitung an deine Versicherer",
+                ]}
+                bild={kontaktHeroImg}
+                bildAlt="Sven Kegler unterstützt beim digitalen Kundenservice"
+                bildKlasse="unterseiten-hero__bild--kontakt"
+                primaer={{ text: "Änderung mitteilen", href: "#aenderungsformular" }}
+            />
             
             {/* Formular & Kontakt-Info */}
-            <section className="py-16 bg-white relative">
+            <section id="aenderungsformular" className="py-16 bg-hintergrund-alt relative scroll-mt-24">
                 <div className="max-w-[1650px] mx-auto px-6 lg:px-12 relative z-10">
                     <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
                         
                         {/* Formular-Spalte (Links) */}
                         <div className="lg:col-span-8">
-                            <h1 className="text-4xl md:text-5xl font-normal text-[#020A39] tracking-tight">
+                            <h2 className="text-4xl md:text-5xl font-normal text-[#020A39] tracking-tight">
                                 Änderungen mitteilen
-                            </h1>
+                            </h2>
                             <div className="w-16 h-[3px] bg-[#0253ee] mt-4 mb-6" />
 
                             <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-10 max-w-3xl">
@@ -72,6 +97,17 @@ const AenderungenMitteilen = () => {
 
                             {!wurdeGesendet ? (
                                 <form onSubmit={absenden} className="space-y-6">
+                                    {/* Honeypot Spam-Schutz */}
+                                    <div className="hidden" aria-hidden="true">
+                                        <input 
+                                            type="text" 
+                                            name="website_url" 
+                                            value={honeypot} 
+                                            onChange={(e) => setHoneypot(e.target.value)} 
+                                            tabIndex={-1} 
+                                            autoComplete="off" 
+                                        />
+                                    </div>
                                     
                                     {/* Änderungsart Dropdown */}
                                     <div>

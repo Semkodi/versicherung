@@ -35,6 +35,7 @@ const BedarfsRadar = () => {
     const [antworten, setAntworten] = useState<Record<number, string>>({});
     const [angebotGesendet, setAngebotGesendet] = useState(false);
     const [kontaktInfo, setKontaktInfo] = useState("");
+    const [honeypot, setHoneypot] = useState("");
 
     const fragen: FrageSchritt[] = [
         {
@@ -108,6 +109,7 @@ const BedarfsRadar = () => {
         setSchritt(1);
         setAngebotGesendet(false);
         setKontaktInfo("");
+        setHoneypot("");
     };
 
     // Echtzeit-Bedarfsberechnung
@@ -221,6 +223,13 @@ const BedarfsRadar = () => {
 
     const anfrageSenden = (e: React.FormEvent) => {
         e.preventDefault();
+        
+        if (honeypot) {
+            // Stillschweigend Erfolg vortäuschen
+            setAngebotGesendet(true);
+            return;
+        }
+
         if (!kontaktInfo) return;
 
         const betreff = encodeURIComponent("Anfrage Bedarfs-Radar Auswertung - Sven Kegler");
@@ -245,7 +254,7 @@ const BedarfsRadar = () => {
     const progressPercentage = (schritt / fragen.length) * 100;
 
     return (
-        <section id="bedarfsradar" className="py-24 bg-gradient-to-b from-[#f8f9fc] to-white relative overflow-hidden border-b border-[#e2e8f0] scroll-mt-20">
+        <section id="bedarfsradar" className="py-24 bg-white relative overflow-hidden border-b border-[#e2e8f0] scroll-mt-20">
             <div className="max-w-[1650px] mx-auto px-6 lg:px-12 relative z-10">
                 
                 {/* Header */}
@@ -425,6 +434,17 @@ const BedarfsRadar = () => {
                                             onSubmit={anfrageSenden}
                                             className="bg-[#0a1930] border border-blue-950 rounded-[2.5rem] p-10 flex flex-col lg:flex-row items-center justify-between gap-8 mt-16 shadow-[0_20px_50px_rgba(10,25,48,0.15)] relative overflow-hidden"
                                         >
+                                            {/* Honeypot Spam-Schutz */}
+                                            <div className="hidden" aria-hidden="true">
+                                                <input 
+                                                    type="text" 
+                                                    name="website_url" 
+                                                    value={honeypot} 
+                                                    onChange={(e) => setHoneypot(e.target.value)} 
+                                                    tabIndex={-1} 
+                                                    autoComplete="off" 
+                                                />
+                                            </div>
                                             <div className="absolute top-0 right-0 w-64 h-64 bg-[#1e5adb]/10 rounded-full blur-[80px] pointer-events-none" />
                                             <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-500/5 rounded-full blur-[60px] pointer-events-none" />
                                             

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Check } from 'lucide-react';
-import warumImg from '@/assets/bilder/Profil_img.png'; 
+import warumImg from '@/assets/bilder/Profil_img.webp'; 
 
 const WarumSimplySwitch = () => {
     const vorteile = [
@@ -27,7 +27,7 @@ const WarumSimplySwitch = () => {
     ];
 
     return (
-        <section id="warum-wir" className="py-24 bg-white relative overflow-hidden">
+        <section id="warum-wir" className="py-24 bg-hintergrund-alt relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="grid lg:grid-cols-2 gap-16 lg:gap-12 items-start">
                     

@@ -1,9 +1,15 @@
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { usePageMetadata } from '@/hooks/usePageMetadata';
 
 const Datenschutz = () => {
+    usePageMetadata({
+        title: "Datenschutzerklärung | simply switch Versicherungsmakler Sven Kegler",
+        description: "Datenschutzerklärung für simply switch Sven Kegler Versicherungsmakler. Erfahren Sie, wie wir Ihre persönlichen Daten schützen und DSGVO-konform verarbeiten."
+    });
+
     return (
-        <div className="min-h-screen bg-hintergrund text-text-haupt font-sans pt-32 pb-20">
+        <div className="min-h-screen bg-hintergrund-alt text-text-haupt font-sans pt-32 pb-20">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <Link to="/" className="inline-flex items-center gap-2 text-marke-primaer hover:text-marke-sekundaer font-medium mb-8 transition-colors">
                     <ArrowLeft className="w-5 h-5" />

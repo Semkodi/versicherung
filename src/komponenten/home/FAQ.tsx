@@ -35,7 +35,7 @@ const FAQ = () => {
     };
 
     return (
-        <section id="faq" className="py-28 bg-[#f8f9fc] relative border-b border-[#e2e8f0] scroll-mt-20">
+        <section id="faq" className="py-28 bg-white relative border-b border-[#e2e8f0] scroll-mt-20">
             {/* Deko-Elemente im Hintergrund */}
             <div className="absolute top-0 right-0 w-80 h-80 bg-[#1e5adb]/2 blur-[120px] rounded-full pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#1e5adb]/3 blur-[120px] rounded-full pointer-events-none" />

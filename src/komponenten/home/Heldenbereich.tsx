@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import heroImg from '@/assets/bilder/hero_couple.png';
-import privatImg from '@/assets/bilder/haftpflicht_card.png';
-import beamteImg from '@/assets/bilder/beamte_du.png';
+import heroImg from '@/assets/bilder/premium_hero_sven.webp';
+import privatImg from '@/assets/bilder/haftpflicht_card.webp';
+import beamteImg from '@/assets/bilder/hero_beamte_anwaerter.webp';
+import '@/styles/heldenbereich.css';
 
 const slides = [
     {
@@ -18,7 +19,9 @@ const slides = [
         ],
         btnText: "Jetzt beraten lassen",
         btnLink: "/#kontakt",
-        img: heroImg
+        img: heroImg,
+        bildKlasse: "heldenbereich__portrait--sven",
+        vollflaechig: true
     },
     {
         title: "Privater Versicherungsschutz",
@@ -31,7 +34,9 @@ const slides = [
         ],
         btnText: "Schutz prüfen",
         btnLink: "/privatkunden",
-        img: privatImg
+        img: privatImg,
+        bildKlasse: "heldenbereich__portrait--privat",
+        vollflaechig: true
     },
     {
         title: "Beihilfe & Beamtenversorgung",
@@ -44,7 +49,9 @@ const slides = [
         ],
         btnText: "Beamten-Kompass ansehen",
         btnLink: "/beamte",
-        img: beamteImg
+        img: beamteImg,
+        bildKlasse: "heldenbereich__portrait--beamte",
+        vollflaechig: true
     }
 ];
 
@@ -123,7 +130,29 @@ const Heldenbereich = () => {
     const aktuellerSlideInhalt = slides[aktiverSlide];
 
     return (
-        <section className="relative pt-40 pb-24 md:pt-52 md:pb-36 bg-gradient-to-br from-[#f8f9fc] to-[#eef2f9] overflow-hidden min-h-[900px] lg:min-h-[850px] flex items-center">
+        <section className={`relative pt-40 pb-24 md:pt-122 md:pb-2 bg-gradient-to-br from-[#f8f9fc] to-[#eef2f9] overflow-hidden min-h-[900px] lg:min-h-[850px] flex items-center ${aktuellerSlideInhalt.vollflaechig ? 'heldenbereich--portrait-aktiv' : ''}`}>
+            <AnimatePresence mode="wait" custom={richtung}>
+                {aktuellerSlideInhalt.vollflaechig ? (
+                    <motion.div
+                        key={`vollbild-${aktiverSlide}`}
+                        custom={richtung}
+                        variants={bildVarianten}
+                        initial="initial"
+                        animate="active"
+                        exit="exit"
+                        className="absolute inset-0 z-0 overflow-hidden"
+                    >
+                        <img
+                            src={aktuellerSlideInhalt.img}
+                            alt={aktuellerSlideInhalt.title}
+                            className={`heldenbereich__portrait ${aktuellerSlideInhalt.bildKlasse}`}
+                            fetchPriority="high"
+                        />
+                        <div className="heldenbereich__verlauf absolute inset-0 z-10 pointer-events-none" />
+                    </motion.div>
+                ) : null}
+            </AnimatePresence>
+
             <div className="max-w-[1650px] mx-auto px-6 lg:px-12 relative z-10 w-full">
 
                 {/* Split-Slide-Layout */}
@@ -138,12 +167,12 @@ const Heldenbereich = () => {
                             initial="initial"
                             animate="active"
                             exit="exit"
-                            className="max-w-2xl"
+                            className="heldenbereich__inhalt max-w-2xl"
                         >
                             {/* Headline */}
                             <motion.h1
                                 variants={kindVariante}
-                                className="text-[2.4rem] md:text-[3.5rem] lg:text-[4.2rem] font-extrabold text-[#020A39] leading-[1.15] mb-6 tracking-tight"
+                                className="heldenbereich__titel text-[2.4rem] md:text-[3.5rem] lg:text-[4.2rem] font-extrabold text-[#020A39] leading-[1.15] mb-6 tracking-tight"
                             >
                                 {aktuellerSlideInhalt.title}<br />
                                 <span className="bg-gradient-to-r from-marke-primaer to-[#4f46e5] bg-clip-text text-transparent">
@@ -154,13 +183,13 @@ const Heldenbereich = () => {
                             {/* Beschreibung */}
                             <motion.p
                                 variants={kindVariante}
-                                className="text-base md:text-xl text-[#4b5a8a] mb-8 max-w-xl font-normal leading-relaxed"
+                                className="heldenbereich__beschreibung text-base md:text-xl text-[#4b5a8a] mb-8 max-w-xl font-normal leading-relaxed"
                             >
                                 {aktuellerSlideInhalt.description}
                             </motion.p>
 
                             {/* Checkmarks */}
-                            <motion.ul variants={kindVariante} className="space-y-3.5 mb-10">
+                            <motion.ul variants={kindVariante} className="heldenbereich__checkliste space-y-3.5 mb-10">
                                 {aktuellerSlideInhalt.checkmarks.map((item, idx) => (
                                     <li key={idx} className="flex items-center gap-3.5 text-[#020A39] font-semibold">
                                         <div className="w-6 h-6 rounded-full bg-marke-primaer flex items-center justify-center flex-shrink-0 shadow-md">
@@ -196,24 +225,28 @@ const Heldenbereich = () => {
 
                     {/* RECHTE SEITE: Bild schiebt von rechts herein */}
                     <AnimatePresence mode="wait" custom={richtung}>
-                        <motion.div
-                            key={`bild-${aktiverSlide}`}
-                            custom={richtung}
-                            variants={bildVarianten}
-                            initial="initial"
-                            animate="active"
-                            exit="exit"
-                            className="relative hidden lg:flex items-center justify-end h-full min-h-[420px]"
-                        >
-                            <div className="relative z-10 w-full flex justify-end">
-                                <img
-                                    src={aktuellerSlideInhalt.img}
-                                    alt={aktuellerSlideInhalt.title}
-                                    className="w-full h-[400px] object-cover rounded-[2rem] [mask-image:linear-gradient(to_right,transparent_0%,black_25%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_25%)] shadow-md"
-                                    loading="eager"
-                                />
-                            </div>
-                        </motion.div>
+                        {!aktuellerSlideInhalt.vollflaechig ? (
+                            <motion.div
+                                key={`bild-${aktiverSlide}`}
+                                custom={richtung}
+                                variants={bildVarianten}
+                                initial="initial"
+                                animate="active"
+                                exit="exit"
+                                className="relative hidden lg:flex items-center justify-end h-full min-h-[420px]"
+                            >
+                                <div className="relative z-10 w-full flex justify-end">
+                                    <img
+                                        src={aktuellerSlideInhalt.img}
+                                        alt={aktuellerSlideInhalt.title}
+                                        className="w-full h-[400px] object-cover rounded-[2rem] [mask-image:linear-gradient(to_right,transparent_0%,black_25%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_25%)] shadow-md"
+                                        loading="eager"
+                                    />
+                                </div>
+                            </motion.div>
+                        ) : (
+                            <div key={`bildplatzhalter-${aktiverSlide}`} className="hidden lg:block min-h-[420px]" aria-hidden="true" />
+                        )}
                     </AnimatePresence>
                 </div>
 

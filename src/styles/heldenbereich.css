@@ -1,0 +1,58 @@
+.heldenbereich__portrait {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 110%;
+  object-fit: cover;
+  transform-origin: center top;
+}
+
+.heldenbereich__portrait--sven {
+  object-position: 70% 15%;
+  transform: translate(-80px, -0px) scale(1.);
+}
+
+.heldenbereich__portrait--privat {
+  object-position: 70% 80%;
+  transform: translate(-60px, -0px) scale(1.);
+}
+
+.heldenbereich__portrait--beamte {
+  object-position: 70% 15%;
+  transform: translate(-60px, -0px) scale(1.);
+}
+
+.heldenbereich__verlauf {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, #f8f9fc 0%, rgb(248 249 252 / 96%) 38%, rgb(248 249 252 / 68%) 54%, rgb(248 249 252 / 0%) 76%);
+  pointer-events: none;
+}
+
+@media (min-width: 1024px) {
+  .heldenbereich__titel {
+    height: 310px;
+  }
+
+  .heldenbereich__beschreibung {
+    height: 145px;
+  }
+
+  .heldenbereich__checkliste {
+    height: 130px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .heldenbereich__verlauf {
+    background: linear-gradient(90deg, rgb(248 249 252 / 98%) 0%, rgb(248 249 252 / 91%) 64%, rgb(248 249 252 / 35%) 100%);
+  }
+
+  .heldenbereich__portrait--sven,
+  .heldenbereich__portrait--privat,
+  .heldenbereich__portrait--beamte {
+    object-position: 58% top;
+    transform: none;
+  }
+}

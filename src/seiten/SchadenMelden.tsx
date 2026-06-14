@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import FormularNav from '@/komponenten/kontakt/FormularNav';
+import { UnterseitenHero } from '@/komponenten/layout';
+import schadenHeroImg from '@/assets/bilder/premium_kontakt_sven.webp';
 import { 
     Check, 
     ArrowRight, 
@@ -41,6 +43,8 @@ const SchadenMelden = () => {
     const [telefon, setTelefon] = useState("");
     const [policenNummer, setPolicenNummer] = useState("");
     const [wurdeGesendet, setWurdeGesendet] = useState(false);
+    const [honeypot, setHoneypot] = useState("");
+    const [uploadFehler, setUploadFehler] = useState<string | null>(null);
 
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -79,8 +83,29 @@ const SchadenMelden = () => {
 
     const handleDateien = (fileList: FileList) => {
         const neueDateien: SchadenDatei[] = [];
+        let fehlerGefunden = false;
+        
         for (let i = 0; i < fileList.length; i++) {
             const file = fileList[i];
+            
+            // Validierung: Dateigröße max. 10 MB (10 * 1024 * 1024 Bytes)
+            if (file.size > 10 * 1024 * 1024) {
+                setUploadFehler(`Die Datei "${file.name}" überschreitet die maximale Größe von 10 MB.`);
+                fehlerGefunden = true;
+                continue;
+            }
+            
+            // Validierung: Dateitypen .pdf, .png, .jpg, .jpeg
+            const ext = file.name.split('.').pop()?.toLowerCase();
+            const erlaubteEndungen = ['pdf', 'png', 'jpg', 'jpeg'];
+            const erlaubteMimes = ['application/pdf', 'image/png', 'image/jpeg', 'image/jpg'];
+            
+            if (!erlaubteEndungen.includes(ext || '') && !erlaubteMimes.includes(file.type)) {
+                setUploadFehler(`Das Dateiformat von "${file.name}" wird nicht unterstützt. Bitte lade nur PDF, PNG oder JPG/JPEG hoch.`);
+                fehlerGefunden = true;
+                continue;
+            }
+
             const datei: SchadenDatei = {
                 id: Math.random().toString(36).substring(2, 9),
                 name: file.name,
@@ -90,8 +115,15 @@ const SchadenMelden = () => {
             };
             neueDateien.push(datei);
         }
-        setDateien((prev) => [...prev, ...neueDateien]);
-        neueDateien.forEach(d => simuliereUpload(d));
+
+        if (fehlerGefunden) {
+            setTimeout(() => setUploadFehler(null), 5000);
+        }
+
+        if (neueDateien.length > 0) {
+            setDateien((prev) => [...prev, ...neueDateien]);
+            neueDateien.forEach(d => simuliereUpload(d));
+        }
     };
 
     const handleDrop = (e: React.DragEvent) => {
@@ -122,6 +154,13 @@ const SchadenMelden = () => {
 
     const absenden = (e: React.FormEvent) => {
         e.preventDefault();
+        
+        if (honeypot) {
+            // Stillschweigend Erfolg vortäuschen
+            setWurdeGesendet(true);
+            return;
+        }
+
         if (!name || !email || !telefon) return;
 
         const betreff = encodeURIComponent(`⚠️ Neue Schadensmeldung - ${schadensarten.find(s => s.wert === schadensart)?.label || schadensart.toUpperCase()}`);
@@ -157,34 +196,32 @@ const SchadenMelden = () => {
         setEmail("");
         setTelefon("");
         setPolicenNummer("");
+        setHoneypot("");
+        setUploadFehler(null);
         setWurdeGesendet(false);
     };
 
     return (
         <main className="relative z-10 overflow-hidden bg-white text-[#2d3748]">
-            {/* ─── HELDEN HERO SEKTION (Premium Look) ─── */}
-            <section className="relative pt-40 pb-20 bg-gradient-to-br from-[#f8f9fc] to-[#eef2f9] overflow-hidden border-b border-[#e2e8f0]">
-                <div className="absolute top-0 right-0 w-96 h-96 bg-[#1e5adb]/5 blur-[100px] rounded-full pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#1e5adb]/3 blur-[120px] rounded-full pointer-events-none" />
-                
-                <div className="max-w-[1650px] mx-auto px-6 lg:px-12 relative z-10">
-                    <div className="max-w-3xl">
-                        <span className="inline-flex items-center gap-2 bg-red-50 text-red-500 px-4 py-2 rounded-full mb-6 font-semibold text-xs shadow-sm border border-red-100 uppercase tracking-wider">
-                            Soforthilfe im Notfall
-                        </span>
-                        <h1 className="text-4xl md:text-6xl font-extrabold text-[#0a1930] mb-6 tracking-tight leading-[1.1]">
-                            Schaden digital <br />
-                            <span className="bg-gradient-to-r from-red-500 to-rose-600 bg-clip-text text-transparent">schnell melden</span>
-                        </h1>
-                        <p className="text-[#4a5568] text-base md:text-lg leading-relaxed font-normal">
-                            Ein Schaden ist ärgerlich genug. Lass uns die Abwicklung übernehmen. Melde deinen Schaden in unter 3 Minuten vollständig digital – Sven Kegler kümmert sich umgehend um deine Schadensregulierung.
-                        </p>
-                    </div>
-                </div>
-            </section>
+            <UnterseitenHero
+                label="Soforthilfe im Schadenfall"
+                titel="Schaden digital"
+                hervorhebung="schnell melden"
+                beschreibung="Ein Schaden ist ärgerlich genug. Melde alle wichtigen Angaben digital und Sven Kegler kümmert sich persönlich um die weitere Abwicklung."
+                punkte={[
+                    "Schaden Schritt für Schritt erfassen",
+                    "Dokumente und Bilder vorbereiten",
+                    "Persönliche Rückmeldung erhalten",
+                ]}
+                bild={schadenHeroImg}
+                bildAlt="Sven Kegler als persönlicher Ansprechpartner"
+                bildKlasse="unterseiten-hero__bild--schaden"
+                primaer={{ text: "Schaden jetzt melden", href: "#schadenformular" }}
+                akzent="rot"
+            />
 
             {/* ─── MULTI-STEP SCHADENSMELDER ─── */}
-            <section className="py-24 bg-white relative">
+            <section id="schadenformular" className="py-24 bg-hintergrund-alt relative scroll-mt-24">
                 <div className="max-w-3xl mx-auto px-6 relative z-10">
                     
                     {!wurdeGesendet ? (
@@ -302,6 +339,26 @@ const SchadenMelden = () => {
                                         <h3 className="font-extrabold text-2xl text-[#0a1930] tracking-tight mb-2">Schadensbilder & Dokumente</h3>
                                         <p className="text-xs text-[#718096] mb-6 font-normal">Lade hier Fotos vom Schaden, Rechnungen oder Unfallberichte hoch. Je mehr Belege wir haben, desto schneller zahlt der Versicherer.</p>
 
+                                        {/* Fehler-Banner */}
+                                        <AnimatePresence>
+                                            {uploadFehler && (
+                                                <motion.div 
+                                                    initial={{ opacity: 0, y: -10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: -10 }}
+                                                    className="flex gap-4 p-4 bg-red-50 border border-red-200 rounded-2xl items-start"
+                                                >
+                                                    <ShieldAlert className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                                                    <div>
+                                                        <h4 className="font-extrabold text-sm text-[#0a1930] mb-0.5">Fehler beim Hochladen</h4>
+                                                        <p className="text-xs text-red-600 leading-relaxed font-semibold">
+                                                            {uploadFehler}
+                                                        </p>
+                                                    </div>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+
                                         {/* Dropzone */}
                                         <div 
                                             onDragOver={handleDragOver}
@@ -394,6 +451,17 @@ const SchadenMelden = () => {
                                         <p className="text-xs text-[#718096] mb-6 font-normal">Hinterlasse uns deine Kontaktdaten. Sven Kegler kontaktiert dich sofort persönlich.</p>
 
                                         <form onSubmit={absenden} className="space-y-4">
+                                            {/* Honeypot Spam-Schutz */}
+                                            <div className="hidden" aria-hidden="true">
+                                                <input 
+                                                    type="text" 
+                                                    name="website_url" 
+                                                    value={honeypot} 
+                                                    onChange={(e) => setHoneypot(e.target.value)} 
+                                                    tabIndex={-1} 
+                                                    autoComplete="off" 
+                                                />
+                                            </div>
                                             <div className="grid sm:grid-cols-2 gap-4">
                                                 <div>
                                                     <label className="block text-xs font-extrabold text-[#0a1930] uppercase tracking-wider mb-2">Vor- & Nachname</label>

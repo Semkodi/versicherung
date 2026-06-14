@@ -1,5 +1,5 @@
 import { Smartphone, BellRing, FileCheck, ShieldCheck, ArrowRight } from 'lucide-react';
-import handyImg        from '@/assets/bilder/handy_img.png';
+import handyImg        from '@/assets/bilder/handy_img.webp';
 import appStoreBadge   from '@/assets/icons/app-store-badge.svg';
 import googlePlayBadge from '@/assets/icons/google-play-badge.svg';
 
@@ -28,7 +28,7 @@ const AppVorteile = () => {
     ];
 
     return (
-        <section className="py-24 bg-hintergrund relative overflow-hidden">
+        <section className="py-24 bg-hintergrund-alt relative overflow-hidden">
             {/* Hintergrund */}
             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-marke-primaer/[0.04] rounded-full blur-[100px] pointer-events-none" />
 
