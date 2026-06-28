@@ -57,7 +57,7 @@ const Zielgruppen = () => {
                                 />
 
                                 <div
-                                    className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,10,57,0.72)_0%,rgba(2,10,57,0.38)_42%,rgba(2,10,57,0.04)_82%),linear-gradient(0deg,rgba(2,10,57,0.68)_0%,rgba(2,10,57,0)_65%)] transition-opacity duration-300 group-hover:opacity-95"
+                                    className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,10,57,0.40)_0%,rgba(2,10,57,0.15)_42%,rgba(2,10,57,0.0)_75%),linear-gradient(0deg,rgba(2,10,57,0.55)_0%,rgba(2,10,57,0)_60%)] transition-opacity duration-300 group-hover:opacity-95"
                                     aria-hidden="true"
                                 />
 
