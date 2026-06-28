@@ -584,6 +584,130 @@ const Privatkunden = () => {
                 </div>
             </section>
 
+            {/* ─── BU ARTIKEL ─── */}
+            <section id="bu-ratgeber" className="py-24 bg-hintergrund-alt border-b border-[#e2e8f0]">
+                <div className="max-w-4xl mx-auto px-6">
+                    <ScrollReveal direction="up">
+                        <div className="text-center mb-14">
+                            <span className="text-[#1e5adb] font-extrabold text-xs uppercase tracking-widest block mb-3">Ratgeber & Wissen</span>
+                            <h2 className="text-3xl md:text-5xl font-extrabold text-[#0a1930] tracking-tight mb-4">
+                                Berufsunfähigkeitsversicherung – <br className="hidden md:block" />
+                                <span className="text-[#1e5adb]">alles, was du wissen musst</span>
+                            </h2>
+                            <p className="text-[#4a5568] text-lg font-normal max-w-2xl mx-auto">
+                                Die BU ist eine der wichtigsten Absicherungen überhaupt – und wird von vielen unterschätzt. Hier findest du alle Fakten kompakt erklärt.
+                            </p>
+                        </div>
+                    </ScrollReveal>
+
+                    <div className="space-y-10">
+                        {/* Block 1 */}
+                        <ScrollReveal direction="up" delay={0.05}>
+                            <div className="bg-white rounded-3xl border border-gray-100 p-8 md:p-10 shadow-sm">
+                                <h3 className="text-2xl font-extrabold text-[#0a1930] mb-4">Was ist eine Berufsunfähigkeitsversicherung?</h3>
+                                <div className="space-y-4 text-[#4a5568] text-sm md:text-base font-normal leading-relaxed">
+                                    <p>Die Berufsunfähigkeitsversicherung (BU) sichert dein Einkommen ab, wenn du deinen Beruf aus gesundheitlichen Gründen dauerhaft oder für längere Zeit nicht mehr ausüben kannst.</p>
+                                    <p>Du erhältst im Leistungsfall eine monatliche BU-Rente, die vertraglich festgelegt ist. Entscheidend ist dabei nicht irgendein Beruf, sondern deine zuletzt ausgeübte Tätigkeit.</p>
+                                    <p>Berufsunfähigkeit liegt in der Regel vor, wenn du deinen Beruf voraussichtlich zu mindestens 50 % nicht mehr ausüben kannst – und das über einen Zeitraum von mindestens sechs Monaten.</p>
+                                </div>
+                            </div>
+                        </ScrollReveal>
+
+                        {/* Block 2 */}
+                        <ScrollReveal direction="up" delay={0.08}>
+                            <div className="bg-white rounded-3xl border border-gray-100 p-8 md:p-10 shadow-sm">
+                                <h3 className="text-2xl font-extrabold text-[#0a1930] mb-4">Warum die BU so wichtig ist</h3>
+                                <p className="text-[#4a5568] text-sm md:text-base font-normal leading-relaxed mb-5">
+                                    Viele Menschen unterschätzen das Risiko, berufsunfähig zu werden. Dabei sind die häufigsten Ursachen heute nicht mehr nur Unfälle, sondern vor allem:
+                                </p>
+                                <ul className="space-y-2 mb-5">
+                                    {["Psychische Erkrankungen (z. B. Burnout, Depression)", "Rücken- und Gelenkerkrankungen", "Chronische Erkrankungen", "Krebs und schwere körperliche Einschränkungen"].map((item, i) => (
+                                        <li key={i} className="flex items-start gap-3 text-sm text-[#4a5568]">
+                                            <div className="w-5 h-5 rounded-full bg-[#e8effd] flex items-center justify-center flex-shrink-0 mt-0.5">
+                                                <Check className="w-3 h-3 text-[#1e5adb] stroke-[3]" />
+                                            </div>
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
+                                <p className="text-[#4a5568] text-sm md:text-base font-normal leading-relaxed">
+                                    Die gesetzliche Absicherung reicht in den meisten Fällen nicht aus. Die Erwerbsminderungsrente fällt oft deutlich geringer aus als das bisherige Einkommen und ist an strenge Voraussetzungen gebunden.
+                                </p>
+                            </div>
+                        </ScrollReveal>
+
+                        {/* Block 3 – Für wen */}
+                        <ScrollReveal direction="up" delay={0.1}>
+                            <div className="bg-white rounded-3xl border border-gray-100 p-8 md:p-10 shadow-sm">
+                                <h3 className="text-2xl font-extrabold text-[#0a1930] mb-6">Für wen ist eine BU sinnvoll?</h3>
+                                <div className="grid sm:grid-cols-2 gap-5">
+                                    {[
+                                        { gruppe: "Angestellte & Arbeitnehmer", text: "Ohne BU entsteht schnell eine große Einkommenslücke." },
+                                        { gruppe: "Selbstständige", text: "Hier besteht oft keine oder nur geringe staatliche Absicherung." },
+                                        { gruppe: "Studierende, Referendare & Berufseinsteiger", text: "Der frühe Abschluss bringt besonders günstige Beiträge und bessere Gesundheitschancen." },
+                                        { gruppe: "Lehrer & Beamte", text: "Für Lehrkräfte ist zusätzlich die Frage der Dienstunfähigkeit entscheidend. Die staatliche Absicherung greift oft erst später oder nur eingeschränkt." },
+                                    ].map((item, i) => (
+                                        <div key={i} className="bg-[#f8f9fc] rounded-2xl p-5 border border-gray-100">
+                                            <h4 className="font-extrabold text-sm text-[#0a1930] mb-2">{item.gruppe}</h4>
+                                            <p className="text-xs text-[#4a5568] font-normal leading-relaxed">{item.text}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </ScrollReveal>
+
+                        {/* Block 4 – Kriterien */}
+                        <ScrollReveal direction="up" delay={0.1}>
+                            <div className="bg-white rounded-3xl border border-gray-100 p-8 md:p-10 shadow-sm">
+                                <h3 className="text-2xl font-extrabold text-[#0a1930] mb-6">Wichtige Kriterien einer guten BU-Versicherung</h3>
+                                <p className="text-[#4a5568] text-sm mb-6 font-normal">Beim Abschluss solltest du nicht nur auf den Preis achten. Wichtiger sind die Vertragsbedingungen:</p>
+                                <div className="space-y-4">
+                                    {[
+                                        { nr: "1", titel: "Verzicht auf abstrakte Verweisung", text: "Du darfst im Leistungsfall nicht auf einen anderen Beruf verwiesen werden." },
+                                        { nr: "2", titel: "Realistische BU-Rente", text: "Die Rente sollte etwa 60–80 % deines Nettoeinkommens absichern." },
+                                        { nr: "3", titel: "Leistung ab 50 % Berufsunfähigkeit", text: "Schon bei teilweiser Einschränkung greift die Leistung." },
+                                        { nr: "4", titel: "Nachversicherungsgarantie", text: "Erhöhung der BU-Rente ohne erneute Gesundheitsprüfung." },
+                                        { nr: "5", titel: "Stabile Gesundheitsprüfung", text: "Saubere und transparente Annahmerichtlinien sind entscheidend." },
+                                    ].map((item) => (
+                                        <div key={item.nr} className="flex gap-4 items-start">
+                                            <div className="w-8 h-8 rounded-full bg-[#0a1930] text-white text-xs font-black flex items-center justify-center flex-shrink-0 mt-0.5">{item.nr}</div>
+                                            <div>
+                                                <h4 className="font-extrabold text-sm text-[#0a1930] mb-1">{item.titel}</h4>
+                                                <p className="text-xs text-[#4a5568] font-normal leading-relaxed">{item.text}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </ScrollReveal>
+
+                        {/* Block 5 – Fazit + CTA */}
+                        <ScrollReveal direction="up" delay={0.1}>
+                            <div className="bg-[#0a1930] rounded-3xl p-8 md:p-10 text-white relative overflow-hidden shadow-xl">
+                                <div className="absolute inset-0 bg-[#1e5adb]/10 blur-[80px] pointer-events-none" />
+                                <div className="relative z-10">
+                                    <span className="text-[#1e5adb] font-extrabold text-xs uppercase tracking-widest block mb-3">Fazit</span>
+                                    <h3 className="text-2xl font-extrabold mb-4">Warum du die BU nicht aufschieben solltest</h3>
+                                    <p className="text-slate-300 text-sm leading-relaxed mb-4 font-normal">
+                                        Die Berufsunfähigkeitsversicherung ist eine der wichtigsten Absicherungen überhaupt, da sie dein Einkommen schützt – also deine finanzielle Grundlage. Ein früher Abschluss sorgt nicht nur für niedrigere Beiträge, sondern auch für bessere Annahmechancen.
+                                    </p>
+                                    <p className="text-slate-300 text-sm leading-relaxed mb-8 font-normal">
+                                        Besonders für Lehrer, Referendare und junge Akademiker kann das einen entscheidenden Unterschied machen. Wenn du wissen willst, wie du dich individuell und korrekt absichern kannst, lohnt sich eine persönliche Prüfung deiner Situation – insbesondere bei Vorerkrankungen oder dem Start in den Beamtenstatus.
+                                    </p>
+                                    <a
+                                        href="/termin-vereinbaren"
+                                        className="inline-flex items-center gap-2 px-7 py-3.5 bg-marke-primaer text-white font-bold rounded-xl hover:bg-marke-primaer-hover transition-all shadow-lg"
+                                    >
+                                        Persönliche BU-Prüfung anfragen
+                                        <ArrowRight className="w-4 h-4" />
+                                    </a>
+                                </div>
+                            </div>
+                        </ScrollReveal>
+                    </div>
+                </div>
+            </section>
+
             {/* ─── DUNKELBLAUER CTA ─── */}
             <section className="py-24 bg-hintergrund-alt relative">
                 <div className="max-w-5xl mx-auto px-4 text-center">

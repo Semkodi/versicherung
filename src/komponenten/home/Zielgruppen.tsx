@@ -6,7 +6,7 @@ import privatkundenImg from '@/assets/bilder/zielgruppe_privatkunden.webp';
 
 const gruppen = [
     {
-        titel: "Beamte",
+        titel: "Beamte & Beamtenanwärter",
         beschreibung: "Absicherung, Vorsorge und Versorgung – passgenau für deinen Status und dein Leben.",
         image: beamteImg,
         alt: "Beamter bei einer digitalen Versicherungsberatung",
@@ -15,7 +15,7 @@ const gruppen = [
     },
     {
         titel: "Privatkunden",
-        beschreibung: "Schutz und Vorsorge für dich und deine Familie – verständlich, fair und unabhängig.",
+        beschreibung: "Schutz und Vorsorge für dich und deine Familie – verständlich, fair und transparent.",
         image: privatkundenImg,
         alt: "Paar bei einer digitalen Versicherungsberatung",
         link: "/privatkunden",

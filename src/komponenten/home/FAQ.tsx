@@ -13,20 +13,20 @@ const FAQ = () => {
 
     const fragen: FAQItem[] = [
         {
-            frage: "Was zeichnet Sven Kegler als Versicherungsmakler aus?",
-            antwort: "Als freier und transparenter Versicherungsmakler bin ich an keinerlei bestimmte Versicherungsgesellschaft gebunden. Ich vertrete ausschließlich deine Interessen und filtere aus dem gesamten deutschen Markt die objektiv besten Tarife heraus. Mein Fokus liegt auf Transparenz, ehrlicher Beratung und dauerhafter Betreuung."
+            frage: "Was zeichnet Sven Kegler und simply switch als Versicherungsmakler aus?",
+            antwort: "Als freier und transparenter Versicherungsmakler sind wir an keinerlei bestimmte Versicherungsgesellschaft gebunden. Wir vertreten ausschließlich deine Interessen und filtern aus dem gesamten deutschen Markt die objektiv besten Tarife heraus. Unser Fokus liegt auf Transparenz, ehrlicher Beratung und dauerhafter Betreuung."
         },
         {
             frage: "Entstehen für mich Kosten durch die Beratung?",
-            antwort: "Nein, meine Beratung und die Tarifvergleiche sind für dich vollkommen kostenlos. Im Falle eines erfolgreichen Abschlusses erhalte ich eine Vergütung (Courtage) direkt vom jeweiligen Versicherer. Für dich gibt es keinerlei Aufpreis gegenüber einem Direktabschluss bei der Gesellschaft."
+            antwort: "Nein, unsere Beratung und die Tarifvergleiche sind für dich vollkommen kostenlos. Im Falle eines erfolgreichen Abschlusses erhalten wir eine Vergütung (Courtage) direkt vom jeweiligen Versicherer. Für dich gibt es keinerlei Aufpreis gegenüber einem Direktabschluss bei der Gesellschaft."
         },
         {
             frage: "Wie läuft der Wechsel oder die Optimierung bestehender Verträge ab?",
             antwort: "Völlig stressfrei! Wir analysieren deine aktuellen Verträge per Video-Call, Telefon oder persönlich. Wir decken gefährliche Leistungslücken auf und sortieren unnötige, überteuerte Policen aus. Den gesamten lästigen Papierkram und die Kündigungen übernehmen wir komplett für dich."
         },
         {
-            frage: "Welche Versicherungen brauche ich als Privatperson oder Selbstständiger wirklich?",
-            antwort: "Absolut unverzichtbar ist die Privathaftpflichtversicherung (bzw. die Betriebshaftpflicht für Gewerbe), da du gesetzlich unbegrenzt haftest. Ebenso existenziell wichtig ist die Absicherung deiner Arbeitskraft (Dienstunfähigkeit oder Berufsunfähigkeit). Alle weiteren Bausteine passen wir präzise an deine Lebensphase an."
+            frage: "Welche Versicherungen brauche ich als Privatperson oder Beamter wirklich?",
+            antwort: "Absolut unverzichtbar ist die Privathaftpflichtversicherung (bzw. Diensthaftpflicht bei Beamten), da du gesetzlich unbegrenzt haftest. Ebenso existenziell wichtig ist die Absicherung deiner Arbeitskraft (Dienstunfähigkeit oder Berufsunfähigkeit). Alle weiteren Bausteine passen wir präzise an deine Lebensphase an."
         }
     ];
 

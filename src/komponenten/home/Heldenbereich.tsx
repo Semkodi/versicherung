@@ -11,7 +11,7 @@ const slides = [
     {
         title: "Sven Kegler Versicherungsmakler",
         subtitle: "Nah und transparent für deine Sicherheit",
-        description: "Seit Jahren betreue ich Privatkunden und Beamte in partnerschaftlicher Zusammenarbeit. Als transparenter Versicherungsmakler bin ich an keine Versicherungsgesellschaft gebunden und vertrete ausschließlich deine Interessen.",
+        description: "Seit fast 20 Jahren betreue ich Privatkunden und Beamte in partnerschaftlicher Zusammenarbeit. Als Versicherungsmakler bin ich an keine Versicherungsgesellschaft gebunden und vertrete ausschließlich deine Interessen.",
         checkmarks: [
             "Transparent & objektiv beraten",
             "Persönlicher Ansprechpartner",
@@ -25,12 +25,11 @@ const slides = [
     },
     {
         title: "Privater Versicherungsschutz",
-        subtitle: "Sven Kegler – Dein Experte für optimale Vorsorge",
-        description: "Wir helfen dir, die richtigen Versicherungen zu finden – verständlich, transparent und vollkommen digital. Finde heraus, wie einfach moderne Absicherung für dich und deine Familie sein kann.",
+        subtitle: "simply switch – Deine Experten für optimale Vorsorge",
+        description: "Wir helfen dir, die richtige Absicherung zu finden – verständlich, transparent und vollkommen digital. Finde heraus, wie einfach moderne Absicherung für dich ist.",
         checkmarks: [
-            "Bedarfsanalyse in 3 Minuten",
-            "Haftpflicht, Hausrat, Kfz & mehr",
-            "Optimale Tarife mit Best-Service"
+            "Optimale Tarife mit Best-Leistungsgarantie",
+            "Transparenter Marktvergleich"
         ],
         btnText: "Schutz prüfen",
         btnLink: "/privatkunden",
@@ -43,8 +42,9 @@ const slides = [
         subtitle: "Sven Kegler – Spezialist für Beamte & Anwärter",
         description: "Für Beamte und Anwärter gelten besondere Absicherungsregeln. Ich navigiere dich sicher durch Beihilfe, Dienstunfähigkeit, Heilfürsorge und begleite dich kompetent ab dem Referendariat.",
         checkmarks: [
-            "Dienstunfähigkeitsschutz (DU)",
-            "Private Krankenversicherung (PKV)",
+            "ÖD Sondertarife",
+            "Private Krankenversicherung",
+            "Dienstunfähigkeitsschutz",
             "Referendariat-Spezialtarife"
         ],
         btnText: "Beamten-Kompass ansehen",

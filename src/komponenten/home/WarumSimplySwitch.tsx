@@ -6,11 +6,11 @@ const WarumSimplySwitch = () => {
     const vorteile = [
         {
             titel: "Transparenter Versicherungsmakler",
-            text: "Ich bin an keine einzelne Versicherungsgesellschaft gebunden. Meine Beratung ist neutral, objektiv und orientiert sich zu 100% an deinen Interessen."
+            text: "Wir sind an keine einzelne Versicherungsgesellschaft gebunden. Unsere Beratung ist neutral, objektiv und orientiert sich zu 100% an deinen Interessen."
         },
         {
             titel: "Zertifizierte & ganzheitliche Beratung",
-            text: "Keine halben Sachen: Gemeinsam betrachten wir deine Lebenssituation ganzheitlich, um Lücken zu schließen und Überversicherung zu vermeiden."
+            text: "Mit fundierter Fachausbildung und Spezialisierung schließen wir Versorgungslücken, vermeiden Überversicherungen und senken durch eine bedarfsgerechte Absicherung unnötige Versicherungsbeiträge."
         },
         {
             titel: "Digitaler Service & Verträge",
@@ -18,11 +18,11 @@ const WarumSimplySwitch = () => {
         },
         {
             titel: "Individuell & vertrauensvoll",
-            text: "Kein Verkaufsdruck, keine Vertriebsziele. Die Beratung erfolgt ehrlich, partnerschaftlich und auf Augenhöhe."
+            text: "Kein Verkaufsdruck, keine Vertriebsziele. Die Beratung erfolgt verständlich, transparent und auf Augenhöhe."
         },
         {
             titel: "Schnelle Schadensbearbeitung",
-            text: "Im Notfall stehe ich dir persönlich zur Seite und kümmere mich um eine reibungslose und schnelle Schadenregulierung."
+            text: "Im Notfall stehen wir dir persönlich zur Seite und kümmern uns um eine reibungslose und schnelle Schadenregulierung."
         }
     ];
 
@@ -42,16 +42,16 @@ const WarumSimplySwitch = () => {
                             Deine Sicherheit
                         </div>
                         
-                        <h2 className="text-3xl md:text-[2.5rem] font-extrabold mb-6 text-[#0a1930] leading-tight">
-                            Warum Sven Kegler (simply switch)?
+                        <h2 className=”text-3xl md:text-[2.5rem] font-extrabold mb-6 text-[#0a1930] leading-tight”>
+                            Warum Sven Kegler und simply switch?
                         </h2>
-                        
-                        <div className="space-y-6 text-[#4a5568] text-lg leading-relaxed mb-10 font-normal">
+
+                        <div className=”space-y-6 text-[#4a5568] text-lg leading-relaxed mb-10 font-normal”>
                             <p>
-                                Seit mehr als <strong className="text-[#0a1930] font-bold">17 Jahren</strong> berate ich Beamte, Anwärter und Privatkunden kompetent und transparent in allen Versicherungs- und Vorsorgefragen.
+                                Seit fast <strong className=”text-[#0a1930] font-bold”>20 Jahren</strong> beraten wir Beamte, Beamtenanwärter und Privatkunden kompetent und transparent in allen Versicherungs- und Vorsorgefragen.
                             </p>
                             <p>
-                                Mein Leitbild <strong className="text-[#1e5adb] font-bold">„Ehrlich, transparent und digital“</strong> drückt mein Verständnis einer partnerschaftlichen Zusammenarbeit aus. Ich möchte dich als freier Versicherungsmakler in allen Lebensphasen begleiten und dir jederzeit die passende Versicherungslösung anbieten.
+                                Unser Leitbild <strong className=”text-[#1e5adb] font-bold”>„Ehrlich, einfach transparent und digital”</strong> drückt unser Verständnis einer partnerschaftlichen Zusammenarbeit aus. Wir möchten dich als freier Versicherungsmakler in allen Lebensphasen begleiten und dir jederzeit die passende Versicherungslösung anbieten.
                             </p>
                         </div>
 

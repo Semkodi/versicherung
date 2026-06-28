@@ -50,13 +50,13 @@ const VertrauensLeiste = () => {
         {
             icon: <Users className="w-6 h-6 text-[#94a3b8]" />,
             prefix: "mehr als",
-            wert: <Zaehler ziel={873} />,
-            text: "Kunden"
+            wert: <Zaehler ziel={670} />,
+            text: "zufriedene Kunden"
         },
         {
             icon: <Zap className="w-6 h-6 text-[#3b82f6]" />,
-            prefix: "über",
-            wert: <Zaehler ziel={17} suffix=" Jahre" />,
+            prefix: "Fast",
+            wert: <Zaehler ziel={20} suffix=" Jahre" />,
             text: "Erfahrung"
         },
         {

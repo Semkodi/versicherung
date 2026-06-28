@@ -16,19 +16,19 @@ const SoArbeiteIch = ({ hintergrund = 'hellblau' }: SoArbeiteIchProps) => {
         {
             zahl: "2",
             titel: "Vorstellung des Konzepts",
-            text: "Ich präsentiere dir ein maßgeschneidertes, transparentes Konzept. Gemeinsam vergleichen wir Tarife, um die besten Konditionen für dich zu sichern.",
+            text: "Wir präsentieren dir ein maßgeschneidertes, transparentes Konzept. Gemeinsam vergleichen wir Tarife, um die besten Konditionen für dich zu sichern.",
             icon: <FileText className="w-5 h-5 text-white" />
         },
         {
             zahl: "3",
             titel: "Laufende Betreuung & Checkup",
-            text: "Deine Lebensumstände ändern sich – dein Schutz passt sich an. Ich begleite dich dauerhaft und überprüfe Verträge in regelmäßigen Checkups.",
+            text: "Deine Lebensumstände ändern sich – dein Schutz passt sich an. Wir begleiten dich dauerhaft und überprüfen Verträge in regelmäßigen Checkups.",
             icon: <ShieldCheck className="w-5 h-5 text-white" />
         },
         {
             zahl: "4",
             titel: "Schnelle Schadenfallbearbeitung",
-            text: "Im Ernstfall stehe ich dir persönlich zur Seite, übernehme die Abwicklung mit dem Versicherer und sorge für eine unkomplizierte Regulierung.",
+            text: "Im Ernstfall stehen wir dir persönlich zur Seite, übernehmen die Abwicklung mit dem Versicherer und sorgen für eine unkomplizierte Regulierung.",
             icon: <Zap className="w-5 h-5 text-white" />
         }
     ];
@@ -57,7 +57,7 @@ const SoArbeiteIch = ({ hintergrund = 'hellblau' }: SoArbeiteIchProps) => {
                     >
                         <span className="text-marke-primaer text-sm font-bold tracking-widest uppercase mb-3 block">Ganzheitlich & Sicher</span>
                         <h2 className="text-3xl md:text-5xl font-extrabold mb-4 text-text-haupt leading-tight">
-                            Mein<br />
+                            Unser<br />
                             <span className="text-marke-primaer">Beratungskonzept</span>
                         </h2>
                         <p className="text-text-neben text-lg font-light mb-12 leading-relaxed">
@@ -130,7 +130,7 @@ const SoArbeiteIch = ({ hintergrund = 'hellblau' }: SoArbeiteIchProps) => {
                                 </h3>
 
                                 <p className="text-gray-300 mb-8 text-sm font-light leading-relaxed">
-                                    Einen Überblick über alle abgeschlossenen Verträge und Dokumente, wie z.B. deine Krankenversicherung oder Diensthaftpflichtversicherung, hast du komplett kostenlos und ganz bequem per App.
+                                    Einen Überblick über alle abgeschlossenen Verträge und Dokumente hast du komplett kostenlos & ganz bequem per App.
                                 </p>
 
                                 <ul className="space-y-3 mb-8">
