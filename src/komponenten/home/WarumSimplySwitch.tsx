@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+﻿import { motion } from 'framer-motion';
 import { ArrowRight, Check } from 'lucide-react';
 import warumImg from '@/assets/bilder/Profil_img.webp'; 
 
@@ -42,16 +42,16 @@ const WarumSimplySwitch = () => {
                             Deine Sicherheit
                         </div>
                         
-                        <h2 className=”text-3xl md:text-[2.5rem] font-extrabold mb-6 text-[#0a1930] leading-tight”>
+                        <h2 className="text-3xl md:text-[2.5rem] font-extrabold mb-6 text-[#0a1930] leading-tight">
                             Warum Sven Kegler und simply switch?
                         </h2>
 
-                        <div className=”space-y-6 text-[#4a5568] text-lg leading-relaxed mb-10 font-normal”>
+                        <div className="space-y-6 text-[#4a5568] text-lg leading-relaxed mb-10 font-normal">
                             <p>
-                                Seit fast <strong className=”text-[#0a1930] font-bold”>20 Jahren</strong> beraten wir Beamte, Beamtenanwärter und Privatkunden kompetent und transparent in allen Versicherungs- und Vorsorgefragen.
+                                Seit fast <strong className="text-[#0a1930] font-bold">20 Jahren</strong> beraten wir Beamte, Beamtenanwärter und Privatkunden kompetent und transparent in allen Versicherungs- und Vorsorgefragen.
                             </p>
                             <p>
-                                Unser Leitbild <strong className=”text-[#1e5adb] font-bold”>„Ehrlich, einfach transparent und digital”</strong> drückt unser Verständnis einer partnerschaftlichen Zusammenarbeit aus. Wir möchten dich als freier Versicherungsmakler in allen Lebensphasen begleiten und dir jederzeit die passende Versicherungslösung anbieten.
+                                Unser Leitbild <strong className="text-[#1e5adb] font-bold">„Ehrlich, einfach transparent und digital"</strong> drückt unser Verständnis einer partnerschaftlichen Zusammenarbeit aus. Wir möchten dich als freier Versicherungsmakler in allen Lebensphasen begleiten und dir jederzeit die passende Versicherungslösung anbieten.
                             </p>
                         </div>
 
