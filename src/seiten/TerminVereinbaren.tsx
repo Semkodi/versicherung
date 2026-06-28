@@ -117,12 +117,13 @@ const TerminVereinbaren = () => {
                             {aktiverTab === 'calendly' ? (
                                 <div className="w-full bg-white rounded-3xl border border-gray-200/60 overflow-hidden shadow-sm p-1.5">
                                     <iframe
-                                        src="https://calendly.com/kegler/kostenloses-infogesprach?hide_landing_page_details=1&hide_gdpr_banner=1"
+                                        src="https://calendly.com/kegler/dein-persoenliches-gespraech-mit-sven?hide_landing_page_details=1&hide_gdpr_banner=1"
                                         width="100%"
-                                        height="680px"
+                                        height="900px"
                                         frameBorder="0"
                                         title="Calendly Terminvereinbarung"
                                         className="w-full rounded-2xl"
+                                        scrolling="no"
                                     />
                                 </div>
                             ) : !wurdeGesendet ? (

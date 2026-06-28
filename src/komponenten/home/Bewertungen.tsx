@@ -11,38 +11,113 @@ const GoogleLogo = ({ className = "w-6 h-6" }: { className?: string }) => (
 );
 
 const Bewertungen = () => {
-    // ─── HIER DEINE ORIGINALEN GOOGLE-BEWERTUNGSLINKS EINTRAGEN ───
-    // Wir haben Sven Keglers originale Maps-CID (0x66eb74f057f2bfec) eingepflegt, damit alles direkt live funktioniert!
     const GOOGLE_BEWERTEN_URL = "https://www.google.com/search?q=simply+switch+-+Sven+Kegler#lrd=0x47bc6750feff5573:0x66eb74f057f2bfec,2";
     const GOOGLE_LESEN_URL = "https://www.google.com/search?q=simply+switch+-+Sven+Kegler#lrd=0x47bc6750feff5573:0x66eb74f057f2bfec,1";
 
     const textReviews = [
         {
+            name: "Semir Borogovac",
+            initial: "S",
+            avatar: "bg-marke-primaer text-white",
+            text: "Sven ist fachlich einfach der Beste! Er nimmt sich unglaublich viel Zeit, berät absolut transparent und findet für jedes Problem eine Lösung. Er ist extrem zuverlässig und sofort zur Stelle, wenn man ein Anliegen hat.",
+            sterne: 5,
+        },
+        {
+            name: "Ann-Christin Bethke",
+            initial: "A",
+            avatar: "bg-emerald-100 text-emerald-700",
+            text: "Ausgezeichnete, freundliche und äußerst kompetente Beratung. Auf Fragen und Anliegen wurde jederzeit schnell und zuverlässig eingegangen. Man fühlt sich bestens betreut und professionell begleitet.",
+            sterne: 5,
+        },
+        {
             name: "Lisa Herbst",
             initial: "L",
             avatar: "bg-marke-primaer/10 text-marke-primaer",
-            text: "Ich kann Sven und seine Arbeit wirklich nur empfehlen und jedem ans Herz legen! Frisch aus der Universität und kurz vor dem Referendariat, musste ich mich langsam aber sicher mit dem Thema einer privaten Krankenversicherung befassen. Da ich davon bislang wirklich fast gar keine Ahnung hatte, war ich umso froher, als ich auf Sven aufmerksam geworden bin. Sven hat mich stets kompetent beraten, ist auf alle Fragen detailliert eingegangen und hat sich für mich um alles Weitere (z.B Kündigung der alten GKV) gekümmert.",
+            text: "Ich kann Sven und seine Arbeit wirklich nur empfehlen! Frisch aus der Universität und kurz vor dem Referendariat musste ich mich mit dem Thema PKV befassen. Sven hat mich stets kompetent beraten, ist auf alle Fragen detailliert eingegangen und hat sich um alles Weitere gekümmert.",
+            sterne: 5,
+        },
+        {
+            name: "Kim Buder",
+            initial: "K",
+            avatar: "bg-violet-100 text-violet-700",
+            text: "Super umfangreiche & ehrliche Beratung von Sven. Wir sind sehr zufrieden, auch wenn man vor dem Einstieg ins Berufsleben steht & einen Überblick über Versicherungen benötigt. Insbesondere der lockere Umgang miteinander macht die Zusammenarbeit super angenehm. Danke dir Sven!",
+            sterne: 5,
+        },
+        {
+            name: "Halgurd Taha",
+            initial: "H",
+            avatar: "bg-blue-100 text-blue-700",
+            text: "Sven Kegler ist ein toller Mensch, richtig gute Beratung, findet für alle Probleme eine Lösung. Habe jetzt eine digitale Verwaltung all meiner Verträge. Mit simply switch spare ich jetzt viel Zeit, Arbeit und vor allem Geld. Nur zu empfehlen!",
+            sterne: 5,
+        },
+        {
+            name: "Ella Bondarenko",
+            initial: "E",
+            avatar: "bg-marke-sekundaer text-white",
+            text: "Sven kennen wir mittlerweile schon lange, ca. 8 Jahre. Er ist IMMER verlässlich und ein sehr netter und angenehmer Mensch. Er sagt, was geht und was nicht geht – somit der absolut richtige Ansprechpartner für alle versicherungstechnischen Angelegenheiten.",
+            sterne: 5,
+        },
+        {
+            name: "Alexander Scheerer",
+            initial: "A",
+            avatar: "bg-amber-100 text-amber-700",
+            text: "Top Versicherungsmakler! Kompetent, zuverlässig und ehrlich. Schnelle Kommunikation, klare Beratung und maßgeschneiderte Lösungen. Uneingeschränkt empfehlenswert!",
+            sterne: 5,
+        },
+        {
+            name: "Selma Hadzic",
+            initial: "S",
+            avatar: "bg-rose-100 text-rose-700",
+            text: "Herr Kegler ist ein Top Versicherungsberater. Habe durch ihn mehrere hundert Euro durch bessere Verträge mit mehr Leistungen im Jahr gespart. Er nimmt sich Zeit und denkt immer an den Kunden und seine Wünsche. Top!",
+            sterne: 5,
+        },
+        {
+            name: "Mariana Russotto",
+            initial: "M",
+            avatar: "bg-pink-100 text-pink-700",
+            text: "Wir sind sehr zufrieden, dass wir mit Sven so einen tollen Versicherungsmakler gefunden haben. Bei allen Fragen oder Problemen steht er uns zur Verfügung und kümmert sich besonders schnell darum. Wir können ihn nur empfehlen!",
             sterne: 5,
         },
         {
             name: "Emma Süper",
             initial: "E",
-            avatar: "bg-marke-sekundaer text-white",
-            text: "Ich bin rundum zufrieden mit der Beratung durch Sven. Er hat mich kompetent und verständlich zu wichtigen Versicherungen beraten, insbesondere zur privaten Krankenversicherung für mein Referendariat. Sven ist sehr freundlich, immer schnell erreichbar und nimmt sich Zeit für alle Fragen. Ich habe mich jederzeit gut aufgehoben gefühlt und kann ihn uneingeschränkt weiterempfehlen!:)",
+            avatar: "bg-teal-100 text-teal-700",
+            text: "Ich bin rundum zufrieden mit der Beratung durch Sven. Er hat mich kompetent und verständlich beraten, insbesondere zur PKV für mein Referendariat. Sven ist sehr freundlich, immer schnell erreichbar und nimmt sich Zeit für alle Fragen.",
             sterne: 5,
         },
         {
-            name: "Denise",
+            name: "linda boedger",
+            initial: "L",
+            avatar: "bg-cyan-100 text-cyan-700",
+            text: "Absolut zuverlässiger und kompetenter Versicherungsmakler! Man erhält qualifizierte Auskunft, ohne Produkte aufgedrängt zu bekommen! Definitiv eine Weiterempfehlung wert!",
+            sterne: 5,
+        },
+        {
+            name: "Dennis Schneider",
+            initial: "D",
+            avatar: "bg-indigo-100 text-indigo-700",
+            text: "Sven ist ein sehr zuverlässiger und freundlicher Berater. Er nimmt sich die Zeit, die man braucht, um über die Angebote zu sprechen, kann mit vielen nützlichen Tipps weiterhelfen und ist immer flexibel. Vielen Dank!",
+            sterne: 5,
+        },
+        {
+            name: "Denise Pe",
             initial: "D",
             avatar: "bg-marke-primaer/20 text-marke-sekundaer",
-            text: "Ich bin sehr zufrieden mit der Beratung durch Sven. Ich war für mein Referendariat auf der Suche nach Versicherungen. Er hat sich sehr viel Zeit genommen und hatte auf alle Fragen eine Antwort. Er ist immer erreichbar und Anliegen werden schnell bearbeitet. 🙂",
+            text: "Top Versicherungsmakler! Seine Beratung ist professionell, transparent und individuell auf die Bedürfnisse abgestimmt. Er nimmt sich viel Zeit, erklärt alle Details verständlich und findet immer die besten Lösungen.",
             sterne: 5,
         },
         {
-            name: "Ste Grue",
-            initial: "S",
-            avatar: "bg-marke-primaer text-white",
-            text: "Ich fühle mich bei Sven, auf dem Weg eine private Krankenversicherung zu finden, sehr kompetent und freundlich beraten. Er ist für Nachfragen immer sehr schnell erreichbar und kümmert sich um alle Belange und Fragen die so anstehen.",
+            name: "Nadine Kräft",
+            initial: "N",
+            avatar: "bg-orange-100 text-orange-700",
+            text: "Super sympathische und vor allem blitzschnelle, kompetente Hilfe und Abwicklung bei jeglichen Versicherungen und allem, was dazu gehört. Kann ich nur empfehlen! 😊",
+            sterne: 5,
+        },
+        {
+            name: "Angel K",
+            initial: "A",
+            avatar: "bg-green-100 text-green-700",
+            text: "Sehr freundlich, kümmert sich sofort um jedes Anliegen. Berät gut und erklärt alles genau, wenn man es nicht versteht. Würde auch mehr Sterne geben wenn es gehen würde.",
             sterne: 5,
         },
         {
@@ -51,15 +126,27 @@ const Bewertungen = () => {
             avatar: "bg-marke-sekundaer/10 text-marke-sekundaer",
             text: "Hier wird sich Zeit genommen für das Anliegen und es wird individuell auf jeden Kunden reagiert. Meine Fragen wurden schnell und verständlich erklärt und somit alle Probleme beseitigt.",
             sterne: 5,
-        }
+        },
+        {
+            name: "Denise",
+            initial: "D",
+            avatar: "bg-purple-100 text-purple-700",
+            text: "Ich bin sehr zufrieden mit der Beratung durch Sven. Ich war für mein Referendariat auf der Suche nach Versicherungen. Er hat sich sehr viel Zeit genommen und hatte auf alle Fragen eine Antwort. Er ist immer erreichbar. 🙂",
+            sterne: 5,
+        },
+        {
+            name: "Albert Brüstle",
+            initial: "A",
+            avatar: "bg-gray-100 text-gray-700",
+            text: "Nettes Telefonat. Hat gutes Gespür für die richtigen Entscheidungen!",
+            sterne: 5,
+        },
     ];
 
-    // Wir duplizieren die Bewertungen, um einen nahtlosen, endlosen Scrolling-Effekt (Marquee) zu erzeugen
     const marqueeReviews = [...textReviews, ...textReviews, ...textReviews];
 
     return (
         <section id="bewertungen" className="relative bg-white pb-24 overflow-hidden">
-            {/* Oben: Kurven-Hintergrund für Google Reviews */}
             <div className="absolute top-0 inset-x-0 h-[600px] bg-gradient-to-b from-white to-transparent rounded-b-[100px] pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20">
@@ -71,7 +158,7 @@ const Bewertungen = () => {
                         viewport={{ once: true }}
                         className="text-3xl md:text-[2.5rem] font-extrabold text-marke-sekundaer tracking-tight"
                     >
-                        Das sagen meine Kunden!
+                        Das sagen unsere Kunden
                     </motion.h2>
                 </div>
 
@@ -82,7 +169,6 @@ const Bewertungen = () => {
                     viewport={{ once: true }}
                     className="max-w-4xl mx-auto bg-white rounded-[2rem] shadow-[0_15px_40px_rgba(0,0,0,0.04)] p-8 mb-16 flex flex-col md:flex-row items-center justify-between border border-gray-100/80 relative overflow-hidden"
                 >
-                    {/* Subtle design glows */}
                     <div className="absolute -top-12 -left-12 w-32 h-32 bg-[#4285F4]/5 rounded-full blur-3xl pointer-events-none" />
                     <div className="absolute -bottom-12 -right-12 w-32 h-32 bg-[#FBBC05]/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -100,13 +186,13 @@ const Bewertungen = () => {
                                 <h3 className="text-xl font-bold text-[#0a1930] group-hover:text-marke-primaer transition-colors duration-300">Google Reviews</h3>
                             </div>
                             <div className="flex items-center gap-2 mt-1">
-                                <span className="font-extrabold text-lg text-gray-800">5.0</span>
+                                <span className="font-extrabold text-lg text-gray-800">5,0</span>
                                 <div className="flex gap-0.5">
                                     {[...Array(5)].map((_, i) => (
                                         <Star key={i} className="w-5 h-5 text-google-gelb fill-google-gelb" />
                                     ))}
                                 </div>
-                                <span className="text-gray-400 text-sm font-semibold ml-1">(65 Rezensionen)</span>
+                                <span className="text-gray-400 text-sm font-semibold ml-1">(70+ Rezensionen)</span>
                             </div>
                         </div>
                     </a>
@@ -120,7 +206,7 @@ const Bewertungen = () => {
                     </a>
                 </motion.div>
 
-                {/* Seamless Auto-Scrolling Reviews Marquee */}
+                {/* Auto-Scrolling Reviews Marquee */}
                 <div className="relative w-full overflow-hidden mb-12 py-4 mask-gradient">
                     <div className="marquee-container flex gap-6">
                         {marqueeReviews.map((review, idx) => (
@@ -135,6 +221,9 @@ const Bewertungen = () => {
                                     <div className="flex gap-1 mb-3">
                                         {[...Array(review.sterne)].map((_, i) => (
                                             <Star key={i} className="w-4 h-4 text-google-gelb fill-google-gelb" />
+                                        ))}
+                                        {review.sterne < 5 && [...Array(5 - review.sterne)].map((_, i) => (
+                                            <Star key={i} className="w-4 h-4 text-gray-200 fill-gray-200" />
                                         ))}
                                     </div>
                                     <p className="text-gray-500 text-sm leading-relaxed mb-6 italic">
@@ -155,7 +244,6 @@ const Bewertungen = () => {
                     </div>
                 </div>
 
-                {/* Inline Styles for continuous marquee and beautiful fade gradient mask */}
                 <style>{`
                     .mask-gradient {
                         mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
@@ -163,12 +251,12 @@ const Bewertungen = () => {
                     }
                     @keyframes marquee {
                         0% { transform: translateX(0); }
-                        100% { transform: translateX(calc(-340px * 5 - 24px * 5)); }
+                        100% { transform: translateX(calc(-340px * 18 - 24px * 18)); }
                     }
                     .marquee-container {
                         display: flex;
                         width: max-content;
-                        animation: marquee 45s linear infinite;
+                        animation: marquee 80s linear infinite;
                     }
                     .marquee-container:hover {
                         animation-play-state: paused;

@@ -1,4 +1,5 @@
 import { Phone, Calendar } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const WhatsAppIcon = () => (
     <svg viewBox="0 0 24 24" className="w-[17px] h-[17px] fill-current">
@@ -7,20 +8,6 @@ const WhatsAppIcon = () => (
 );
 
 const SidebarActions = () => {
-    const handleScrollTo = (id: string) => {
-        const element = document.getElementById(id);
-        if (element) {
-            const offset = 120; // Entspricht dem fixed Header
-            const elementPosition = element.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.scrollY - offset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
-    };
-
     return (
         <div className="fixed right-0 top-[60%] -translate-y-1/2 z-50 flex flex-col gap-1 items-end select-none">
             
@@ -32,7 +19,7 @@ const SidebarActions = () => {
                 className="flex items-center justify-end bg-[#0082d5] text-white h-[55px] rounded-l-lg shadow-md transition-all duration-300 ease-in-out w-[55px] hover:w-[340px] overflow-hidden relative group border-b border-l border-white/20"
             >
                 <span className="absolute right-[65px] text-[13px] font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                    Schreib mir per WhatsApp: 0151 27042547
+                    Schreib uns per WhatsApp: 0151 27042547
                 </span>
                 <div className="w-[55px] h-[55px] flex items-center justify-center flex-shrink-0">
                     <WhatsAppIcon />
@@ -45,7 +32,7 @@ const SidebarActions = () => {
                 className="flex items-center justify-end bg-[#0082d5] text-white h-[55px] rounded-l-lg shadow-md transition-all duration-300 ease-in-out w-[55px] hover:w-[340px] overflow-hidden relative group border-b border-l border-white/20"
             >
                 <span className="absolute right-[65px] text-[13px] font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                    Ruf mich direkt an: 0151 27042547
+                    Ruf uns direkt an: 0151 27042547
                 </span>
                 <div className="w-[55px] h-[55px] flex items-center justify-center flex-shrink-0">
                     <Phone className="w-5 h-5 text-white" />
@@ -53,8 +40,8 @@ const SidebarActions = () => {
             </a>
 
             {/* Termin */}
-            <button
-                onClick={() => handleScrollTo('bedarfsradar')}
+            <Link
+                to="/termin-vereinbaren"
                 className="flex items-center justify-end bg-[#0082d5] text-white h-[55px] rounded-l-lg shadow-md transition-all duration-300 ease-in-out w-[55px] hover:w-[340px] overflow-hidden relative group border-l border-white/20"
             >
                 <span className="absolute right-[65px] text-[13px] font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200">
@@ -63,7 +50,7 @@ const SidebarActions = () => {
                 <div className="w-[55px] h-[55px] flex items-center justify-center flex-shrink-0">
                     <Calendar className="w-5 h-5 text-white" />
                 </div>
-            </button>
+            </Link>
 
         </div>
     );

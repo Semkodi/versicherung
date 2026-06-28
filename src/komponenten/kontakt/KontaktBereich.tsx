@@ -67,7 +67,7 @@ const KontaktBereich = ({ hintergrund = 'weiss' }: KontaktBereichProps) => {
                         <span className="bg-gradient-to-r from-[#1e5adb] to-[#4f46e5] bg-clip-text text-transparent"> per E-Mail anfordern</span>
                     </h2>
                     <p className="text-[#4a5568] text-lg font-normal">
-                        Vereinbare direkt dein unverbindliches Online-Gespräch. Zusätzlich erhältst du unsere exklusive Checkliste für einen erfolgreichen Start in deine Beamtenkarriere.
+                        Vereinbare direkt dein unverbindliches Beratungsgespräch – kostenlos, persönlich und ohne Verkaufsdruck.
                     </p>
                 </div>
 
@@ -163,7 +163,7 @@ const KontaktBereich = ({ hintergrund = 'weiss' }: KontaktBereichProps) => {
                                             className="w-full py-4 bg-white text-[#0a1930] rounded-2xl font-extrabold text-base hover:bg-marke-highlight transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center gap-2"
                                         >
                                             <Send className="w-4 h-4" />
-                                            <span>Infogespräch + Checkliste anfordern</span>
+                                            <span>Beratungsgespräch anfordern</span>
                                         </button>
                                         <p className="text-[10px] text-gray-400 text-center leading-relaxed mt-4">
                                             Durch das Absenden wird dein E-Mail-Programm geöffnet. Es gelten unsere Bestimmungen zum Datenschutz.

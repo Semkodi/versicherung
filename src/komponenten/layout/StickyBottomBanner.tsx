@@ -80,7 +80,7 @@ const StickyBottomBanner = () => {
 
                     <div className="max-w-[1650px] mx-auto flex items-center justify-center">
                         <span className="text-base md:text-lg font-bold tracking-wide hover:underline text-center">
-                            Online-Formulare | Sie möchten einen Schaden melden, einen Termin vereinbaren, einen Rückruf anfordern oder uns Änderungen mitteilen?
+                            Online-Formulare | Möchtest du einen Schaden melden, einen Termin vereinbaren, einen Rückruf anfordern oder uns Änderungen mitteilen?
                         </span>
                     </div>
                 </motion.div>

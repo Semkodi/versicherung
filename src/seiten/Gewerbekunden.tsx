@@ -16,6 +16,7 @@ import {
     Check
 } from 'lucide-react';
 import { ScrollReveal, UnterseitenHero } from '@/komponenten/layout';
+import { KontaktBereich } from '@/komponenten/kontakt';
 
 // Importiere die neu generierten Bilder fuer die Karten
 import betriebImg from '@/assets/bilder/betrieb_card.webp';
@@ -505,12 +506,10 @@ const Gewerbekunden = () => {
                             Lass uns deine Verträge analysieren und sie an dein aktuelles Geschäftsmodell anpassen. Ehrlich, unverbindlich und mit voller Steuertransparenz.
                         </p>
                         
-                        <motion.a 
+                        <motion.a
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            href="https://svenkegler.de/gewerbe"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            href="/termin-vereinbaren"
                             className="inline-flex items-center gap-3 px-10 py-5 bg-marke-primaer text-white font-bold rounded-2xl hover:bg-marke-primaer-hover transition-all shadow-xl relative z-10 border border-marke-primaer/20"
                         >
                             Jetzt Gewerbe-Risikoanalyse anfordern
@@ -519,6 +518,8 @@ const Gewerbekunden = () => {
                     </div>
                 </div>
             </section>
+
+            <KontaktBereich />
         </main>
     );
 };

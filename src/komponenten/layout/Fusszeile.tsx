@@ -11,9 +11,9 @@ const Fusszeile = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-16">
                         {/* Logo Column */}
                         <div className="lg:col-span-2">
-                            <a href="#" className="block mb-6 w-fit">
+                            <Link to="/" className="block mb-6 w-fit">
                                 <img src={logo} alt="simply switch Logo" className="h-12 w-auto object-contain brightness-0 invert" />
-                            </a>
+                            </Link>
                             <p className="text-gray-400 text-xs leading-relaxed max-w-xs">
                                 Dein transparenter Versicherungsmakler für Beamte und Privatkunden. Persönlich. Digital. Einfach.
                             </p>
@@ -52,32 +52,31 @@ const Fusszeile = () => {
                         <div>
                             <h4 className="text-sm font-bold mb-5 text-white">Für Privatkunden</h4>
                             <ul className="space-y-3 text-gray-400 text-xs">
-                                <li><a href="#" className="hover:text-white transition-colors">Privathaftpflicht</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Hausratversicherung</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Wohngebäudeversicherung</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Unfallversicherung</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Alle Versicherungen</a></li>
+                                <li><Link to="/privatkunden#haftpflicht" className="hover:text-white transition-colors">Privathaftpflicht</Link></li>
+                                <li><Link to="/privatkunden#hausrat" className="hover:text-white transition-colors">Hausratversicherung</Link></li>
+                                <li><Link to="/privatkunden" className="hover:text-white transition-colors">Wohngebäudeversicherung</Link></li>
+                                <li><Link to="/privatkunden" className="hover:text-white transition-colors">Unfallversicherung</Link></li>
+                                <li><Link to="/privatkunden" className="hover:text-white transition-colors">Alle Versicherungen</Link></li>
                             </ul>
                         </div>
 
                         <div>
                             <h4 className="text-sm font-bold mb-5 text-white">Für Beamte</h4>
                             <ul className="space-y-3 text-gray-400 text-xs">
-                                <li><a href="#" className="hover:text-white transition-colors">Private Krankenversicherung</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Beihilfe & Heilfürsorge</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Dienstunfähigkeit</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Referendariat</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Alle Versicherungen</a></li>
+                                <li><Link to="/beamte#krankenversicherung" className="hover:text-white transition-colors">Private Krankenversicherung</Link></li>
+                                <li><Link to="/beamte#beihilfe" className="hover:text-white transition-colors">Beihilfe & Heilfürsorge</Link></li>
+                                <li><Link to="/beamte#dienstunfaehigkeit" className="hover:text-white transition-colors">Dienstunfähigkeit</Link></li>
+                                <li><Link to="/beamte#referendariat" className="hover:text-white transition-colors">Referendariat</Link></li>
+                                <li><Link to="/beamte" className="hover:text-white transition-colors">Alle Versicherungen</Link></li>
                             </ul>
                         </div>
 
                         <div>
                             <h4 className="text-sm font-bold mb-5 text-white">Unternehmen</h4>
                             <ul className="space-y-3 text-gray-400 text-xs">
-                                <li><Link to="/#ueber-mich" className="hover:text-white transition-colors">Über uns</Link></li>
-                                <li><Link to="/#kontakt" className="hover:text-white transition-colors">Kontakt</Link></li>
+                                <li><Link to="/ueber-uns" className="hover:text-white transition-colors">Über uns</Link></li>
+                                <li><Link to="/termin-vereinbaren" className="hover:text-white transition-colors">Kontakt</Link></li>
                                 <li><Link to="/schaden-melden" className="text-marke-highlight hover:text-white hover:underline transition-all duration-300 font-semibold">⚠️ Schaden melden</Link></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Karriere</a></li>
                             </ul>
                         </div>
                     </div>

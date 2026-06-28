@@ -39,7 +39,7 @@ const FormularNav = () => {
         <section className="py-20 bg-white border-t border-gray-150">
             <div className="max-w-[1650px] mx-auto px-6 lg:px-12 text-center">
                 <h3 className="text-2xl md:text-3xl font-normal text-[#020A39] mb-12 tracking-tight">
-                    Sie suchen etwas anderes?
+                    Du suchst etwas anderes?
                 </h3>
 
                 <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">

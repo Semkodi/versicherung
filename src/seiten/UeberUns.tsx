@@ -5,7 +5,7 @@ import ueberUnsHeroImg from '@/assets/bilder/premium_hero_sven.webp';
 
 const METADATA = {
     title: "Über uns | Sven Kegler Versicherungsmakler",
-    description: "Lerne Sven Kegler kennen – freier Versicherungsmakler und Inhaber von simply switch. Seit über 17 Jahren ehrliche & digitale Beratung.",
+    description: "Lerne Sven Kegler kennen – freier Versicherungsmakler und Inhaber von simply switch. Seit fast 20 Jahren ehrliche & digitale Beratung.",
 };
 
 const UeberUns = () => {
@@ -18,7 +18,7 @@ const UeberUns = () => {
                 hervorhebung="und verständlich"
                 beschreibung="Sven Kegler verbindet persönliche Beratung mit einfachen digitalen Wegen. Transparent, unabhängig und mit einem festen Ansprechpartner."
                 punkte={[
-                    "Mehr als 17 Jahre Erfahrung",
+                    "Fast 20 Jahre Erfahrung",
                     "Freier Versicherungsmakler",
                     "Persönlich und digital erreichbar",
                 ]}

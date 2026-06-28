@@ -98,7 +98,7 @@ const VertrauensLeiste = () => {
                                 <span className="text-2xl md:text-3xl font-black text-marke-primaer leading-tight">
                                     {item.wert}
                                 </span>
-                                <span className="text-sm font-medium text-text-haupt font-bold leading-none mt-1">
+                                <span className="text-sm font-bold text-text-haupt leading-none mt-1">
                                     {item.text}
                                 </span>
                             </div>
