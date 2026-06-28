@@ -49,7 +49,7 @@
   position: absolute;
   z-index: 1;
   inset: 0;
-  background: linear-gradient(90deg, rgb(248 249 252 / 100%) 0%, rgb(248 249 252 / 96%) 38%, rgb(248 249 252 / 68%) 54%, rgb(248 249 252 / 8%) 76%);
+  background: linear-gradient(90deg, #f8f9fc 0%, rgb(248 249 252 / 96%) 38%, rgb(248 249 252 / 68%) 50%, rgb(248 249 252 / 0%) 60%);
   pointer-events: none;
 }
 
@@ -94,6 +94,6 @@
   }
 
   .unterseiten-hero__verlauf {
-    background: linear-gradient(90deg, rgb(248 249 252 / 98%) 0%, rgb(248 249 252 / 91%) 64%, rgb(248 249 252 / 35%) 100%);
+    background: linear-gradient(90deg, rgb(248 249 252 / 98%) 0%, rgb(248 249 252 / 85%) 35%, rgb(248 249 252 / 0%) 65%);
   }
 }
