@@ -7,6 +7,7 @@ const StickyBottomBanner = () => {
     const [sichtbar, setSichtbar] = useState(false);
     const [geschlossen, setGeschlossen] = useState(false);
     const [istGeoeffnet, setIstGeoeffnet] = useState(false);
+    const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
 
     useEffect(() => {
         const behandleScrollen = () => {
@@ -17,7 +18,13 @@ const StickyBottomBanner = () => {
         return () => window.removeEventListener('scroll', behandleScrollen);
     }, [geschlossen]);
 
-    if (!sichtbar || geschlossen) return null;
+    useEffect(() => {
+        const handler = () => setIsMobile(window.innerWidth < 768);
+        window.addEventListener('resize', handler);
+        return () => window.removeEventListener('resize', handler);
+    }, []);
+
+    if (isMobile || !sichtbar || geschlossen) return null;
 
     const overlayItems = [
         {

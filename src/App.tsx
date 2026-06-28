@@ -23,7 +23,7 @@ import Chatbot from '@/komponenten/ui/Chatbot';
 import { Impressum, Datenschutz, Cookies } from '@/komponenten/rechtliches';
 
 // ─── Seiten (Lazy loaded für optimales Performance-Splitting) ─
-import { Startseite, Privatkunden, Gewerbekunden, Beamte, SchadenMelden, TerminVereinbaren, RueckrufAnfordern, AenderungenMitteilen, UeberUns } from '@/seiten';
+import { Startseite, Privatkunden, Gewerbekunden, Beamte, SchadenMelden, TerminVereinbaren, RueckrufAnfordern, AenderungenMitteilen, UeberUns, NotFound } from '@/seiten';
 
 interface RouteDefinition {
   readonly path: string;
@@ -42,6 +42,7 @@ const routeDefinitions: readonly RouteDefinition[] = [
   { path: '/aenderungen-mitteilen', element: <AenderungenMitteilen /> },
   { path: '/ueber-uns', element: <UeberUns /> },
   { path: '/impressum', element: <Impressum /> },
+  { path: '*', element: <NotFound /> },
   { path: '/datenschutz', element: <Datenschutz /> },
   { path: '/cookies', element: <Cookies /> }
 ];
@@ -86,7 +87,6 @@ function AppInhalt() {
                   element={<Navigate to={route.to} replace />}
                 />
               ))}
-              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Suspense>
         </AnimatePresence>

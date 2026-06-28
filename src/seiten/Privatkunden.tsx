@@ -14,7 +14,7 @@ import {
     Info,
     CheckCircle2
 } from 'lucide-react';
-import { ScrollReveal, UnterseitenHero } from '@/komponenten/layout';
+import { ScrollReveal, StructuredData, UnterseitenHero } from '@/komponenten/layout';
 import { BedarfsRechner } from '@/komponenten/rechner';
 
 // Importiere die neu generierten Bilder fuer die Karten
@@ -27,6 +27,51 @@ import privatHeroImg  from '@/assets/bilder/premium_privatkunden.webp';
 const METADATA = {
     title: "Private Versicherungen online vergleichen | Simply Switch",
     description: "Haftpflicht, Einkommensschutz & Hausrat bedarfsgerecht absichern. Transparenter Marktvergleich & digitale Betreuung in ganz Deutschland.",
+};
+
+const SCHEMA_DATA = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Service",
+            "name": "Private Versicherungsberatung",
+            "description": "Transparente Beratung für Privatkunden: Haftpflicht, Einkommensschutz, Hausrat und Kfz-Versicherung deutschlandweit.",
+            "provider": {
+                "@type": "InsuranceAgency",
+                "name": "simply switch Versicherungsmakler Sven Kegler",
+                "url": "https://simply-switch.de/versicherung/",
+                "telephone": "+496436921334"
+            },
+            "serviceType": "Private Versicherungsberatung",
+            "areaServed": { "@type": "Country", "name": "DE" },
+            "url": "https://simply-switch.de/versicherung/privatkunden"
+        },
+        {
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Welche Versicherungen brauche ich als Privatperson wirklich?",
+                    "acceptedAnswer": { "@type": "Answer", "text": "Absolut unverzichtbar ist die Privathaftpflichtversicherung, da du laut Gesetz für alle verursachten Schäden unbegrenzt mit deinem gesamten Vermögen haftest. Ebenfalls essenziell ist eine Berufsunfähigkeitsversicherung (Einkommensschutz), um deine Arbeitskraft abzusichern. Alle weiteren Versicherungen hängen von deinen persönlichen Lebensumständen ab." }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Warum sollte ich meine Versicherungen über einen Makler abschließen?",
+                    "acceptedAnswer": { "@type": "Answer", "text": "Als transparenter Versicherungsmakler bin ich nicht an eine bestimmte Gesellschaft gebunden, sondern vertrete ausschließlich deine Interessen. Ich habe Zugriff auf fast den gesamten deutschen Versicherungsmarkt und filtere die besten Tarife für dich heraus." }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Wie läuft eine Bedarfsanalyse bei Sven Kegler ab?",
+                    "acceptedAnswer": { "@type": "Answer", "text": "Völlig stressfrei! Im ersten Schritt analysieren wir per Video-Call, Telefon oder persönlich deine aktuelle Lebenssituation und deine bestehenden Verträge. Wir decken Deckungslücken auf und sortieren unnötige Policen aus." }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Kann ich meine bestehenden Versicherungen einfach optimieren?",
+                    "acceptedAnswer": { "@type": "Answer", "text": "Ja, absolut! Ältere Verträge sind oft teurer und bieten schlechtere Leistungen als moderne Tarife. Ich prüfe deine bestehenden Policen kostenfrei. Oft sparen wir bei gleicher Leistung mehrere hundert Euro pro Jahr." }
+                }
+            ]
+        }
+    ]
 };
 
 // Typdefinitionen
@@ -206,6 +251,7 @@ const Privatkunden = () => {
 
     return (
         <main className="relative z-10 overflow-hidden bg-white text-[#2d3748]">
+            <StructuredData data={SCHEMA_DATA as unknown as Record<string, unknown>} />
             <UnterseitenHero
                 label="Transparente Beratung für dein Leben"
                 titel="Sicherheit, die zu"

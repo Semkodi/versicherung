@@ -14,8 +14,4 @@
     @apply bg-clip-text text-transparent bg-gradient-to-r from-marke-sekundaer to-marke-primaer;
   }
 
-  /* bg-white Override (verhindert reines Weiß) */
-  .bg-white {
-    background-color: #E4E7EC !important; /* hintergrund-alt Fallback */
-  }
 }

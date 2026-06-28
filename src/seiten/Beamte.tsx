@@ -15,7 +15,7 @@ import {
   SoArbeiteIch,
 } from '@/komponenten/home';
 import { KontaktBereich } from '@/komponenten/kontakt';
-import { ScrollReveal, UnterseitenHero } from '@/komponenten/layout';
+import { ScrollReveal, StructuredData, UnterseitenHero } from '@/komponenten/layout';
 import { BedarfsRechner } from '@/komponenten/rechner';
 
 // Importiere die neu generierten Bilder fuer die Beamtenkarten
@@ -28,6 +28,32 @@ import beamteHeroImg from '@/assets/bilder/hero_beamte_anwaerter.webp';
 const METADATA = {
     title: "Dienstunfähigkeitsversicherung & PKV für Beamte | Online-Beratung",
     description: "Exklusive Tarife für Beamte & Anwärter. Echte DU-Klausel, Beihilfe-Kompensation & Anwärtertarife deutschlandweit online vergleichen.",
+};
+
+const SCHEMA_DATA = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Beamtenversicherung & Beihilfe-Beratung",
+    "description": "Spezialisierte Versicherungsberatung für Beamte und Anwärter: Dienstunfähigkeitsversicherung (DU), Private Krankenversicherung (PKV), Beihilfe und Referendariatsschutz.",
+    "provider": {
+        "@type": "InsuranceAgency",
+        "name": "simply switch Versicherungsmakler Sven Kegler",
+        "url": "https://simply-switch.de/versicherung/",
+        "telephone": "+496436921334"
+    },
+    "serviceType": "Versicherungsberatung für Beamte",
+    "areaServed": { "@type": "Country", "name": "DE" },
+    "url": "https://simply-switch.de/versicherung/beamte",
+    "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Beamten-Absicherungen",
+        "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dienstunfähigkeitsversicherung (DU)" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Private Krankenversicherung (PKV)" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Beihilfe & Heilfürsorge" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Schutz im Referendariat" } }
+        ]
+    }
 };
 
 // Typdefinition fuer ein detailliertes Beamten-Produkt
@@ -172,6 +198,7 @@ const Beamte = () => {
 
     return (
         <main className="relative z-10 overflow-hidden bg-white text-[#2d3748]">
+            <StructuredData data={SCHEMA_DATA as unknown as Record<string, unknown>} />
             <UnterseitenHero
                 label="Beamtenversorgung & Beihilfe"
                 titel="Sichere Karriere für"
