@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight, Check, Pause, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import heroImg from '@/assets/bilder/premium_hero_sven.webp';
 import privatImg from '@/assets/bilder/haftpflicht_card.webp';
@@ -58,6 +58,7 @@ const slides = [
 const Heldenbereich = () => {
     const [aktiverSlide, setAktiverSlide] = useState(0);
     const [richtung, setRichtung] = useState(0);
+    const [pausiert, setPausiert] = useState(false);
 
     const wechsleSlide = (neuerIndex: number) => {
         setRichtung(neuerIndex > aktiverSlide ? 1 : -1);
@@ -74,12 +75,13 @@ const Heldenbereich = () => {
 
     // Autoplay-Interval: Wechselt alle 6 Sekunden zum nächsten Slide
     useEffect(() => {
+        if (pausiert) return;
         const timer = setInterval(() => {
             setRichtung(1);
             setAktiverSlide((prev) => (prev + 1) % slides.length);
         }, 6000);
         return () => clearInterval(timer);
-    }, [aktiverSlide]);
+    }, [aktiverSlide, pausiert]);
 
     const uebergangSanft = { duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] };
 
@@ -250,7 +252,7 @@ const Heldenbereich = () => {
                     </AnimatePresence>
                 </div>
 
-                {/* Slider-Dots */}
+                {/* Slider-Dots + Pause-Button */}
                 <div className="flex justify-center items-center gap-3.5 mt-8 relative z-20">
                     {slides.map((_, idx) => (
                         <button
@@ -264,6 +266,16 @@ const Heldenbereich = () => {
                             aria-label={`Gehe zu Slide ${idx + 1}`}
                         />
                     ))}
+                    <button
+                        onClick={() => setPausiert(prev => !prev)}
+                        className="w-7 h-7 rounded-full bg-white/30 backdrop-blur-sm border border-white/40 flex items-center justify-center hover:bg-white/50 transition-all duration-200 ml-1"
+                        aria-label={pausiert ? 'Autoplay fortsetzen' : 'Autoplay pausieren'}
+                    >
+                        {pausiert
+                            ? <Play className="w-3 h-3 text-[#020A39] fill-[#020A39]" />
+                            : <Pause className="w-3 h-3 text-[#020A39] fill-[#020A39]" />
+                        }
+                    </button>
                 </div>
 
             </div>

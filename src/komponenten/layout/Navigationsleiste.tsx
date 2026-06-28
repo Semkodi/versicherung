@@ -124,17 +124,9 @@ const Navigationsleiste = () => {
 
     useMotionValueEvent(scrollY, "change", (latest) => {
         setIstGescrollt(latest > 100);
+        const gesamtHoehe = document.documentElement.scrollHeight - window.innerHeight;
+        setScrollFortschritt(gesamtHoehe > 0 ? Math.min(100, Math.round((latest / gesamtHoehe) * 100)) : 0);
     });
-
-    useEffect(() => {
-        const behandleScrollen = () => {
-            const gesamtHoehe = document.documentElement.scrollHeight - window.innerHeight;
-            const fortschritt = gesamtHoehe > 0 ? (window.scrollY / gesamtHoehe) * 100 : 0;
-            setScrollFortschritt(Math.min(100, Math.round(fortschritt)));
-        };
-        window.addEventListener('scroll', behandleScrollen, { passive: true });
-        return () => window.removeEventListener('scroll', behandleScrollen);
-    }, []);
 
     const toggleMenu = () => {
         setMenueOffen(!menueOffen);

@@ -1,15 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowUp, Shield, MessageSquare } from 'lucide-react';
-import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
 import { supabase, istOffline } from '@/lib/supabase';
+import { cn } from '@/lib/utils';
 import { botFlow } from './chatFlow';
-
-
-function cn(...eingaben: ClassValue[]) {
-    return twMerge(clsx(eingaben));
-}
 
 type Nachricht = {
     id: string;

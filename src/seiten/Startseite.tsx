@@ -51,51 +51,47 @@ const Startseite = () => {
             <Heldenbereich />
             <VertrauensLeiste />
 
-            <ScrollReveal direction="up" delay={0.2}>
+            <ScrollReveal direction="up" delay={0.1}>
                 <Zielgruppen />
             </ScrollReveal>
 
-            <ScrollReveal direction="up" delay={0.2}>
+            <ScrollReveal direction="up" delay={0.1}>
                 <WarumSimplySwitch />
             </ScrollReveal>
 
-
-
-            <ScrollReveal direction="up" delay={0.2}>
+            <ScrollReveal direction="up" delay={0.1}>
                 <Bewertungen />
             </ScrollReveal>
 
-            <ScrollReveal direction="up" delay={0.2}>
+            <ScrollReveal direction="up" delay={0.15}>
                 <SoArbeiteIch />
             </ScrollReveal>
 
-            <ScrollReveal direction="up" delay={0.2}>
+            <ScrollReveal direction="up" delay={0.1}>
                 <BedarfsRadar />
             </ScrollReveal>
 
-
-
-            <ScrollReveal direction="up" delay={0.2}>
+            <ScrollReveal direction="up" delay={0.1}>
                 <BlogWissen />
             </ScrollReveal>
 
-            <ScrollReveal direction="up" delay={0.2}>
+            <ScrollReveal direction="up" delay={0.15}>
                 <OrdnerCheck />
             </ScrollReveal>
 
-            <ScrollReveal direction="up" delay={0.2}>
+            <ScrollReveal direction="up" delay={0.1}>
                 <AppVorteile />
             </ScrollReveal>
 
-            <ScrollReveal direction="up" delay={0.2}>
+            <ScrollReveal direction="up" delay={0.1}>
                 <FAQ />
             </ScrollReveal>
 
-            <ScrollReveal direction="up" delay={0.2}>
+            <ScrollReveal direction="up" delay={0.15}>
                 <ServiceVersprechen />
             </ScrollReveal>
 
-            <ScrollReveal direction="up" delay={0.2}>
+            <ScrollReveal direction="up" delay={0.1}>
                 <KontaktBereich />
             </ScrollReveal>
         </main>
