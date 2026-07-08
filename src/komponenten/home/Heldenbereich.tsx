@@ -17,7 +17,7 @@ const slides = [
             "Persönlicher Ansprechpartner",
             "Digital & unkompliziert"
         ],
-        btnText: "Jetzt beraten lassen",
+        btnText: "Kostenfrei beraten lassen",
         btnLink: "/#kontakt",
         img: heroImg,
         bildKlasse: "heldenbereich__portrait--sven",
@@ -55,10 +55,13 @@ const slides = [
     }
 ];
 
+import useVariant from '@/hooks/useVariant';
+
 const Heldenbereich = () => {
     const [aktiverSlide, setAktiverSlide] = useState(0);
     const [richtung, setRichtung] = useState(0);
     const [pausiert, setPausiert] = useState(false);
+    const { variant } = useVariant();
 
     const wechsleSlide = (neuerIndex: number) => {
         setRichtung(neuerIndex > aktiverSlide ? 1 : -1);
@@ -176,10 +179,21 @@ const Heldenbereich = () => {
                                 variants={kindVariante}
                                 className="heldenbereich__titel text-[2.4rem] md:text-[3.5rem] lg:text-[4.2rem] font-extrabold text-[#020A39] leading-[1.15] mb-6 tracking-tight"
                             >
-                                {aktuellerSlideInhalt.title}<br />
-                                <span className="bg-gradient-to-r from-marke-primaer to-[#4f46e5] bg-clip-text text-transparent">
-                                    {aktuellerSlideInhalt.subtitle}
-                                </span>
+                                {variant === 'A' ? (
+                                    <>
+                                        {aktuellerSlideInhalt.title}<br />
+                                        <span className="bg-gradient-to-r from-marke-primaer to-[#4f46e5] bg-clip-text text-transparent">
+                                            {aktuellerSlideInhalt.subtitle}
+                                        </span>
+                                    </>
+                                ) : (
+                                    <>
+                                        {aktuellerSlideInhalt.title.replace('kostenfreie', 'kostenlos')}<br />
+                                        <span className="bg-gradient-to-r from-marke-primaer to-[#4f46e5] bg-clip-text text-transparent">
+                                            {aktuellerSlideInhalt.subtitle}
+                                        </span>
+                                    </>
+                                )}
                             </motion.h1>
 
                             {/* Beschreibung */}
@@ -209,7 +223,7 @@ const Heldenbereich = () => {
                                         href={aktuellerSlideInhalt.btnLink.substring(1)}
                                         className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-marke-primaer text-white font-semibold rounded-xl hover:bg-marke-primaer-hover transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5 cursor-pointer"
                                     >
-                                        {aktuellerSlideInhalt.btnText}
+                                        {variant === 'B' ? 'Sparpotenzial prüfen' : aktuellerSlideInhalt.btnText}
                                         <ArrowRight className="w-5 h-5" />
                                     </a>
                                 ) : (
@@ -222,6 +236,8 @@ const Heldenbereich = () => {
                                     </Link>
                                 )}
                             </motion.div>
+
+                            
                         </motion.div>
                     </AnimatePresence>
 
@@ -238,11 +254,11 @@ const Heldenbereich = () => {
                                 className="relative hidden lg:flex items-center justify-end h-full min-h-[420px]"
                             >
                                 <div className="relative z-10 w-full flex justify-end">
-                                    <img
+                                        <img
                                         src={aktuellerSlideInhalt.img}
                                         alt={aktuellerSlideInhalt.title}
                                         className="w-full h-[400px] object-cover rounded-[2rem] [mask-image:linear-gradient(to_right,transparent_0%,black_25%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_25%)] shadow-md"
-                                        loading="eager"
+                                        loading="lazy"
                                     />
                                 </div>
                             </motion.div>
@@ -253,18 +269,23 @@ const Heldenbereich = () => {
                 </div>
 
                 {/* Slider-Dots + Pause-Button */}
-                <div className="flex justify-center items-center gap-3.5 mt-8 relative z-20">
+                <div className="flex justify-center items-center gap-1 mt-8 relative z-20">
                     {slides.map((_, idx) => (
                         <button
                             key={idx}
                             onClick={() => wechsleSlide(idx)}
-                            className={`h-3.5 rounded-full transition-all duration-300 ${
-                                aktiverSlide === idx
-                                    ? 'bg-marke-primaer w-10 shadow-[0_2px_8px_rgba(17,63,156,0.4)]'
-                                    : 'bg-gray-300 hover:bg-gray-400 w-3.5'
-                            }`}
+                            className="flex items-center justify-center p-[5px]"
                             aria-label={`Gehe zu Slide ${idx + 1}`}
-                        />
+                            aria-current={aktiverSlide === idx}
+                        >
+                            <span
+                                className={`h-3.5 rounded-full transition-all duration-300 ${
+                                    aktiverSlide === idx
+                                        ? 'bg-marke-primaer w-10 shadow-[0_2px_8px_rgba(17,63,156,0.4)]'
+                                        : 'bg-gray-300 hover:bg-gray-400 w-3.5'
+                                }`}
+                            />
+                        </button>
                     ))}
                     <button
                         onClick={() => setPausiert(prev => !prev)}

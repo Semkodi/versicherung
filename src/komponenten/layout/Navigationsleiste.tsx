@@ -376,6 +376,8 @@ const Navigationsleiste = () => {
                         <button
                             className="lg:hidden p-2 text-text-haupt hover:bg-gray-50 rounded-lg transition-colors cursor-pointer"
                             onClick={toggleMenu}
+                            aria-label={menueOffen ? 'Menü schließen' : 'Menü öffnen'}
+                            aria-expanded={menueOffen}
                         >
                             {menueOffen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                         </button>
@@ -404,7 +406,7 @@ const Navigationsleiste = () => {
                             initial="closed"
                             animate="open"
                             exit="closed"
-                            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90%] max-w-lg"
+                            className="fixed top-24 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-lg"
                         >
                             <div className="relative bg-white/95 border border-white/20 rounded-[2.5rem] p-8 shadow-2xl backdrop-blur-xl">
                                 {/* Schließen Button */}
@@ -418,7 +420,7 @@ const Navigationsleiste = () => {
                                 </motion.button>
 
                                 {/* Menüpunkte */}
-                                <div className="space-y-4 mt-8 max-h-[70vh] overflow-y-auto pr-2">
+                                <div className="space-y-4 mt-8">
                                     {navigationsLinks.map((item) => (
                                         <motion.div
                                             key={item.name}

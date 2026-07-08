@@ -261,6 +261,9 @@ const Bewertungen = () => {
                     .marquee-container:hover {
                         animation-play-state: paused;
                     }
+                    .marquee-container a {
+                        scroll-snap-align: start;
+                    }
                 `}</style>
             </div>
         </section>

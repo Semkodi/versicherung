@@ -160,9 +160,23 @@ const OrdnerCheck = () => {
                             Der digitale & kostenfreie <br />
                             <span className="bg-gradient-to-r from-[#1e5adb] to-[#4f46e5] bg-clip-text text-transparent">Versicherungsordner-Check</span>
                         </h2>
-                        <p className="text-[#4a5568] text-base md:text-lg mb-8 leading-relaxed font-normal">
+                        <p className="text-[#4a5568] text-base md:text-lg mb-4 leading-relaxed font-normal">
                             Zahlst du zu viel für alte Verträge? Lass deinen gesamten Versicherungsordner unkompliziert und vollkommen sicher von uns prüfen. Wir filtern veraltete Tarife heraus und zeigen dir schwarz auf weiß deine jährliche Ersparnis.
                         </p>
+
+                        <div className="mb-8">
+                            <div className="flex items-start gap-4 bg-[#fff7ed] border border-[#fde3b7] rounded-2xl p-4 max-w-xl">
+                                <div className="flex-shrink-0">
+                                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#f59e0b]">
+                                        <path d="M12 2l2.39 6.97L21 11l-5 3.64L17.8 21 12 17.77 6.2 21 8 14.64 3 11l6.61-2.03L12 2z" fill="#FBBF24" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div className="text-sm text-[#92400e] font-semibold">Durchschnittliche Ersparnis</div>
+                                    <div className="text-xl md:text-2xl font-extrabold text-[#b91c1c]">~1.200 € jährlich pro Haushalt</div>
+                                </div>
+                            </div>
+                        </div>
 
                         {/* Feature-Liste */}
                         <div className="space-y-4 mb-8">
@@ -185,7 +199,7 @@ const OrdnerCheck = () => {
                         <div className="flex gap-4 p-5 bg-[#f8f9fc] border border-gray-100 rounded-2xl items-start max-w-xl">
                             <ShieldAlert className="w-6 h-6 text-[#1e5adb] flex-shrink-0 mt-0.5" />
                             <div>
-                                <h4 className="font-extrabold text-sm text-[#0a1930] mb-1">Deine Daten sind absolut sicher</h4>
+                                <h3 className="font-extrabold text-sm text-[#0a1930] mb-1">Deine Daten sind absolut sicher</h3>
                                 <p className="text-xs text-[#718096] leading-relaxed font-normal">
                                     Wir verschlüsseln alle hochgeladenen Dokumente nach höchsten deutschen Sicherheitsstandards. Deine Verträge werden ausschließlich zur Tarifanalyse verwendet und niemals an unbefugte Dritte weitergegeben.
                                 </p>

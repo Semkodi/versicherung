@@ -82,7 +82,7 @@ const AppVorteile = () => {
                                         {vorteil.icon}
                                     </div>
                                     <div>
-                                        <h4 className="text-sm font-bold text-text-haupt mb-1">{vorteil.titel}</h4>
+                                        <h3 className="text-sm font-bold text-text-haupt mb-1">{vorteil.titel}</h3>
                                         <p className="text-text-neben text-xs font-light leading-relaxed">{vorteil.text}</p>
                                     </div>
                                 </div>

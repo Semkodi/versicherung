@@ -163,10 +163,11 @@ const KontaktBereich = ({ hintergrund = 'weiss' }: KontaktBereichProps) => {
                                             className="w-full py-4 bg-white text-[#0a1930] rounded-2xl font-extrabold text-base hover:bg-marke-highlight transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center gap-2"
                                         >
                                             <Send className="w-4 h-4" />
-                                            <span>Beratungsgespräch anfordern</span>
+                                            <span>Kostenfrei beraten lassen</span>
                                         </button>
-                                        <p className="text-[10px] text-gray-400 text-center leading-relaxed mt-4">
-                                            Durch das Absenden wird dein E-Mail-Programm geöffnet. Es gelten unsere Bestimmungen zum Datenschutz.
+
+                                        <p className="text-[12px] text-gray-300 text-center leading-relaxed mt-4">
+                                            Der Termin ist unverbindlich. Wir melden uns in der Regel innerhalb von 24 Stunden. Deine Daten werden vertraulich behandelt (DSGVO).
                                         </p>
                                     </form>
                                 </motion.div>

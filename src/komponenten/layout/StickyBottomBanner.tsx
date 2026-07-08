@@ -12,7 +12,8 @@ const StickyBottomBanner = () => {
     useEffect(() => {
         const behandleScrollen = () => {
             if (geschlossen) return;
-            setSichtbar(window.scrollY > 200);
+            const naheAmEnde = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 400;
+            setSichtbar(window.scrollY > 200 && !naheAmEnde);
         };
         window.addEventListener('scroll', behandleScrollen);
         return () => window.removeEventListener('scroll', behandleScrollen);

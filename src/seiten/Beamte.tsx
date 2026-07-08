@@ -64,8 +64,11 @@ type DetailliertesBeamtenProdukt = {
     untertitel: string;
     einleitung: string;
     image: string;
+    video?: string;
     punkte: { titel: string; text: string }[];
 };
+
+const beamtenanwaerterVideo = `${import.meta.env.BASE_URL}videos/beamtenanwaerter.mp4`;
 
 const Beamte = () => {
     usePageMetadata(METADATA);
@@ -156,6 +159,7 @@ const Beamte = () => {
             untertitel: "Sorgloser und bezahlbarer Karrierestart",
             einleitung: "Im Referendariat profitierst du von extrem günstigen Anwärtertarifen der privaten Krankenversicherung. Wir vergleichen transparent alle Anbieter, um den besten Start zu sichern.",
             image: refImg,
+            video: beamtenanwaerterVideo,
             punkte: [
                 {
                     titel: "Extrem reduzierte Anwärter-Beiträge",
@@ -300,24 +304,38 @@ const Beamte = () => {
                             }`}
                         >
                             <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-                                <div className="grid lg:grid-cols-2 gap-16 items-center">
-                                    
+                                <div className={`grid gap-16 items-center ${p.video ? 'lg:grid-cols-5' : 'lg:grid-cols-2'}`}>
+
                                     {/* Bild-Container (Links bei gerade, rechts bei ungerade) */}
-                                    <div className={`w-full ${istGerade ? 'lg:order-1' : 'lg:order-2'}`}>
+                                    <div className={`w-full ${istGerade ? 'lg:order-1' : 'lg:order-2'} ${p.video ? 'lg:col-span-3' : ''}`}>
                                         <ScrollReveal direction={istGerade ? "left" : "right"}>
-                                            <div className="relative rounded-[2rem] overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.06)] border border-gray-100 aspect-[4/3] lg:aspect-square">
-                                                <img 
-                                                    src={p.image} 
-                                                    alt={`${p.titel} für Beamte - Sven Kegler Online-Makler`}
-                                                    loading="lazy"
-                                                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                                                />
+                                            <div className={`relative rounded-[2rem] overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.06)] border border-gray-100 ${
+                                                p.video ? 'aspect-video bg-[#0a1930]' : 'aspect-[4/3] lg:aspect-square'
+                                            }`}>
+                                                {p.video ? (
+                                                    <video
+                                                        src={p.video}
+                                                        controls
+                                                        playsInline
+                                                        preload="metadata"
+                                                        className="w-full h-full object-contain"
+                                                    >
+                                                        Dein Browser unterstützt keine Videowiedergabe.
+                                                    </video>
+                                                ) : (
+                                                    <img
+                                                        src={p.image}
+                                                        alt={`${p.titel} für Beamte - Sven Kegler Online-Makler`}
+                                                        loading="lazy"
+                                                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                                                    />
+                                                )}
                                             </div>
                                         </ScrollReveal>
                                     </div>
 
                                     {/* Text- & Info-Container */}
-                                    <div className={`w-full ${istGerade ? 'lg:order-2' : 'lg:order-1'}`}>
+                                    <div className={`w-full ${istGerade ? 'lg:order-2' : 'lg:order-1'} ${p.video ? 'lg:col-span-2' : ''}`}>
                                         <ScrollReveal direction="up">
                                             {/* Badge */}
                                             <div className="inline-flex items-center gap-2 bg-[#e8effd] text-[#1e5adb] px-4 py-2 rounded-full mb-6 font-semibold text-xs border border-[#d1e0f9] uppercase tracking-wider">
