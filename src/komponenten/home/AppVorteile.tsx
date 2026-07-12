@@ -44,7 +44,7 @@ const AppVorteile = () => {
                             {/* Handy-Rahmen */}
                             <div className="relative w-[240px] mx-auto aspect-[9/19] bg-marke-sekundaer rounded-[2.5rem] p-1.5 shadow-[0_30px_80px_rgba(2,10,57,0.4)]">
                                 <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden">
-                                    <img src={handyImg} alt="Kunden App Vorschau" className="w-full h-full object-cover object-top" />
+                                    <img src={handyImg} alt="Kunden App Vorschau" className="w-full h-full object-cover object-top" loading="lazy" />
                                 </div>
                                 {/* Lautsprecher-Kerbe */}
                                 <div className="absolute top-3 left-1/2 -translate-x-1/2 w-16 h-1 bg-black/20 rounded-full" />
@@ -107,10 +107,11 @@ const AppVorteile = () => {
                                     rel="noopener noreferrer"
                                     className="hover:scale-105 transition-transform duration-300"
                                 >
-                                    <img 
-                                        src={appStoreBadge} 
-                                        alt="Im App Store laden" 
+                                    <img
+                                        src={appStoreBadge}
+                                        alt="Im App Store laden"
                                         className="h-10 w-auto"
+                                        loading="lazy"
                                     />
                                 </a>
                                 <a 
@@ -119,10 +120,11 @@ const AppVorteile = () => {
                                     rel="noopener noreferrer"
                                     className="hover:scale-105 transition-transform duration-300"
                                 >
-                                    <img 
-                                        src={googlePlayBadge} 
-                                        alt="Jetzt bei Google Play" 
+                                    <img
+                                        src={googlePlayBadge}
+                                        alt="Jetzt bei Google Play"
                                         className="h-10 w-auto"
+                                        loading="lazy"
                                     />
                                 </a>
                             </div>

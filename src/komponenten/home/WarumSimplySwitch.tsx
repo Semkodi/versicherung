@@ -99,10 +99,11 @@ const WarumSimplySwitch = () => {
                         className="relative lg:ml-10 lg:sticky lg:top-28"
                     >
                         <div className="relative rounded-3xl overflow-hidden shadow-2xl z-10 border-[6px] border-white/50 aspect-[4/3] sm:aspect-[3/4] sm:max-h-[650px] w-full">
-                            <img 
-                                src={warumImg} 
-                                alt="Sven Kegler - Beratung auf Augenhöhe" 
+                            <img
+                                src={warumImg}
+                                alt="Sven Kegler - Beratung auf Augenhöhe"
                                 className="w-full h-full object-cover object-top"
+                                loading="lazy"
                             />
                         </div>
 

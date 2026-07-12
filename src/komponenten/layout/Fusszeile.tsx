@@ -13,7 +13,7 @@ const Fusszeile = () => {
                         {/* Logo Column */}
                         <div className="lg:col-span-2">
                             <Link to="/" className="block mb-6 w-fit">
-                                <img src={logo} alt="simply switch Logo" className="h-16 md:h-20 w-auto object-contain brightness-0 invert" />
+                                <img src={logo} alt="simply switch Logo" className="h-16 md:h-20 w-auto object-contain brightness-0 invert" loading="lazy" />
                             </Link>
                             <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
                                 Dein transparenter Versicherungsmakler für Beamte und Privatkunden. Persönlich. Digital. Einfach.
@@ -93,7 +93,7 @@ const Fusszeile = () => {
                         </div>
 
                         <div className="flex items-center gap-3">
-                            <span className="text-gray-500">Mitglied der</span>
+                            <span className="text-gray-400">Mitglied der</span>
                             <a
                                 href="https://www.vema-eg.de/?coib_submitted=1"
                                 target="_blank"
@@ -104,6 +104,7 @@ const Fusszeile = () => {
                                     src={vemaLogo}
                                     alt="VEMA Maklergenossenschaft"
                                     className="h-9 md:h-10 w-auto object-contain bg-white rounded-md px-3 py-2 hover:opacity-90 transition-opacity"
+                                    loading="lazy"
                                 />
                             </a>
                         </div>

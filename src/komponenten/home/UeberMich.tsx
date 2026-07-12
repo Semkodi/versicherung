@@ -24,6 +24,7 @@ const UeberMich = () => {
                                     src={profilBild}
                                     alt="Sven Kegler – Gründer von simply switch & freier Versicherungsmakler"
                                     className="object-cover object-top w-full h-full transform group-hover:scale-103 transition-transform duration-1000 ease-in-out"
+                                    loading="lazy"
                                 />
                                 {/* Edles transparentes Overlay am unteren Rand */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a1930]/30 to-transparent" />
@@ -107,7 +108,7 @@ const UeberMich = () => {
                                             rel="noopener noreferrer"
                                             className="hover:scale-103 transition-transform cursor-pointer"
                                         >
-                                            <img src={appStoreBadge} alt="Download im App Store" className="h-9 w-auto" />
+                                            <img src={appStoreBadge} alt="Download im App Store" className="h-9 w-auto" loading="lazy" />
                                         </a>
                                         <a
                                             href="https://play.google.com/store/search?q=simplr&c=apps"
@@ -115,7 +116,7 @@ const UeberMich = () => {
                                             rel="noopener noreferrer"
                                             className="hover:scale-103 transition-transform cursor-pointer"
                                         >
-                                            <img src={googlePlayBadge} alt="Download bei Google Play" className="h-9 w-auto" />
+                                            <img src={googlePlayBadge} alt="Download bei Google Play" className="h-9 w-auto" loading="lazy" />
                                         </a>
                                     </div>
                                 </div>

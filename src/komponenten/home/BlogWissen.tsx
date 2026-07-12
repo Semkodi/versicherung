@@ -154,6 +154,7 @@ const BlogWissen = () => {
                                     src={article.bild}
                                     alt={article.titel}
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    loading="lazy"
                                 />
                                 <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#0a1930] shadow-sm">
                                     {article.kategorie}

@@ -54,6 +54,7 @@ const Zielgruppen = () => {
                                     src={gruppe.image}
                                     alt={gruppe.alt}
                                     className={`h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035] ${gruppe.bildPosition}`}
+                                    loading="lazy"
                                 />
 
                                 <div
