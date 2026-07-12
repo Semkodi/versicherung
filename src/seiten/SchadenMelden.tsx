@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import FormularNav from '@/komponenten/kontakt/FormularNav';
 import { UnterseitenHero } from '@/komponenten/layout';
-import schadenHeroImg from '@/assets/bilder/premium_kontakt_sven.webp';
+import schadenHeroImg from '@/assets/bilder/premium_hero_sven.webp';
 import { 
     Check, 
     ArrowRight, 
@@ -53,6 +53,13 @@ const SchadenMelden = () => {
         { wert: "haftpflicht", label: "Haftpflichtschaden", icon: ShieldAlert, beschreibung: "Du hast versehentlich Eigentum anderer beschädigt" },
         { wert: "hausrat", label: "Hausrat / Gebäude", icon: Home, beschreibung: "Brand, Leitungswasser, Einbruchdiebstahl, Sturm" },
         { wert: "sonstiges", label: "Sonstiger Schaden", icon: Briefcase, beschreibung: "Rechtsschutz, Unfall, Krankenzusatz, Sonstiges" }
+    ];
+
+    const wizardSchritte = [
+        { nr: 1, label: "Schadensart", hinweis: "Was ist betroffen?", icon: ShieldAlert },
+        { nr: 2, label: "Details", hinweis: "Was ist passiert?", icon: FileText },
+        { nr: 3, label: "Belege", hinweis: "Fotos & Dokumente", icon: Camera },
+        { nr: 4, label: "Kontakt", hinweis: "Deine Daten", icon: User }
     ];
 
     const handleDragOver = (e: React.DragEvent) => {
@@ -215,34 +222,78 @@ const SchadenMelden = () => {
                 ]}
                 bild={schadenHeroImg}
                 bildAlt="Sven Kegler als persönlicher Ansprechpartner"
-                bildKlasse="unterseiten-hero__bild--schaden"
+                bildKlasse="unterseiten-hero__bild--kontakt"
                 primaer={{ text: "Schaden jetzt melden", href: "#schadenformular" }}
                 akzent="rot"
             />
 
             {/* ─── MULTI-STEP SCHADENSMELDER ─── */}
-            <section id="schadenformular" className="py-24 bg-hintergrund-alt relative scroll-mt-24">
-                <div className="max-w-3xl mx-auto px-6 relative z-10">
-                    
-                    {!wurdeGesendet ? (
-                        <div className="bg-[#f8f9fc] border border-gray-100 rounded-[2.5rem] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.02)] min-h-[500px] flex flex-col justify-between">
-                            
-                            {/* Progress bar */}
-                            <div className="mb-10">
-                                <div className="flex justify-between items-center text-xs font-extrabold text-[#718096] uppercase tracking-wider mb-3">
-                                    <span>Schritt {schritt} von 4</span>
-                                    <span>{schritt === 1 ? 'Schadensart' : schritt === 2 ? 'Details' : schritt === 3 ? 'Bilder' : 'Kontaktdaten'}</span>
-                                </div>
-                                <div className="w-full bg-gray-100 h-1 rounded-full overflow-hidden">
-                                    <motion.div 
-                                        className="bg-red-500 h-full"
-                                        initial={{ width: 0 }}
-                                        animate={{ width: `${(schritt / 4) * 100}%` }}
-                                        transition={{ duration: 0.3 }}
-                                    />
-                                </div>
-                            </div>
+            <section id="schadenformular" className="py-16 md:py-24 bg-hintergrund-alt relative scroll-mt-24">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
 
+                    {!wurdeGesendet ? (
+                        <div className="bg-white border border-gray-100 rounded-[2rem] md:rounded-[2.5rem] shadow-[0_30px_80px_rgba(2,10,57,0.08)] overflow-hidden grid lg:grid-cols-[340px_1fr]">
+
+                            {/* Schritt-Navigation (Desktop) */}
+                            <aside className="relative hidden lg:flex flex-col bg-[#1b3a6b] p-10 overflow-hidden">
+                                <div className="absolute -top-28 -right-28 w-72 h-72 rounded-full bg-red-500/15 blur-3xl" aria-hidden="true" />
+                                <div className="absolute -bottom-32 -left-24 w-72 h-72 rounded-full bg-[#0253ee]/15 blur-3xl" aria-hidden="true" />
+
+                                <div className="relative">
+                                    <span className="inline-flex items-center rounded-full border border-red-400/30 bg-red-500/10 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-red-300">
+                                        Schadensmeldung
+                                    </span>
+                                    <h3 className="mt-5 text-2xl font-extrabold text-white tracking-tight leading-snug">
+                                        In vier Schritten erledigt
+                                    </h3>
+
+                                    <ol className="mt-10 space-y-2">
+                                        {wizardSchritte.map((ws) => {
+                                            const WsIcon = ws.icon;
+                                            const erledigt = schritt > ws.nr;
+                                            const aktiv = schritt === ws.nr;
+                                            return (
+                                                <li key={ws.nr}>
+                                                    <div className={`flex items-center gap-4 rounded-2xl px-3 py-3 transition-colors duration-300 ${aktiv ? 'bg-white/10' : ''}`}>
+                                                        <span className={`flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border transition-all duration-300 ${
+                                                            erledigt
+                                                                ? 'bg-red-500 border-red-500 text-white'
+                                                                : aktiv
+                                                                    ? 'bg-white border-white text-[#0a1930]'
+                                                                    : 'bg-white/5 border-white/10 text-white/40'
+                                                        }`}>
+                                                            {erledigt ? <Check className="w-5 h-5 stroke-[3]" /> : <WsIcon className="w-5 h-5" />}
+                                                        </span>
+                                                        <span>
+                                                            <span className={`block text-sm font-extrabold ${aktiv || erledigt ? 'text-white' : 'text-white/40'}`}>{ws.label}</span>
+                                                            <span className={`block text-xs font-normal ${aktiv ? 'text-white/70' : 'text-white/30'}`}>{ws.hinweis}</span>
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                            );
+                                        })}
+                                    </ol>
+                                </div>
+
+                            </aside>
+
+                            {/* Formular-Inhalt */}
+                            <div className="flex flex-col p-6 sm:p-10 lg:p-12">
+
+                                {/* Schritt-Anzeige (Mobil & Tablet) */}
+                                <div className="lg:hidden mb-8">
+                                    <div className="flex justify-between items-center text-xs font-extrabold uppercase tracking-wider mb-3">
+                                        <span className="text-[#718096]">Schritt {schritt} von 4</span>
+                                        <span className="text-red-500">{wizardSchritte[schritt - 1].label}</span>
+                                    </div>
+                                    <div className="flex gap-1.5">
+                                        {wizardSchritte.map((ws) => (
+                                            <div key={ws.nr} className={`h-1.5 flex-1 rounded-full transition-colors duration-300 ${ws.nr <= schritt ? 'bg-red-500' : 'bg-gray-100'}`} />
+                                        ))}
+                                    </div>
+                                </div>
+
+                            <div className="flex-1">
                             <AnimatePresence mode="wait">
                                 {/* Schritt 1: Schadensart */}
                                 {schritt === 1 && (
@@ -253,10 +304,10 @@ const SchadenMelden = () => {
                                         exit={{ opacity: 0, x: -20 }}
                                         className="space-y-6"
                                     >
-                                        <h3 className="font-extrabold text-2xl text-[#0a1930] tracking-tight mb-2">Welche Schadensart liegt vor?</h3>
-                                        <p className="text-xs text-[#718096] mb-6 font-normal">Wähle den passenden Bereich aus, um die Schadensmeldung optimal zu starten.</p>
-                                        
-                                        <div className="grid sm:grid-cols-2 gap-4">
+                                        <h3 className="font-extrabold text-2xl md:text-3xl text-[#0a1930] tracking-tight mb-2">Welche Schadensart liegt vor?</h3>
+                                        <p className="text-sm md:text-base text-[#718096] mb-8 font-normal">Wähle den passenden Bereich aus, um die Schadensmeldung optimal zu starten.</p>
+
+                                        <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
                                             {schadensarten.map((art) => {
                                                 const Icon = art.icon;
                                                 const istAusgewählt = schadensart === art.wert;
@@ -265,22 +316,27 @@ const SchadenMelden = () => {
                                                         key={art.wert}
                                                         type="button"
                                                         onClick={() => { setSchadensart(art.wert); weiter(); }}
-                                                        className={`p-6 rounded-2xl border text-left flex flex-col items-start gap-4 transition-all duration-300 group hover:-translate-y-0.5 ${
-                                                            istAusgewählt 
-                                                                ? 'border-red-500 bg-red-50/10 shadow-md' 
-                                                                : 'border-gray-100 bg-white hover:border-red-500 hover:shadow-md'
+                                                        className={`relative p-6 md:p-7 rounded-2xl border-2 text-left flex flex-col items-start gap-5 transition-all duration-300 group cursor-pointer ${
+                                                            istAusgewählt
+                                                                ? 'border-red-500 bg-red-50/60 shadow-xl shadow-red-500/5'
+                                                                : 'border-gray-100 bg-white shadow-sm hover:border-red-200 hover:shadow-xl hover:-translate-y-1'
                                                         }`}
                                                     >
-                                                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-all ${
+                                                        {istAusgewählt && (
+                                                            <span className="absolute top-4 right-4 flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-white">
+                                                                <Check className="w-3.5 h-3.5 stroke-[3]" />
+                                                            </span>
+                                                        )}
+                                                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center border transition-all ${
                                                             istAusgewählt
                                                                 ? 'bg-red-500 border-red-500 text-white'
-                                                                : 'bg-[#f8f9fc] border-gray-100 text-[#718096] group-hover:text-red-500 group-hover:bg-red-50/30'
+                                                                : 'bg-[#f8f9fc] border-gray-100 text-[#718096] group-hover:text-red-500 group-hover:bg-red-50 group-hover:border-red-100'
                                                         }`}>
-                                                            <Icon className="w-5 h-5" />
+                                                            <Icon className="w-6 h-6" />
                                                         </div>
                                                         <div>
-                                                            <h4 className="font-extrabold text-sm text-[#0a1930]">{art.label}</h4>
-                                                            <p className="text-[11px] text-[#718096] leading-relaxed font-normal mt-1">{art.beschreibung}</p>
+                                                            <h4 className="font-extrabold text-base md:text-lg text-[#0a1930]">{art.label}</h4>
+                                                            <p className="text-sm text-[#718096] leading-relaxed font-normal mt-1.5">{art.beschreibung}</p>
                                                         </div>
                                                     </button>
                                                 );
@@ -298,29 +354,29 @@ const SchadenMelden = () => {
                                         exit={{ opacity: 0, x: -20 }}
                                         className="space-y-6"
                                     >
-                                        <h3 className="font-extrabold text-2xl text-[#0a1930] tracking-tight mb-2">Was ist genau passiert?</h3>
-                                        <p className="text-xs text-[#718096] mb-6 font-normal">Beschreibe den Schaden kurz in deinen eigenen Worten.</p>
+                                        <h3 className="font-extrabold text-2xl md:text-3xl text-[#0a1930] tracking-tight mb-2">Was ist genau passiert?</h3>
+                                        <p className="text-sm md:text-base text-[#718096] mb-8 font-normal">Beschreibe den Schaden kurz in deinen eigenen Worten.</p>
 
-                                        <div className="space-y-4">
+                                        <div className="space-y-5">
                                             <div>
                                                 <label className="block text-xs font-extrabold text-[#0a1930] uppercase tracking-wider mb-2">Wann ist der Schaden aufgetreten?</label>
-                                                <input 
+                                                <input
                                                     type="date"
                                                     required
                                                     value={schadensdatum}
                                                     onChange={(e) => setSchadensdatum(e.target.value)}
-                                                    className="w-full bg-white border border-gray-400 rounded-xl px-4 py-3 text-sm focus:border-red-500 focus:outline-none transition-all font-medium"
+                                                    className="w-full sm:max-w-xs bg-[#f8f9fc] border-2 border-gray-100 rounded-xl px-4 py-3.5 text-[15px] focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 focus:outline-none transition-all font-medium"
                                                 />
                                             </div>
                                             <div>
                                                 <label className="block text-xs font-extrabold text-[#0a1930] uppercase tracking-wider mb-2">Schadensbeschreibung</label>
-                                                <textarea 
-                                                    rows={5}
+                                                <textarea
+                                                    rows={6}
                                                     required
                                                     value={beschreibung}
                                                     onChange={(e) => setBeschreibung(e.target.value)}
                                                     placeholder="Beschreibe z. B. wo es passiert ist, was beschädigt wurde und wie hoch du den Schaden schätzt..."
-                                                    className="w-full bg-white border border-gray-400 rounded-xl px-4 py-3 text-sm focus:border-red-500 focus:outline-none transition-all placeholder:text-gray-300 font-medium resize-none leading-relaxed"
+                                                    className="w-full bg-[#f8f9fc] border-2 border-gray-100 rounded-xl px-4 py-3.5 text-[15px] focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 focus:outline-none transition-all placeholder:text-gray-400 font-medium resize-none leading-relaxed"
                                                 />
                                             </div>
                                         </div>
@@ -336,8 +392,8 @@ const SchadenMelden = () => {
                                         exit={{ opacity: 0, x: -20 }}
                                         className="space-y-6"
                                     >
-                                        <h3 className="font-extrabold text-2xl text-[#0a1930] tracking-tight mb-2">Schadensbilder & Dokumente</h3>
-                                        <p className="text-xs text-[#718096] mb-6 font-normal">Lade hier Fotos vom Schaden, Rechnungen oder Unfallberichte hoch. Je mehr Belege wir haben, desto schneller zahlt der Versicherer.</p>
+                                        <h3 className="font-extrabold text-2xl md:text-3xl text-[#0a1930] tracking-tight mb-2">Schadensbilder & Dokumente</h3>
+                                        <p className="text-sm md:text-base text-[#718096] mb-8 font-normal">Lade hier Fotos vom Schaden, Rechnungen oder Unfallberichte hoch. Je mehr Belege wir haben, desto schneller zahlt der Versicherer.</p>
 
                                         {/* Fehler-Banner */}
                                         <AnimatePresence>
@@ -365,10 +421,10 @@ const SchadenMelden = () => {
                                             onDragLeave={handleDragLeave}
                                             onDrop={handleDrop}
                                             onClick={() => fileInputRef.current?.click()}
-                                            className={`border-2 border-dashed rounded-3xl p-8 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 ${
-                                                isDragging 
-                                                    ? 'border-red-500 bg-red-50/5 scale-[0.98]' 
-                                                    : 'border-gray-400 bg-white hover:border-red-500 hover:bg-red-50/[0.01]'
+                                            className={`border-2 border-dashed rounded-2xl p-10 md:p-14 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 ${
+                                                isDragging
+                                                    ? 'border-red-500 bg-red-50/60 scale-[0.99]'
+                                                    : 'border-gray-200 bg-[#f8f9fc] hover:border-red-300 hover:bg-red-50/40'
                                             }`}
                                         >
                                             <input 
@@ -379,24 +435,24 @@ const SchadenMelden = () => {
                                                 accept=".pdf,.png,.jpg,.jpeg"
                                                 className="hidden"
                                             />
-                                            <div className="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center mb-4 text-red-500">
-                                                <Camera className="w-5 h-5" />
+                                            <div className="w-14 h-14 rounded-2xl bg-white shadow-md flex items-center justify-center mb-5 text-red-500">
+                                                <Camera className="w-6 h-6" />
                                             </div>
-                                            <span className="font-extrabold text-sm text-[#0a1930] text-center mb-1">
+                                            <span className="font-extrabold text-base text-[#0a1930] text-center mb-1">
                                                 Schadensbilder hierhin ziehen
                                             </span>
-                                            <span className="text-xs text-[#718096] text-center font-normal">
-                                                oder klicken, um Fotos/PDFs auszuwählen
+                                            <span className="text-sm text-[#718096] text-center font-normal">
+                                                oder klicken, um Fotos/PDFs auszuwählen (max. 10 MB)
                                             </span>
                                         </div>
 
                                         {/* Dateiliste */}
                                         {dateien.length > 0 && (
-                                            <div className="space-y-3 max-h-[180px] overflow-y-auto pr-1">
+                                            <div className="space-y-3 max-h-[240px] overflow-y-auto pr-1">
                                                 {dateien.map((datei) => (
-                                                    <div 
-                                                        key={datei.id} 
-                                                        className="bg-white border border-gray-100 p-4 rounded-2xl flex items-center justify-between shadow-sm relative overflow-hidden"
+                                                    <div
+                                                        key={datei.id}
+                                                        className="bg-[#f8f9fc] border border-gray-100 p-4 rounded-2xl flex items-center justify-between relative overflow-hidden"
                                                     >
                                                         {datei.status === 'loading' && (
                                                             <div 
@@ -447,10 +503,10 @@ const SchadenMelden = () => {
                                         exit={{ opacity: 0, x: -20 }}
                                         className="space-y-6"
                                     >
-                                        <h3 className="font-extrabold text-2xl text-[#0a1930] tracking-tight mb-2">Wie können wir dich erreichen?</h3>
-                                        <p className="text-xs text-[#718096] mb-6 font-normal">Hinterlasse uns deine Kontaktdaten. Sven Kegler kontaktiert dich sofort persönlich.</p>
+                                        <h3 className="font-extrabold text-2xl md:text-3xl text-[#0a1930] tracking-tight mb-2">Wie können wir dich erreichen?</h3>
+                                        <p className="text-sm md:text-base text-[#718096] mb-8 font-normal">Hinterlasse uns deine Kontaktdaten. Sven Kegler kontaktiert dich sofort persönlich.</p>
 
-                                        <form onSubmit={absenden} className="space-y-4">
+                                        <form onSubmit={absenden} className="space-y-5">
                                             {/* Honeypot Spam-Schutz */}
                                             <div className="hidden" aria-hidden="true">
                                                 <input 
@@ -462,7 +518,7 @@ const SchadenMelden = () => {
                                                     autoComplete="off" 
                                                 />
                                             </div>
-                                            <div className="grid sm:grid-cols-2 gap-4">
+                                            <div className="grid sm:grid-cols-2 gap-5">
                                                 <div>
                                                     <label className="block text-xs font-extrabold text-[#0a1930] uppercase tracking-wider mb-2">Vor- & Nachname</label>
                                                     <div className="relative">
@@ -473,7 +529,7 @@ const SchadenMelden = () => {
                                                             value={name}
                                                             onChange={(e) => setName(e.target.value)}
                                                             placeholder="z. B. Max Mustermann"
-                                                            className="w-full bg-white border border-gray-400 rounded-xl pl-11 pr-4 py-3 text-sm focus:border-red-500 focus:outline-none transition-all placeholder:text-gray-300 font-medium"
+                                                            className="w-full bg-[#f8f9fc] border-2 border-gray-100 rounded-xl pl-11 pr-4 py-3.5 text-[15px] focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 focus:outline-none transition-all placeholder:text-gray-400 font-medium"
                                                         />
                                                     </div>
                                                 </div>
@@ -487,7 +543,7 @@ const SchadenMelden = () => {
                                                             value={telefon}
                                                             onChange={(e) => setTelefon(e.target.value)}
                                                             placeholder="z. B. 0176 1234567"
-                                                            className="w-full bg-white border border-gray-400 rounded-xl pl-11 pr-4 py-3 text-sm focus:border-red-500 focus:outline-none transition-all placeholder:text-gray-300 font-medium"
+                                                            className="w-full bg-[#f8f9fc] border-2 border-gray-100 rounded-xl pl-11 pr-4 py-3.5 text-[15px] focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 focus:outline-none transition-all placeholder:text-gray-400 font-medium"
                                                         />
                                                     </div>
                                                 </div>
@@ -502,7 +558,7 @@ const SchadenMelden = () => {
                                                         value={email}
                                                         onChange={(e) => setEmail(e.target.value)}
                                                         placeholder="z. B. name@mail.de"
-                                                        className="w-full bg-white border border-gray-400 rounded-xl pl-11 pr-4 py-3 text-sm focus:border-red-500 focus:outline-none transition-all placeholder:text-gray-300 font-medium"
+                                                        className="w-full bg-[#f8f9fc] border-2 border-gray-100 rounded-xl pl-11 pr-4 py-3.5 text-[15px] focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 focus:outline-none transition-all placeholder:text-gray-400 font-medium"
                                                     />
                                                 </div>
                                             </div>
@@ -515,7 +571,7 @@ const SchadenMelden = () => {
                                                         value={policenNummer}
                                                         onChange={(e) => setPolicenNummer(e.target.value)}
                                                         placeholder="z. B. SV-123-456-789 (falls zur Hand)"
-                                                        className="w-full bg-white border border-gray-400 rounded-xl pl-11 pr-4 py-3 text-sm focus:border-red-500 focus:outline-none transition-all placeholder:text-gray-300 font-medium"
+                                                        className="w-full bg-[#f8f9fc] border-2 border-gray-100 rounded-xl pl-11 pr-4 py-3.5 text-[15px] focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 focus:outline-none transition-all placeholder:text-gray-400 font-medium"
                                                     />
                                                 </div>
                                             </div>
@@ -523,52 +579,54 @@ const SchadenMelden = () => {
                                     </motion.div>
                                 )}
                             </AnimatePresence>
+                            </div>
 
-                            {/* Buttons Footer */}
-                            <div className="mt-12 pt-6 border-t border-gray-100 flex justify-between relative z-10">
-                                <button
-                                    type="button"
-                                    onClick={zurück}
-                                    disabled={schritt === 1}
-                                    className={`flex items-center gap-2 font-bold text-sm transition-all ${
-                                        schritt === 1 
-                                            ? 'text-gray-200 cursor-not-allowed' 
-                                            : 'text-[#718096] hover:text-[#0a1930] cursor-pointer'
-                                    }`}
-                                >
-                                    <ArrowLeft className="w-4 h-4" />
-                                    <span>Zurück</span>
-                                </button>
-
-                                {schritt < 4 ? (
+                                {/* Buttons Footer */}
+                                <div className="mt-10 pt-6 border-t border-gray-100 flex flex-col-reverse gap-4 sm:flex-row sm:items-center sm:justify-between relative z-10">
                                     <button
                                         type="button"
-                                        onClick={weiter}
-                                        disabled={schritt === 1 && !schadensart || schritt === 2 && (!beschreibung || !schadensdatum)}
-                                        className={`px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 shadow-md transition-all ${
-                                            (schritt === 1 && schadensart) || (schritt === 2 && beschreibung && schadensdatum) || schritt === 3
-                                                ? 'bg-[#0a1930] hover:bg-[#152a4f] text-white hover:-translate-y-0.5 cursor-pointer'
-                                                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                        onClick={zurück}
+                                        disabled={schritt === 1}
+                                        className={`flex items-center justify-center sm:justify-start gap-2 font-bold text-sm py-2 transition-all ${
+                                            schritt === 1
+                                                ? 'text-gray-300 cursor-not-allowed'
+                                                : 'text-[#718096] hover:text-[#0a1930] cursor-pointer'
                                         }`}
                                     >
-                                        <span>Weiter</span>
-                                        <ArrowRight className="w-4 h-4" />
+                                        <ArrowLeft className="w-4 h-4" />
+                                        <span>Zurück</span>
                                     </button>
-                                ) : (
-                                    <button
-                                        type="button"
-                                        onClick={absenden}
-                                        disabled={!name || !email || !telefon}
-                                        className={`px-8 py-3.5 rounded-xl font-bold text-sm flex items-center gap-2 shadow-lg transition-all ${
-                                            name && email && telefon
-                                                ? 'bg-red-500 hover:bg-red-600 text-white hover:-translate-y-0.5 cursor-pointer'
-                                                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                                        }`}
-                                    >
-                                        <span>Schaden jetzt melden</span>
-                                        <ArrowRight className="w-4 h-4" />
-                                    </button>
-                                )}
+
+                                    {schritt < 4 ? (
+                                        <button
+                                            type="button"
+                                            onClick={weiter}
+                                            disabled={schritt === 1 && !schadensart || schritt === 2 && (!beschreibung || !schadensdatum)}
+                                            className={`w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-sm md:text-base flex items-center justify-center gap-2 shadow-md transition-all ${
+                                                (schritt === 1 && schadensart) || (schritt === 2 && beschreibung && schadensdatum) || schritt === 3
+                                                    ? 'bg-[#0a1930] hover:bg-[#152a4f] text-white hover:-translate-y-0.5 cursor-pointer'
+                                                    : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                            }`}
+                                        >
+                                            <span>Weiter</span>
+                                            <ArrowRight className="w-4 h-4" />
+                                        </button>
+                                    ) : (
+                                        <button
+                                            type="button"
+                                            onClick={absenden}
+                                            disabled={!name || !email || !telefon}
+                                            className={`w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-sm md:text-base flex items-center justify-center gap-2 shadow-lg transition-all ${
+                                                name && email && telefon
+                                                    ? 'bg-red-500 hover:bg-red-600 text-white hover:-translate-y-0.5 cursor-pointer'
+                                                    : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                            }`}
+                                        >
+                                            <span>Schaden jetzt melden</span>
+                                            <ArrowRight className="w-4 h-4" />
+                                        </button>
+                                    )}
+                                </div>
                             </div>
 
                         </div>
@@ -578,7 +636,7 @@ const SchadenMelden = () => {
                             key="erfolgreich"
                             initial={{ opacity: 0, scale: 0.98 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            className="bg-white border border-gray-100 rounded-[2.5rem] p-10 md:p-16 shadow-[0_20px_50px_rgba(0,0,0,0.03)] text-center flex flex-col items-center justify-center"
+                            className="max-w-3xl mx-auto bg-white border border-gray-100 rounded-[2.5rem] p-10 md:p-16 shadow-[0_20px_50px_rgba(0,0,0,0.03)] text-center flex flex-col items-center justify-center"
                         >
                             <div className="w-20 h-20 rounded-full bg-[#10b981]/10 flex items-center justify-center mb-8 shadow-md border border-[#10b981]/20">
                                 <Check className="w-10 h-10 text-[#10b981] stroke-[3]" />

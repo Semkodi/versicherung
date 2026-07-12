@@ -34,11 +34,6 @@
   transform: translateX(130px) scale(1.14);
 }
 
-.unterseiten-hero__bild--schaden {
-  object-position: 68% center;
-  transform: translateX(150px) scale(1.18);
-}
-
 .unterseiten-hero__bild--kontakt,
 .unterseiten-hero__bild--ueber-uns {
   object-position: 70% 15%;
@@ -86,7 +81,6 @@
   .unterseiten-hero__bild--privat,
   .unterseiten-hero__bild--beamte,
   .unterseiten-hero__bild--gewerbe,
-  .unterseiten-hero__bild--schaden,
   .unterseiten-hero__bild--kontakt,
   .unterseiten-hero__bild--ueber-uns {
     object-position: 58% top;
